@@ -1,0 +1,22 @@
+# build & data
+bin/
+*.db
+*.db-shm
+*.db-wal
+data/
+backups/
+coverage.out
+coverage.html
+# scrape caches
+.cache/
+cache/
+# secrets
+.env
+config.yaml
+# frontend tooling (unused, kept out defensively)
+web/node_modules/
+web/dist/
+# editors / OS
+.DS_Store
+.idea/
+.vscode/
