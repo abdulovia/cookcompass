@@ -1,0 +1,41 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        VERSION: ${VERSION:-local}
+    image: cookcompass:local
+    ports:
+      - "127.0.0.1:${PORT:-8080}:8080"
+    environment:
+      COOK_ADMIN_USER: ${COOK_ADMIN_USER:-admin}
+      COOK_ADMIN_PASSWORD: ${COOK_ADMIN_PASSWORD:-cookcompass}
+      COOK_DEFAULT_COUNTRY: ${COOK_DEFAULT_COUNTRY:-US}
+      COOK_LOG_FORMAT: ${COOK_LOG_FORMAT:-json}
+    volumes:
+      - cookdata:/data
+    healthcheck:
+      test: ["CMD", "/app/cookcompass", "healthcheck"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  # Optional local TLS: `docker compose --profile tls up -d` → https://localhost:8443
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["tls"]
+    ports:
+      - "127.0.0.1:8443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  cookdata:
+  caddydata:
