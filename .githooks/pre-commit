@@ -1,0 +1,12 @@
+#!/bin/sh
+# Installed with `make hooks`.
+set -e
+files=$(git diff --cached --name-only --diff-filter=ACM -- '*.go')
+if [ -n "$files" ]; then
+  unformatted=$(gofmt -s -l $files)
+  if [ -n "$unformatted" ]; then
+    echo "gofmt needed on:"; echo "$unformatted"; exit 1
+  fi
+fi
+GOTOOLCHAIN=local go vet ./...
+make -s test-short
