@@ -1,0 +1,2 @@
+# Product listing pages scanned by `make scan`. Format: <COUNTRY> <URL>
+# Pages must expose schema.org Product JSON-LD; robots.txt is always enforced.
