@@ -1,0 +1,3 @@
+# Recipe pages scraped by `make scrape-recipes SOURCE=jsonld`.
+# One URL per line; blank lines and lines starting with # are ignored.
+# Only list sites whose terms permit indexing; robots.txt is always enforced.
