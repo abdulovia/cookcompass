@@ -1,0 +1,54 @@
+{
+  "slug": "spaghetti-carbonara",
+  "cuisine": "italian",
+  "meal_times": ["lunch", "dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 10,
+  "cook_minutes": 15,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=authentic+spaghetti+carbonara",
+  "nutrition": {"calories": 610, "protein": 27, "fat": 24, "carbs": 70, "fiber": 3, "sugar": 3, "sodium": 890, "saturated_fat": 9},
+  "ingredients": [
+    {"text": "400 g spaghetti", "ingredient": "spaghetti"},
+    {"text": "150 g pancetta, cut into small strips", "ingredient": "pancetta"},
+    {"text": "3 eggs", "ingredient": "egg"},
+    {"text": "60 g parmesan, finely grated", "ingredient": "parmesan"},
+    {"text": "1 tsp black pepper, freshly ground", "ingredient": "black-pepper"},
+    {"text": "1 tbsp salt, for the pasta water", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Spaghetti Carbonara",
+      "description": "Rome's famous pasta: a silky sauce made only from eggs, cheese, pork and pepper — no cream. Teaches you to cook with residual heat.",
+      "steps": [
+        "Fill a large pot with about 4 litres of water and bring it to a boil over high heat. Add the salt once it boils — the water should taste lightly salty.",
+        "While the water heats, whisk the eggs in a bowl with most of the grated parmesan (keep a little for serving) and the black pepper until you have a thick paste.",
+        "Put the pancetta in a large cold frying pan and set it over medium heat. Cook for 6–8 minutes, stirring now and then, until the fat melts and the pieces turn golden and crisp. Turn off the heat.",
+        "Add the spaghetti to the boiling water and stir for the first minute so it doesn't stick. Cook for 1 minute less than the packet says.",
+        "Before draining, scoop out a mugful (about 250 ml) of the starchy pasta water and set it aside. This water is the secret to a creamy sauce.",
+        "Drain the spaghetti and tip it straight into the pan with the pancetta. Toss for 30 seconds so the pasta is coated in the fat.",
+        "Important: take the pan completely off the heat and wait about 1 minute. If the pan is too hot, the eggs will scramble instead of making a sauce.",
+        "Pour in the egg mixture with 3–4 tablespoons of pasta water and toss quickly with tongs. The heat of the pasta gently cooks the eggs into a glossy sauce.",
+        "If the sauce looks thick or dry, add more pasta water a splash at a time and keep tossing until it flows like thin custard.",
+        "Serve immediately with the remaining parmesan and an extra grind of pepper."
+      ]
+    },
+    "ru": {
+      "name": "Спагетти карбонара",
+      "description": "Знаменитая римская паста: шелковистый соус только из яиц, сыра, свинины и перца — без сливок. Учит готовить на остаточном тепле.",
+      "steps": [
+        "Налейте в большую кастрюлю около 4 литров воды и доведите до кипения на сильном огне. Посолите закипевшую воду — она должна быть слегка солёной на вкус.",
+        "Пока вода греется, взбейте в миске яйца с большей частью тёртого пармезана (немного оставьте для подачи) и чёрным перцем до густой пасты.",
+        "Выложите панчетту в большую холодную сковороду и поставьте на средний огонь. Готовьте 6–8 минут, помешивая, пока жир не вытопится, а кусочки не станут золотистыми и хрустящими. Выключите огонь.",
+        "Опустите спагетти в кипящую воду и помешивайте первую минуту, чтобы они не слиплись. Варите на 1 минуту меньше, чем указано на упаковке.",
+        "Перед тем как слить воду, зачерпните кружку (около 250 мл) крахмалистой воды от пасты и отставьте. Эта вода — секрет кремового соуса.",
+        "Слейте спагетти и сразу переложите в сковороду с панчеттой. Перемешивайте 30 секунд, чтобы паста покрылась жиром.",
+        "Важно: полностью снимите сковороду с огня и подождите около минуты. Если сковорода слишком горячая, яйца свернутся, а не превратятся в соус.",
+        "Влейте яичную смесь и 3–4 столовые ложки воды от пасты и быстро перемешайте щипцами. Тепло пасты мягко загустит яйца в глянцевый соус.",
+        "Если соус слишком густой или сухой, подливайте воду от пасты понемногу и продолжайте перемешивать, пока он не станет как жидкий заварной крем.",
+        "Подавайте сразу, посыпав оставшимся пармезаном и свежемолотым перцем."
+      ],
+      "ingredients": ["400 г спагетти", "150 г панчетты, нарезанной полосками", "3 яйца", "60 г мелко тёртого пармезана", "1 ч. л. свежемолотого чёрного перца", "1 ст. л. соли для воды"]
+    }
+  }
+}
