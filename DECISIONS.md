@@ -37,3 +37,14 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Each country deliberately lacks a few items (RU: fish sauce, gochujang, dumpling wrappers…; DE: gochujang, gyoza wrappers…) so availability and substitutions are visible out of the box.
 - Seed video links point at YouTube search results for the dish; admins can paste a specific video URL, which is then embedded via youtube-nocookie.com.
 - The seeder is idempotent and runs on every server start: it upserts ingredients, cuisines and countries, but never overwrites existing recipes or products.
+
+## Web & admin
+- UI strings go through `go-i18n` from the first template (English only until the i18n phase) so the translation pass is data, not a rewrite.
+- CSRF defence is a same-origin check on Origin/Referer for every non-GET request plus `SameSite=Lax` cookies — no tokens to thread through HTMX.
+- Admin guard: basic auth when `COOK_ADMIN_PASSWORD` is set, otherwise loopback clients only. `X-Forwarded-For` is ignored so the loopback check can't be spoofed.
+- Compose sets a default admin password (`cookcompass`) because container traffic never arrives from loopback; override it in `.env`.
+- Admin ingredient editing is one line per ingredient parsed by the same parser as the scraper; "(optional)" marks non-essential lines; unchanged lines keep their explicit ingredient links.
+- Admin edits flip `source` to `user`, making the recipe authoritative against future scrapes.
+- Flash messages travel as a `?flash=<id>` query parameter holding an i18n key (no server-side session state).
+- CSP allows `'unsafe-eval'` because Alpine.js evaluates attribute expressions; only the vendored scripts are loaded.
+- `serve` migrates and seeds on start, so `docker compose up` on an empty volume gives a usable app.
