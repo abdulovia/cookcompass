@@ -4,7 +4,9 @@ go 1.24.3
 
 require (
 	github.com/go-chi/chi/v5 v5.2.1
+	github.com/nicksnyder/go-i18n/v2 v2.5.1
 	github.com/pressly/goose/v3 v3.24.3
+	golang.org/x/text v0.25.0
 	gopkg.in/yaml.v3 v3.0.1
 	modernc.org/sqlite v1.37.0
 )
