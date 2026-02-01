@@ -18,7 +18,9 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/config"
+	"github.com/abdulovia/cookcompass/internal/db"
 	"github.com/abdulovia/cookcompass/internal/server"
 )
 
@@ -29,18 +31,35 @@ type App struct {
 	Stdin  io.Reader
 }
 
+// env is what every command receives.
+type env struct {
+	*App
+	cfg config.Config
+	log *slog.Logger
+	ctx context.Context
+}
+
+// open opens the database and services.
+func (e *env) open() (*app.App, error) { return app.Open(e.cfg, e.log) }
+
 type command struct {
 	name    string
 	summary string
-	run     func(a *App, cfg config.Config, log *slog.Logger, args []string) error
+	run     func(e *env, args []string) error
 }
 
-func (a *App) commands() []command {
+func commands() []command {
 	return []command{
-		{"serve", "run the HTTP server", runServe},
+		{"serve", "run the HTTP server (migrates and seeds first)", runServe},
+		{"migrate", "apply database migrations", runMigrate},
+		{"seed", "load the bundled dataset (idempotent)", runSeed},
+		{"recipe", "recipe create|delete|restore|list", runRecipe},
+		{"approve-all", "approve every pending recipe and product", runApproveAll},
+		{"purge-pending", "delete every pending recipe and product", runPurgePending},
+		{"backup", "write a consistent database snapshot (--out path)", runBackup},
 		{"healthcheck", "probe /healthz on the local server (for containers)", runHealthcheck},
-		{"version", "print version", func(a *App, _ config.Config, _ *slog.Logger, _ []string) error {
-			_, err := fmt.Fprintln(a.Stdout, server.Version)
+		{"version", "print version", func(e *env, _ []string) error {
+			_, err := fmt.Fprintln(e.Stdout, server.Version)
 			return err
 		}},
 	}
@@ -56,7 +75,7 @@ func (a *App) Run(args []string) int {
 		a.usage()
 		return 0
 	}
-	for _, c := range a.commands() {
+	for _, c := range commands() {
 		if c.name != name {
 			continue
 		}
@@ -65,8 +84,10 @@ func (a *App) Run(args []string) int {
 			fmt.Fprintf(a.Stderr, "config: %v\n", err)
 			return 2
 		}
-		log := NewLogger(a.Stderr, cfg.Log)
-		if err := c.run(a, cfg, log, rest); err != nil {
+		ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+		defer stop()
+		e := &env{App: a, cfg: cfg, log: NewLogger(a.Stderr, cfg.Log), ctx: ctx}
+		if err := c.run(e, rest); err != nil {
 			fmt.Fprintf(a.Stderr, "%s: %v\n", name, err)
 			return 1
 		}
@@ -79,7 +100,7 @@ func (a *App) Run(args []string) int {
 
 func (a *App) usage() {
 	fmt.Fprintln(a.Stderr, "usage: cookcompass <command> [flags]\n\ncommands:")
-	for _, c := range a.commands() {
+	for _, c := range commands() {
 		fmt.Fprintf(a.Stderr, "  %-16s %s\n", c.name, c.summary)
 	}
 }
@@ -104,19 +125,35 @@ func NewLogger(w io.Writer, c config.Log) *slog.Logger {
 	return slog.New(slog.NewJSONHandler(w, opts))
 }
 
-func runServe(_ *App, cfg config.Config, log *slog.Logger, _ []string) error {
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
-	ln, err := net.Listen("tcp", cfg.Server.Addr)
+func runServe(e *env, _ []string) error {
+	ln, err := net.Listen("tcp", e.cfg.Server.Addr)
 	if err != nil {
 		return err
 	}
-	return Serve(ctx, cfg, log, ln)
+	return Serve(e.ctx, e.cfg, e.log, ln)
 }
 
-// Serve runs the HTTP server on ln until ctx is cancelled.
+// Serve opens the app, seeds it and runs the HTTP server on ln until ctx
+// is cancelled.
 func Serve(ctx context.Context, cfg config.Config, log *slog.Logger, ln net.Listener) error {
-	srv := server.New(cfg, log)
+	a, err := app.Open(cfg, log)
+	if err != nil {
+		_ = ln.Close()
+		return err
+	}
+	defer a.Close()
+	if _, err := a.Seed(ctx); err != nil {
+		_ = ln.Close()
+		return fmt.Errorf("seed: %w", err)
+	}
+	srv, err := server.New(a)
+	if err != nil {
+		_ = ln.Close()
+		return err
+	}
+	if cfg.Admin.Password == "" {
+		log.Warn("admin password not set: /admin is limited to loopback clients")
+	}
 	httpSrv := &http.Server{
 		Handler:           srv.Handler(),
 		ReadHeaderTimeout: 5 * time.Second,
@@ -142,14 +179,65 @@ func Serve(ctx context.Context, cfg config.Config, log *slog.Logger, ln net.List
 	return httpSrv.Shutdown(shutdownCtx)
 }
 
-func runHealthcheck(_ *App, cfg config.Config, _ *slog.Logger, args []string) error {
+func runMigrate(e *env, _ []string) error {
+	a, err := e.open()
+	if err != nil {
+		return err
+	}
+	defer a.Close()
+	v, err := db.Version(a.DB)
+	if err != nil {
+		return err
+	}
+	fmt.Fprintf(e.Stdout, "schema version %d\n", v)
+	return nil
+}
+
+func runSeed(e *env, _ []string) error {
+	a, err := e.open()
+	if err != nil {
+		return err
+	}
+	defer a.Close()
+	rep, err := a.Seed(e.ctx)
+	if err != nil {
+		return err
+	}
+	fmt.Fprintln(e.Stdout, rep.String())
+	return nil
+}
+
+func runBackup(e *env, args []string) error {
+	fs := flag.NewFlagSet("backup", flag.ContinueOnError)
+	fs.SetOutput(e.Stderr)
+	out := fs.String("out", "", "destination file (required)")
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+	if *out == "" {
+		*out = fmt.Sprintf("backups/cookcompass-%s.db", time.Now().Format("20060102-150405"))
+	}
+	a, err := e.open()
+	if err != nil {
+		return err
+	}
+	defer a.Close()
+	if err := db.Backup(e.ctx, a.DB, *out); err != nil {
+		return err
+	}
+	fmt.Fprintf(e.Stdout, "backup written to %s\n", *out)
+	return nil
+}
+
+func runHealthcheck(e *env, args []string) error {
 	fs := flag.NewFlagSet("healthcheck", flag.ContinueOnError)
+	fs.SetOutput(e.Stderr)
 	url := fs.String("url", "", "health URL (default derived from server.addr)")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
 	if *url == "" {
-		addr := cfg.Server.Addr
+		addr := e.cfg.Server.Addr
 		if strings.HasPrefix(addr, ":") {
 			addr = "127.0.0.1" + addr
 		}
