@@ -139,6 +139,12 @@ func (s *Store) prepare(ctx context.Context, r *Recipe) error {
 			}
 		}
 	}
+	// The base-locale translation always mirrors the recipe's own text.
+	if _, ok := r.Translations[BaseLocale]; ok {
+		t := r.Translations[BaseLocale]
+		t.Name, t.Description, t.Steps = r.Name, r.Description, r.Steps
+		r.Translations[BaseLocale] = t
+	}
 	r.NeedsReview = false
 	for _, in := range r.Ingredients {
 		if in.NeedsReview {
