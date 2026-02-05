@@ -1,0 +1,42 @@
+{{define "layout"}}<!doctype html>
+<html lang="{{.Lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{if .Title}}{{.Title}} · {{end}}{{.T "app.name"}}</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <script src="/static/vendor/htmx.min.js" defer></script>
+  <script src="/static/vendor/alpine.min.js" defer></script>
+</head>
+<body hx-boost="false">
+  <a class="skip" href="#main">{{.T "nav.skip"}}</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="/">🧭 {{.T "app.name"}}</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          {{if .Admin}}
+          <li><a href="/admin" {{if eq .Path "/admin"}}aria-current="page"{{end}}>{{.T "admin.title"}}</a></li>
+          <li><a href="/admin/recipes" {{if .Active "/admin/recipes"}}aria-current="page"{{end}}>{{.T "admin.recipes"}}</a></li>
+          {{block "admin_nav_extra" .}}{{end}}
+          <li><a href="/">{{.T "nav.home"}} ↗</a></li>
+          {{else}}
+          <li><a href="/" {{if .Active "/"}}aria-current="page"{{end}}>{{.T "nav.home"}}</a></li>
+          <li><a href="/recipes" {{if .Active "/recipes"}}aria-current="page"{{end}}>{{.T "nav.recipes"}}</a></li>
+          <li><a href="/learn" {{if .Active "/learn"}}aria-current="page"{{end}}>{{.T "nav.learn"}}</a></li>
+          <li><a href="/goals" {{if .Active "/goals"}}aria-current="page"{{end}}>{{.T "nav.goals"}}</a></li>
+          <li><a href="/settings" {{if .Active "/settings"}}aria-current="page"{{end}}>{{.T "nav.settings"}}</a></li>
+          {{end}}
+        </ul>
+      </nav>
+      {{template "lang_switch" .}}
+    </div>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
+    {{if .Flash}}<div class="flash" role="status">{{.T .Flash}}</div>{{end}}
+    {{template "content" .}}
+  </main>
+  <footer class="site-footer"><div class="wrap">{{.T "footer.local"}}</div></footer>
+</body>
+</html>{{end}}
