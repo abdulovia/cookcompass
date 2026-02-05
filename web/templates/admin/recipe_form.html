@@ -1,0 +1,113 @@
+{{define "content"}}
+{{$f := .Data.Form}}
+<div class="title-row">
+  <h1>{{.Title}}{{if $f.ID}}: {{$f.Name}}{{end}}</h1>
+  {{if $f.ID}}<div class="row-gap">
+    <a class="btn secondary" href="/recipes/{{$f.Slug}}">↗ {{$f.Slug}}</a>
+    <a class="btn secondary" href="/admin/recipes/{{$f.ID}}/revisions">{{.T "admin.history"}}</a>
+  </div>{{end}}
+</div>
+{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.T (printf "status.%s" $f.Status))}} — {{.T "admin.user_wins"}}</p>{{end}}
+{{template "error_summary" .}}
+<form method="post" action="{{if $f.ID}}/admin/recipes/{{$f.ID}}{{else}}/admin/recipes{{end}}" class="stack" novalidate>
+  <fieldset>
+    <legend>{{.T "admin.section_basics"}}</legend>
+    <label for="name">{{.T "admin.field_name"}}</label>
+    <input id="name" name="name" value="{{$f.Name}}" required maxlength="200" {{if .Err "name"}}aria-invalid="true"{{end}}>
+    {{template "field_error" (.Err "name")}}
+    <label for="description">{{.T "admin.field_description"}}</label>
+    <textarea id="description" name="description" rows="2">{{$f.Description}}</textarea>
+    <div class="grid three">
+      <div>
+        <label for="cuisine">{{.T "admin.field_cuisine"}}</label>
+        <select id="cuisine" name="cuisine">
+          <option value="">{{.T "admin.no_cuisine"}}</option>
+          {{range .Data.Cuisines}}<option value="{{.Slug}}" {{if eq .Slug $f.Cuisine}}selected{{end}}>{{.Name}}</option>{{end}}
+        </select>
+        {{template "field_error" (.Err "cuisine")}}
+      </div>
+      <div>
+        <label for="difficulty">{{.T "admin.field_difficulty"}}</label>
+        <select id="difficulty" name="difficulty">
+          {{range .Data.Difficulties}}<option value="{{.}}" {{if eq . $f.Difficulty}}selected{{end}}>{{$.T (printf "difficulty.%s" .)}}</option>{{end}}
+        </select>
+        {{template "field_error" (.Err "difficulty")}}
+      </div>
+      <fieldset class="inline">
+        <legend>{{.T "admin.field_meal_times"}}</legend>
+        {{range .Data.MealTimes}}<label class="check"><input type="checkbox" name="meal_times" value="{{.}}" {{if has $f.MealTimes .}}checked{{end}}> {{$.T (printf "meal.%s" .)}}</label>{{end}}
+        {{template "field_error" (.Err "meal_times")}}
+      </fieldset>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{.T "admin.section_time"}}</legend>
+    <div class="grid three">
+      <div><label for="prep">{{.T "admin.field_prep"}}</label><input id="prep" name="prep_minutes" inputmode="numeric" value="{{$f.Prep}}">{{template "field_error" (.Err "prep_minutes")}}</div>
+      <div><label for="cook">{{.T "admin.field_cook"}}</label><input id="cook" name="cook_minutes" inputmode="numeric" value="{{$f.Cook}}">{{template "field_error" (.Err "cook_minutes")}}</div>
+      <div><label for="servings">{{.T "admin.field_servings"}}</label><input id="servings" name="servings" inputmode="numeric" value="{{$f.Servings}}">{{template "field_error" (.Err "servings")}}</div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{.T "admin.section_ingredients"}}</legend>
+    <p class="help" id="ing-help">{{.T "admin.field_ingredients_help"}}</p>
+    <textarea name="ingredients" rows="10" aria-describedby="ing-help" aria-label="{{.T "admin.section_ingredients"}}">{{$f.Ingredients}}</textarea>
+    {{template "field_error" (.Err "ingredients")}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{.T "admin.section_steps"}}</legend>
+    <p class="help" id="steps-help">{{.T "admin.field_steps_help"}}</p>
+    <textarea name="steps" rows="12" aria-describedby="steps-help" aria-label="{{.T "admin.section_steps"}}">{{$f.Steps}}</textarea>
+    {{template "field_error" (.Err "steps")}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{.T "admin.section_nutrition"}}</legend>
+    <div class="grid four">
+      {{range .Data.NutritionFields}}<div>
+        <label for="n-{{.}}">{{$.T (printf "nutrition.%s" .)}}</label>
+        <input id="n-{{.}}" name="{{.}}" inputmode="decimal" value="{{index $f.Nutrition .}}">
+        {{template "field_error" ($.Err .)}}
+      </div>{{end}}
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{.T "admin.section_media"}}</legend>
+    <label for="video">{{.T "admin.field_video"}}</label>
+    <input id="video" name="video_url" type="url" value="{{$f.VideoURL}}" placeholder="https://www.youtube.com/watch?v=…">
+    {{template "field_error" (.Err "video_url")}}
+    <label for="image">{{.T "admin.field_image"}}</label>
+    <input id="image" name="image_url" type="url" value="{{$f.ImageURL}}">
+    {{template "field_error" (.Err "image_url")}}
+  </fieldset>
+
+  {{if $f.Translations}}
+  <fieldset>
+    <legend>{{.T "admin.section_translations"}}</legend>
+    {{range $f.Translations}}
+    <details {{if .Name}}open{{end}}>
+      <summary><strong>{{.Locale}}</strong></summary>
+      <input type="hidden" name="translation_locales" value="{{.Locale}}">
+      <label for="t-{{.Locale}}-name">{{$.T "admin.field_translation_name"}}</label>
+      <input id="t-{{.Locale}}-name" name="t_{{.Locale}}_name" value="{{.Name}}" lang="{{.Locale}}">
+      <label for="t-{{.Locale}}-desc">{{$.T "admin.field_translation_description"}}</label>
+      <textarea id="t-{{.Locale}}-desc" name="t_{{.Locale}}_description" rows="2" lang="{{.Locale}}">{{.Description}}</textarea>
+      <label for="t-{{.Locale}}-steps">{{$.T "admin.field_translation_steps"}}</label>
+      <textarea id="t-{{.Locale}}-steps" name="t_{{.Locale}}_steps" rows="8" lang="{{.Locale}}">{{.Steps}}</textarea>
+      <label for="t-{{.Locale}}-ings">{{$.T "admin.field_translation_ingredients"}}</label>
+      <textarea id="t-{{.Locale}}-ings" name="t_{{.Locale}}_ingredients" rows="6" lang="{{.Locale}}">{{.Ingredients}}</textarea>
+    </details>
+    {{end}}
+  </fieldset>
+  {{end}}
+
+  <div class="row-gap">
+    <button type="submit">{{.T "common.save"}}</button>
+    <a class="btn secondary" href="/admin/recipes">{{.T "common.cancel"}}</a>
+  </div>
+</form>
+{{end}}

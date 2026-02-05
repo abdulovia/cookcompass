@@ -1,0 +1,18 @@
+{{define "content"}}
+<h1>{{.T "admin.dashboard"}}</h1>
+<div class="grid two">
+  <section class="card">
+    <h2>{{.T "admin.counts_recipes"}}</h2>
+    <dl class="stats">
+      {{range $k, $v := .Data.Recipes}}<div><dt>{{$.T (printf "status.%s" $k)}}</dt><dd>{{$v}}</dd></div>{{end}}
+    </dl>
+    <p><a class="btn" href="/admin/recipes">{{.T "admin.recipes"}}</a> <a class="btn secondary" href="/admin/recipes/new">{{.T "admin.new_recipe"}}</a></p>
+  </section>
+  <section class="card">
+    <h2>{{.T "admin.counts_products"}}</h2>
+    <dl class="stats">
+      {{range $k, $v := .Data.Products}}<div><dt>{{$k}}</dt><dd>{{$v}}</dd></div>{{end}}
+    </dl>
+  </section>
+</div>
+{{end}}
