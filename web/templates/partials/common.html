@@ -1,0 +1,15 @@
+{{define "lang_switch"}}{{if gt (len .Languages) 1}}
+<form class="lang" method="post" action="/lang">
+  <label for="lang-select" class="visually-hidden">{{.T "nav.language"}}</label>
+  <select id="lang-select" name="lang" onchange="this.form.submit()">
+    {{range .Languages}}<option value="{{.Code}}" {{if eq .Code $.Lang}}selected{{end}}>{{.Name}}</option>{{end}}
+  </select>
+  <input type="hidden" name="back" value="{{.Path}}">
+  <noscript><button type="submit">OK</button></noscript>
+</form>{{end}}{{end}}
+
+{{define "field_error"}}{{with .}}<p class="field-error" role="alert">{{.}}</p>{{end}}{{end}}
+
+{{define "error_summary"}}{{if .HasErrors}}<div class="error-summary" role="alert">{{.T "validation.summary"}}</div>{{end}}{{end}}
+
+{{define "difficulty_badge"}}<span class="badge diff-{{.}}">{{.}}</span>{{end}}
