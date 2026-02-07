@@ -1,0 +1,143 @@
+{
+  "slug": "beef-bourguignon",
+  "cuisine": "french",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 30,
+  "cook_minutes": 180,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=beef+bourguignon+recipe",
+  "nutrition": {
+    "calories": 560,
+    "protein": 46,
+    "fat": 26,
+    "carbs": 14,
+    "fiber": 3,
+    "sugar": 5,
+    "sodium": 820,
+    "saturated_fat": 10
+  },
+  "ingredients": [
+    {
+      "text": "1.2 kg stewing beef, cut into 5 cm cubes",
+      "ingredient": "beef-chuck"
+    },
+    {
+      "text": "150 g bacon, diced",
+      "ingredient": "bacon",
+      "essential": false
+    },
+    {
+      "text": "750 ml red wine",
+      "ingredient": "red-wine"
+    },
+    {
+      "text": "500 ml beef stock",
+      "ingredient": "beef-stock"
+    },
+    {
+      "text": "1 onion, chopped",
+      "ingredient": "onion"
+    },
+    {
+      "text": "2 carrots, sliced",
+      "ingredient": "carrot"
+    },
+    {
+      "text": "3 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "2 tbsp tomato paste",
+      "ingredient": "tomato-paste"
+    },
+    {
+      "text": "2 tbsp flour",
+      "ingredient": "all-purpose-flour"
+    },
+    {
+      "text": "250 g mushrooms, quartered",
+      "ingredient": "mushrooms",
+      "essential": false
+    },
+    {
+      "text": "2 sprigs thyme",
+      "ingredient": "thyme",
+      "essential": false
+    },
+    {
+      "text": "2 bay leaves",
+      "ingredient": "bay-leaf",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp butter",
+      "ingredient": "butter"
+    },
+    {
+      "text": "2 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "salt and pepper, to taste",
+      "ingredient": "salt"
+    },
+    {
+      "text": "parsley, for garnish",
+      "ingredient": "parsley",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Beef Bourguignon",
+      "description": "The classic French braise: beef slowly cooked in red wine until it falls apart. A lesson in patience and browning in batches.",
+      "steps": [
+        "Pat the beef cubes very dry with paper towels and season with salt and pepper. Dry meat browns; wet meat steams.",
+        "Heat the oven to 160 °C (325 °F). In a large heavy pot with a lid, cook the bacon over medium heat until crisp, then lift it out, leaving the fat.",
+        "Add 1 tablespoon of oil and turn the heat to high. Brown the beef in 3 batches — never crowd the pot — about 2 minutes per side, until deep brown. Move each batch to a plate.",
+        "Lower the heat to medium. Cook the onion and carrots in the same pot for 5 minutes, scraping up the brown bits. Add garlic and tomato paste and stir 1 minute.",
+        "Return the beef and bacon. Sprinkle over the flour and stir for 1 minute so it coats everything — this thickens the sauce later.",
+        "Pour in the wine and stock: the liquid should almost cover the meat. Add the thyme and bay leaves and bring to a simmer.",
+        "Cover and put the pot in the oven for 2½–3 hours, until a cube of beef breaks apart easily with a fork. Check once halfway and add a little water if it looks dry.",
+        "Near the end, melt the butter in a frying pan over medium-high heat and fry the mushrooms for 6–8 minutes until golden. Stir them into the stew.",
+        "Remove the herb stems and bay leaves, taste and adjust the salt. Serve with mashed potatoes or bread, sprinkled with parsley."
+      ]
+    },
+    "ru": {
+      "name": "Говядина по-бургундски",
+      "description": "Классическое французское рагу: говядина, томлённая в красном вине, пока не начнёт распадаться. Урок терпения и обжаривания партиями.",
+      "steps": [
+        "Тщательно обсушите кубики говядины бумажными полотенцами, посолите и поперчите. Сухое мясо обжаривается, мокрое — тушится.",
+        "Разогрейте духовку до 160 °C. В большой толстостенной кастрюле с крышкой обжарьте бекон на среднем огне до хруста, выньте его, оставив жир.",
+        "Добавьте 1 ст. л. масла и прибавьте огонь. Обжаривайте говядину в 3 приёма — не перегружайте кастрюлю — около 2 минут с каждой стороны до тёмной корочки. Перекладывайте на тарелку.",
+        "Убавьте огонь до среднего. Обжарьте лук и морковь в той же кастрюле 5 минут, соскребая пригоревшие частички. Добавьте чеснок и томатную пасту и помешивайте 1 минуту.",
+        "Верните говядину и бекон. Посыпьте мукой и перемешивайте минуту, чтобы она покрыла всё — так соус потом загустеет.",
+        "Влейте вино и бульон: жидкость должна почти покрывать мясо. Добавьте тимьян и лавровый лист и доведите до лёгкого кипения.",
+        "Накройте крышкой и поставьте в духовку на 2,5–3 часа, пока кубик говядины легко не развалится вилкой. Проверьте один раз посередине и подлейте воды, если стало сухо.",
+        "Ближе к концу растопите масло на сковороде на огне выше среднего и обжарьте грибы 6–8 минут до золотистого цвета. Добавьте их в рагу.",
+        "Удалите веточки трав и лавровый лист, попробуйте и досолите. Подавайте с картофельным пюре или хлебом, посыпав петрушкой."
+      ],
+      "ingredients": [
+        "1,2 кг говядины для тушения кубиками по 5 см",
+        "150 г бекона кубиками",
+        "750 мл красного вина",
+        "500 мл говяжьего бульона",
+        "1 луковица",
+        "2 моркови кружочками",
+        "3 зубчика чеснока",
+        "2 ст. л. томатной пасты",
+        "2 ст. л. муки",
+        "250 г шампиньонов четвертинками",
+        "2 веточки тимьяна",
+        "2 лавровых листа",
+        "2 ст. л. сливочного масла",
+        "2 ст. л. растительного масла",
+        "соль и перец по вкусу",
+        "петрушка для подачи"
+      ]
+    }
+  }
+}
