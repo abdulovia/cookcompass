@@ -1,0 +1,120 @@
+{
+  "slug": "classic-beef-burger",
+  "cuisine": "american",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 15,
+  "cook_minutes": 12,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=classic+beef+burger+recipe",
+  "nutrition": {
+    "calories": 620,
+    "protein": 34,
+    "fat": 33,
+    "carbs": 42,
+    "fiber": 2.5,
+    "sugar": 8,
+    "sodium": 980,
+    "saturated_fat": 13
+  },
+  "ingredients": [
+    {
+      "text": "600 g ground beef",
+      "ingredient": "ground-beef"
+    },
+    {
+      "text": "4 burger buns",
+      "ingredient": "burger-buns"
+    },
+    {
+      "text": "4 slices cheddar",
+      "ingredient": "cheddar",
+      "essential": false
+    },
+    {
+      "text": "4 lettuce leaves",
+      "ingredient": "lettuce",
+      "essential": false
+    },
+    {
+      "text": "1 tomato, sliced",
+      "ingredient": "tomato",
+      "essential": false
+    },
+    {
+      "text": "1/2 red onion, thinly sliced",
+      "ingredient": "red-onion",
+      "essential": false
+    },
+    {
+      "text": "1 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1/2 tsp black pepper",
+      "ingredient": "black-pepper"
+    },
+    {
+      "text": "1 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "ketchup, for serving",
+      "ingredient": "ketchup",
+      "essential": false
+    },
+    {
+      "text": "mustard, for serving",
+      "ingredient": "mustard",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Classic Beef Burger",
+      "description": "Juicy homemade burgers. You'll learn how to shape patties that stay flat and how to tell when meat is cooked.",
+      "steps": [
+        "Take the beef out of the fridge 15 minutes before cooking so it cooks evenly.",
+        "Divide the beef into 4 equal portions. Gently shape each into a ball, then flatten into a patty about 2 cm thick and slightly wider than your bun. Don't squeeze hard — packed meat turns dense.",
+        "Press your thumb into the centre of each patty to make a shallow dimple. This stops the burger puffing up into a ball as it cooks.",
+        "Season both sides generously with salt and pepper just before cooking.",
+        "Heat the oil in a heavy frying pan or grill pan over medium-high heat until it shimmers.",
+        "Cook the patties for 4 minutes without moving them, so a brown crust forms. Flip once and cook 3–4 minutes more. Add the cheese for the last minute and cover the pan so it melts.",
+        "To check doneness, cut into one patty: for ground beef the centre should no longer be pink (71 °C / 160 °F with a thermometer).",
+        "While the burgers rest for 2 minutes, toast the cut sides of the buns in the same pan for 30 seconds.",
+        "Build each burger: bun, lettuce, patty with cheese, tomato, onion, sauces, top bun."
+      ]
+    },
+    "ru": {
+      "name": "Классический бургер с говядиной",
+      "description": "Сочные домашние бургеры. Научитесь формировать котлеты, которые остаются плоскими, и определять готовность мяса.",
+      "steps": [
+        "Достаньте фарш из холодильника за 15 минут до готовки, чтобы он прожарился равномерно.",
+        "Разделите фарш на 4 равные части. Аккуратно скатайте шарики и расплющите в котлеты толщиной около 2 см, чуть шире булочки. Не сжимайте сильно — плотный фарш становится жёстким.",
+        "Сделайте большим пальцем небольшую ямку в центре каждой котлеты. Так она не раздуется в шар при жарке.",
+        "Щедро посолите и поперчите котлеты с обеих сторон прямо перед жаркой.",
+        "Разогрейте масло в толстостенной сковороде или сковороде-гриль на огне выше среднего, пока оно не начнёт переливаться.",
+        "Жарьте котлеты 4 минуты, не двигая, чтобы образовалась корочка. Переверните один раз и жарьте ещё 3–4 минуты. За минуту до конца положите сыр и накройте крышкой, чтобы он расплавился.",
+        "Чтобы проверить готовность, надрежьте одну котлету: середина фарша не должна быть розовой (71 °C по термометру).",
+        "Пока бургеры отдыхают 2 минуты, подрумяньте срезы булочек на той же сковороде 30 секунд.",
+        "Соберите бургер: булочка, салат, котлета с сыром, помидор, лук, соусы, верхняя булочка."
+      ],
+      "ingredients": [
+        "600 г говяжьего фарша",
+        "4 булочки для бургеров",
+        "4 ломтика чеддера",
+        "4 листа салата",
+        "1 помидор, ломтиками",
+        "½ красной луковицы, тонкими кольцами",
+        "1 ч. л. соли",
+        "½ ч. л. чёрного перца",
+        "1 ст. л. растительного масла",
+        "кетчуп для подачи",
+        "горчица для подачи"
+      ]
+    }
+  }
+}
