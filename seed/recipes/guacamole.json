@@ -1,0 +1,96 @@
+{
+  "slug": "guacamole",
+  "cuisine": "mexican",
+  "meal_times": [
+    "snack"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 0,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=easy+guacamole+recipe",
+  "nutrition": {
+    "calories": 180,
+    "protein": 2.5,
+    "fat": 15,
+    "carbs": 11,
+    "fiber": 7,
+    "sugar": 1.5,
+    "sodium": 300,
+    "saturated_fat": 2.2
+  },
+  "ingredients": [
+    {
+      "text": "3 avocados",
+      "ingredient": "avocado"
+    },
+    {
+      "text": "1 lime, juiced",
+      "ingredient": "lime"
+    },
+    {
+      "text": "1/4 red onion, finely chopped",
+      "ingredient": "red-onion"
+    },
+    {
+      "text": "2 tbsp cilantro, chopped",
+      "ingredient": "cilantro",
+      "essential": false
+    },
+    {
+      "text": "1 jalapeño, seeded and minced",
+      "ingredient": "jalapeno",
+      "essential": false
+    },
+    {
+      "text": "1 tomato, diced",
+      "ingredient": "tomato",
+      "essential": false
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "tortilla chips, for serving",
+      "ingredient": "tortilla-chips",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Guacamole",
+      "description": "Creamy avocado dip in 10 minutes, no cooking. Teaches how to choose and cut an avocado safely.",
+      "steps": [
+        "Pick ripe avocados: they should give slightly when pressed gently near the stem.",
+        "Cut each avocado lengthwise around the stone, twist the halves apart, and scoop out the stone with a spoon (not a knife — that's how people get hurt).",
+        "Scoop the flesh into a bowl. Add the lime juice and salt right away so it doesn't turn brown.",
+        "Mash with a fork, leaving some chunks for texture.",
+        "Stir in the onion, cilantro, jalapeño and tomato. Wear gloves or wash your hands right after handling the jalapeño, and don't touch your eyes.",
+        "Taste with a chip and adjust: more lime for brightness, more salt for flavour. Serve with tortilla chips."
+      ]
+    },
+    "ru": {
+      "name": "Гуакамоле",
+      "description": "Кремовый соус из авокадо за 10 минут без готовки. Учит выбирать и безопасно резать авокадо.",
+      "steps": [
+        "Выбирайте спелые авокадо: при лёгком нажатии у черешка они должны чуть поддаваться.",
+        "Разрежьте авокадо вдоль вокруг косточки, поверните половинки в разные стороны и выньте косточку ложкой (не ножом — так чаще всего и ранятся).",
+        "Выложите мякоть в миску. Сразу добавьте сок лайма и соль, чтобы она не потемнела.",
+        "Разомните вилкой, оставляя кусочки для текстуры.",
+        "Вмешайте лук, кинзу, халапеньо и помидор. После работы с халапеньо вымойте руки или используйте перчатки и не трогайте глаза.",
+        "Попробуйте с чипсом и доведите: больше лайма — для свежести, больше соли — для вкуса. Подавайте с кукурузными чипсами."
+      ],
+      "ingredients": [
+        "3 авокадо",
+        "сок 1 лайма",
+        "¼ красной луковицы, мелко нарезанной",
+        "2 ст. л. рубленой кинзы",
+        "1 халапеньо без семян, мелко нарезанный",
+        "1 помидор кубиком",
+        "½ ч. л. соли",
+        "кукурузные чипсы для подачи"
+      ]
+    }
+  }
+}

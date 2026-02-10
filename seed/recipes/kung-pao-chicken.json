@@ -1,0 +1,124 @@
+{
+  "slug": "kung-pao-chicken",
+  "cuisine": "chinese",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 20,
+  "cook_minutes": 10,
+  "servings": 3,
+  "video_url": "https://www.youtube.com/results?search_query=kung+pao+chicken+recipe",
+  "nutrition": {
+    "calories": 450,
+    "protein": 38,
+    "fat": 24,
+    "carbs": 20,
+    "fiber": 3,
+    "sugar": 9,
+    "sodium": 1150,
+    "saturated_fat": 4
+  },
+  "ingredients": [
+    {
+      "text": "500 g chicken breast, cut into 2 cm cubes",
+      "ingredient": "chicken-breast"
+    },
+    {
+      "text": "1/2 cup peanuts",
+      "ingredient": "peanuts"
+    },
+    {
+      "text": "8 dried chilies",
+      "ingredient": "dried-chilies",
+      "essential": false
+    },
+    {
+      "text": "1 tsp Sichuan peppercorns",
+      "ingredient": "sichuan-peppercorn",
+      "essential": false
+    },
+    {
+      "text": "3 cloves garlic, sliced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 tbsp ginger, minced",
+      "ingredient": "ginger"
+    },
+    {
+      "text": "4 scallions, cut into 2 cm pieces",
+      "ingredient": "scallion"
+    },
+    {
+      "text": "3 tbsp soy sauce",
+      "ingredient": "soy-sauce"
+    },
+    {
+      "text": "1 tbsp rice vinegar",
+      "ingredient": "rice-vinegar"
+    },
+    {
+      "text": "1 tbsp sugar",
+      "ingredient": "sugar"
+    },
+    {
+      "text": "1 tbsp cornstarch",
+      "ingredient": "cornstarch"
+    },
+    {
+      "text": "1 tsp sesame oil",
+      "ingredient": "sesame-oil",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Kung Pao Chicken",
+      "description": "Tender chicken, crunchy peanuts and a glossy sweet-sour sauce. Teaches velveting meat and building a stir-fry sauce.",
+      "steps": [
+        "Toss the chicken with 1 tablespoon of soy sauce and 2 teaspoons of cornstarch. Leave 10 minutes — this 'velveting' keeps it juicy.",
+        "For the sauce, stir together the remaining soy sauce and cornstarch, the vinegar, sugar, sesame oil and 2 tablespoons of water in a small bowl.",
+        "Cut the dried chilies in half and shake out most seeds (fewer seeds = less heat).",
+        "Heat a wok over high heat with 1 tablespoon of oil. Add the chicken in one layer and cook 2 minutes without moving, then stir-fry 2 more minutes until just cooked. Move to a plate.",
+        "Lower the heat to medium. Add the remaining oil, the chilies and Sichuan peppercorns and stir 20 seconds until fragrant and slightly darker — don't let them blacken.",
+        "Add the garlic, ginger and scallions and stir 30 seconds.",
+        "Return the chicken, stir the sauce (the starch settles) and pour it in. Toss for about 1 minute until the sauce turns thick and glossy.",
+        "Stir in the peanuts and serve immediately with rice."
+      ]
+    },
+    "ru": {
+      "name": "Курица гунбао",
+      "description": "Нежная курица, хрустящий арахис и глянцевый кисло-сладкий соус. Учит «бархатить» мясо и собирать соус для вока.",
+      "steps": [
+        "Перемешайте курицу с 1 ст. л. соевого соуса и 2 ч. л. крахмала. Оставьте на 10 минут — такое «бархатирование» сохраняет сочность.",
+        "Для соуса смешайте в маленькой миске оставшийся соевый соус и крахмал, уксус, сахар, кунжутное масло и 2 ст. л. воды.",
+        "Разрежьте сушёный чили пополам и вытряхните большую часть семян (меньше семян — меньше остроты).",
+        "Раскалите вок на сильном огне с 1 ст. л. масла. Выложите курицу в один слой и жарьте 2 минуты не двигая, затем ещё 2 минуты помешивая, пока она едва не приготовится. Переложите на тарелку.",
+        "Убавьте огонь до среднего. Добавьте оставшееся масло, чили и сычуаньский перец и помешивайте 20 секунд, пока не появится аромат и они слегка не потемнеют — не дайте им почернеть.",
+        "Добавьте чеснок, имбирь и зелёный лук и помешивайте 30 секунд.",
+        "Верните курицу, перемешайте соус (крахмал оседает) и влейте его. Перемешивайте около минуты, пока соус не станет густым и глянцевым.",
+        "Вмешайте арахис и сразу подавайте с рисом."
+      ],
+      "ingredients": [
+        "500 г куриного филе кубиками по 2 см",
+        "½ стакана арахиса",
+        "8 сушёных перцев чили",
+        "1 ч. л. сычуаньского перца",
+        "3 зубчика чеснока",
+        "1 ст. л. рубленого имбиря",
+        "4 стебля зелёного лука кусочками",
+        "3 ст. л. соевого соуса",
+        "1 ст. л. рисового уксуса",
+        "1 ст. л. сахара",
+        "1 ст. л. крахмала",
+        "1 ч. л. кунжутного масла",
+        "2 ст. л. растительного масла"
+      ]
+    }
+  }
+}
