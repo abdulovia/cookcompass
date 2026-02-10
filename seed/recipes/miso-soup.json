@@ -1,0 +1,86 @@
+{
+  "slug": "miso-soup",
+  "cuisine": "japanese",
+  "meal_times": [
+    "breakfast",
+    "lunch"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 5,
+  "cook_minutes": 10,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=easy+miso+soup+recipe",
+  "nutrition": {
+    "calories": 90,
+    "protein": 7,
+    "fat": 4,
+    "carbs": 7,
+    "fiber": 1.5,
+    "sugar": 2,
+    "sodium": 980,
+    "saturated_fat": 0.6
+  },
+  "ingredients": [
+    {
+      "text": "1 l water",
+      "ingredient": "water"
+    },
+    {
+      "text": "1 tsp dashi powder",
+      "ingredient": "dashi"
+    },
+    {
+      "text": "3 tbsp miso paste",
+      "ingredient": "miso-paste"
+    },
+    {
+      "text": "200 g tofu, cubed",
+      "ingredient": "tofu",
+      "essential": false
+    },
+    {
+      "text": "1 tbsp dried wakame",
+      "ingredient": "wakame",
+      "essential": false
+    },
+    {
+      "text": "2 scallions, sliced",
+      "ingredient": "scallion",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Miso Soup",
+      "description": "Japan's everyday soup, ready in 15 minutes. Teaches one golden rule: never boil miso.",
+      "steps": [
+        "Put the dried wakame in a small bowl of water to soak for 5 minutes. It will expand a lot. Drain.",
+        "Bring the water to a boil in a pot and stir in the dashi powder until dissolved. This is your stock.",
+        "Lower the heat so the stock is barely simmering. Add the tofu cubes and wakame and heat for 2 minutes.",
+        "Turn off the heat. Put the miso paste in a ladle or small sieve, lower it into the pot and stir with chopsticks or a spoon until it dissolves completely.",
+        "Do not let the soup boil again after adding miso — boiling dulls its flavour and aroma.",
+        "Ladle into bowls and top with scallions. Serve hot."
+      ]
+    },
+    "ru": {
+      "name": "Мисо-суп",
+      "description": "Повседневный японский суп за 15 минут. Учит одному золотому правилу: мисо нельзя кипятить.",
+      "steps": [
+        "Замочите сушёные водоросли вакамэ в мисочке с водой на 5 минут. Они сильно увеличатся. Слейте воду.",
+        "Доведите воду до кипения в кастрюле и размешайте в ней порошок даси до растворения. Это ваш бульон.",
+        "Убавьте огонь, чтобы бульон едва булькал. Добавьте кубики тофу и вакамэ и прогрейте 2 минуты.",
+        "Выключите огонь. Положите пасту мисо в половник или маленькое сито, опустите в кастрюлю и размешивайте палочками или ложкой до полного растворения.",
+        "Не давайте супу снова закипеть после добавления мисо — кипячение глушит вкус и аромат.",
+        "Разлейте по пиалам, посыпьте зелёным луком. Подавайте горячим."
+      ],
+      "ingredients": [
+        "1 л воды",
+        "1 ч. л. порошка даси",
+        "3 ст. л. пасты мисо",
+        "200 г тофу кубиками",
+        "1 ст. л. сушёных водорослей вакамэ",
+        "2 стебля зелёного лука"
+      ]
+    }
+  }
+}

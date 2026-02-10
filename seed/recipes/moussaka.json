@@ -1,0 +1,152 @@
+{
+  "slug": "moussaka",
+  "cuisine": "greek",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 40,
+  "cook_minutes": 90,
+  "servings": 8,
+  "video_url": "https://www.youtube.com/results?search_query=greek+moussaka+recipe",
+  "nutrition": {
+    "calories": 560,
+    "protein": 28,
+    "fat": 36,
+    "carbs": 30,
+    "fiber": 7,
+    "sugar": 11,
+    "sodium": 720,
+    "saturated_fat": 15
+  },
+  "ingredients": [
+    {
+      "text": "3 eggplants",
+      "ingredient": "eggplant"
+    },
+    {
+      "text": "750 g ground lamb",
+      "ingredient": "lamb-mince"
+    },
+    {
+      "text": "1 onion, chopped",
+      "ingredient": "onion"
+    },
+    {
+      "text": "3 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 can canned tomatoes (400 g)",
+      "ingredient": "canned-tomatoes"
+    },
+    {
+      "text": "2 tbsp tomato paste",
+      "ingredient": "tomato-paste"
+    },
+    {
+      "text": "100 ml red wine",
+      "ingredient": "red-wine",
+      "essential": false
+    },
+    {
+      "text": "1 tsp cinnamon",
+      "ingredient": "cinnamon"
+    },
+    {
+      "text": "1 tsp oregano",
+      "ingredient": "oregano",
+      "essential": false
+    },
+    {
+      "text": "6 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "60 g butter",
+      "ingredient": "butter"
+    },
+    {
+      "text": "60 g flour",
+      "ingredient": "all-purpose-flour"
+    },
+    {
+      "text": "600 ml milk",
+      "ingredient": "milk"
+    },
+    {
+      "text": "1 egg",
+      "ingredient": "egg"
+    },
+    {
+      "text": "1/4 tsp nutmeg",
+      "ingredient": "nutmeg",
+      "essential": false
+    },
+    {
+      "text": "50 g parmesan, grated",
+      "ingredient": "parmesan",
+      "essential": false
+    },
+    {
+      "text": "2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1/2 tsp black pepper",
+      "ingredient": "black-pepper"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Moussaka",
+      "description": "Layers of roasted eggplant, cinnamon-spiced lamb and creamy béchamel. A project dish that teaches making a white sauce from scratch.",
+      "steps": [
+        "Heat the oven to 220 °C (425 °F). Slice the eggplants into 1 cm rounds, brush both sides with olive oil, sprinkle with salt and roast on trays for 20–25 minutes, turning once, until soft and golden.",
+        "Meanwhile make the meat sauce: heat 1 tablespoon of oil in a large pan over medium-high heat and brown the lamb for 6–8 minutes. Add the onion and cook 5 minutes, then the garlic for 1 minute.",
+        "Stir in the tomato paste, then the wine and let it bubble for 2 minutes. Add the tomatoes, cinnamon, oregano, 1 tsp salt and the pepper. Simmer 20 minutes until thick.",
+        "Make the béchamel: melt the butter in a saucepan over medium heat, add the flour and whisk 2 minutes without browning. This paste is called a roux.",
+        "Slowly pour in the milk while whisking constantly so no lumps form. Keep whisking over medium heat for 5–7 minutes until it thickens like custard.",
+        "Take off the heat, whisk in the nutmeg, a pinch of salt, half the parmesan, and then the egg (whisk fast so it doesn't scramble).",
+        "Lower the oven to 180 °C (350 °F). In a deep baking dish layer half the eggplant, all the meat sauce, then the rest of the eggplant. Pour the béchamel over and sprinkle with the remaining parmesan.",
+        "Bake 40–45 minutes until the top is deep golden.",
+        "Very important: let it rest at least 30 minutes before cutting, or the layers will slide apart."
+      ]
+    },
+    "ru": {
+      "name": "Мусака",
+      "description": "Слои запечённого баклажана, бараньего фарша с корицей и сливочного бешамеля. Блюдо-проект, которое учит варить белый соус с нуля.",
+      "steps": [
+        "Разогрейте духовку до 220 °C. Нарежьте баклажаны кружками по 1 см, смажьте с обеих сторон оливковым маслом, посолите и запекайте на противнях 20–25 минут, перевернув один раз, до мягкости и золотистого цвета.",
+        "Тем временем приготовьте мясной соус: разогрейте 1 ст. л. масла в большой сковороде на огне выше среднего и обжарьте фарш 6–8 минут. Добавьте лук на 5 минут, затем чеснок на минуту.",
+        "Вмешайте томатную пасту, затем влейте вино и дайте покипеть 2 минуты. Добавьте томаты, корицу, орегано, 1 ч. л. соли и перец. Тушите 20 минут до густоты.",
+        "Бешамель: растопите масло в сотейнике на среднем огне, добавьте муку и мешайте венчиком 2 минуты, не давая потемнеть. Эта паста называется ру.",
+        "Медленно вливайте молоко, постоянно мешая венчиком, чтобы не было комков. Продолжайте мешать на среднем огне 5–7 минут, пока соус не загустеет, как заварной крем.",
+        "Снимите с огня, вмешайте мускатный орех, щепотку соли, половину пармезана, а затем яйцо (быстро мешайте, чтобы оно не свернулось).",
+        "Убавьте духовку до 180 °C. В глубокую форму выложите половину баклажанов, весь мясной соус, затем остальные баклажаны. Залейте бешамелем и посыпьте оставшимся пармезаном.",
+        "Запекайте 40–45 минут до тёмно-золотистой корочки.",
+        "Очень важно: дайте постоять минимум 30 минут перед нарезкой, иначе слои расползутся."
+      ],
+      "ingredients": [
+        "3 баклажана",
+        "750 г бараньего фарша",
+        "1 луковица",
+        "3 зубчика чеснока",
+        "1 банка томатов в собственном соку (400 г)",
+        "2 ст. л. томатной пасты",
+        "100 мл красного вина",
+        "1 ч. л. корицы",
+        "1 ч. л. орегано",
+        "6 ст. л. оливкового масла",
+        "60 г сливочного масла",
+        "60 г муки",
+        "600 мл молока",
+        "1 яйцо",
+        "¼ ч. л. мускатного ореха",
+        "50 г тёртого пармезана",
+        "2 ч. л. соли",
+        "½ ч. л. чёрного перца"
+      ]
+    }
+  }
+}
