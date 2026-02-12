@@ -1,0 +1,116 @@
+{
+  "slug": "thai-green-curry",
+  "cuisine": "thai",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 15,
+  "cook_minutes": 25,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=thai+green+curry+recipe",
+  "nutrition": {
+    "calories": 520,
+    "protein": 31,
+    "fat": 30,
+    "carbs": 32,
+    "fiber": 3,
+    "sugar": 9,
+    "sodium": 1050,
+    "saturated_fat": 18
+  },
+  "ingredients": [
+    {
+      "text": "500 g chicken thighs, sliced",
+      "ingredient": "chicken-thigh"
+    },
+    {
+      "text": "3 tbsp green curry paste",
+      "ingredient": "green-curry-paste"
+    },
+    {
+      "text": "400 ml coconut milk",
+      "ingredient": "coconut-milk"
+    },
+    {
+      "text": "1 eggplant, cubed",
+      "ingredient": "eggplant",
+      "essential": false
+    },
+    {
+      "text": "1 bell pepper, sliced",
+      "ingredient": "bell-pepper",
+      "essential": false
+    },
+    {
+      "text": "1 tbsp fish sauce",
+      "ingredient": "fish-sauce"
+    },
+    {
+      "text": "1 tsp brown sugar",
+      "ingredient": "brown-sugar"
+    },
+    {
+      "text": "1 handful basil leaves",
+      "ingredient": "basil",
+      "essential": false
+    },
+    {
+      "text": "1 lime, cut into wedges",
+      "ingredient": "lime",
+      "essential": false
+    },
+    {
+      "text": "1 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "2 cups jasmine rice, for serving",
+      "ingredient": "jasmine-rice",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Thai Green Curry",
+      "description": "Creamy, fragrant and gently spicy. Teaches frying curry paste in coconut cream and balancing salty-sweet-sour.",
+      "steps": [
+        "Start the rice first so everything is ready together: rinse the jasmine rice and cook it according to the packet.",
+        "Open the coconut milk without shaking. Spoon 3 tablespoons of the thick cream from the top into a pot or wok.",
+        "Heat the cream with the oil over medium heat until it bubbles and starts to separate, about 2 minutes. Add the curry paste and fry, stirring, for 2 minutes until very fragrant.",
+        "Add the chicken and stir to coat in the paste. Cook 3 minutes.",
+        "Pour in the rest of the coconut milk plus 100 ml water. Add the eggplant and bring to a gentle simmer. Cook 10 minutes until the eggplant is soft and the chicken is cooked through.",
+        "Add the bell pepper and simmer 3 more minutes so it stays a little crunchy.",
+        "Season with fish sauce and sugar. Taste: it should be salty, slightly sweet and creamy. Add more fish sauce for salt, a squeeze of lime for brightness.",
+        "Turn off the heat, stir in the basil and serve over rice with lime wedges."
+      ]
+    },
+    "ru": {
+      "name": "Тайское зелёное карри",
+      "description": "Кремовое, ароматное и умеренно острое. Учит обжаривать пасту карри в кокосовых сливках и балансировать солёное, сладкое и кислое.",
+      "steps": [
+        "Начните с риса, чтобы всё было готово одновременно: промойте жасминовый рис и сварите по инструкции на упаковке.",
+        "Откройте кокосовое молоко, не встряхивая. Снимите сверху 3 ст. л. густых сливок в кастрюлю или вок.",
+        "Нагрейте сливки с маслом на среднем огне, пока они не забулькают и не начнут расслаиваться, около 2 минут. Добавьте пасту карри и жарьте, помешивая, 2 минуты до сильного аромата.",
+        "Добавьте курицу и перемешайте, чтобы она покрылась пастой. Готовьте 3 минуты.",
+        "Влейте оставшееся кокосовое молоко и 100 мл воды. Добавьте баклажан и доведите до лёгкого кипения. Готовьте 10 минут, пока баклажан не станет мягким, а курица — готовой.",
+        "Добавьте болгарский перец и варите ещё 3 минуты, чтобы он остался чуть хрустящим.",
+        "Заправьте рыбным соусом и сахаром. Попробуйте: должно быть солоновато, чуть сладко и кремово. Больше рыбного соуса — для солёности, сок лайма — для свежести.",
+        "Выключите огонь, вмешайте базилик и подавайте с рисом и дольками лайма."
+      ],
+      "ingredients": [
+        "500 г куриных бёдер ломтиками",
+        "3 ст. л. зелёной пасты карри",
+        "400 мл кокосового молока",
+        "1 баклажан кубиками",
+        "1 болгарский перец",
+        "1 ст. л. рыбного соуса",
+        "1 ч. л. коричневого сахара",
+        "горсть базилика",
+        "1 лайм дольками",
+        "1 ст. л. растительного масла",
+        "2 стакана жасминового риса для подачи"
+      ]
+    }
+  }
+}
