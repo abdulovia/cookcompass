@@ -48,3 +48,14 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Flash messages travel as a `?flash=<id>` query parameter holding an i18n key (no server-side session state).
 - CSP allows `'unsafe-eval'` because Alpine.js evaluates attribute expressions; only the vendored scripts are loaded.
 - `serve` migrates and seeds on start, so `docker compose up` on an empty volume gives a usable app.
+
+## Users & browsing
+- Single-user mode (default) maps every visitor to the local account `cook`; `COOK_MULTI_USER=true` enables register/login with bcrypt and 30-day cookie sessions; guests can browse but not save.
+- Allergies are always excluded from every list; dislikes are hidden by default and can be shown with a browse toggle.
+- "Only what I can cook" checks the user's pantry with the same availability engine used for countries; salt, pepper, oil and water are assumed staples.
+- The availability engine is pure (no I/O) and shared by pantry and country checks; substitutes that are staples also count.
+- Unit preference converts weights and volumes (oz/lb/cups ↔ g/ml) with kitchen-friendly rounding; spoons and pieces are left alone.
+- Hand-written translated ingredient lines win over composed ones; otherwise lines are built from the parsed quantity, converted unit and localized ingredient name.
+- Browse filters re-render only the results block via HTMX (`HX-Target: results`); the same URL works as a normal page without JavaScript.
+- A read-only JSON API (`/api/recipes`, `/api/recipes/{slug}`) exposes the same filtered pool; its output is covered by golden files.
+- Step checklists persist progress per recipe in the browser's localStorage (nothing is sent to the server).
