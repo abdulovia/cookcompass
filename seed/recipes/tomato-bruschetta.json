@@ -1,0 +1,84 @@
+{
+  "slug": "tomato-bruschetta",
+  "cuisine": "italian",
+  "meal_times": [
+    "snack",
+    "lunch"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 15,
+  "cook_minutes": 5,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=tomato+bruschetta+recipe",
+  "nutrition": {
+    "calories": 190,
+    "protein": 5,
+    "fat": 8,
+    "carbs": 25,
+    "fiber": 2,
+    "sugar": 4,
+    "sodium": 330,
+    "saturated_fat": 1.2
+  },
+  "ingredients": [
+    {
+      "text": "1 baguette",
+      "ingredient": "baguette"
+    },
+    {
+      "text": "4 tomatoes, diced",
+      "ingredient": "tomato"
+    },
+    {
+      "text": "1 clove garlic, halved",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 handful basil leaves",
+      "ingredient": "basil",
+      "essential": false
+    },
+    {
+      "text": "3 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Tomato Bruschetta",
+      "description": "Crunchy toast topped with fresh tomatoes and basil. A no-stress snack that teaches knife skills.",
+      "steps": [
+        "Cut the tomatoes in half and scoop out the watery seeds with a teaspoon. Dice the flesh into small cubes — about the size of a pea.",
+        "Put the tomatoes in a bowl with the salt and 2 tablespoons of olive oil. Tear the basil leaves by hand and add them. Let it sit 10 minutes so the flavours mix.",
+        "Slice the baguette diagonally into pieces about 1.5 cm thick.",
+        "Toast the slices under the oven grill or in a dry frying pan over medium heat for 1–2 minutes per side until golden and crisp. Watch closely — bread burns fast.",
+        "While the toast is still warm, rub the cut side of the garlic clove over each slice. The rough surface grates the garlic.",
+        "Brush the toasts with the remaining olive oil, spoon the tomato mixture on top and serve straight away so the bread stays crunchy."
+      ]
+    },
+    "ru": {
+      "name": "Брускетта с томатами",
+      "description": "Хрустящие тосты со свежими помидорами и базиликом. Простая закуска, которая тренирует работу с ножом.",
+      "steps": [
+        "Разрежьте помидоры пополам и чайной ложкой удалите водянистые семена. Нарежьте мякоть мелким кубиком — размером с горошину.",
+        "Сложите помидоры в миску, добавьте соль и 2 ст. л. оливкового масла. Порвите листья базилика руками и добавьте. Оставьте на 10 минут, чтобы вкусы соединились.",
+        "Нарежьте багет по диагонали ломтиками толщиной около 1,5 см.",
+        "Подсушите ломтики под грилем духовки или на сухой сковороде на среднем огне по 1–2 минуты с каждой стороны до золотистого хруста. Следите внимательно — хлеб быстро подгорает.",
+        "Пока тосты тёплые, натрите каждый срезом зубчика чеснока. Шершавая поверхность сработает как тёрка.",
+        "Смажьте тосты оставшимся маслом, выложите томаты и подавайте сразу, пока хлеб хрустит."
+      ],
+      "ingredients": [
+        "1 багет",
+        "4 помидора кубиком",
+        "1 зубчик чеснока, разрезанный пополам",
+        "горсть листьев базилика",
+        "3 ст. л. оливкового масла",
+        "½ ч. л. соли"
+      ]
+    }
+  }
+}

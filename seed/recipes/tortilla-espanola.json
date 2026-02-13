@@ -1,0 +1,84 @@
+{
+  "slug": "tortilla-espanola",
+  "cuisine": "spanish",
+  "meal_times": [
+    "breakfast",
+    "lunch"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 15,
+  "cook_minutes": 35,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=spanish+tortilla+tortilla+de+patatas",
+  "nutrition": {
+    "calories": 390,
+    "protein": 14,
+    "fat": 27,
+    "carbs": 24,
+    "fiber": 2.5,
+    "sugar": 2,
+    "sodium": 520,
+    "saturated_fat": 5
+  },
+  "ingredients": [
+    {
+      "text": "600 g potatoes",
+      "ingredient": "potato"
+    },
+    {
+      "text": "1 onion, thinly sliced",
+      "ingredient": "onion"
+    },
+    {
+      "text": "6 eggs",
+      "ingredient": "egg"
+    },
+    {
+      "text": "200 ml olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1 tsp salt",
+      "ingredient": "salt"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Spanish Tortilla",
+      "description": "A thick potato and egg omelette, served warm or cold. Teaches slow frying and the famous plate flip.",
+      "steps": [
+        "Peel the potatoes and slice them thinly, about 3 mm. Slice the onion thinly too.",
+        "Heat the olive oil in a 24 cm non-stick frying pan over medium-low heat. Add the potatoes and onion with half the salt. They should bubble gently, not fry hard.",
+        "Cook for 20–25 minutes, turning them over every few minutes, until the potatoes are completely soft but not browned.",
+        "Set a sieve over a bowl and drain the potatoes; keep the oil for later cooking.",
+        "Beat the eggs with the remaining salt in a large bowl. Stir in the warm potatoes and onion and leave for 5 minutes so the potatoes soak up some egg.",
+        "Wipe the pan, add 1 tablespoon of the saved oil and heat over medium. Pour in the mixture and flatten it. Cook 5–6 minutes, running a spatula around the edge, until the bottom is set and golden.",
+        "Now the flip: put a large flat plate upside down on the pan. Holding both firmly with oven gloves, turn them over together in one quick move.",
+        "Slide the tortilla back into the pan, uncooked side down. Tuck the edges in with the spatula and cook 3–4 minutes more.",
+        "Slide onto a plate and rest 10 minutes before cutting into wedges."
+      ]
+    },
+    "ru": {
+      "name": "Испанская тортилья",
+      "description": "Толстый омлет с картофелем, который едят тёплым или холодным. Учит медленной жарке и знаменитому перевороту на тарелке.",
+      "steps": [
+        "Очистите картофель и нарежьте тонкими ломтиками около 3 мм. Лук нарежьте тонко.",
+        "Разогрейте оливковое масло в антипригарной сковороде 24 см на огне ниже среднего. Добавьте картофель и лук с половиной соли. Они должны тихо булькать, а не жариться.",
+        "Готовьте 20–25 минут, переворачивая каждые несколько минут, пока картофель не станет полностью мягким, но не подрумяненным.",
+        "Откиньте картофель на сито над миской; масло сохраните для готовки.",
+        "Взбейте яйца с оставшейся солью в большой миске. Вмешайте тёплый картофель с луком и оставьте на 5 минут, чтобы картофель впитал яйцо.",
+        "Протрите сковороду, налейте 1 ст. л. сохранённого масла и разогрейте на среднем огне. Вылейте смесь и разровняйте. Готовьте 5–6 минут, проводя лопаткой по краю, пока низ не схватится и не зарумянится.",
+        "Теперь переворот: накройте сковороду большой плоской тарелкой вверх дном. Крепко держа обе в прихватках, одним быстрым движением переверните.",
+        "Сдвиньте тортилью обратно в сковороду сырой стороной вниз. Подверните края лопаткой и готовьте ещё 3–4 минуты.",
+        "Переложите на тарелку и дайте постоять 10 минут, прежде чем резать на кусочки."
+      ],
+      "ingredients": [
+        "600 г картофеля",
+        "1 луковица, тонко нарезанная",
+        "6 яиц",
+        "200 мл оливкового масла",
+        "1 ч. л. соли"
+      ]
+    }
+  }
+}
