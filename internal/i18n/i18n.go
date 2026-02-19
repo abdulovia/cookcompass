@@ -155,6 +155,12 @@ func (l *Localizer) T(id string, kv ...any) string {
 	// When the message only exists in English, go-i18n returns the English
 	// text together with a MessageNotFoundErr; the text is what we want.
 	s, _ := l.l.Localize(cfg)
+	if s == "" && cfg.PluralCount != nil {
+		// A plural count on a message without plural forms is an error in
+		// go-i18n; retry as a plain message.
+		cfg.PluralCount = nil
+		s, _ = l.l.Localize(cfg)
+	}
 	if s == "" {
 		return id
 	}
