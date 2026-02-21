@@ -1,0 +1,59 @@
+{
+  "count": 2,
+  "recipes": [
+    {
+      "slug": "spaghetti-carbonara",
+      "name": "Spaghetti Carbonara",
+      "description": "Rome's famous pasta: a silky sauce made only from eggs, cheese, pork and pepper — no cream. Teaches you to cook with residual heat.",
+      "cuisine": "italian",
+      "meal_times": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "medium",
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "servings": 4,
+      "video_url": "https://www.youtube.com/results?search_query=authentic+spaghetti+carbonara",
+      "nutrition_per_serving": {
+        "calories": 610,
+        "protein": 27,
+        "fat": 24,
+        "carbs": 70,
+        "fiber": 3,
+        "sugar": 3,
+        "sodium": 890,
+        "saturated_fat": 9
+      },
+      "available": true,
+      "cookable_at_home": false
+    },
+    {
+      "slug": "tomato-bruschetta",
+      "name": "Tomato Bruschetta",
+      "description": "Crunchy toast topped with fresh tomatoes and basil. A no-stress snack that teaches knife skills.",
+      "cuisine": "italian",
+      "meal_times": [
+        "lunch",
+        "snack"
+      ],
+      "difficulty": "easy",
+      "prep_minutes": 15,
+      "cook_minutes": 5,
+      "servings": 4,
+      "video_url": "https://www.youtube.com/results?search_query=tomato+bruschetta+recipe",
+      "nutrition_per_serving": {
+        "calories": 190,
+        "protein": 5,
+        "fat": 8,
+        "carbs": 25,
+        "fiber": 2,
+        "sugar": 4,
+        "sodium": 330,
+        "saturated_fat": 1.2
+      },
+      "available": true,
+      "cookable_at_home": false
+    }
+  ]
+}

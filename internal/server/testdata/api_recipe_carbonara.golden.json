@@ -1,0 +1,82 @@
+{
+  "slug": "spaghetti-carbonara",
+  "name": "Spaghetti Carbonara",
+  "description": "Rome's famous pasta: a silky sauce made only from eggs, cheese, pork and pepper — no cream. Teaches you to cook with residual heat.",
+  "cuisine": "italian",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 10,
+  "cook_minutes": 15,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=authentic+spaghetti+carbonara",
+  "nutrition_per_serving": {
+    "calories": 610,
+    "protein": 27,
+    "fat": 24,
+    "carbs": 70,
+    "fiber": 3,
+    "sugar": 3,
+    "sodium": 890,
+    "saturated_fat": 9
+  },
+  "available": true,
+  "cookable_at_home": false,
+  "ingredients": [
+    {
+      "text": "400 g spaghetti",
+      "name": "spaghetti",
+      "quantity": 400,
+      "unit": "g",
+      "essential": true
+    },
+    {
+      "text": "150 g pancetta, cut into small strips",
+      "name": "pancetta",
+      "quantity": 150,
+      "unit": "g",
+      "essential": true
+    },
+    {
+      "text": "3 eggs",
+      "name": "eggs",
+      "quantity": 3,
+      "essential": true
+    },
+    {
+      "text": "60 g parmesan, finely grated",
+      "name": "parmesan",
+      "quantity": 60,
+      "unit": "g",
+      "essential": true
+    },
+    {
+      "text": "1 tsp black pepper, freshly ground",
+      "name": "black pepper",
+      "quantity": 1,
+      "unit": "tsp",
+      "essential": true
+    },
+    {
+      "text": "1 tbsp salt, for the pasta water",
+      "name": "salt",
+      "quantity": 1,
+      "unit": "tbsp",
+      "essential": true
+    }
+  ],
+  "steps": [
+    "Fill a large pot with about 4 litres of water and bring it to a boil over high heat. Add the salt once it boils — the water should taste lightly salty.",
+    "While the water heats, whisk the eggs in a bowl with most of the grated parmesan (keep a little for serving) and the black pepper until you have a thick paste.",
+    "Put the pancetta in a large cold frying pan and set it over medium heat. Cook for 6–8 minutes, stirring now and then, until the fat melts and the pieces turn golden and crisp. Turn off the heat.",
+    "Add the spaghetti to the boiling water and stir for the first minute so it doesn't stick. Cook for 1 minute less than the packet says.",
+    "Before draining, scoop out a mugful (about 250 ml) of the starchy pasta water and set it aside. This water is the secret to a creamy sauce.",
+    "Drain the spaghetti and tip it straight into the pan with the pancetta. Toss for 30 seconds so the pasta is coated in the fat.",
+    "Important: take the pan completely off the heat and wait about 1 minute. If the pan is too hot, the eggs will scramble instead of making a sauce.",
+    "Pour in the egg mixture with 3–4 tablespoons of pasta water and toss quickly with tongs. The heat of the pasta gently cooks the eggs into a glossy sauce.",
+    "If the sauce looks thick or dry, add more pasta water a splash at a time and keep tossing until it flows like thin custard.",
+    "Serve immediately with the remaining parmesan and an extra grind of pepper."
+  ]
+}
