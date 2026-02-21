@@ -2,6 +2,7 @@
 package server
 
 import (
+	"context"
 	"encoding/json"
 	"io/fs"
 	"log/slog"
@@ -16,6 +17,8 @@ import (
 	"github.com/abdulovia/cookcompass/internal/admin"
 	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/i18n"
+	"github.com/abdulovia/cookcompass/internal/site"
+	"github.com/abdulovia/cookcompass/internal/users"
 	"github.com/abdulovia/cookcompass/internal/web"
 	webfs "github.com/abdulovia/cookcompass/web"
 )
@@ -45,19 +48,27 @@ func New(a *app.App) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
+	if a.DefaultUserID == 0 {
+		if a.DefaultUserID, err = a.Users.EnsureDefault(context.Background(), a.Cfg.Defaults.Country); err != nil {
+			return nil, err
+		}
+	}
 	return &Server{app: a, log: a.Log, i18n: bundle, render: r, started: time.Now()}, nil
 }
 
 // Handler returns the root HTTP handler.
 func (s *Server) Handler() http.Handler {
 	r := chi.NewRouter()
-	r.Use(middleware.RequestID, s.logRequests, middleware.Recoverer, securityHeaders, sameOrigin, s.locale)
+	r.Use(middleware.RequestID, s.logRequests, middleware.Recoverer, securityHeaders, sameOrigin, s.identify, s.locale)
 
 	static, _ := fs.Sub(webfs.FS, "static")
 	r.Handle("/static/*", http.StripPrefix("/static/", cacheStatic(http.FileServer(http.FS(static)))))
 	r.Get("/healthz", s.healthz)
 	r.Post("/lang", s.setLanguage)
-	r.Get("/", s.home)
+
+	pub := &site.Handler{App: s.app, R: s.render, Log: s.log, Bundle: s.i18n}
+	pub.Routes(r)
+	r.NotFound(pub.NotFound)
 
 	adm := &admin.Handler{App: s.app, R: s.render, Log: s.log, ContentLocales: s.contentLocales()}
 	r.Route("/admin", func(r chi.Router) {
@@ -92,9 +103,34 @@ func (s *Server) healthz(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func (s *Server) home(w http.ResponseWriter, r *http.Request) {
-	p := web.NewPage(r, "")
-	s.render.Page(w, http.StatusOK, "pages/home", p)
+// identify attaches the current user's profile: the default account in
+// single-user mode, the session's user in multi-user mode, or a guest.
+func (s *Server) identify(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasPrefix(r.URL.Path, "/static/") || r.URL.Path == "/healthz" {
+			next.ServeHTTP(w, r)
+			return
+		}
+		ctx := r.Context()
+		cfg := s.app.Cfg
+		var prof *users.Profile
+		var err error
+		if !cfg.Auth.MultiUser {
+			prof, err = s.app.Users.Profile(ctx, s.app.DefaultUserID)
+		} else if c, cerr := r.Cookie(site.SessionCookie); cerr == nil {
+			if id, serr := s.app.Users.SessionUser(ctx, c.Value); serr == nil {
+				prof, err = s.app.Users.Profile(ctx, id)
+			}
+		}
+		if err != nil {
+			s.log.Error("load profile", "err", err)
+		}
+		if prof == nil {
+			prof = &users.Profile{Settings: users.Settings{CountryCode: cfg.Defaults.Country, Units: "metric"},
+				Prefs: map[int64]string{}, Pantry: map[int64]bool{}}
+		}
+		next.ServeHTTP(w, r.WithContext(web.WithProfile(ctx, prof, cfg.Auth.MultiUser)))
+	})
 }
 
 // setLanguage stores the chosen language in a cookie and goes back.
@@ -121,6 +157,8 @@ func (s *Server) locale(next http.Handler) http.Handler {
 		pref := ""
 		if c, err := r.Cookie(LangCookie); err == nil {
 			pref = c.Value
+		} else if p := web.Profile(r.Context()); p != nil {
+			pref = p.Locale
 		}
 		lang := s.i18n.Match(pref, r.Header.Get("Accept-Language"))
 		ctx := web.WithLocalizer(r.Context(), s.i18n.Localizer(lang), s.i18n.Languages())
