@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	"github.com/abdulovia/cookcompass/internal/i18n"
+	"github.com/abdulovia/cookcompass/internal/users"
 )
 
 type ctxKey int
@@ -13,7 +14,22 @@ type ctxKey int
 const (
 	localizerKey ctxKey = iota
 	langsKey
+	profileKey
+	multiUserKey
 )
+
+// WithProfile stores the current user's profile in ctx.
+func WithProfile(ctx context.Context, p *users.Profile, multiUser bool) context.Context {
+	ctx = context.WithValue(ctx, profileKey, p)
+	return context.WithValue(ctx, multiUserKey, multiUser)
+}
+
+// Profile returns the current user's profile (never nil inside the app's
+// middleware chain).
+func Profile(ctx context.Context) *users.Profile {
+	p, _ := ctx.Value(profileKey).(*users.Profile)
+	return p
+}
 
 // Page is the data passed to every template.
 type Page struct {
@@ -25,7 +41,9 @@ type Page struct {
 	Flash     string
 	Errors    map[string]string
 	Admin     bool
-	User      any // set by the server: *users.Profile
+	User      *users.Profile
+	// MultiUser shows login/logout links.
+	MultiUser bool
 	Data      any
 
 	loc *i18n.Localizer
@@ -84,6 +102,8 @@ func NewPage(r *http.Request, title string) *Page {
 	if langs, ok := r.Context().Value(langsKey).([]i18n.Language); ok {
 		p.Languages = langs
 	}
+	p.User = Profile(r.Context())
+	p.MultiUser, _ = r.Context().Value(multiUserKey).(bool)
 	if f := r.URL.Query().Get("flash"); isFlashID(f) {
 		p.Flash = "flash." + f
 	}
