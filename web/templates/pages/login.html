@@ -1,0 +1,20 @@
+{{define "content"}}
+<h1>{{.T "auth.title"}}</h1>
+<div class="grid two">
+  <form class="card stack" method="post" action="/login">
+    <h2>{{.T "auth.login"}}</h2>
+    {{template "field_error" (.Err "login")}}
+    <label for="lu">{{.T "auth.username"}}</label><input id="lu" name="username" autocomplete="username" required>
+    <label for="lp">{{.T "auth.password"}}</label><input id="lp" name="password" type="password" autocomplete="current-password" required>
+    <button type="submit">{{.T "auth.login"}}</button>
+  </form>
+  <form class="card stack" method="post" action="/register">
+    <h2>{{.T "auth.register"}}</h2>
+    {{template "field_error" (.Err "register")}}
+    <label for="ru">{{.T "auth.username"}}</label><input id="ru" name="username" autocomplete="username" required minlength="3">
+    <label for="rp">{{.T "auth.password"}}</label><input id="rp" name="password" type="password" autocomplete="new-password" required minlength="8">
+    <p class="help">{{.T "auth.password_hint"}}</p>
+    <button type="submit">{{.T "auth.register"}}</button>
+  </form>
+</div>
+{{end}}

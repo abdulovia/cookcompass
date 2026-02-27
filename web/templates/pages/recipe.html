@@ -1,0 +1,75 @@
+{{define "content"}}
+{{$it := .Data.Item}}{{$r := $it.Recipe}}{{$b := $it.Base}}
+<p><a href="/recipes">← {{.T "recipe.back"}}</a></p>
+<h1>{{$r.Name}}</h1>
+{{with $r.Description}}<p class="lead">{{.}}</p>{{end}}
+<div class="facts">
+  <span class="badge diff-{{$b.Difficulty}}">{{.T (printf "difficulty.%s" $b.Difficulty)}}</span>
+  <span>{{.T "recipe.prep"}}: <strong>{{.T "common.minutes" "N" $b.PrepMinutes}}</strong></span>
+  <span>{{.T "recipe.cook"}}: <strong>{{.T "common.minutes" "N" $b.CookMinutes}}</strong></span>
+  <span>{{.T "recipe.servings"}}: <strong>{{$b.Servings}}</strong></span>
+  <span>{{.T (printf "cuisine.%s" $b.Cuisine)}}</span>
+  <span>{{range $i, $m := $b.MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}</span>
+</div>
+{{if and .Data.CountryAware (not $it.Market.Available)}}
+<div class="error-summary" role="status">{{.T "availability.recipe_unavailable" "Count" $it.Market.MissingCount}}</div>
+{{end}}
+<div class="recipe-layout">
+  <div>
+    {{if .Data.Embed}}
+    <div class="video"><iframe src="{{.Data.Embed}}" title="{{.T "recipe.video_title" "Name" $r.Name}}" loading="lazy"
+      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    {{else if $b.VideoURL}}
+    <p><a class="btn secondary" href="{{$b.VideoURL}}" target="_blank" rel="noopener noreferrer">▶ {{.T "recipe.watch_video"}}</a></p>
+    {{end}}
+
+    <h2 id="ingredients">{{.T "recipe.ingredients"}}</h2>
+    <ul class="ingredients" aria-labelledby="ingredients">
+      {{range .Data.Lines}}
+      <li>
+        <span>{{.Text}}{{if .Optional}} <span class="muted">({{$.T "common.optional"}})</span>{{end}}
+          {{with .SubNote}}<span class="sub-note">↺ {{.}}</span>{{end}}</span>
+        <span class="row-gap">
+          {{if .AtHome}}<span class="badge ok">{{$.T "availability.at_home"}}</span>{{end}}
+          {{if $.Data.CountryAware}}
+            {{if eq .Status "missing" "unknown"}}<span class="badge bad">{{$.T "availability.not_sold"}}</span>
+            {{else if eq .Status "substituted"}}<span class="badge warn">{{$.T "availability.swap"}}</span>
+            {{else if eq .Status "optional_missing"}}<span class="badge">{{$.T "availability.skip_ok"}}</span>{{end}}
+          {{end}}
+        </span>
+      </li>
+      {{end}}
+    </ul>
+
+    <h2 id="steps">{{.T "recipe.steps"}}</h2>
+    <div x-data="steps('{{$b.Slug}}', {{len $r.Steps}})">
+      <p class="muted" x-show="count > 0" x-cloak><span x-text="count"></span> / {{len $r.Steps}} · <button class="link" type="button" x-on:click="reset()">{{.T "recipe.start_over"}}</button></p>
+      <ol class="steps" aria-labelledby="steps">
+        {{range $i, $s := $r.Steps}}<li><label><input type="checkbox" x-model="done[{{$i}}]"><span>{{$s}}</span></label></li>{{end}}
+      </ol>
+    </div>
+  </div>
+
+  <aside class="stack">
+    <section class="card" aria-labelledby="macros">
+      <h2 id="macros">{{.T "recipe.per_serving"}}</h2>
+      <div class="macros">
+        <div class="macro"><span class="v">{{num $b.Nutrition.Calories}}</span><span class="k">{{.T "nutrition.calories"}}, {{.T "nutrition.unit.calories"}}</span></div>
+        <div class="macro"><span class="v">{{num $b.Nutrition.Protein}} {{.T "nutrition.unit.g"}}</span><span class="k">{{.T "nutrition.protein"}}</span></div>
+        <div class="macro"><span class="v">{{num $b.Nutrition.Carbs}} {{.T "nutrition.unit.g"}}</span><span class="k">{{.T "nutrition.carbs"}}</span></div>
+        <div class="macro"><span class="v">{{num $b.Nutrition.Fat}} {{.T "nutrition.unit.g"}}</span><span class="k">{{.T "nutrition.fat"}}</span></div>
+        <div class="macro"><span class="v">{{num $b.Nutrition.Fiber}} {{.T "nutrition.unit.g"}}</span><span class="k">{{.T "nutrition.fiber"}}</span></div>
+      </div>
+      <details>
+        <summary>{{.T "recipe.advanced"}}</summary>
+        <dl class="stats">
+          <div><dt>{{.T "nutrition.sugar"}}</dt><dd>{{num $b.Nutrition.Sugar}} {{.T "nutrition.unit.g"}}</dd></div>
+          <div><dt>{{.T "nutrition.sodium"}}</dt><dd>{{num $b.Nutrition.Sodium}} {{.T "nutrition.unit.sodium"}}</dd></div>
+          <div><dt>{{.T "nutrition.saturated_fat"}}</dt><dd>{{num $b.Nutrition.SaturatedFat}} {{.T "nutrition.unit.g"}}</dd></div>
+        </dl>
+      </details>
+    </section>
+    {{block "recipe_actions" .}}{{end}}
+  </aside>
+</div>
+{{end}}
