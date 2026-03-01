@@ -1,0 +1,75 @@
+{{define "content"}}
+{{$u := .User}}
+<h1>{{.T "settings.title"}}</h1>
+
+<section class="card settings-section" aria-labelledby="where">
+  <h2 id="where">{{.T "settings.where_title"}}</h2>
+  <p class="muted">{{.T "settings.where_hint"}}</p>
+  {{block "locate_form" .}}{{end}}
+  <form method="post" action="/settings" class="stack">
+    <div class="grid three">
+      <div>
+        <label for="country">{{.T "settings.country"}}</label>
+        <select id="country" name="country">
+          {{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $u.CountryCode}}selected{{end}}>{{$.T (printf "country.%s" .Code)}}</option>{{end}}
+        </select>
+      </div>
+      <div>
+        <label for="city">{{.T "settings.city"}}</label>
+        <select id="city" name="city">
+          <option value="">{{.T "settings.city_any"}}</option>
+          {{range .Data.Cities}}<option value="{{.ID}}" {{if eq .ID $u.CityID}}selected{{end}}>{{.Name}}</option>{{end}}
+        </select>
+      </div>
+      <div>
+        <label for="lang">{{.T "settings.language"}}</label>
+        <select id="lang" name="lang">
+          <option value="">{{.T "settings.language_auto"}}</option>
+          {{range .Languages}}<option value="{{.Code}}" {{if eq .Code $u.Locale}}selected{{end}}>{{.Name}}{{if not .Complete}} ({{$.T "settings.language_partial"}}){{end}}</option>{{end}}
+        </select>
+      </div>
+    </div>
+    <fieldset class="inline">
+      <legend>{{.T "settings.units"}}</legend>
+      {{range .Data.Units}}<label class="check"><input type="radio" name="units" value="{{.}}" {{if eq . $u.Units}}checked{{end}}> {{$.T (printf "settings.units_%s" .)}}</label>{{end}}
+    </fieldset>
+    {{if .Data.CountryAware}}
+    <label class="check"><input type="checkbox" name="show_unavailable" value="1" {{if $u.ShowUnavailable}}checked{{end}}> {{.T "settings.show_unavailable"}}</label>
+    <p class="help">{{.T "settings.show_unavailable_hint"}}</p>
+    {{end}}
+    <button type="submit">{{.T "common.save"}}</button>
+  </form>
+  {{block "rescan_form" .}}{{end}}
+</section>
+
+<section class="card settings-section" id="preferences" aria-labelledby="prefs-title">
+  <h2 id="prefs-title">{{.T "settings.prefs_title"}}</h2>
+  <p class="muted">{{.T "settings.prefs_hint"}}</p>
+  <form method="post" action="/settings/preferences">
+    <details {{if $u.Prefs}}open{{end}}>
+      <summary><strong>{{.T "settings.allergies"}}</strong> — {{.T "settings.allergies_hint"}}</summary>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+        <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="allergy" value="{{.ID}}" {{if eq (index $u.Prefs .ID) "allergy"}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
+    </details>
+    <details>
+      <summary><strong>{{.T "settings.dislikes"}}</strong> — {{.T "settings.dislikes_hint"}}</summary>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+        <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="dislike" value="{{.ID}}" {{if eq (index $u.Prefs .ID) "dislike"}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
+    </details>
+    <button type="submit">{{.T "common.save"}}</button>
+  </form>
+</section>
+
+<section class="card settings-section" id="pantry" aria-labelledby="pantry-title">
+  <h2 id="pantry-title">{{.T "settings.pantry_title"}}</h2>
+  <p class="muted">{{.T "settings.pantry_hint"}}</p>
+  <form method="post" action="/settings/pantry">
+    <details {{if $u.Pantry}}open{{end}}>
+      <summary>{{.T "settings.pantry_count" "Count" (len $u.Pantry)}}</summary>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+        <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="pantry" value="{{.ID}}" {{if index $u.Pantry .ID}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
+    </details>
+    <button type="submit">{{.T "common.save"}}</button>
+  </form>
+</section>
+{{end}}
