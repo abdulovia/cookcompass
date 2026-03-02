@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-07
+### Added
+- Nutrition calculator (Mifflin–St Jeor + TDEE) with five goals, safety floors and macro targets.
+- Daily plan of 3–5 real recipes within ±10% of targets, rotating daily, with an "another idea" button.
+- Goals page (metric or imperial input) and a "today's plan" card on the home page.
+- Unit and golden tests for targets and plans.
+
 ## [0.2.1] - 2026-11-07
 ### Added
 - 23 more bilingual recipes: 28 total across 14 cuisines and all meal times (12 easy, 10 medium, 6 hard).
