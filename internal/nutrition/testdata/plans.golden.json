@@ -1,0 +1,487 @@
+[
+  {
+    "input": {
+      "height_cm": 180,
+      "weight_kg": 80,
+      "age": 30,
+      "sex": "male",
+      "activity": "moderate",
+      "goal": "maintain"
+    },
+    "plan": {
+      "items": [
+        {
+          "slug": "porridge-with-berries",
+          "meal": "breakfast",
+          "servings": 1.5,
+          "totals": {
+            "calories": 495,
+            "protein": 17,
+            "fat": 12,
+            "carbs": 81,
+            "fiber": 9,
+            "sugar": 26,
+            "sodium": 180,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "egg-fried-rice",
+          "meal": "lunch",
+          "servings": 1.5,
+          "totals": {
+            "calories": 720,
+            "protein": 23,
+            "fat": 27,
+            "carbs": 93,
+            "fiber": 5,
+            "sugar": 5,
+            "sodium": 1335,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "pad-thai",
+          "meal": "dinner",
+          "servings": 1.75,
+          "totals": {
+            "calories": 1120,
+            "protein": 53,
+            "fat": 39,
+            "carbs": 140,
+            "fiber": 7,
+            "sugar": 32,
+            "sodium": 2590,
+            "saturated_fat": 7
+          }
+        },
+        {
+          "slug": "tomato-bruschetta",
+          "meal": "snack",
+          "servings": 1.75,
+          "totals": {
+            "calories": 333,
+            "protein": 9,
+            "fat": 14,
+            "carbs": 44,
+            "fiber": 4,
+            "sugar": 7,
+            "sodium": 578,
+            "saturated_fat": 2
+          }
+        }
+      ],
+      "total": {
+        "calories": 2668,
+        "protein": 100,
+        "fat": 92,
+        "carbs": 358,
+        "fiber": 24,
+        "sugar": 69,
+        "sodium": 4683,
+        "saturated_fat": 18
+      },
+      "targets": {
+        "bmr": 1780,
+        "tdee": 2759,
+        "calories": 2760,
+        "protein_g": 96,
+        "fat_g": 92,
+        "carbs_g": 387,
+        "fiber_g": 39
+      },
+      "deviation": {
+        "calories": -0.034,
+        "protein": 0.044,
+        "fat": -0.005,
+        "carbs": -0.076
+      },
+      "within_tolerance": true
+    }
+  },
+  {
+    "input": {
+      "height_cm": 165,
+      "weight_kg": 60,
+      "age": 25,
+      "sex": "female",
+      "activity": "sedentary",
+      "goal": "lose_weight"
+    },
+    "plan": {
+      "items": [
+        {
+          "slug": "miso-soup",
+          "meal": "breakfast",
+          "servings": 1,
+          "totals": {
+            "calories": 90,
+            "protein": 7,
+            "fat": 4,
+            "carbs": 7,
+            "fiber": 2,
+            "sugar": 2,
+            "sodium": 980,
+            "saturated_fat": 1
+          }
+        },
+        {
+          "slug": "seafood-paella",
+          "meal": "lunch",
+          "servings": 0.75,
+          "totals": {
+            "calories": 405,
+            "protein": 27,
+            "fat": 11,
+            "carbs": 47,
+            "fiber": 2,
+            "sugar": 3,
+            "sodium": 713,
+            "saturated_fat": 3
+          }
+        },
+        {
+          "slug": "chicken-biryani",
+          "meal": "dinner",
+          "servings": 0.75,
+          "totals": {
+            "calories": 458,
+            "protein": 29,
+            "fat": 15,
+            "carbs": 51,
+            "fiber": 2,
+            "sugar": 5,
+            "sodium": 585,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "syrniki",
+          "meal": "snack",
+          "servings": 0.75,
+          "totals": {
+            "calories": 285,
+            "protein": 20,
+            "fat": 12,
+            "carbs": 25,
+            "fiber": 1,
+            "sugar": 11,
+            "sodium": 158,
+            "saturated_fat": 6
+          }
+        }
+      ],
+      "total": {
+        "calories": 1238,
+        "protein": 82,
+        "fat": 42,
+        "carbs": 129,
+        "fiber": 7,
+        "sugar": 20,
+        "sodium": 2435,
+        "saturated_fat": 15
+      },
+      "targets": {
+        "bmr": 1345,
+        "tdee": 1614,
+        "calories": 1200,
+        "protein_g": 90,
+        "fat_g": 40,
+        "carbs_g": 120,
+        "fiber_g": 25
+      },
+      "deviation": {
+        "calories": 0.031,
+        "protein": -0.089,
+        "fat": 0.056,
+        "carbs": 0.077
+      },
+      "within_tolerance": true
+    }
+  },
+  {
+    "input": {
+      "height_cm": 175,
+      "weight_kg": 72,
+      "age": 22,
+      "sex": "male",
+      "activity": "active",
+      "goal": "gain_muscle"
+    },
+    "plan": {
+      "items": [
+        {
+          "slug": "porridge-with-berries",
+          "meal": "breakfast",
+          "servings": 2.5,
+          "totals": {
+            "calories": 825,
+            "protein": 28,
+            "fat": 20,
+            "carbs": 135,
+            "fiber": 15,
+            "sugar": 43,
+            "sodium": 300,
+            "saturated_fat": 8
+          }
+        },
+        {
+          "slug": "seafood-paella",
+          "meal": "lunch",
+          "servings": 2,
+          "totals": {
+            "calories": 1080,
+            "protein": 72,
+            "fat": 30,
+            "carbs": 124,
+            "fiber": 6,
+            "sugar": 8,
+            "sodium": 1900,
+            "saturated_fat": 8
+          }
+        },
+        {
+          "slug": "egg-fried-rice",
+          "meal": "dinner",
+          "servings": 2,
+          "totals": {
+            "calories": 960,
+            "protein": 30,
+            "fat": 36,
+            "carbs": 124,
+            "fiber": 6,
+            "sugar": 6,
+            "sodium": 1780,
+            "saturated_fat": 6
+          }
+        },
+        {
+          "slug": "tomato-bruschetta",
+          "meal": "snack",
+          "servings": 1.5,
+          "totals": {
+            "calories": 285,
+            "protein": 8,
+            "fat": 12,
+            "carbs": 38,
+            "fiber": 3,
+            "sugar": 6,
+            "sodium": 495,
+            "saturated_fat": 2
+          }
+        }
+      ],
+      "total": {
+        "calories": 3150,
+        "protein": 137,
+        "fat": 98,
+        "carbs": 421,
+        "fiber": 30,
+        "sugar": 63,
+        "sodium": 4475,
+        "saturated_fat": 23
+      },
+      "targets": {
+        "bmr": 1709,
+        "tdee": 2948,
+        "calories": 3250,
+        "protein_g": 144,
+        "fat_g": 90,
+        "carbs_g": 466,
+        "fiber_g": 46
+      },
+      "deviation": {
+        "calories": -0.031,
+        "protein": -0.049,
+        "fat": 0.089,
+        "carbs": -0.098
+      },
+      "within_tolerance": true
+    }
+  },
+  {
+    "input": {
+      "height_cm": 160,
+      "weight_kg": 50,
+      "age": 19,
+      "sex": "female",
+      "activity": "light",
+      "goal": "gain_weight"
+    },
+    "plan": {
+      "items": [
+        {
+          "slug": "porridge-with-berries",
+          "meal": "breakfast",
+          "servings": 1.5,
+          "totals": {
+            "calories": 495,
+            "protein": 17,
+            "fat": 12,
+            "carbs": 81,
+            "fiber": 9,
+            "sugar": 26,
+            "sodium": 180,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "pad-thai",
+          "meal": "lunch",
+          "servings": 1.25,
+          "totals": {
+            "calories": 800,
+            "protein": 38,
+            "fat": 28,
+            "carbs": 100,
+            "fiber": 5,
+            "sugar": 23,
+            "sodium": 1850,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "egg-fried-rice",
+          "meal": "dinner",
+          "servings": 1.25,
+          "totals": {
+            "calories": 600,
+            "protein": 19,
+            "fat": 23,
+            "carbs": 78,
+            "fiber": 4,
+            "sugar": 4,
+            "sodium": 1113,
+            "saturated_fat": 4
+          }
+        },
+        {
+          "slug": "tomato-bruschetta",
+          "meal": "snack",
+          "servings": 1.5,
+          "totals": {
+            "calories": 285,
+            "protein": 8,
+            "fat": 12,
+            "carbs": 38,
+            "fiber": 3,
+            "sugar": 6,
+            "sodium": 495,
+            "saturated_fat": 2
+          }
+        }
+      ],
+      "total": {
+        "calories": 2180,
+        "protein": 80,
+        "fat": 74,
+        "carbs": 296,
+        "fiber": 21,
+        "sugar": 58,
+        "sodium": 3638,
+        "saturated_fat": 15
+      },
+      "targets": {
+        "bmr": 1244,
+        "tdee": 1711,
+        "calories": 2210,
+        "protein_g": 75,
+        "fat_g": 74,
+        "carbs_g": 311,
+        "fiber_g": 31
+      },
+      "deviation": {
+        "calories": -0.014,
+        "protein": 0.07,
+        "fat": 0,
+        "carbs": -0.048
+      },
+      "within_tolerance": true
+    }
+  },
+  {
+    "input": {
+      "height_cm": 170,
+      "weight_kg": 68,
+      "age": 45,
+      "sex": "female",
+      "activity": "moderate",
+      "goal": "eat_healthier"
+    },
+    "plan": {
+      "items": [
+        {
+          "slug": "porridge-with-berries",
+          "meal": "breakfast",
+          "servings": 1.25,
+          "totals": {
+            "calories": 413,
+            "protein": 14,
+            "fat": 10,
+            "carbs": 68,
+            "fiber": 8,
+            "sugar": 21,
+            "sodium": 150,
+            "saturated_fat": 4
+          }
+        },
+        {
+          "slug": "pad-thai",
+          "meal": "lunch",
+          "servings": 1.5,
+          "totals": {
+            "calories": 960,
+            "protein": 45,
+            "fat": 33,
+            "carbs": 120,
+            "fiber": 6,
+            "sugar": 27,
+            "sodium": 2220,
+            "saturated_fat": 6
+          }
+        },
+        {
+          "slug": "egg-fried-rice",
+          "meal": "dinner",
+          "servings": 1.5,
+          "totals": {
+            "calories": 720,
+            "protein": 23,
+            "fat": 27,
+            "carbs": 93,
+            "fiber": 5,
+            "sugar": 5,
+            "sodium": 1335,
+            "saturated_fat": 5
+          }
+        }
+      ],
+      "total": {
+        "calories": 2093,
+        "protein": 81,
+        "fat": 70,
+        "carbs": 281,
+        "fiber": 18,
+        "sugar": 53,
+        "sodium": 3705,
+        "saturated_fat": 14
+      },
+      "targets": {
+        "bmr": 1357,
+        "tdee": 2103,
+        "calories": 2100,
+        "protein_g": 82,
+        "fat_g": 70,
+        "carbs_g": 286,
+        "fiber_g": 29
+      },
+      "deviation": {
+        "calories": -0.004,
+        "protein": -0.009,
+        "fat": 0,
+        "carbs": -0.019
+      },
+      "within_tolerance": true
+    }
+  }
+]

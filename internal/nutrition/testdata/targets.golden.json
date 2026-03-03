@@ -1,0 +1,116 @@
+[
+  {
+    "input": {
+      "height_cm": 180,
+      "weight_kg": 80,
+      "age": 30,
+      "sex": "male",
+      "activity": "moderate",
+      "goal": "maintain"
+    },
+    "targets": {
+      "bmr": 1780,
+      "tdee": 2759,
+      "calories": 2760,
+      "protein_g": 96,
+      "fat_g": 92,
+      "carbs_g": 387,
+      "fiber_g": 39
+    }
+  },
+  {
+    "input": {
+      "height_cm": 165,
+      "weight_kg": 60,
+      "age": 25,
+      "sex": "female",
+      "activity": "sedentary",
+      "goal": "lose_weight"
+    },
+    "targets": {
+      "bmr": 1345,
+      "tdee": 1614,
+      "calories": 1200,
+      "protein_g": 90,
+      "fat_g": 40,
+      "carbs_g": 120,
+      "fiber_g": 25
+    }
+  },
+  {
+    "input": {
+      "height_cm": 175,
+      "weight_kg": 72,
+      "age": 22,
+      "sex": "male",
+      "activity": "active",
+      "goal": "gain_muscle"
+    },
+    "targets": {
+      "bmr": 1709,
+      "tdee": 2948,
+      "calories": 3250,
+      "protein_g": 144,
+      "fat_g": 90,
+      "carbs_g": 466,
+      "fiber_g": 46
+    }
+  },
+  {
+    "input": {
+      "height_cm": 160,
+      "weight_kg": 50,
+      "age": 19,
+      "sex": "female",
+      "activity": "light",
+      "goal": "gain_weight"
+    },
+    "targets": {
+      "bmr": 1244,
+      "tdee": 1711,
+      "calories": 2210,
+      "protein_g": 75,
+      "fat_g": 74,
+      "carbs_g": 311,
+      "fiber_g": 31
+    }
+  },
+  {
+    "input": {
+      "height_cm": 170,
+      "weight_kg": 68,
+      "age": 45,
+      "sex": "female",
+      "activity": "moderate",
+      "goal": "eat_healthier"
+    },
+    "targets": {
+      "bmr": 1357,
+      "tdee": 2103,
+      "calories": 2100,
+      "protein_g": 82,
+      "fat_g": 70,
+      "carbs_g": 286,
+      "fiber_g": 29
+    }
+  },
+  {
+    "input": {
+      "height_cm": 190,
+      "weight_kg": 110,
+      "age": 50,
+      "sex": "male",
+      "activity": "sedentary",
+      "goal": "lose_weight"
+    },
+    "targets": {
+      "bmr": 2043,
+      "tdee": 2451,
+      "calories": 1950,
+      "protein_g": 146,
+      "fat_g": 65,
+      "carbs_g": 195,
+      "fiber_g": 27
+    }
+  }
+]
