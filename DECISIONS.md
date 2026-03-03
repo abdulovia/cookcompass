@@ -59,3 +59,11 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Browse filters re-render only the results block via HTMX (`HX-Target: results`); the same URL works as a normal page without JavaScript.
 - A read-only JSON API (`/api/recipes`, `/api/recipes/{slug}`) exposes the same filtered pool; its output is covered by golden files.
 - Step checklists persist progress per recipe in the browser's localStorage (nothing is sent to the server).
+
+## Nutrition
+- Energy: Mifflin–St Jeor BMR × activity factor (1.2 / 1.375 / 1.55 / 1.725 / 1.9).
+- Goals: lose −500 kcal & 1.6 g/kg protein; maintain ±0 & 1.2 g/kg; gain muscle +300 & 2.0 g/kg; gain weight +500 & 1.5 g/kg; eat healthier ±0 & 1.2 g/kg. Fat 30% (25% for muscle gain), carbs fill the rest, fiber 14 g/1000 kcal (min 25 g).
+- Safety floors: never below 1200 kcal (female) / 1500 kcal (male); protein capped at 30% of energy. The page says it is not medical advice.
+- Daily plan: breakfast + lunch + dinner + 0–2 snacks from the visible pool, exhaustive over combinations, portions scaled in quarter servings (0.5–2.5) with a small penalty for odd portions; ranked by number of macros outside ±10%, then weighted squared error.
+- The plan rotates daily via a seed of date + user id; "Another idea" bumps the seed. No plan history is stored.
+- Body data is stored metric; imperial users enter ft/in and lb, converted on save.
