@@ -37,6 +37,8 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Get("/", h.home)
 	r.Get("/recipes", h.browse)
 	r.Get("/recipes/{slug}", h.detail)
+	r.Get("/goals", h.goals)
+	r.Post("/goals", h.saveGoals)
 	r.Get("/settings", h.settings)
 	r.Post("/settings", h.saveSettings)
 	r.Post("/settings/preferences", h.savePreferences)
@@ -138,13 +140,22 @@ func (h *Handler) home(w http.ResponseWriter, r *http.Request) {
 		h.Fail(w, r, err)
 		return
 	}
+	plan, err := h.planFor(r, 0)
+	if err != nil {
+		h.Fail(w, r, err)
+		return
+	}
 	p := web.NewPage(r, "")
-	p.Data = map[string]any{"StartHere": easy, "Cuisines": cuisines, "Count": len(items), "Extra": h.homeExtra(r, items)}
+	data := map[string]any{"StartHere": easy, "Cuisines": cuisines, "Count": len(items), "Plan": plan}
+	for k, v := range h.homeExtra(r) {
+		data[k] = v
+	}
+	p.Data = data
 	h.R.Page(w, http.StatusOK, "pages/home", p)
 }
 
-// homeExtra is extended by later features (daily plan, learning progress).
-func (h *Handler) homeExtra(_ *http.Request, _ []pool.Item) map[string]any { return map[string]any{} }
+// homeExtra is extended by later features (learning progress).
+func (h *Handler) homeExtra(_ *http.Request) map[string]any { return nil }
 
 func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 	v := h.viewer(r)
