@@ -30,3 +30,18 @@
     <span>{{$p.T (printf "cuisine.%s" .Base.Cuisine)}}</span>
   </div>
 </a>{{end}}{{end}}
+
+{{define "plan_list"}}{{$p := .P}}{{with .Plan}}
+<ol class="plan">
+  {{range .Items}}<li class="plan-item">
+    <span><span class="badge">{{$p.T (printf "meal.%s" .Meal)}}</span> <a href="/recipes/{{.Slug}}">{{if .Recipe}}{{.Recipe.Name}}{{else}}{{.Slug}}{{end}}</a>
+      <span class="muted">· {{$p.T "plan.servings" "N" (qty .Servings) "Count" .Servings}}</span></span>
+    <span>{{num .Totals.Calories}} {{$p.T "nutrition.unit.calories"}}</span>
+  </li>{{end}}
+</ol>{{end}}{{end}}
+
+{{define "macro_bar"}}<div class="macro">
+  <span class="k">{{.Label}}</span>
+  <span class="v">{{num .Got}} / {{num .Want}} {{.Unit}}</span>
+  <div class="bar {{if gt (pct .Got .Want) 110}}over{{end}}" role="img" aria-label="{{pct .Got .Want}}%"><span style="width: {{if gt (pct .Got .Want) 100}}100{{else}}{{pct .Got .Want}}{{end}}%"></span></div>
+</div>{{end}}
