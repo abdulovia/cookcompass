@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-07
+### Added
+- Recipe ingestion: `RecipeSource` interface, schema.org JSON-LD source, polite fetcher (robots.txt, per-host rate limit, disk cache, clear User-Agent).
+- Normalizer with ingredient parsing, cuisine/meal/difficulty guesses; dedup by canonical URL or content key; user edits are never overwritten.
+- Admin review queue with one-click approve/reject, approve all, purge pending and "scrape now".
+- `scrape` CLI command (`make scrape-recipes SOURCE=jsonld`), bundled sample pages for offline runs, `docs/ingestion.md`.
+
 ## [0.3.0] - 2026-11-07
 ### Added
 - Nutrition calculator (Mifflin–St Jeor + TDEE) with five goals, safety floors and macro targets.
