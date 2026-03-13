@@ -225,3 +225,35 @@ func TestCommandsFailWithBadDB(t *testing.T) {
 		}
 	}
 }
+
+func TestScrapeCommand(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "scrape.db")
+	fixture, _ := filepath.Abs("../ingest/testdata/graph_recipe.html")
+	t.Setenv("COOK_SCRAPE_TARGETS", "../../seed/sources/jsonld_targets.txt")
+	t.Setenv("COOK_SCRAPE_CACHE", t.TempDir())
+	code, out, errs := run(t, dbPath, "", "scrape", "--source", "jsonld", "--url", "file:"+fixture)
+	if code != 0 || !strings.Contains(out, "created=1") || !strings.Contains(out, "review new items") {
+		t.Fatalf("scrape url: %d %s %s", code, out, errs)
+	}
+	code, out, _ = run(t, dbPath, "", "scrape", "--limit", "2")
+	if code != 0 || !strings.Contains(out, "fetched=2 created=2") {
+		t.Fatalf("scrape bundled samples: %d %s", code, out)
+	}
+	// Offline / unreachable: warn and keep going.
+	code, out, _ = run(t, dbPath, "", "scrape", "--url", "http://127.0.0.1:1/offline")
+	if code != 0 || !strings.Contains(out, "fetched=0") {
+		t.Fatalf("offline scrape should not fail: %d %s", code, out)
+	}
+	if code, out, _ := run(t, dbPath, "", "approve-all"); code != 0 || !strings.Contains(out, "approved 3 recipes") {
+		t.Fatalf("approve-all after scrape: %s", out)
+	}
+	if code, _, _ := run(t, dbPath, "", "scrape", "--source", "nope"); code != 1 {
+		t.Fatal("unknown source accepted")
+	}
+	if code, _, _ := run(t, dbPath, "", "scrape", "--bogus"); code == 0 {
+		t.Fatal("bad flag accepted")
+	}
+	if code, _, _ := run(t, "/dev/null/x.db", "", "scrape"); code != 1 {
+		t.Fatal("bad db accepted")
+	}
+}
