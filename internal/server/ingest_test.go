@@ -1,0 +1,122 @@
+package server
+
+import (
+	"context"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/abdulovia/cookcompass/internal/config"
+	"github.com/abdulovia/cookcompass/internal/recipes"
+)
+
+// fixtureSite serves the ingest fixtures with a robots.txt that blocks /members/.
+func fixtureSite(t *testing.T) *httptest.Server {
+	t.Helper()
+	mux := http.NewServeMux()
+	mux.HandleFunc("/robots.txt", func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write([]byte("User-agent: *\nDisallow: /members/\n"))
+	})
+	for _, f := range []string{"graph_recipe.html", "array_recipe.html", "no_recipe.html"} {
+		body, err := os.ReadFile(filepath.Join("..", "ingest", "testdata", f))
+		if err != nil {
+			t.Fatal(err)
+		}
+		mux.HandleFunc("/"+f, func(w http.ResponseWriter, _ *http.Request) { _, _ = w.Write(body) })
+	}
+	mux.HandleFunc("/members/secret.html", func(w http.ResponseWriter, _ *http.Request) { t.Error("robots.txt ignored") })
+	srv := httptest.NewServer(mux)
+	t.Cleanup(srv.Close)
+	return srv
+}
+
+var queueRow = regexp.MustCompile(`id="rq-(\d+)"`)
+
+func TestScrapeQueueApproveFlow(t *testing.T) {
+	site := fixtureSite(t)
+	targets := filepath.Join(t.TempDir(), "targets.txt")
+	list := strings.Join([]string{site.URL + "/graph_recipe.html", site.URL + "/members/secret.html", site.URL + "/no_recipe.html",
+		site.URL + "/array_recipe.html"}, "\n")
+	if err := os.WriteFile(targets, []byte(list), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	h := newHarness(t, func(c *config.Config) {
+		c.Scrape.TargetsFile = targets
+		c.Scrape.MinInterval = time.Millisecond // keep the test fast; production enforces >= 1s
+	})
+
+	// Scrape from the admin queue.
+	resp, _ := h.post("/admin/queue/scrape", url.Values{"source": {"jsonld"}})
+	if resp.StatusCode != http.StatusSeeOther || !strings.Contains(resp.Header.Get("Location"), "flash=scanned") {
+		t.Fatalf("scrape: %d %s", resp.StatusCode, resp.Header.Get("Location"))
+	}
+	_, body := h.get("/admin/queue")
+	rows := queueRow.FindAllStringSubmatch(body, -1)
+	if len(rows) != 2 || !strings.Contains(body, "Za&#39;atar Fried Eggs") || !strings.Contains(body, "Weeknight Tomato Pasta") ||
+		!strings.Contains(body, "Needs review") {
+		t.Fatalf("queue rows: %d", len(rows))
+	}
+
+	// Pending recipes are invisible to users.
+	if _, body := h.get("/recipes?f=1&q=za"); strings.Contains(body, "Fried Eggs") {
+		t.Fatal("pending recipe visible in browse")
+	}
+	// Approve the eggs via HTMX (row removed), reject the pasta via a plain form.
+	eggs := h.mustFindByURL("https://recipes.example.org/zaatar-eggs")
+	pasta := h.mustFindByURL("https://kitchen.example.com/tomato-pasta")
+	resp, rowBody := h.post("/admin/queue/recipes/"+itoa(eggs.ID)+"/approve", nil, "HX-Request", "true")
+	if resp.StatusCode != http.StatusOK || rowBody != "" {
+		t.Fatalf("htmx approve: %d %q", resp.StatusCode, rowBody)
+	}
+	resp, _ = h.post("/admin/queue/recipes/"+itoa(pasta.ID)+"/reject", nil)
+	if resp.StatusCode != http.StatusSeeOther {
+		t.Fatalf("reject: %d", resp.StatusCode)
+	}
+	if _, body := h.get("/admin/queue"); !strings.Contains(body, "Nothing to review") {
+		t.Fatal("queue should be empty")
+	}
+	_, body = h.get("/recipes?f=1")
+	if !strings.Contains(body, "29 recipes") {
+		t.Fatalf("approved recipe should join the pool: %s", snippet(body, "recipes</p>"))
+	}
+	if _, body := h.get("/recipes?f=1&q=tomato+pasta"); strings.Contains(body, "Weeknight Tomato Pasta") {
+		t.Fatal("rejected recipe visible")
+	}
+
+	// Re-scraping keeps decisions: nothing returns to the queue.
+	h.post("/admin/queue/scrape", url.Values{"source": {"jsonld"}})
+	if _, body := h.get("/admin/queue"); !strings.Contains(body, "Nothing to review") {
+		t.Fatal("re-scrape re-queued reviewed recipes")
+	}
+
+	// Bulk actions and errors.
+	for _, p := range []string{"/admin/queue/recipes/9999/approve", "/admin/queue/recipes/x/reject"} {
+		if resp, _ := h.post(p, nil); resp.StatusCode != http.StatusNotFound {
+			t.Errorf("%s: %d", p, resp.StatusCode)
+		}
+	}
+	if resp, _ := h.post("/admin/queue/approve-all", nil); !strings.Contains(resp.Header.Get("Location"), "approved_all") {
+		t.Fatal("approve all")
+	}
+	if resp, _ := h.post("/admin/queue/purge", nil); !strings.Contains(resp.Header.Get("Location"), "purged") {
+		t.Fatal("purge")
+	}
+	if resp, _ := h.post("/admin/queue/scrape", url.Values{"source": {"nope"}}); !strings.Contains(resp.Header.Get("Location"), "scrape_failed") {
+		t.Fatal("unknown source")
+	}
+}
+
+func (h *harness) mustFindByURL(u string) *recipes.Recipe {
+	h.t.Helper()
+	r, err := h.app.Recipes.FindDuplicate(context.Background(), u, "")
+	if err != nil || r == nil {
+		h.t.Fatalf("recipe %s not found: %v", u, err)
+	}
+	return r
+}
