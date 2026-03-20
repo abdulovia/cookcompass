@@ -1,3 +1,11 @@
 # Recipe pages scraped by `make scrape-recipes SOURCE=jsonld`.
-# One URL per line; blank lines and lines starting with # are ignored.
-# Only list sites whose terms permit indexing; robots.txt is always enforced.
+# One entry per line; blank lines and "#" comments are ignored.
+#
+# - http(s) URLs are fetched politely: robots.txt is obeyed, at most one
+#   request per second per site, responses are cached on disk.
+# - Only add sites whose terms of use allow indexing for personal use.
+# - "file:" entries read local HTML (relative to this file; globs allowed).
+#   They let the pipeline run offline and are a handy way to import pages
+#   you saved from your browser.
+file:samples/*.html
+# https://example.com/recipes/my-favourite-soup
