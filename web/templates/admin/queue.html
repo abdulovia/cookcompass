@@ -1,0 +1,34 @@
+{{define "content"}}
+<div class="title-row">
+  <h1>{{.T "admin.queue"}}</h1>
+  <div class="row-gap">
+    {{range .Data.Sources}}<form method="post" action="/admin/queue/scrape"><input type="hidden" name="source" value="{{.}}"><button class="secondary">↻ {{$.T "admin.scrape_now" "Source" .}}</button></form>{{end}}
+    <form method="post" action="/admin/queue/approve-all" onsubmit="return confirm('{{.T "admin.confirm_approve_all"}}')"><button>{{.T "admin.approve_all"}}</button></form>
+    <form method="post" action="/admin/queue/purge" onsubmit="return confirm('{{.T "admin.confirm_purge"}}')"><button class="secondary danger">{{.T "admin.purge"}}</button></form>
+  </div>
+</div>
+<p class="muted">{{.T "admin.queue_hint"}}</p>
+
+<h2>{{.T "admin.queue_recipes" "Count" (len .Data.Recipes)}}</h2>
+{{if .Data.Recipes}}
+<div class="table-wrap"><table>
+  <thead><tr><th scope="col">{{.T "admin.col_name"}}</th><th scope="col">{{.T "admin.col_source"}}</th><th scope="col">{{.T "admin.col_guess"}}</th><th scope="col">{{.T "common.actions"}}</th></tr></thead>
+  <tbody>
+  {{range .Data.Recipes}}
+  <tr id="rq-{{.ID}}">
+    <td><a href="/admin/recipes/{{.ID}}/edit">{{.Name}}</a>
+      {{if .NeedsReview}}<span class="badge warn">{{$.T "admin.needs_review"}}</span>{{end}}
+      <div class="muted">{{$.T "admin.queue_counts" "Ingredients" (len .Ingredients) "Steps" (len .Steps)}}</div></td>
+    <td><code>{{.Source}}</code>{{with .CanonicalURL}}<div><a href="{{.}}" rel="noopener noreferrer" target="_blank">{{.}}</a></div>{{end}}</td>
+    <td>{{$.T (printf "difficulty.%s" .Difficulty)}} · {{range $i, $m := .MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}{{with .Cuisine}} · {{$.T (printf "cuisine.%s" .)}}{{end}}</td>
+    <td class="actions">
+      <form method="post" action="/admin/queue/recipes/{{.ID}}/approve" hx-post="/admin/queue/recipes/{{.ID}}/approve" hx-target="#rq-{{.ID}}" hx-swap="outerHTML"><button class="small">{{$.T "admin.approve"}}</button></form>
+      <form method="post" action="/admin/queue/recipes/{{.ID}}/reject" hx-post="/admin/queue/recipes/{{.ID}}/reject" hx-target="#rq-{{.ID}}" hx-swap="outerHTML"><button class="small secondary danger">{{$.T "admin.reject"}}</button></form>
+    </td>
+  </tr>
+  {{end}}
+  </tbody>
+</table></div>
+{{else}}<p class="empty">{{.T "admin.queue_empty"}}</p>{{end}}
+{{block "product_queue" .}}{{end}}
+{{end}}
