@@ -44,6 +44,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/queue/approve-all", h.approveAll)
 	r.Post("/queue/purge", h.purgePending)
 	r.Post("/queue/scrape", h.scrapeNow)
+	h.productRoutes(r)
 }
 
 // Guard protects the admin surface. With a password configured, HTTP basic
