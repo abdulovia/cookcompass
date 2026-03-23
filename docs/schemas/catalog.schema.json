@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/abdulovia/cookcompass/docs/schemas/catalog.schema.json",
+  "title": "CookCompass product catalog",
+  "description": "Offline or in-store catalog for one country. Drop files into <catalog_inbox_dir>/<COUNTRY>/ and run `make scan`, or import with `cookcompass products import`.",
+  "type": "object",
+  "required": ["products"],
+  "properties": {
+    "country": {"type": "string", "pattern": "^[A-Za-z]{2}$", "description": "ISO 3166-1 alpha-2; must match the folder/--country"},
+    "store": {"type": "string", "description": "Shown as the source, e.g. file:corner-shop"},
+    "currency": {"type": "string", "description": "ISO 4217; defaults to the country's currency"},
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "sku": {"type": "string", "description": "Stable id; used for dedup when present"},
+          "name": {"type": "string"},
+          "category": {"type": "string"},
+          "ingredient": {"type": "string", "description": "Canonical ingredient slug from seed/ingredients.json; matched from the name when omitted"},
+          "price": {"type": "number", "minimum": 0},
+          "unit": {"type": "string", "description": "Pack size, e.g. \"500 g\""}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
