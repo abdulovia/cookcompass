@@ -47,6 +47,8 @@ func TestMatcher(t *testing.T) {
 		"ground beef":            8,
 		"cumin":                  9,
 		"ground cumin":           9,
+		"зелёная паста карри":    10,
+		"карри":                  11,
 	})
 	tests := []struct {
 		in   string
@@ -63,6 +65,8 @@ func TestMatcher(t *testing.T) {
 		{"lean ground beef", 8, true},
 		{"ground cumin", 9, true},
 		{"unicorn tears", 0, false},
+		{"Паста карри зелёная, 110 g", 10, true},
+		{"карри", 11, true},
 	}
 	for _, tc := range tests {
 		got, ok := m.Match(tc.in)
