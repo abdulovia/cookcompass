@@ -81,9 +81,19 @@ func TestScrapeQueueApproveFlow(t *testing.T) {
 	if _, body := h.get("/admin/queue"); !strings.Contains(body, "Nothing to review") {
 		t.Fatal("queue should be empty")
 	}
+	// Approved, but za'atar isn't sold (or known) in the user's country, so the
+	// recipe is hidden until "show unavailable" is on; its page explains why.
 	_, body = h.get("/recipes?f=1")
-	if !strings.Contains(body, "29 recipes") {
-		t.Fatalf("approved recipe should join the pool: %s", snippet(body, "recipes</p>"))
+	if !strings.Contains(body, ">28 recipes") {
+		t.Fatalf("unavailable recipe should stay hidden: %s", snippet(body, "recipes</p>"))
+	}
+	h.post("/settings", url.Values{"country": {"US"}, "units": {"metric"}, "show_unavailable": {"1"}})
+	_, body = h.get("/recipes?f=1")
+	if !strings.Contains(body, ">29 recipes") || !strings.Contains(body, "Not sold nearby") {
+		t.Fatalf("approved recipe should join the pool when showing unavailable: %s", snippet(body, "recipes</p>"))
+	}
+	if _, body := h.get("/recipes/" + eggs.Slug); !strings.Contains(body, "isn&#39;t sold where you live") {
+		t.Fatal("detail page should explain unavailability")
 	}
 	if _, body := h.get("/recipes?f=1&q=tomato+pasta"); strings.Contains(body, "Weeknight Tomato Pasta") {
 		t.Fatal("rejected recipe visible")
