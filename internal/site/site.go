@@ -43,6 +43,8 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/settings", h.saveSettings)
 	r.Post("/settings/preferences", h.savePreferences)
 	r.Post("/settings/pantry", h.savePantry)
+	r.Post("/settings/locate", h.locate)
+	r.Post("/settings/rescan", h.rescan)
 	r.Get("/api/recipes", h.apiList)
 	r.Get("/api/recipes/{slug}", h.apiDetail)
 	r.Get("/login", h.loginForm)
