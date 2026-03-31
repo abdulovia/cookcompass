@@ -1,0 +1,28 @@
+{{define "content"}}
+{{$f := .Data.Form}}
+<h1>{{.Title}}{{if $f.ID}}: {{$f.Name}}{{end}}</h1>
+{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.T (printf "status.%s" $f.Status))}} — {{.T "admin.product_user_wins"}}</p>{{end}}
+{{template "error_summary" .}}
+<form method="post" action="{{if $f.ID}}/admin/products/{{$f.ID}}{{else}}/admin/products{{end}}" class="card stack" novalidate>
+  <div class="grid three">
+    <div><label for="country">{{.T "settings.country"}}</label>
+      <select id="country" name="country">{{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $f.Country}}selected{{end}}>{{.Code}} — {{.Name}}</option>{{end}}</select>
+      {{template "field_error" (.Err "country")}}</div>
+    <div><label for="sku">SKU</label><input id="sku" name="sku" value="{{$f.SKU}}">{{template "field_error" (.Err "sku")}}</div>
+    <div><label for="category">{{.T "admin.field_category"}}</label><input id="category" name="category" value="{{$f.Category}}"></div>
+  </div>
+  <label for="name">{{.T "admin.field_name"}}</label>
+  <input id="name" name="name" value="{{$f.Name}}" required {{if .Err "name"}}aria-invalid="true"{{end}}>
+  {{template "field_error" (.Err "name")}}
+  <div class="grid three">
+    <div><label for="ingredient">{{.T "admin.col_ingredient"}}</label>
+      <select id="ingredient" name="ingredient">
+        <option value="">{{.T "admin.ingredient_auto"}}</option>
+        {{range .Data.Ingredients}}<option value="{{.Slug}}" {{if eq .Slug $f.Ingredient}}selected{{end}}>{{.Name}}</option>{{end}}
+      </select>{{template "field_error" (.Err "ingredient")}}</div>
+    <div><label for="price">{{.T "admin.col_price"}}</label><input id="price" name="price" inputmode="decimal" value="{{$f.Price}}">{{template "field_error" (.Err "price")}}</div>
+    <div><label for="unit">{{.T "admin.field_unit"}}</label><input id="unit" name="unit" value="{{$f.Unit}}" placeholder="500 g"></div>
+  </div>
+  <div class="row-gap"><button type="submit">{{.T "common.save"}}</button><a class="btn secondary" href="/admin/products?country={{$f.Country}}">{{.T "common.cancel"}}</a></div>
+</form>
+{{end}}

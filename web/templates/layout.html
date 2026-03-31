@@ -20,6 +20,7 @@
           {{if .Admin}}
           <li><a href="/admin" {{if eq .Path "/admin"}}aria-current="page"{{end}}>{{.T "admin.title"}}</a></li>
           <li><a href="/admin/recipes" {{if .Active "/admin/recipes"}}aria-current="page"{{end}}>{{.T "admin.recipes"}}</a></li>
+          <li><a href="/admin/products" {{if .Active "/admin/products"}}aria-current="page"{{end}}>{{.T "admin.products"}}</a></li>
           <li><a href="/admin/queue" {{if .Active "/admin/queue"}}aria-current="page"{{end}}>{{.T "admin.queue"}}</a></li>
           {{block "admin_nav_extra" .}}{{end}}
           <li><a href="/">{{.T "nav.home"}} ↗</a></li>
