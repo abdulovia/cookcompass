@@ -5,7 +5,12 @@
 <section class="card settings-section" aria-labelledby="where">
   <h2 id="where">{{.T "settings.where_title"}}</h2>
   <p class="muted">{{.T "settings.where_hint"}}</p>
-  {{block "locate_form" .}}{{end}}
+  <form method="post" action="/settings/locate" x-data="locate" x-on:submit.prevent="find($el)" class="row-gap" style="margin-bottom:1rem">
+    <input type="hidden" name="lat"><input type="hidden" name="lng">
+    <button type="submit" class="secondary" x-bind:disabled="busy">📍 <span x-text="busy ? '{{.T "settings.locating"}}' : '{{.T "settings.locate"}}'">{{.T "settings.locate"}}</span></button>
+    <span class="help" x-show="failed" x-cloak>{{.T "flash.location_failed"}}</span>
+    <noscript><span class="help">{{.T "settings.locate_nojs"}}</span></noscript>
+  </form>
   <form method="post" action="/settings" class="stack">
     <div class="grid three">
       <div>
@@ -39,7 +44,10 @@
     {{end}}
     <button type="submit">{{.T "common.save"}}</button>
   </form>
-  {{block "rescan_form" .}}{{end}}
+  <form method="post" action="/settings/rescan" class="row-gap" style="margin-top:1rem">
+    <button type="submit" class="secondary">↻ {{.T "settings.rescan"}}</button>
+    <span class="help">{{.T "settings.rescan_hint"}}</span>
+  </form>
 </section>
 
 <section class="card settings-section" id="preferences" aria-labelledby="prefs-title">
