@@ -30,5 +30,32 @@
   </tbody>
 </table></div>
 {{else}}<p class="empty">{{.T "admin.queue_empty"}}</p>{{end}}
-{{block "product_queue" .}}{{end}}
+<div class="title-row">
+  <h2>{{.T "admin.queue_products" "Count" (len .Data.PendingProducts)}}</h2>
+  <form method="post" action="/admin/products/scan" class="row-gap">
+    <label for="scan-country" class="visually-hidden">{{.T "settings.country"}}</label>
+    <select id="scan-country" name="country"><option value="all">{{.T "common.all"}}</option>{{range .Data.Countries}}<option value="{{.Code}}">{{.Code}}</option>{{end}}</select>
+    <button class="secondary small">↻ {{.T "admin.scan_now"}}</button>
+  </form>
+</div>
+{{if .Data.PendingProducts}}
+<div class="table-wrap"><table>
+  <thead><tr><th scope="col">{{.T "admin.col_name"}}</th><th scope="col">{{.T "settings.country"}}</th><th scope="col">{{.T "admin.col_ingredient"}}</th><th scope="col">{{.T "admin.col_price"}}</th><th scope="col">{{.T "admin.col_source"}}</th><th scope="col">{{.T "common.actions"}}</th></tr></thead>
+  <tbody>
+  {{range .Data.PendingProducts}}
+  <tr id="pq-{{.ID}}">
+    <td><a href="/admin/products/{{.ID}}/edit">{{.Name}}</a>{{with .SKU}} <code>{{.}}</code>{{end}}</td>
+    <td>{{.CountryCode}}</td>
+    <td>{{if .IngredientSlug}}{{.IngredientSlug}}{{else}}<span class="badge warn">{{$.T "admin.unmapped"}}</span>{{end}}</td>
+    <td>{{money .Price}} {{.Currency}}</td>
+    <td><code>{{.Source}}</code></td>
+    <td class="actions">
+      <form method="post" action="/admin/queue/products/{{.ID}}/approve" hx-post="/admin/queue/products/{{.ID}}/approve" hx-target="#pq-{{.ID}}" hx-swap="outerHTML"><button class="small">{{$.T "admin.approve"}}</button></form>
+      <form method="post" action="/admin/queue/products/{{.ID}}/reject" hx-post="/admin/queue/products/{{.ID}}/reject" hx-target="#pq-{{.ID}}" hx-swap="outerHTML"><button class="small secondary danger">{{$.T "admin.reject"}}</button></form>
+    </td>
+  </tr>
+  {{end}}
+  </tbody>
+</table></div>
+{{else}}<p class="empty">{{.T "admin.queue_empty"}}</p>{{end}}
 {{end}}

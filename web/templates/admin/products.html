@@ -1,0 +1,63 @@
+{{define "content"}}
+<div class="title-row">
+  <h1>{{.T "admin.products"}} · {{.Data.Country}}</h1>
+  <div class="row-gap">
+    <a class="btn" href="/admin/products/new?country={{.Data.Country}}">{{.T "admin.new_product"}}</a>
+    <a class="btn secondary" href="/admin/products/export?country={{.Data.Country}}" download>⤓ {{.T "admin.export_csv"}}</a>
+  </div>
+</div>
+<form class="filters" method="get" action="/admin/products">
+  <label>{{.T "settings.country"}}
+    <select name="country">{{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $.Data.Country}}selected{{end}}>{{.Code}} — {{.Name}}</option>{{end}}</select>
+  </label>
+  <label>{{.T "common.search"}} <input type="search" name="q" value="{{.Query.Get "q"}}"></label>
+  <label>{{.T "admin.filter_status"}}
+    <select name="status">
+      <option value="all">{{.T "common.all"}}</option>
+      {{range $s := (list "approved" "pending" "rejected")}}<option value="{{$s}}" {{if eq ($.Query.Get "status") $s}}selected{{end}}>{{$.T (printf "status.%s" $s)}}</option>{{end}}
+    </select>
+  </label>
+  <label>{{.T "admin.filter_deleted"}}
+    <select name="deleted">
+      <option value="">{{.T "admin.deleted_exclude"}}</option>
+      <option value="include" {{if eq (.Query.Get "deleted") "include"}}selected{{end}}>{{.T "admin.deleted_include"}}</option>
+      <option value="only" {{if eq (.Query.Get "deleted") "only"}}selected{{end}}>{{.T "admin.deleted_only"}}</option>
+    </select>
+  </label>
+  <label class="check"><input type="checkbox" name="unmapped" value="1" {{if eq (.Query.Get "unmapped") "1"}}checked{{end}}> {{.T "admin.unmapped"}}</label>
+  <button type="submit">{{.T "common.filter"}}</button>
+</form>
+<details class="card">
+  <summary><strong>{{.T "admin.import_title"}}</strong></summary>
+  <p class="help">{{.T "admin.import_help"}}</p>
+  <form method="post" action="/admin/products/import" enctype="multipart/form-data" class="row-gap">
+    <input type="hidden" name="country" value="{{.Data.Country}}">
+    <label for="import-file" class="visually-hidden">{{.T "admin.import_file"}}</label>
+    <input id="import-file" type="file" name="file" accept=".csv,.json" required style="max-width:22rem">
+    <button type="submit">{{.T "admin.import_button"}}</button>
+  </form>
+</details>
+<p class="muted">{{.T "admin.products_count" "Count" (len .Data.Products)}}</p>
+{{if .Data.Products}}
+<div class="table-wrap"><table>
+  <thead><tr><th scope="col">{{.T "admin.col_name"}}</th><th scope="col">SKU</th><th scope="col">{{.T "admin.col_ingredient"}}</th><th scope="col">{{.T "admin.col_price"}}</th><th scope="col">{{.T "admin.col_status"}}</th><th scope="col">{{.T "admin.col_source"}}</th><th scope="col">{{.T "common.actions"}}</th></tr></thead>
+  <tbody>
+  {{range .Data.Products}}
+  <tr {{if .Deleted}}class="muted"{{end}}>
+    <td><a href="/admin/products/{{.ID}}/edit">{{.Name}}</a><div class="muted">{{.Category}}{{with .Unit}} · {{.}}{{end}}</div></td>
+    <td><code>{{.SKU}}</code></td>
+    <td>{{if .IngredientSlug}}{{.IngredientSlug}}{{else}}<span class="badge warn">{{$.T "admin.unmapped"}}</span>{{end}}</td>
+    <td>{{money .Price}} {{.Currency}}</td>
+    <td>{{if .Deleted}}<span class="badge">{{$.T "status.deleted"}}</span>{{else}}<span class="badge st-{{.Status}}">{{$.T (printf "status.%s" .Status)}}</span>{{end}}</td>
+    <td><code>{{.Source}}</code></td>
+    <td class="actions">
+      <a href="/admin/products/{{.ID}}/edit">{{$.T "common.edit"}}</a>
+      {{if .Deleted}}<form method="post" action="/admin/products/{{.ID}}/restore"><input type="hidden" name="back" value="/admin/products?country={{.CountryCode}}"><button class="link">{{$.T "common.restore"}}</button></form>
+      {{else}}<form method="post" action="/admin/products/{{.ID}}/delete"><input type="hidden" name="back" value="/admin/products?country={{.CountryCode}}"><button class="link danger">{{$.T "common.delete"}}</button></form>{{end}}
+    </td>
+  </tr>
+  {{end}}
+  </tbody>
+</table></div>
+{{else}}<p class="empty">{{.T "admin.empty"}}</p>{{end}}
+{{end}}
