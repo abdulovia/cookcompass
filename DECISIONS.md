@@ -90,3 +90,10 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Ingredient matching is word-order insensitive ("паста карри зелёная" = "зелёная паста карри") so product names from different shops link correctly.
 - Reverse geocoding is offline: nearest bundled city by haversine distance, accepted within 1500 km; otherwise the current country is kept and the user picks manually.
 - The seed was missing a farmer's cheese → ricotta substitute; added so syrniki is cookable where only ricotta is sold.
+
+## Internationalisation
+- English and Russian are complete; German, Spanish and French ship navigation and common labels and fall back to English, labelled "(partial)" in Settings. A test enforces this split.
+- Language priority: explicit switcher cookie → profile setting → `Accept-Language` → English.
+- Recipe text, descriptions, steps and hand-written ingredient lines are per-locale rows in `recipe_i18n`; recipes without a translation show English text with localized units and ingredient names.
+- Russian plurals use go-i18n CLDR forms (one/few/many/other); unit labels are plural-aware.
+- Locale files must use only English message ids with identical placeholders — checked by `go test ./internal/i18n`.
