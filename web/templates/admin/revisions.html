@@ -21,6 +21,6 @@
 </table>
 </div>
 <h2>#{{.Data.A.Rev}} → #{{.Data.B.Rev}}</h2>
-<pre class="diff" aria-label="diff">{{range .Data.Diff}}<span class="{{.Class}}">{{.Prefix}} {{.Text}}</span>
+<pre class="diff" aria-label="{{.T "admin.diff"}}">{{range .Data.Diff}}<span class="{{.Class}}">{{.Prefix}} {{.Text}}</span>
 {{else}}{{.T "admin.rev_no_changes"}}{{end}}</pre>
 {{end}}
