@@ -463,5 +463,6 @@
   "recipe.learned": "Learned",
   "recipe.unlearn": "undo",
   "recipe.learned_hint": "Learned = you could cook it again without the steps open.",
-  "recipe.login_to_track": "log in to track what you cook."
+  "recipe.login_to_track": "log in to track what you cook.",
+  "admin.pending_summary": "{{.Recipes}} recipes and {{.Products}} products are waiting for review."
 }
