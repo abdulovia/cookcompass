@@ -13,6 +13,7 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	"github.com/abdulovia/cookcompass/internal/app"
+	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/config"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/web"
@@ -99,14 +100,19 @@ func (h *Handler) dashboard(w http.ResponseWriter, r *http.Request) {
 		h.fail(w, r, err)
 		return
 	}
+	pending, err := h.App.Catalog.ListProducts(ctx, catalog.ProductFilter{Statuses: []string{catalog.StatusPending}})
+	if err != nil {
+		h.fail(w, r, err)
+		return
+	}
 	p := h.page(r, "admin.dashboard")
-	p.Data = map[string]any{"Recipes": counts, "Products": products}
+	p.Data = map[string]any{"Recipes": counts, "Products": products, "PendingRecipes": counts["pending"], "PendingProducts": len(pending)}
 	h.R.Page(w, http.StatusOK, "admin/dashboard", p)
 }
 
 func (h *Handler) fail(w http.ResponseWriter, r *http.Request, err error) {
 	h.Log.Error("admin request failed", "path", r.URL.Path, "err", err)
-	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	h.R.Page(w, http.StatusInternalServerError, "pages/500", h.page(r, "error.server_title"))
 }
 
 func idParam(r *http.Request) (int64, error) {
