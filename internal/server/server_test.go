@@ -16,6 +16,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/config"
 	"github.com/abdulovia/cookcompass/internal/recipes"
+	"github.com/abdulovia/cookcompass/internal/site"
 	"github.com/abdulovia/cookcompass/internal/testutil"
 )
 
@@ -293,3 +294,32 @@ func TestHTMXRedirect(t *testing.T) {
 func itoa(n int64) string { return strconv.FormatInt(n, 10) }
 
 func recipesChange() recipes.Change { return recipes.Change{Source: recipes.SourceUser, Note: "test"} }
+
+func TestRecovererRendersErrorPage(t *testing.T) {
+	h := newHarness(t)
+	s, err := New(h.app)
+	if err != nil {
+		t.Fatal(err)
+	}
+	pub := &site.Handler{App: h.app, R: s.render, Log: s.log, Bundle: s.i18n}
+	boom := s.locale(s.recoverer(pub)(http.HandlerFunc(func(http.ResponseWriter, *http.Request) { panic("boom") })))
+	rec := httptest.NewRecorder()
+	boom.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, "/x", nil))
+	if rec.Code != http.StatusInternalServerError || !strings.Contains(rec.Body.String(), "Something went wrong") {
+		t.Fatalf("recoverer: %d %s", rec.Code, rec.Body.String())
+	}
+	// Oversized bodies are rejected before handlers parse them.
+	big := strings.NewReader("q=" + strings.Repeat("x", maxBody+10))
+	req, _ := http.NewRequest(http.MethodPost, h.srv.URL+"/settings/pantry", big)
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	if resp, _ := h.do(req); resp.StatusCode < 400 {
+		t.Fatalf("oversized body accepted: %d", resp.StatusCode)
+	}
+	// Admin dashboard summarises pending work.
+	if _, err := h.app.DB.Exec(`UPDATE recipes SET status = 'pending' WHERE slug = 'guacamole'`); err != nil {
+		t.Fatal(err)
+	}
+	if _, body := h.get("/admin"); !strings.Contains(body, "1 recipes and 0 products are waiting") {
+		t.Fatal("dashboard pending summary")
+	}
+}

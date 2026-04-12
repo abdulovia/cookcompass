@@ -4,10 +4,12 @@ package server
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/fs"
 	"log/slog"
 	"net/http"
 	"net/url"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -58,15 +60,18 @@ func New(a *app.App) (*Server, error) {
 
 // Handler returns the root HTTP handler.
 func (s *Server) Handler() http.Handler {
+	pub := &site.Handler{App: s.app, R: s.render, Log: s.log, Bundle: s.i18n, CountryAware: true}
 	r := chi.NewRouter()
-	r.Use(middleware.RequestID, s.logRequests, middleware.Recoverer, securityHeaders, sameOrigin, s.identify, s.locale)
+	// chi's recoverer is the last resort; ours renders the localized 500 page
+	// and therefore runs after language detection.
+	r.Use(middleware.RequestID, s.logRequests, middleware.Recoverer, securityHeaders, limitBody, sameOrigin, s.identify, s.locale,
+		s.recoverer(pub))
 
 	static, _ := fs.Sub(webfs.FS, "static")
 	r.Handle("/static/*", http.StripPrefix("/static/", cacheStatic(http.FileServer(http.FS(static)))))
 	r.Get("/healthz", s.healthz)
 	r.Post("/lang", s.setLanguage)
 
-	pub := &site.Handler{App: s.app, R: s.render, Log: s.log, Bundle: s.i18n, CountryAware: true}
 	pub.Routes(r)
 	r.NotFound(pub.NotFound)
 
@@ -177,6 +182,36 @@ func (s *Server) logRequests(next http.Handler) http.Handler {
 		s.log.Info("request", "method", r.Method, "path", r.URL.Path, "status", ww.Status(),
 			"bytes", ww.BytesWritten(), "duration_ms", time.Since(start).Milliseconds(),
 			"request_id", middleware.GetReqID(r.Context()))
+	})
+}
+
+// recoverer turns panics into the friendly 500 page and logs the stack.
+func (s *Server) recoverer(pub *site.Handler) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			defer func() {
+				if rec := recover(); rec != nil {
+					if rec == http.ErrAbortHandler {
+						panic(rec)
+					}
+					s.log.Error("panic", "path", r.URL.Path, "panic", fmt.Sprint(rec), "stack", string(debug.Stack()))
+					pub.Fail(w, r, fmt.Errorf("panic: %v", rec))
+				}
+			}()
+			next.ServeHTTP(w, r)
+		})
+	}
+}
+
+// maxBody caps request bodies; catalog uploads are the largest legitimate ones.
+const maxBody = 6 << 20
+
+func limitBody(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Body != nil {
+			r.Body = http.MaxBytesReader(w, r.Body, maxBody)
+		}
+		next.ServeHTTP(w, r)
 	})
 }
 
