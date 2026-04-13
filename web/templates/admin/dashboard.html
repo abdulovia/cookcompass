@@ -1,5 +1,6 @@
 {{define "content"}}
 <h1>{{.T "admin.dashboard"}}</h1>
+{{if or .Data.PendingRecipes .Data.PendingProducts}}<p class="flash">{{.T "admin.pending_summary" "Recipes" .Data.PendingRecipes "Products" .Data.PendingProducts}} <a href="/admin/queue">{{.T "admin.queue"}} →</a></p>{{end}}
 <div class="grid two">
   <section class="card">
     <h2>{{.T "admin.counts_recipes"}}</h2>
@@ -13,6 +14,7 @@
     <dl class="stats">
       {{range $k, $v := .Data.Products}}<div><dt>{{$k}}</dt><dd>{{$v}}</dd></div>{{end}}
     </dl>
+    <p><a class="btn" href="/admin/products">{{.T "admin.products"}}</a></p>
   </section>
 </div>
 {{end}}
