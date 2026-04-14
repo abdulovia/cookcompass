@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-07
+### Added
+- README quickstart, `docs/pipelines.md` (CI gates, refresh schedule, review SLAs), admin dashboard summary of pending reviews.
+
+### Changed
+- Panics render the localized error page; request bodies are capped; CI pins the linter version.
+
 ## [0.7.0] - 2026-11-07
 ### Added
 - Learning path page (5 easy → 5 medium → 5 hard) with progress dots, "try next" suggestions and cooking history.
