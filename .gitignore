@@ -20,3 +20,6 @@ web/dist/
 .DS_Store
 .idea/
 .vscode/
+
+# ZCode session artifacts
+.zcode/
