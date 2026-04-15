@@ -1,10 +1,11 @@
 {
   "country": "RU",
   "store": "corner-shop",
+  "shop": "lenta",
   "currency": "RUB",
   "products": [
     {"sku": "CS-001", "name": "Тахини, 300 g", "category": "pantry", "ingredient": "tahini", "price": 390, "unit": "300 g"},
-    {"name": "Паста кочхуджан, 500 g", "category": "condiments", "price": 690, "unit": "500 g"},
+    {"name": "Паста кочхуджан, 500 g", "category": "condiments", "shop": "vkusvill", "url": "https://vkusvill.ru/product/gochujang-500g", "price": 690, "unit": "500 g"},
     {"name": "Листья для гёдза, 30 шт", "category": "frozen", "ingredient": "dumpling-wrappers", "price": 259, "unit": "30 pcs"}
   ]
 }
