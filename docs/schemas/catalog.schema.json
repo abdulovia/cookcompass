@@ -8,6 +8,7 @@
   "properties": {
     "country": {"type": "string", "pattern": "^[A-Za-z]{2}$", "description": "ISO 3166-1 alpha-2; must match the folder/--country"},
     "store": {"type": "string", "description": "Shown as the source, e.g. file:corner-shop"},
+    "shop": {"type": "string", "description": "Shop slug from seed/shops.csv; namespaces the dedup key so the same SKU can exist in several shops"},
     "currency": {"type": "string", "description": "ISO 4217; defaults to the country's currency"},
     "products": {
       "type": "array",
@@ -19,6 +20,8 @@
           "name": {"type": "string"},
           "category": {"type": "string"},
           "ingredient": {"type": "string", "description": "Canonical ingredient slug from seed/ingredients.json; matched from the name when omitted"},
+          "shop": {"type": "string", "description": "Per-product shop slug; overrides the catalog-level shop"},
+          "url": {"type": "string", "description": "Exact product page used for buy links"},
           "price": {"type": "number", "minimum": 0},
           "unit": {"type": "string", "description": "Pack size, e.g. \"500 g\""}
         },

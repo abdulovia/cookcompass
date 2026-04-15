@@ -46,6 +46,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/queue/purge", h.purgePending)
 	r.Post("/queue/scrape", h.scrapeNow)
 	h.productRoutes(r)
+	h.shopRoutes(r)
 }
 
 // Guard protects the admin surface. With a password configured, HTTP basic
