@@ -25,6 +25,8 @@ type productForm struct {
 	Name       string
 	Category   string
 	Ingredient string
+	Shop       string
+	URL        string
 	Price      string
 	Unit       string
 	Source     string
@@ -106,7 +108,7 @@ func (h *Handler) renderProductForm(w http.ResponseWriter, r *http.Request, stat
 	}
 	p := h.page(r, title)
 	p.Errors = errs
-	p.Data = map[string]any{"Form": f, "Countries": countries, "Ingredients": ings}
+	p.Data = map[string]any{"Form": f, "Countries": countries, "Ingredients": ings, "Shops": h.shopOptions(r, f.Country)}
 	h.R.Page(w, status, "admin/product_form", p)
 }
 
@@ -130,16 +132,19 @@ func (h *Handler) productEdit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	h.renderProductForm(w, r, http.StatusOK, productForm{ID: p.ID, Country: p.CountryCode, SKU: p.SKU, Name: p.Name,
-		Category: p.Category, Ingredient: p.IngredientSlug, Price: strconv.FormatFloat(p.Price, 'f', -1, 64), Unit: p.Unit,
+		Category: p.Category, Ingredient: p.IngredientSlug, Shop: p.ShopSlug, URL: p.URL,
+		Price: strconv.FormatFloat(p.Price, 'f', -1, 64), Unit: p.Unit,
 		Source: p.Source, Status: p.Status, Deleted: p.Deleted()}, nil)
 }
 
 func parseProductForm(r *http.Request) (productForm, *catalog.Product, map[string]string) {
 	f := productForm{Country: r.FormValue("country"), SKU: r.FormValue("sku"), Name: r.FormValue("name"),
-		Category: r.FormValue("category"), Ingredient: r.FormValue("ingredient"), Price: r.FormValue("price"), Unit: r.FormValue("unit")}
+		Category: r.FormValue("category"), Ingredient: r.FormValue("ingredient"), Shop: r.FormValue("shop"),
+		URL: strings.TrimSpace(r.FormValue("url")), Price: r.FormValue("price"), Unit: r.FormValue("unit")}
 	errs := map[string]string{}
 	p := &catalog.Product{CountryCode: f.Country, SKU: f.SKU, Name: f.Name, Category: strings.TrimSpace(f.Category),
-		IngredientSlug: f.Ingredient, Unit: strings.TrimSpace(f.Unit), Source: "user", Status: catalog.StatusApproved}
+		IngredientSlug: f.Ingredient, ShopSlug: f.Shop, URL: f.URL, Unit: strings.TrimSpace(f.Unit),
+		Source: "user", Status: catalog.StatusApproved}
 	if s := strings.TrimSpace(f.Price); s != "" {
 		v, err := strconv.ParseFloat(strings.ReplaceAll(s, ",", "."), 64)
 		if err != nil {
