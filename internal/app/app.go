@@ -14,6 +14,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/pool"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/seed"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/users"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -26,6 +27,7 @@ type App struct {
 	Ings    *ingredients.Store
 	Recipes *recipes.Store
 	Catalog *catalog.Store
+	Shops   *shops.Store
 	Users   *users.Store
 	Pool    *pool.Pool
 	// DefaultUserID is the account used in single-user mode.
@@ -50,6 +52,7 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 		Ings:    ings,
 		Recipes: recipes.NewStore(d, ings, cfg.Recipes.KeepRevisions),
 		Catalog: catalog.NewStore(d, ings),
+		Shops:   shops.NewStore(d),
 		Users:   users.NewStore(d),
 	}
 	a.Pool = &pool.Pool{Recipes: a.Recipes, Ings: ings, Catalog: a.Catalog, Threshold: cfg.Availability.Threshold}
@@ -59,7 +62,7 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 // Seed loads the bundled dataset (idempotent) and makes sure the default
 // single-user account exists.
 func (a *App) Seed(ctx context.Context) (seed.Report, error) {
-	s := &seed.Seeder{FS: seedfs.FS, Ings: a.Ings, Recipes: a.Recipes, Catalog: a.Catalog, Log: a.Log}
+	s := &seed.Seeder{FS: seedfs.FS, Ings: a.Ings, Recipes: a.Recipes, Catalog: a.Catalog, Shops: a.Shops, Log: a.Log}
 	rep, err := s.Run(ctx)
 	if err != nil {
 		return rep, err
