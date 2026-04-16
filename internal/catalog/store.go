@@ -46,7 +46,9 @@ type City struct {
 	Lng         float64 `json:"lng"`
 }
 
-// Product is a grocery item sold in a country.
+// Product is a grocery item sold in a country. ShopID 0 means the country's
+// generic catalog (any shop); URL, when set, is the exact product page used
+// for "buy" links.
 type Product struct {
 	ID             int64
 	CountryCode    string
@@ -55,6 +57,9 @@ type Product struct {
 	Category       string
 	IngredientID   int64
 	IngredientSlug string
+	ShopID         int64
+	ShopSlug       string
+	URL            string
 	Price          float64
 	Currency       string
 	Unit           string
@@ -82,12 +87,17 @@ func (v ValidationError) Error() string {
 }
 
 // ProductKey is the dedup key within a country: the SKU when known,
-// otherwise the normalized product name.
-func ProductKey(sku, name string) string {
-	if s := strings.TrimSpace(sku); s != "" {
-		return "sku:" + strings.ToLower(s)
+// otherwise the normalized product name. Products of a specific shop are
+// namespaced by the shop slug so the same SKU can exist in several shops.
+func ProductKey(shop, sku, name string) string {
+	prefix := ""
+	if s := strings.TrimSpace(shop); s != "" {
+		prefix = "shop:" + strings.ToLower(s) + "|"
 	}
-	return "name:" + ingredients.Key(name)
+	if s := strings.TrimSpace(sku); s != "" {
+		return prefix + "sku:" + strings.ToLower(s)
+	}
+	return prefix + "name:" + ingredients.Key(name)
 }
 
 // Store persists catalog data.
@@ -252,6 +262,21 @@ func (s *Store) prepare(ctx context.Context, p *Product) error {
 			p.IngredientID = id
 		}
 	}
+	if p.URL != "" && !strings.HasPrefix(p.URL, "http://") && !strings.HasPrefix(p.URL, "https://") {
+		errs["url"] = "validation.invalid_choice"
+	}
+	// A shop slug (CSV/import/scanner/admin form) resolves to the shop id
+	// here so every caller gets the mapping for free. An explicit ShopID set
+	// programmatically is kept as-is; no slug means no override.
+	if p.ShopSlug != "" {
+		var sid int64
+		if err := s.db.QueryRowContext(ctx, `SELECT id FROM shops WHERE country_code = ? AND slug = ?`,
+			p.CountryCode, p.ShopSlug).Scan(&sid); err != nil {
+			errs["shop"] = "validation.invalid_choice"
+		} else {
+			p.ShopID = sid
+		}
+	}
 	if len(errs) > 0 {
 		return errs
 	}
@@ -264,7 +289,7 @@ func (s *Store) prepare(ctx context.Context, p *Product) error {
 	if p.Source == "" {
 		p.Source = "user"
 	}
-	p.DedupKey = ProductKey(p.SKU, p.Name)
+	p.DedupKey = ProductKey(p.ShopSlug, p.SKU, p.Name)
 	return nil
 }
 
@@ -282,10 +307,10 @@ func (s *Store) CreateProduct(ctx context.Context, p *Product) error {
 		return err
 	}
 	now := db.Now()
-	err := s.db.QueryRowContext(ctx, `INSERT INTO products (country_code, sku, name, category, ingredient_id, price, currency,
-		unit, source, source_url, dedup_key, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id`,
-		p.CountryCode, p.SKU, p.Name, p.Category, nullID(p.IngredientID), p.Price, p.Currency, p.Unit, p.Source,
-		p.SourceURL, p.DedupKey, p.Status, now, now).Scan(&p.ID)
+	err := s.db.QueryRowContext(ctx, `INSERT INTO products (country_code, sku, name, category, ingredient_id, shop_id, url, price,
+		currency, unit, source, source_url, dedup_key, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id`,
+		p.CountryCode, p.SKU, p.Name, p.Category, nullID(p.IngredientID), nullID(p.ShopID), p.URL, p.Price, p.Currency,
+		p.Unit, p.Source, p.SourceURL, p.DedupKey, p.Status, now, now).Scan(&p.ID)
 	if err != nil && strings.Contains(err.Error(), "UNIQUE") {
 		return ValidationError{"sku": "validation.duplicate"}
 	}
@@ -300,10 +325,10 @@ func (s *Store) UpdateProduct(ctx context.Context, p *Product) error {
 	if err := s.prepare(ctx, p); err != nil {
 		return err
 	}
-	res, err := s.db.ExecContext(ctx, `UPDATE products SET country_code=?, sku=?, name=?, category=?, ingredient_id=?, price=?,
-		currency=?, unit=?, source=?, source_url=?, dedup_key=?, status=?, updated_at=? WHERE id=?`,
-		p.CountryCode, p.SKU, p.Name, p.Category, nullID(p.IngredientID), p.Price, p.Currency, p.Unit, p.Source,
-		p.SourceURL, p.DedupKey, p.Status, db.Now(), p.ID)
+	res, err := s.db.ExecContext(ctx, `UPDATE products SET country_code=?, sku=?, name=?, category=?, ingredient_id=?, shop_id=?,
+		url=?, price=?, currency=?, unit=?, source=?, source_url=?, dedup_key=?, status=?, updated_at=? WHERE id=?`,
+		p.CountryCode, p.SKU, p.Name, p.Category, nullID(p.IngredientID), nullID(p.ShopID), p.URL, p.Price, p.Currency,
+		p.Unit, p.Source, p.SourceURL, p.DedupKey, p.Status, db.Now(), p.ID)
 	if err != nil {
 		if strings.Contains(err.Error(), "UNIQUE") {
 			return ValidationError{"sku": "validation.duplicate"}
@@ -351,15 +376,17 @@ func (s *Store) UpsertProduct(ctx context.Context, p *Product, onlyNew bool) (Up
 }
 
 const productCols = `p.id, p.country_code, p.sku, p.name, p.category, COALESCE(p.ingredient_id, 0), COALESCE(i.slug, ''),
-	p.price, p.currency, p.unit, p.source, p.source_url, p.dedup_key, p.status, p.created_at, p.updated_at, p.deleted_at
-	FROM products p LEFT JOIN ingredients i ON i.id = p.ingredient_id`
+	COALESCE(p.shop_id, 0), COALESCE(sh.slug, ''), p.url, p.price, p.currency, p.unit, p.source, p.source_url,
+	p.dedup_key, p.status, p.created_at, p.updated_at, p.deleted_at
+	FROM products p LEFT JOIN ingredients i ON i.id = p.ingredient_id LEFT JOIN shops sh ON sh.id = p.shop_id`
 
 func scanProduct(sc interface{ Scan(...any) error }) (*Product, error) {
 	var p Product
 	var created, updated string
 	var deleted sql.NullString
-	if err := sc.Scan(&p.ID, &p.CountryCode, &p.SKU, &p.Name, &p.Category, &p.IngredientID, &p.IngredientSlug, &p.Price,
-		&p.Currency, &p.Unit, &p.Source, &p.SourceURL, &p.DedupKey, &p.Status, &created, &updated, &deleted); err != nil {
+	if err := sc.Scan(&p.ID, &p.CountryCode, &p.SKU, &p.Name, &p.Category, &p.IngredientID, &p.IngredientSlug,
+		&p.ShopID, &p.ShopSlug, &p.URL, &p.Price, &p.Currency, &p.Unit, &p.Source, &p.SourceURL, &p.DedupKey,
+		&p.Status, &created, &updated, &deleted); err != nil {
 		return nil, err
 	}
 	p.CreatedAt, p.UpdatedAt = db.ParseTime(created), db.ParseTime(updated)
@@ -543,11 +570,18 @@ func nullID(id int64) any {
 }
 
 // IngredientSet returns the ids of ingredients with at least one approved,
-// non-deleted product in country.
-func (s *Store) IngredientSet(ctx context.Context, country string) (map[int64]bool, error) {
-	rows, err := s.db.QueryContext(ctx, `SELECT DISTINCT ingredient_id FROM products
-		WHERE country_code = ? AND ingredient_id IS NOT NULL AND status = 'approved' AND deleted_at IS NULL`,
-		strings.ToUpper(country))
+// non-deleted product in country. With strict set, only products of shopID
+// or of the country's generic catalog (shop_id NULL) count — "what I can buy
+// in my shop", not anywhere in the country.
+func (s *Store) IngredientSet(ctx context.Context, country string, shopID int64, strict bool) (map[int64]bool, error) {
+	q := `SELECT DISTINCT ingredient_id FROM products
+		WHERE country_code = ? AND ingredient_id IS NOT NULL AND status = 'approved' AND deleted_at IS NULL`
+	args := []any{strings.ToUpper(country)}
+	if strict {
+		q += ` AND (shop_id IS NULL OR shop_id = ?)`
+		args = append(args, shopID)
+	}
+	rows, err := s.db.QueryContext(ctx, q, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -561,6 +595,22 @@ func (s *Store) IngredientSet(ctx context.Context, country string) (map[int64]bo
 		out[id] = true
 	}
 	return out, rows.Err()
+}
+
+// ProductURL returns the exact product page for an ingredient in country:
+// the user's shop first, then the generic catalog, then any other shop. It
+// returns an empty url when nothing has a page.
+func (s *Store) ProductURL(ctx context.Context, country string, shopID, ingredientID int64) (url string, shop string, err error) {
+	var sid int64
+	err = s.db.QueryRowContext(ctx, `SELECT p.url, COALESCE(sh.name, ''), COALESCE(p.shop_id, 0) FROM products p
+		LEFT JOIN shops sh ON sh.id = p.shop_id
+		WHERE p.country_code = ? AND p.ingredient_id = ? AND p.url != '' AND p.status = 'approved' AND p.deleted_at IS NULL
+		ORDER BY CASE WHEN p.shop_id IS NOT NULL AND p.shop_id = ? THEN 0 WHEN p.shop_id IS NULL THEN 1 ELSE 2 END, p.price
+		LIMIT 1`, strings.ToUpper(country), ingredientID, shopID).Scan(&url, &shop, &sid)
+	if errors.Is(err, sql.ErrNoRows) {
+		return "", "", nil
+	}
+	return url, shop, err
 }
 
 // ImportResult summarizes a bulk import.
