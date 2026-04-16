@@ -11,7 +11,9 @@ import (
 
 // CSVHeader is the canonical bulk-edit format for products. Only "name" is
 // required; unknown columns are ignored so spreadsheets can carry notes.
-var CSVHeader = []string{"sku", "name", "category", "ingredient", "price", "unit"}
+// "shop" is a shops.csv slug and namespaces the dedup key; "url" is the
+// exact product page used for buy links.
+var CSVHeader = []string{"sku", "name", "category", "ingredient", "shop", "url", "price", "unit"}
 
 // ReadCSV parses products for country from r.
 func ReadCSV(r io.Reader, country string) ([]*Product, error) {
@@ -55,6 +57,8 @@ func ReadCSV(r io.Reader, country string) ([]*Product, error) {
 			Name:           get(rec, "name"),
 			Category:       get(rec, "category"),
 			IngredientSlug: get(rec, "ingredient"),
+			ShopSlug:       get(rec, "shop"),
+			URL:            get(rec, "url"),
 			Unit:           get(rec, "unit"),
 			Currency:       get(rec, "currency"),
 		}
@@ -83,7 +87,7 @@ func WriteCSV(w io.Writer, products []*Product) error {
 		return err
 	}
 	for _, p := range products {
-		if err := cw.Write([]string{p.SKU, p.Name, p.Category, p.IngredientSlug,
+		if err := cw.Write([]string{p.SKU, p.Name, p.Category, p.IngredientSlug, p.ShopSlug, p.URL,
 			strconv.FormatFloat(p.Price, 'f', -1, 64), p.Unit}); err != nil {
 			return err
 		}
