@@ -272,7 +272,7 @@ func TestCSVRoundTrip(t *testing.T) {
 	if err := WriteCSV(&buf, list); err != nil {
 		t.Fatal(err)
 	}
-	want := "sku,name,category,ingredient,price,unit\nA1,\"Milk, 1 l\",dairy,milk,1.39,1 l\n,Eggs,dairy,,2,10 pcs\n"
+	want := "sku,name,category,ingredient,shop,url,price,unit\nA1,\"Milk, 1 l\",dairy,milk,,,1.39,1 l\n,Eggs,dairy,,,,2,10 pcs\n"
 	if buf.String() != want {
 		t.Fatalf("csv out:\n%s", buf.String())
 	}
@@ -300,7 +300,7 @@ func TestCSVRoundTrip(t *testing.T) {
 }
 
 func TestProductKey(t *testing.T) {
-	if ProductKey(" SKU-1 ", "x") != "sku:sku-1" || ProductKey("", "Fresh Eggs!") != "name:fresh egg" {
+	if ProductKey("", " SKU-1 ", "x") != "sku:sku-1" || ProductKey("", "", "Fresh Eggs!") != "name:fresh egg" || ProductKey("lenta", "SKU-1", "x") != "shop:lenta|sku:sku-1" {
 		t.Fatal("product key")
 	}
 	if stripPack("Milk, 1 l") != "Milk" || stripPack("Milk") != "Milk" {
