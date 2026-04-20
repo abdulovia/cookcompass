@@ -77,6 +77,7 @@ func (s *FileSource) Name() string { return "file" }
 type JSONCatalog struct {
 	Country  string        `json:"country"`
 	Store    string        `json:"store,omitempty"`
+	Shop     string        `json:"shop,omitempty"` // shop slug for products without their own
 	Currency string        `json:"currency,omitempty"`
 	Products []JSONProduct `json:"products"`
 }
@@ -87,6 +88,8 @@ type JSONProduct struct {
 	Name       string  `json:"name"`
 	Category   string  `json:"category,omitempty"`
 	Ingredient string  `json:"ingredient,omitempty"`
+	Shop       string  `json:"shop,omitempty"`
+	URL        string  `json:"url,omitempty"`
 	Price      float64 `json:"price,omitempty"`
 	Unit       string  `json:"unit,omitempty"`
 }
@@ -150,8 +153,13 @@ func ReadCatalogFile(p, country string) ([]catalog.Product, error) {
 			if strings.TrimSpace(jp.Name) == "" {
 				return nil, fmt.Errorf("%s: product without name", p)
 			}
+			shop := jp.Shop
+			if shop == "" {
+				shop = jc.Shop
+			}
 			list = append(list, catalog.Product{CountryCode: strings.ToUpper(country), SKU: jp.SKU, Name: jp.Name,
-				Category: jp.Category, IngredientSlug: jp.Ingredient, Price: jp.Price, Unit: jp.Unit, Currency: jc.Currency})
+				Category: jp.Category, IngredientSlug: jp.Ingredient, ShopSlug: shop, URL: jp.URL, Price: jp.Price,
+				Unit: jp.Unit, Currency: jc.Currency})
 		}
 	default:
 		return nil, fmt.Errorf("%s: unsupported file type (use .csv or .json)", p)
@@ -165,11 +173,18 @@ func ReadCatalogFile(p, country string) ([]catalog.Product, error) {
 
 // ---------- shop pages with schema.org Product JSON-LD ----------
 
+// Target is one shop listing page to scan.
+type Target struct {
+	Shop string // shop slug; "" attributes to the country's generic catalog
+	URL  string
+}
+
 // JSONLDSource reads product pages listed per country in a targets file
-// ("<CC> <URL>" per line) through the polite fetcher.
+// ("<CC> <URL>" or "<CC> <SHOP_SLUG> <URL>" per line) through the polite
+// fetcher.
 type JSONLDSource struct {
 	Fetcher *fetch.Client
-	Targets map[string][]string
+	Targets map[string][]Target
 	Log     *slog.Logger
 }
 
@@ -180,17 +195,18 @@ func (s *JSONLDSource) Name() string { return "jsonld" }
 func (s *JSONLDSource) Fetch(ctx context.Context, country string) ([]catalog.Product, error) {
 	var out []catalog.Product
 	var errs []error
-	for _, u := range s.Targets[strings.ToUpper(country)] {
-		body, err := s.Fetcher.Get(ctx, u)
+	for _, t := range s.Targets[strings.ToUpper(country)] {
+		body, err := s.Fetcher.Get(ctx, t.URL)
 		if err != nil {
 			errs = append(errs, err)
 			if s.Log != nil {
-				s.Log.Warn("skip catalog page", "url", u, "err", err)
+				s.Log.Warn("skip catalog page", "url", t.URL, "err", err)
 			}
 			continue
 		}
-		for _, p := range ExtractProducts(body, u) {
+		for _, p := range ExtractProducts(body, t.URL) {
 			p.CountryCode = strings.ToUpper(country)
+			p.ShopSlug = t.Shop
 			out = append(out, p)
 		}
 	}
@@ -200,14 +216,15 @@ func (s *JSONLDSource) Fetch(ctx context.Context, country string) ([]catalog.Pro
 	return out, nil
 }
 
-// ReadTargets parses "<COUNTRY> <URL>" lines; "#" starts a comment.
-func ReadTargets(p string) (map[string][]string, error) {
+// ReadTargets parses "<COUNTRY> <URL>" or "<COUNTRY> <SHOP_SLUG> <URL>"
+// lines; "#" starts a comment.
+func ReadTargets(p string) (map[string][]Target, error) {
 	f, err := os.Open(p)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	out := map[string][]string{}
+	out := map[string][]Target{}
 	sc := bufio.NewScanner(f)
 	n := 0
 	for sc.Scan() {
@@ -216,16 +233,24 @@ func ReadTargets(p string) (map[string][]string, error) {
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
-		cc, u, ok := strings.Cut(line, " ")
-		cc = strings.ToUpper(strings.TrimSpace(cc))
-		u = strings.TrimSpace(u)
-		if !ok || len(cc) != 2 || u == "" {
-			return nil, fmt.Errorf("%s:%d: want \"<COUNTRY> <URL>\"", p, n)
+		fields := strings.Fields(line)
+		var cc, shop, u string
+		switch len(fields) {
+		case 2:
+			cc, u = fields[0], fields[1]
+		case 3:
+			cc, shop, u = fields[0], fields[1], fields[2]
+		default:
+			return nil, fmt.Errorf("%s:%d: want \"<COUNTRY> [SHOP_SLUG] <URL>\"", p, n)
+		}
+		cc = strings.ToUpper(cc)
+		if len(cc) != 2 || u == "" {
+			return nil, fmt.Errorf("%s:%d: want \"<COUNTRY> [SHOP_SLUG] <URL>\"", p, n)
 		}
 		if strings.HasPrefix(u, "file:") && !filepath.IsAbs(strings.TrimPrefix(u, "file:")) {
 			u = "file:" + filepath.Join(filepath.Dir(p), strings.TrimPrefix(u, "file:"))
 		}
-		out[cc] = append(out[cc], u)
+		out[cc] = append(out[cc], Target{Shop: strings.ToLower(shop), URL: u})
 	}
 	return out, sc.Err()
 }
@@ -244,14 +269,16 @@ func ExtractProducts(page []byte, pageURL string) []catalog.Product {
 			continue
 		}
 		for _, m := range findTyped(v, "Product") {
+			offer := firstMap(m["offers"])
 			p := catalog.Product{
 				Name:      str(m["name"]),
 				SKU:       firstNonEmpty(str(m["sku"]), str(m["gtin13"]), str(m["gtin"]), str(m["productID"])),
 				Category:  lastSegment(str(m["category"])),
+				URL:       firstNonEmpty(str(m["url"]), str(offer["url"])),
 				SourceURL: firstNonEmpty(str(m["url"]), pageURL),
 				Source:    "scraped:" + domain,
 			}
-			if offer := firstMap(m["offers"]); offer != nil {
+			if offer != nil {
 				p.Price = num(offer["price"])
 				p.Currency = str(offer["priceCurrency"])
 				if p.Price == 0 {
