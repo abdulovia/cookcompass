@@ -16,6 +16,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/seed"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/testutil"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -53,7 +54,7 @@ func newStore(t *testing.T) *catalog.Store {
 	d := testutil.DB(t)
 	ings := ingredients.NewStore(d)
 	cat := catalog.NewStore(d, ings)
-	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: recipes.NewStore(d, ings, 20), Catalog: cat}).Run(context.Background()); err != nil {
+	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: recipes.NewStore(d, ings, 20), Catalog: cat, Shops: shops.NewStore(d)}).Run(context.Background()); err != nil {
 		t.Fatal(err)
 	}
 	return cat
@@ -73,7 +74,7 @@ func (s stubSource) Fetch(context.Context, string) ([]catalog.Product, error) {
 func TestScannerQueueAndUserWins(t *testing.T) {
 	ctx := context.Background()
 	cat := newStore(t)
-	before, _ := cat.IngredientSet(ctx, "RU")
+	before, _ := cat.IngredientSet(ctx, "RU", 0, false)
 	gcp, _ := cat.ListProducts(ctx, ProductFilterFor("green curry"))
 	if len(gcp) != 0 {
 		t.Fatal("seed RU should not sell green curry paste")
@@ -86,7 +87,7 @@ func TestScannerQueueAndUserWins(t *testing.T) {
 		t.Fatalf("scan: %s %v", res, res.Errors)
 	}
 	// Pending products do not change availability yet.
-	after, _ := cat.IngredientSet(ctx, "RU")
+	after, _ := cat.IngredientSet(ctx, "RU", 0, false)
 	if len(after) != len(before) {
 		t.Fatal("pending products must not count as available")
 	}
@@ -118,7 +119,7 @@ func TestScannerFallsBackToSeed(t *testing.T) {
 	ctx := context.Background()
 	cat := newStore(t)
 	// Remove a seed product; an offline scan restores missing seed items only.
-	milk, _ := cat.FindProduct(ctx, "US", catalog.ProductKey("US-MILK-1", ""))
+	milk, _ := cat.FindProduct(ctx, "US", catalog.ProductKey("", "US-MILK-1", ""))
 	if _, err := cat.PurgePending(ctx); err != nil {
 		t.Fatal(err)
 	}
@@ -133,7 +134,7 @@ func TestScannerFallsBackToSeed(t *testing.T) {
 	if !res.Fallback || res.Created != 1 || len(res.Errors) != 1 {
 		t.Fatalf("fallback: %s %v", res, res.Errors)
 	}
-	restored, err := cat.FindProduct(ctx, "US", catalog.ProductKey("US-MILK-1", ""))
+	restored, err := cat.FindProduct(ctx, "US", catalog.ProductKey("", "US-MILK-1", ""))
 	if err != nil || restored.Status != catalog.StatusApproved {
 		t.Fatalf("seed product not restored as approved: %+v %v", restored, err)
 	}
@@ -211,7 +212,7 @@ func TestJSONLDSourceAndTargets(t *testing.T) {
 		t.Fatal(err)
 	}
 	targets, err := ReadTargets(tf)
-	if err != nil || len(targets["RU"]) != 2 || targets["US"][0] != "file:"+filepath.Join(dir, "local.html") {
+	if err != nil || len(targets["RU"]) != 2 || targets["US"][0].URL != "file:"+filepath.Join(dir, "local.html") {
 		t.Fatalf("targets %v %v", targets, err)
 	}
 	fc := fetch.New("CookCompassBot/test", "", 0, time.Second, 5*time.Second)

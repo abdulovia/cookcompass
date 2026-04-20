@@ -15,6 +15,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/seed"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/testutil"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -70,7 +71,7 @@ func newEnv(t *testing.T) env {
 	d := testutil.DB(t)
 	ings := ingredients.NewStore(d)
 	store := recipes.NewStore(d, ings, 20)
-	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: store, Catalog: catalog.NewStore(d, ings)}).Run(context.Background()); err != nil {
+	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: store, Catalog: catalog.NewStore(d, ings), Shops: shops.NewStore(d)}).Run(context.Background()); err != nil {
 		t.Fatal(err)
 	}
 	im, err := NewImporter(context.Background(), store, testutil.Logger())
