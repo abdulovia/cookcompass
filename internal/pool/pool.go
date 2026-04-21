@@ -18,6 +18,8 @@ type Viewer struct {
 	Locale          string
 	Country         string // "" disables country availability
 	ShowUnavailable bool
+	ShopID          int64 // selected shop; 0 = any
+	StrictShop      bool  // availability only from ShopID + generic products
 	Allergies       []int64
 	Dislikes        []int64
 	Pantry          map[int64]bool
@@ -72,7 +74,7 @@ func (p *Pool) env(ctx context.Context, v Viewer) (*env, error) {
 		return nil, err
 	}
 	if v.Country != "" {
-		if e.market, err = p.Catalog.IngredientSet(ctx, v.Country); err != nil {
+		if e.market, err = p.Catalog.IngredientSet(ctx, v.Country, v.ShopID, v.StrictShop); err != nil {
 			return nil, err
 		}
 	}
