@@ -10,6 +10,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/seed"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/testutil"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -73,7 +74,7 @@ func newPool(t *testing.T) *Pool {
 	ings := ingredients.NewStore(d)
 	rs := recipes.NewStore(d, ings, 20)
 	cat := catalog.NewStore(d, ings)
-	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: rs, Catalog: cat}).Run(context.Background()); err != nil {
+	if _, err := (&seed.Seeder{FS: seedfs.FS, Ings: ings, Recipes: rs, Catalog: cat, Shops: shops.NewStore(d)}).Run(context.Background()); err != nil {
 		t.Fatal(err)
 	}
 	return &Pool{Recipes: rs, Ings: ings, Catalog: cat, Threshold: 1}
