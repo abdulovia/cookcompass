@@ -4,12 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"io/fs"
+	"strings"
 	"testing"
 	"testing/fstest"
 
 	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/testutil"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -18,7 +20,7 @@ func newSeeder(t *testing.T, fsys fs.FS) *Seeder {
 	t.Helper()
 	d := testutil.DB(t)
 	ings := ingredients.NewStore(d)
-	return &Seeder{FS: fsys, Ings: ings, Recipes: recipes.NewStore(d, ings, 20), Catalog: catalog.NewStore(d, ings), Log: testutil.Logger()}
+	return &Seeder{FS: fsys, Ings: ings, Recipes: recipes.NewStore(d, ings, 20), Catalog: catalog.NewStore(d, ings), Shops: shops.NewStore(d), Log: testutil.Logger()}
 }
 
 func TestSeedBundledDataset(t *testing.T) {
@@ -28,7 +30,7 @@ func TestSeedBundledDataset(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if rep.Ingredients < 100 || rep.Cuisines < 12 || rep.Countries < 3 || rep.RecipesAdded < 5 {
+	if rep.Ingredients < 100 || rep.Cuisines < 12 || rep.Countries < 3 || rep.Shops < 10 || rep.RecipesAdded < 5 {
 		t.Fatalf("dataset too small: %s", rep)
 	}
 	counts, err := s.Catalog.ProductCounts(ctx)
@@ -38,6 +40,16 @@ func TestSeedBundledDataset(t *testing.T) {
 	for cc, n := range counts {
 		if n < 150 {
 			t.Errorf("country %s has only %d products", cc, n)
+		}
+	}
+	// Every preset shop has a usable search template.
+	shopList, err := s.Shops.List(ctx, "", true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, sh := range shopList {
+		if sh.SearchURLTemplate == "" || !strings.Contains(sh.SearchURLTemplate, "{q}") {
+			t.Errorf("shop %s/%s: template %q", sh.CountryCode, sh.Slug, sh.SearchURLTemplate)
 		}
 	}
 
@@ -91,7 +103,7 @@ func TestSeedProductsDoNotOverwriteUserEdits(t *testing.T) {
 	if _, err := s.Run(ctx); err != nil {
 		t.Fatal(err)
 	}
-	p, err := s.Catalog.FindProduct(ctx, "US", catalog.ProductKey("US-MILK-1", ""))
+	p, err := s.Catalog.FindProduct(ctx, "US", catalog.ProductKey("", "US-MILK-1", ""))
 	if err != nil {
 		t.Fatal(err)
 	}

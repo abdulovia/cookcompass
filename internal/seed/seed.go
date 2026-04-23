@@ -5,8 +5,11 @@ package seed
 
 import (
 	"context"
+	"encoding/csv"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"io/fs"
 	"log/slog"
 	"path"
@@ -16,6 +19,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
+	"github.com/abdulovia/cookcompass/internal/shops"
 )
 
 // Report summarizes a seeding run.
@@ -23,14 +27,15 @@ type Report struct {
 	Ingredients     int
 	Cuisines        int
 	Countries       int
+	Shops           int
 	ProductsAdded   int
 	RecipesAdded    int
 	RecipesExisting int
 }
 
 func (r Report) String() string {
-	return fmt.Sprintf("ingredients=%d cuisines=%d countries=%d products_added=%d recipes_added=%d recipes_existing=%d",
-		r.Ingredients, r.Cuisines, r.Countries, r.ProductsAdded, r.RecipesAdded, r.RecipesExisting)
+	return fmt.Sprintf("ingredients=%d cuisines=%d countries=%d shops=%d products_added=%d recipes_added=%d recipes_existing=%d",
+		r.Ingredients, r.Cuisines, r.Countries, r.Shops, r.ProductsAdded, r.RecipesAdded, r.RecipesExisting)
 }
 
 // Seeder loads seed files from an fs.FS.
@@ -39,6 +44,7 @@ type Seeder struct {
 	Ings    *ingredients.Store
 	Recipes *recipes.Store
 	Catalog *catalog.Store
+	Shops   *shops.Store
 	Log     *slog.Logger
 }
 
@@ -63,7 +69,7 @@ type countryFile struct {
 // Run loads everything.
 func (s *Seeder) Run(ctx context.Context) (Report, error) {
 	var rep Report
-	steps := []func(context.Context, *Report) error{s.ingredients, s.cuisines, s.countries, s.products, s.recipes}
+	steps := []func(context.Context, *Report) error{s.ingredients, s.cuisines, s.countries, s.shops, s.products, s.recipes}
 	for _, step := range steps {
 		if err := step(ctx, &rep); err != nil {
 			return rep, err
@@ -136,6 +142,55 @@ func (s *Seeder) countries(ctx context.Context, rep *Report) error {
 		}
 	}
 	rep.Countries = len(list)
+	return nil
+}
+
+// shops loads the bundled shop presets (search URL templates). Upserts keep
+// admin edits to name/website intact only when the seed row itself changes;
+// the shop list is small and stable by design.
+func (s *Seeder) shops(ctx context.Context, rep *Report) error {
+	f, err := s.FS.Open("shops.csv")
+	if errors.Is(err, fs.ErrNotExist) {
+		return nil // test/minimal datasets may omit shop presets
+	}
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	cr := csv.NewReader(f)
+	cr.TrimLeadingSpace = true
+	header, err := cr.Read()
+	if err != nil {
+		return fmt.Errorf("shops.csv: %w", err)
+	}
+	col := map[string]int{}
+	for i, h := range header {
+		col[strings.ToLower(strings.TrimSpace(h))] = i
+	}
+	get := func(rec []string, name string) string {
+		if i, ok := col[name]; ok && i < len(rec) {
+			return strings.TrimSpace(rec[i])
+		}
+		return ""
+	}
+	for {
+		rec, err := cr.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return fmt.Errorf("shops.csv: %w", err)
+		}
+		sh := shops.Shop{CountryCode: get(rec, "country"), Slug: get(rec, "slug"), Name: get(rec, "name"),
+			Website: get(rec, "website"), SearchURLTemplate: get(rec, "search_url_template"), Active: true}
+		if sh.Name == "" {
+			continue
+		}
+		if err := s.Shops.Upsert(ctx, &sh); err != nil {
+			return fmt.Errorf("shops.csv %s/%s: %w", sh.CountryCode, sh.Slug, err)
+		}
+		rep.Shops++
+	}
 	return nil
 }
 
