@@ -99,7 +99,7 @@ func TestCatalogScanApproveChangesAvailability(t *testing.T) {
 	if !strings.Contains(body, "3 products waiting") || !strings.Contains(body, "green-curry-paste") || !strings.Contains(body, "Not linked") {
 		t.Fatalf("product queue: %s", snippet(body, "products waiting"))
 	}
-	gcp, err := h.app.Catalog.FindProduct(context.Background(), "RU", catalog.ProductKey("SHOP-GCP-110", ""))
+	gcp, err := h.app.Catalog.FindProduct(context.Background(), "RU", catalog.ProductKey("", "SHOP-GCP-110", ""))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -111,7 +111,7 @@ func TestCatalogScanApproveChangesAvailability(t *testing.T) {
 		t.Fatal("curry should be available after approving the paste")
 	}
 	// Fish sauce from the shop removes the need for a swap once approved.
-	fish, _ := h.app.Catalog.FindProduct(context.Background(), "RU", catalog.ProductKey("4600000000017", ""))
+	fish, _ := h.app.Catalog.FindProduct(context.Background(), "RU", catalog.ProductKey("", "4600000000017", ""))
 	if resp, _ := h.post("/admin/queue/products/"+itoa(fish.ID)+"/reject", nil); resp.StatusCode != http.StatusSeeOther {
 		t.Fatal("reject product")
 	}
@@ -158,7 +158,7 @@ func TestProductAdminCRUDAndCSV(t *testing.T) {
 	if resp, _ := h.post("/admin/products", form); resp.StatusCode != http.StatusSeeOther {
 		t.Fatalf("create: %d", resp.StatusCode)
 	}
-	p, err := h.app.Catalog.FindProduct(ctx, "DE", catalog.ProductKey("DE-MY-TAHINI", ""))
+	p, err := h.app.Catalog.FindProduct(ctx, "DE", catalog.ProductKey("", "DE-MY-TAHINI", ""))
 	if err != nil || p.Price != 4.99 || p.IngredientSlug != "tahini" || p.Source != "user" {
 		t.Fatalf("created product: %+v %v", p, err)
 	}
@@ -202,12 +202,12 @@ func TestProductAdminCRUDAndCSV(t *testing.T) {
 
 	// CSV export → edit → import round trip.
 	resp, csv := h.get("/admin/products/export?country=DE")
-	if resp.StatusCode != http.StatusOK || !strings.HasPrefix(csv, "sku,name,category,ingredient,price,unit\n") ||
+	if resp.StatusCode != http.StatusOK || !strings.HasPrefix(csv, "sku,name,category,ingredient,shop,url,price,unit\n") ||
 		!strings.Contains(resp.Header.Get("Content-Disposition"), "products-de.csv") {
 		t.Fatalf("export: %d %s", resp.StatusCode, resp.Header.Get("Content-Disposition"))
 	}
-	edited := strings.Replace(csv, "DE-MY-TAHINI,\"Tahini, 300 g\",pantry,peanut-butter,5.49", "DE-MY-TAHINI,\"Tahini, 300 g\",pantry,tahini,3.99", 1) +
-		"DE-NEW-1,Gochujang 500 g,condiments,gochujang,6.99,500 g\n"
+	edited := strings.Replace(csv, "DE-MY-TAHINI,\"Tahini, 300 g\",pantry,peanut-butter,,,5.49", "DE-MY-TAHINI,\"Tahini, 300 g\",pantry,tahini,,,3.99", 1) +
+		"DE-NEW-1,Gochujang 500 g,condiments,gochujang,,,6.99,500 g\n"
 	body, ctype := multipartBody(t, map[string]string{"country": "DE"}, "de.csv", edited)
 	req, _ := http.NewRequest(http.MethodPost, h.srv.URL+"/admin/products/import", body)
 	req.Header.Set("Content-Type", ctype)
@@ -218,7 +218,7 @@ func TestProductAdminCRUDAndCSV(t *testing.T) {
 	if p, _ = h.app.Catalog.GetProduct(ctx, p.ID); p.Price != 3.99 || p.IngredientSlug != "tahini" {
 		t.Fatalf("import did not update: %+v", p)
 	}
-	if _, err := h.app.Catalog.FindProduct(ctx, "DE", catalog.ProductKey("DE-NEW-1", "")); err != nil {
+	if _, err := h.app.Catalog.FindProduct(ctx, "DE", catalog.ProductKey("", "DE-NEW-1", "")); err != nil {
 		t.Fatal("import did not create")
 	}
 	// With gochujang now sold in DE, bibimbap no longer needs the sriracha swap.
