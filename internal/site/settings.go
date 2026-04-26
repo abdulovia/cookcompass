@@ -8,6 +8,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/users"
 	"github.com/abdulovia/cookcompass/internal/web"
 )
@@ -59,8 +60,13 @@ func (h *Handler) settings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var cities []catalog.City
+	var shopList []*shops.Shop
 	if prof != nil && prof.CountryCode != "" {
 		if cities, err = h.App.Catalog.Cities(ctx, prof.CountryCode); err != nil {
+			h.Fail(w, r, err)
+			return
+		}
+		if shopList, err = h.App.Shops.List(ctx, prof.CountryCode, true); err != nil {
 			h.Fail(w, r, err)
 			return
 		}
@@ -79,7 +85,7 @@ func (h *Handler) settings(w http.ResponseWriter, r *http.Request) {
 		return list[i].LocalName(lang) < list[j].LocalName(lang)
 	})
 	p.Data = map[string]any{
-		"Countries": countries, "Cities": cities, "Groups": groupIngredients(list, true),
+		"Countries": countries, "Cities": cities, "Shops": shopList, "Groups": groupIngredients(list, true),
 		"Units": []string{recipes.Metric, recipes.Imperial}, "CountryAware": h.CountryAware,
 	}
 	h.R.Page(w, http.StatusOK, "pages/settings", p)
@@ -119,6 +125,15 @@ func (h *Handler) saveSettings(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	st.ShowUnavailable = r.FormValue("show_unavailable") == "1"
+	// The shop must belong to the (possibly just changed) country; anything
+	// else clears the selection.
+	st.ShopID = 0
+	if id, err := strconv.ParseInt(r.FormValue("shop"), 10, 64); err == nil && id > 0 {
+		if sh, err := h.App.Shops.Get(ctx, id); err == nil && sh.CountryCode == st.CountryCode && sh.Active {
+			st.ShopID = id
+		}
+	}
+	st.StrictShop = r.FormValue("strict_shop") == "1"
 	if err := h.App.Users.SaveSettings(ctx, prof.ID, st); err != nil {
 		h.Fail(w, r, err)
 		return
