@@ -40,6 +40,8 @@ type Settings struct {
 	Units           string // metric | imperial
 	Locale          string // "" = follow browser
 	ShowUnavailable bool
+	ShopID          int64 // preferred grocery shop; 0 = any
+	StrictShop      bool  // availability only from ShopID + generic products
 	HeightCm        float64
 	WeightKg        float64
 	Age             int
@@ -153,18 +155,19 @@ func (s *Store) Authenticate(ctx context.Context, username, password string) (in
 func (s *Store) Profile(ctx context.Context, id int64) (*Profile, error) {
 	p := &Profile{ID: id, Prefs: map[int64]string{}, Pantry: map[int64]bool{}}
 	var country sql.NullString
-	var city sql.NullInt64
+	var city, shop sql.NullInt64
+	var strict int
 	err := s.db.QueryRowContext(ctx, `SELECT u.username, s.country_code, s.city_id, s.units, s.locale, s.show_unavailable,
-		s.height_cm, s.weight_kg, s.age, s.sex, s.activity, s.goal
+		s.shop_id, s.strict_shop, s.height_cm, s.weight_kg, s.age, s.sex, s.activity, s.goal
 		FROM users u JOIN user_settings s ON s.user_id = u.id WHERE u.id = ?`, id).Scan(&p.Username, &country, &city,
-		&p.Units, &p.Locale, &p.ShowUnavailable, &p.HeightCm, &p.WeightKg, &p.Age, &p.Sex, &p.Activity, &p.Goal)
+		&p.Units, &p.Locale, &p.ShowUnavailable, &shop, &strict, &p.HeightCm, &p.WeightKg, &p.Age, &p.Sex, &p.Activity, &p.Goal)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, ErrNotFound
 	}
 	if err != nil {
 		return nil, err
 	}
-	p.CountryCode, p.CityID = country.String, city.Int64
+	p.CountryCode, p.CityID, p.ShopID, p.StrictShop = country.String, city.Int64, shop.Int64, strict == 1
 	rows, err := s.db.QueryContext(ctx, `SELECT ingredient_id, kind FROM user_dislikes WHERE user_id = ?`, id)
 	if err != nil {
 		return nil, err
@@ -199,17 +202,20 @@ func (s *Store) SaveSettings(ctx context.Context, id int64, st Settings) error {
 	if st.Units != "imperial" {
 		st.Units = "metric"
 	}
-	var country, city any
+	var country, city, shop any
 	if st.CountryCode != "" {
 		country = strings.ToUpper(st.CountryCode)
 	}
 	if st.CityID != 0 {
 		city = st.CityID
 	}
+	if st.ShopID != 0 {
+		shop = st.ShopID
+	}
 	res, err := s.db.ExecContext(ctx, `UPDATE user_settings SET country_code=?, city_id=?, units=?, locale=?, show_unavailable=?,
-		height_cm=?, weight_kg=?, age=?, sex=?, activity=?, goal=?, updated_at=? WHERE user_id=?`,
-		country, city, st.Units, st.Locale, st.ShowUnavailable, st.HeightCm, st.WeightKg, st.Age, st.Sex, st.Activity, st.Goal,
-		db.Now(), id)
+		shop_id=?, strict_shop=?, height_cm=?, weight_kg=?, age=?, sex=?, activity=?, goal=?, updated_at=? WHERE user_id=?`,
+		country, city, st.Units, st.Locale, st.ShowUnavailable, shop, st.StrictShop, st.HeightCm, st.WeightKg, st.Age,
+		st.Sex, st.Activity, st.Goal, db.Now(), id)
 	if err != nil {
 		return err
 	}

@@ -3,6 +3,7 @@
 package site
 
 import (
+	"context"
 	"errors"
 	"log/slog"
 	"net/http"
@@ -17,6 +18,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/pool"
 	"github.com/abdulovia/cookcompass/internal/recipes"
+	"github.com/abdulovia/cookcompass/internal/shops"
 	"github.com/abdulovia/cookcompass/internal/users"
 	"github.com/abdulovia/cookcompass/internal/web"
 )
@@ -79,6 +81,8 @@ func (h *Handler) viewer(r *http.Request) pool.Viewer {
 	if h.CountryAware {
 		v.Country = p.CountryCode
 		v.ShowUnavailable = p.ShowUnavailable
+		v.ShopID = p.ShopID
+		v.StrictShop = p.StrictShop
 	}
 	v.Pantry = p.Pantry
 	for id, kind := range p.Prefs {
@@ -192,6 +196,9 @@ type IngredientView struct {
 	AtHome   bool
 	Optional bool
 	SubNote  string
+	BuyURL   string // direct product page or shop search
+	BuyExact bool   // true = exact product page
+	BuyShop  string // shop name for labels
 }
 
 func (h *Handler) detail(w http.ResponseWriter, r *http.Request) {
@@ -220,7 +227,7 @@ func (h *Handler) renderDetail(w http.ResponseWriter, r *http.Request, slug, blo
 	if flash != "" {
 		p.Flash = "flash." + flash
 	}
-	lines := h.ingredientViews(p, it, byID, h.units(r))
+	lines := h.ingredientViews(r.Context(), p, it, byID, h.units(r))
 	embed, _ := recipes.EmbedURL(it.Base.VideoURL)
 	data := map[string]any{"Item": it, "Lines": lines, "Embed": embed, "CountryAware": v.Country != ""}
 	for k, val := range h.detailExtra(r, it) {
@@ -234,10 +241,16 @@ func (h *Handler) renderDetail(w http.ResponseWriter, r *http.Request, slug, blo
 	h.R.Page(w, http.StatusOK, "pages/recipe", p)
 }
 
-func (h *Handler) ingredientViews(p *web.Page, it *pool.Item, byID map[int64]ingredients.Ingredient, units string) []IngredientView {
+func (h *Handler) ingredientViews(ctx context.Context, p *web.Page, it *pool.Item, byID map[int64]ingredients.Ingredient, units string) []IngredientView {
 	subs := map[int]availability.Substitution{}
 	for _, s := range it.Market.Substitutions {
 		subs[s.Line] = s
+	}
+	prof := web.Profile(ctx)
+	res := &shops.Resolver{Shops: h.App.Shops, ProductURLs: h.App.Catalog}
+	country, shopID := "", int64(0)
+	if prof != nil {
+		country, shopID = prof.CountryCode, prof.ShopID
 	}
 	out := make([]IngredientView, len(it.Base.Ingredients))
 	for i, in := range it.Base.Ingredients {
@@ -252,6 +265,18 @@ func (h *Handler) ingredientViews(p *web.Page, it *pool.Item, byID map[int64]ing
 		if s, ok := subs[i]; ok {
 			iv.SubNote = p.T("availability.sub_note", "Missing", byID[s.Missing].LocalName(p.Lang),
 				"Sub", byID[s.Substitute].LocalName(p.Lang), "Ratio", s.Ratio)
+		}
+		// Buy link: exact product page when the catalog has one, otherwise a
+		// search in the user's shop. The query is the localized ingredient
+		// name, falling back to the line's own name for unlinked ingredients.
+		query := in.Name
+		if in.IngredientID != 0 {
+			if ing, ok := byID[in.IngredientID]; ok {
+				query = ing.LocalName(p.Lang)
+			}
+		}
+		if link, ok := res.Link(ctx, country, shopID, in.IngredientID, query); ok {
+			iv.BuyURL, iv.BuyExact, iv.BuyShop = link.URL, link.Exact, link.Shop
 		}
 		out[i] = iv
 	}
