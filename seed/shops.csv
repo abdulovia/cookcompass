@@ -1,0 +1,16 @@
+country,slug,name,website,search_url_template
+RU,pyaterochka,Пятёрочка,https://pyaterochka.ru,https://pyaterochka.ru/search?q={q}
+RU,magnit,Магнит,https://magnit.ru,https://magnit.ru/search/?q={q}
+RU,lenta,Лента,https://lenta.com,https://lenta.com/search/?searchText={q}
+RU,vkusvill,ВкусВилл,https://vkusvill.ru,https://vkusvill.ru/search/?q={q}
+RU,samokat,Самокат,https://samokat.ru,https://samokat.ru/search?query={q}
+RU,dixy,Дикси,https://dixy.ru,https://dixy.ru/search/?q={q}
+RU,verno,Верный,https://verno-info.ru,https://verno-info.ru/search/?q={q}
+RU,ozon,Ozon,https://www.ozon.ru,https://www.ozon.ru/search/?text={q}
+RU,vprok,Перекрёсток Впрок,https://www.vprok.ru,https://www.vprok.ru/search?text={q}
+US,walmart,Walmart,https://www.walmart.com,https://www.walmart.com/search?q={q}
+US,kroger,Kroger,https://www.kroger.com,https://www.kroger.com/search?query={q}
+GB,tesco,Tesco,https://www.tesco.com,https://www.tesco.com/groceries/search/?query={q}
+GB,asda,ASDA,https://groceries.asda.com,https://groceries.asda.com/search/{q}
+DE,rewe,REWE,https://shop.rewe.de,https://shop.rewe.de/search/products/{q}
+DE,kaufland,Kaufland,https://www.kaufland.de,https://www.kaufland.de/search/?q={q}
