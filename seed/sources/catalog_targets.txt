@@ -1,7 +1,10 @@
-# Product listing pages scanned by `make scan`. Format: <COUNTRY> <URL>
+# Product listing pages scanned by `make scan`. Format:
+#   <COUNTRY> <URL>                 page attributed to the country's generic catalog
+#   <COUNTRY> <SHOP_SLUG> <URL>     page attributed to one shop (see seed/shops.csv)
 # Pages must expose schema.org Product JSON-LD (with an Offer for prices).
 # robots.txt is always enforced and requests are rate limited per site.
 # Only list shops whose terms allow indexing for personal use.
 #
-# Example:
+# Examples:
 # RU https://shop.example.ru/catalog/asian-sauces
+# RU lenta https://shop.example.ru/lenta/catalog/asian-sauces
