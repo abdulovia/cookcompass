@@ -20,8 +20,19 @@
         <option value="">{{.T "admin.ingredient_auto"}}</option>
         {{range .Data.Ingredients}}<option value="{{.Slug}}" {{if eq .Slug $f.Ingredient}}selected{{end}}>{{.Name}}</option>{{end}}
       </select>{{template "field_error" (.Err "ingredient")}}</div>
-    <div><label for="price">{{.T "admin.col_price"}}</label><input id="price" name="price" inputmode="decimal" value="{{$f.Price}}">{{template "field_error" (.Err "price")}}</div>
+    <div><label for="shop">{{.T "settings.shop"}}</label>
+      <select id="shop" name="shop">
+        <option value="">{{.T "settings.shop_any"}}</option>
+        {{range .Data.Shops}}<option value="{{.Slug}}" {{if eq .Slug $f.Shop}}selected{{end}}>{{.Name}}</option>{{end}}
+      </select>{{template "field_error" (.Err "shop")}}</div>
     <div><label for="unit">{{.T "admin.field_unit"}}</label><input id="unit" name="unit" value="{{$f.Unit}}" placeholder="500 g"></div>
+  </div>
+  <label for="url">{{.T "admin.product_url"}}</label>
+  <input id="url" name="url" value="{{$f.URL}}" placeholder="https://lenta.com/products/grechka-800g">
+  {{template "field_error" (.Err "url")}}
+  <p class="help">{{.T "admin.product_url_hint"}}</p>
+  <div class="grid three">
+    <div><label for="price">{{.T "admin.col_price"}}</label><input id="price" name="price" inputmode="decimal" value="{{$f.Price}}">{{template "field_error" (.Err "price")}}</div>
   </div>
   <div class="row-gap"><button type="submit">{{.T "common.save"}}</button><a class="btn secondary" href="/admin/products?country={{$f.Country}}">{{.T "common.cancel"}}</a></div>
 </form>
