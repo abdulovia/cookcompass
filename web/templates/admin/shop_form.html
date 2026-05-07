@@ -1,0 +1,27 @@
+{{define "content"}}
+{{$f := .Data.Form}}
+<h1>{{.Title}}{{if $f.ID}}: {{$f.Name}}{{end}}</h1>
+{{template "error_summary" .}}
+<form method="post" action="{{if $f.ID}}/admin/shops/{{$f.ID}}{{else}}/admin/shops{{end}}" class="card stack" novalidate>
+  <div class="grid three">
+    <div><label for="country">{{.T "settings.country"}}</label>
+      <select id="country" name="country">{{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $f.Country}}selected{{end}}>{{.Code}} — {{.Name}}</option>{{end}}</select>
+      {{template "field_error" (.Err "country")}}</div>
+    <div><label for="name">{{.T "admin.field_name"}}</label>
+      <input id="name" name="name" value="{{$f.Name}}" required {{if .Err "name"}}aria-invalid="true"{{end}}>
+      {{template "field_error" (.Err "name")}}</div>
+    <div><label for="slug">{{.T "admin.shop_slug"}}</label>
+      <input id="slug" name="slug" value="{{$f.Slug}}" placeholder="lenta">
+      {{template "field_error" (.Err "slug")}}</div>
+  </div>
+  <label for="website">{{.T "admin.shop_website"}}</label>
+  <input id="website" name="website" value="{{$f.Website}}" placeholder="https://lenta.com">
+  {{template "field_error" (.Err "website")}}
+  <label for="search_url_template">{{.T "admin.shop_search_template"}}</label>
+  <input id="search_url_template" name="search_url_template" value="{{$f.SearchURL}}" placeholder="https://lenta.com/search/?searchText={q}">
+  {{template "field_error" (.Err "search_url_template")}}
+  <p class="help">{{.T "admin.shop_template_hint"}}</p>
+  <label class="check"><input type="checkbox" name="active" value="1" {{if $f.Active}}checked{{end}}> {{.T "admin.shop_active"}}</label>
+  <div class="row-gap"><button type="submit">{{.T "common.save"}}</button><a class="btn secondary" href="/admin/shops">{{.T "common.cancel"}}</a></div>
+</form>
+{{end}}
