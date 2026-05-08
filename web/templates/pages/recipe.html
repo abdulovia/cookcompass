@@ -36,6 +36,8 @@
             {{else if eq .Status "substituted"}}<span class="badge warn">{{$.T "availability.swap"}}</span>
             {{else if eq .Status "optional_missing"}}<span class="badge">{{$.T "availability.skip_ok"}}</span>{{end}}
           {{end}}
+          {{if .BuyURL}}<a class="buy-link" href="{{.BuyURL}}" target="_blank" rel="noopener noreferrer"
+            title="{{if .BuyShop}}{{.BuyShop}}: {{end}}{{if .BuyExact}}{{$.T "recipe.buy_exact"}}{{else}}{{$.T "recipe.buy_search"}}{{end}}">🛒 {{$.T "recipe.buy"}}</a>{{end}}
         </span>
       </li>
       {{end}}

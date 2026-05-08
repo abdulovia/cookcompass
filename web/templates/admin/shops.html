@@ -1,0 +1,38 @@
+{{define "content"}}
+<div class="title-row">
+  <h1>{{.T "admin.shops"}}</h1>
+  <div class="row-gap">
+    <a class="btn" href="/admin/shops/new?country={{.Data.Country}}">{{.T "admin.new_shop"}}</a>
+  </div>
+</div>
+<form class="filters" method="get" action="/admin/shops">
+  <label>{{.T "settings.country"}}
+    <select name="country">
+      <option value="">{{.T "common.all"}}</option>
+      {{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $.Data.Country}}selected{{end}}>{{.Code}} — {{.Name}}</option>{{end}}
+    </select>
+  </label>
+  <button type="submit">{{.T "common.filter"}}</button>
+</form>
+<p class="muted">{{.T "admin.shops_count" "Count" (len .Data.Shops)}}</p>
+{{if .Data.Shops}}
+<div class="table-wrap"><table>
+  <thead><tr><th scope="col">{{.T "admin.col_name"}}</th><th scope="col">{{.T "settings.country"}}</th><th scope="col">{{.T "admin.shop_search_template"}}</th><th scope="col">{{.T "admin.col_status"}}</th><th scope="col">{{.T "common.actions"}}</th></tr></thead>
+  <tbody>
+  {{$p := .}}
+  {{range .Data.Shops}}
+  <tr {{if not .Active}}class="muted"{{end}}>
+    <td><a href="/admin/shops/{{.ID}}/edit">{{.Name}}</a><div class="muted">{{.Slug}}{{with .Website}} · <a href="{{.}}" target="_blank" rel="noopener noreferrer">{{.}}</a>{{end}}</div></td>
+    <td>{{.CountryCode}}</td>
+    <td><code>{{.SearchURLTemplate}}</code></td>
+    <td>{{if .Active}}<span class="badge ok">{{$.T "admin.shop_active"}}</span>{{else}}<span class="badge">{{$.T "admin.shop_inactive"}}</span>{{end}}</td>
+    <td class="actions">
+      <a href="/admin/shops/{{.ID}}/edit">{{$p.T "common.edit"}}</a>
+      <form method="post" action="/admin/shops/{{.ID}}/delete"><button class="link danger">{{$p.T "common.delete"}}</button></form>
+    </td>
+  </tr>
+  {{end}}
+  </tbody>
+</table></div>
+{{else}}<p class="empty">{{.T "admin.empty"}}</p>{{end}}
+{{end}}
