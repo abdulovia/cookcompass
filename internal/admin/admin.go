@@ -45,6 +45,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/queue/approve-all", h.approveAll)
 	r.Post("/queue/purge", h.purgePending)
 	r.Post("/queue/scrape", h.scrapeNow)
+	r.Post("/queue/import", h.datasetImport)
 	h.productRoutes(r)
 	h.shopRoutes(r)
 }

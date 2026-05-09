@@ -67,6 +67,9 @@ seed: build ## load the bundled seed dataset (idempotent)
 scrape-recipes: build ## scrape recipes into the review queue (SOURCE=jsonld)
 	$(RUN) scrape --source $(SOURCE)
 
+import-recipes: build ## import a recipe dataset (FILE=x.json | URL=... [LIMIT=200] [APPROVE=1])
+	$(RUN) recipes-import $(if $(FILE),--file $(FILE),) $(if $(URL),--url $(URL),) $(if $(LIMIT),--limit $(LIMIT),) $(if $(APPROVE),--approve)
+
 scan: build ## scan product catalogs into the review queue (COUNTRY=all|US|...)
 	$(RUN) scan --country $(COUNTRY)
 
