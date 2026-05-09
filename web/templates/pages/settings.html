@@ -12,7 +12,7 @@
     <noscript><span class="help">{{.T "settings.locate_nojs"}}</span></noscript>
   </form>
   <form method="post" action="/settings" class="stack">
-    <div class="grid three">
+    <div class="grid four">
       <div>
         <label for="country">{{.T "settings.country"}}</label>
         <select id="country" name="country">
@@ -27,6 +27,13 @@
         </select>
       </div>
       <div>
+        <label for="shop">{{.T "settings.shop"}}</label>
+        <select id="shop" name="shop">
+          <option value="">{{.T "settings.shop_any"}}</option>
+          {{range .Data.Shops}}<option value="{{.ID}}" {{if eq .ID $u.ShopID}}selected{{end}}>{{.Name}}</option>{{end}}
+        </select>
+      </div>
+      <div>
         <label for="lang">{{.T "settings.language"}}</label>
         <select id="lang" name="lang">
           <option value="">{{.T "settings.language_auto"}}</option>
@@ -34,6 +41,7 @@
         </select>
       </div>
     </div>
+    <p class="help">{{.T "settings.shop_hint"}}</p>
     <fieldset class="inline">
       <legend>{{.T "settings.units"}}</legend>
       {{range .Data.Units}}<label class="check"><input type="radio" name="units" value="{{.}}" {{if eq . $u.Units}}checked{{end}}> {{$.T (printf "settings.units_%s" .)}}</label>{{end}}
@@ -41,6 +49,8 @@
     {{if .Data.CountryAware}}
     <label class="check"><input type="checkbox" name="show_unavailable" value="1" {{if $u.ShowUnavailable}}checked{{end}}> {{.T "settings.show_unavailable"}}</label>
     <p class="help">{{.T "settings.show_unavailable_hint"}}</p>
+    <label class="check"><input type="checkbox" name="strict_shop" value="1" {{if $u.StrictShop}}checked{{end}}> {{.T "settings.strict_shop"}}</label>
+    <p class="help">{{.T "settings.strict_shop_hint"}}</p>
     {{end}}
     <button type="submit">{{.T "common.save"}}</button>
   </form>
