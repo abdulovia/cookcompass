@@ -4,7 +4,10 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"strconv"
+	"strings"
 
+	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/web"
 )
@@ -18,13 +21,40 @@ func (h *Handler) queue(w http.ResponseWriter, r *http.Request) {
 		h.fail(w, r, err)
 		return
 	}
-	data := map[string]any{"Recipes": pending, "Sources": h.App.RecipeSourceNames()}
+	data := map[string]any{"Recipes": pending, "Sources": h.App.RecipeSourceNames(), "InboxFiles": h.App.RecipeInboxFiles()}
 	for k, v := range h.queueExtra(ctx) {
 		data[k] = v
 	}
 	p := h.page(r, "admin.queue")
 	p.Data = data
 	h.R.Page(w, http.StatusOK, "admin/queue", p)
+}
+
+// datasetImport runs one dataset import from the queue page: an inbox file
+// or an http(s) URL, capped by a limit, optionally auto-approving what it
+// created.
+func (h *Handler) datasetImport(w http.ResponseWriter, r *http.Request) {
+	u := r.FormValue("url")
+	if u != "" && !strings.HasPrefix(u, "http://") && !strings.HasPrefix(u, "https://") {
+		web.Redirect(w, r, "/admin/queue", "import_failed")
+		return
+	}
+	limit := 200
+	if n, err := strconv.Atoi(r.FormValue("limit")); err == nil && n > 0 && n <= 10000 {
+		limit = n
+	}
+	opt := app.DatasetOptions{File: r.FormValue("file"), URL: u, Limit: limit,
+		Approve: r.FormValue("approve") == "1"}
+	res, err := h.App.ImportDataset(r.Context(), opt)
+	if err != nil {
+		h.Log.Warn("dataset import", "err", err, "result", res.String())
+	}
+	if res.Created == 0 && err != nil {
+		web.Redirect(w, r, "/admin/queue", "import_failed")
+		return
+	}
+	h.Log.Info("dataset import", "result", res.String())
+	web.Redirect(w, r, "/admin/queue", "recipes_imported")
 }
 
 // queueExtra lets other review queues (products) add their rows.
