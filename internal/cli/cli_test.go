@@ -308,3 +308,33 @@ func TestCatalogCommands(t *testing.T) {
 		}
 	}
 }
+
+func TestImportRecipesCommand(t *testing.T) {
+	dir := t.TempDir()
+	drop := filepath.Join(dir, "drop.jsonl")
+	os.WriteFile(drop, []byte(`{"name": "CLI Soup", "url": "https://example.com/cli-soup", "ingredients": ["potato", "leek"],
+		"recipeInstructions": ["Simmer", "Blend" ]}`+"\n"+`{"name": "Stepless", "url": "https://example.com/stepless", "ingredients": ["rice"]}`), 0o600)
+	dbPath := filepath.Join(t.TempDir(), "import.db")
+	t.Setenv("COOK_SCRAPE_CACHE", t.TempDir())
+	// Missing flags.
+	if code, _, _ := run(t, dbPath, "", "recipes-import"); code != 1 {
+		t.Fatal("no source accepted")
+	}
+	// Import by URL, incomplete record rejected, queue hint shown.
+	code, out, errs := run(t, dbPath, "", "recipes-import", "--url", "file:"+drop, "--limit", "10")
+	if code != 0 || !strings.Contains(out, "fetched=2 created=1") || !strings.Contains(out, "invalid=1") ||
+		!strings.Contains(out, "review new items") || !strings.Contains(errs, "no ingredients or steps") {
+		t.Fatalf("import url: %d %s %s", code, out, errs)
+	}
+	// Import the same file through the inbox by name.
+	t.Setenv("COOK_RECIPE_INBOX", dir)
+	code, out, _ = run(t, dbPath, "", "recipes-import", "--file", "drop.jsonl", "--approve")
+	if code != 0 || !strings.Contains(out, "created=0") {
+		t.Fatalf("re-import with approve should dedup: %d %s", code, out)
+	}
+	// The earlier pending recipe is now approved.
+	code, out, _ = run(t, dbPath, "", "recipe", "list")
+	if code != 0 || !strings.Contains(out, "CLI Soup") {
+		t.Fatalf("approved recipe missing: %s", out)
+	}
+}
