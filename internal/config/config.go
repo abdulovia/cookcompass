@@ -74,6 +74,7 @@ type Scrape struct {
 	TargetsFile string        `yaml:"targets_file"`
 	CatalogFile string        `yaml:"catalog_targets_file"`
 	InboxDir    string        `yaml:"catalog_inbox_dir"`
+	DatasetDir  string        `yaml:"recipe_inbox_dir"` // dataset drops for the "dataset" recipe source
 }
 
 // Availability configures the recipe feasibility matcher.
@@ -108,6 +109,7 @@ func Default() Config {
 			TargetsFile: "seed/sources/jsonld_targets.txt",
 			CatalogFile: "seed/sources/catalog_targets.txt",
 			InboxDir:    "data/catalog-inbox",
+			DatasetDir:  "data/recipe-inbox",
 		},
 		Availability: Availability{Threshold: 1.0},
 		Defaults:     Defaults{Country: "US", Locale: "en"},
@@ -223,6 +225,7 @@ func applyEnv(c *Config, lookup lookupFunc) error {
 	str("COOK_SCRAPE_TARGETS", &c.Scrape.TargetsFile)
 	str("COOK_CATALOG_TARGETS", &c.Scrape.CatalogFile)
 	str("COOK_CATALOG_INBOX", &c.Scrape.InboxDir)
+	str("COOK_RECIPE_INBOX", &c.Scrape.DatasetDir)
 	float("COOK_AVAILABILITY_THRESHOLD", &c.Availability.Threshold)
 	str("COOK_DEFAULT_COUNTRY", &c.Defaults.Country)
 	str("COOK_DEFAULT_LOCALE", &c.Defaults.Locale)
