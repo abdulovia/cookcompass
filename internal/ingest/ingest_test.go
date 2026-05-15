@@ -281,7 +281,7 @@ func TestTargetsAndBundledSamples(t *testing.T) {
 
 	// The bundled samples work end-to-end offline.
 	fc := fetch.New("CookCompassBot/test", "", 0, time.Second, time.Second)
-	srcs, err := Sources(fc, "../../seed/sources/jsonld_targets.txt", testutil.Logger())
+	srcs, err := Sources(fc, "../../seed/sources/jsonld_targets.txt", "", testutil.Logger())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -294,7 +294,7 @@ func TestTargetsAndBundledSamples(t *testing.T) {
 	if res.Created != 3 {
 		t.Fatalf("import samples: %s %v", res, res.Errors)
 	}
-	if _, err := Sources(fc, filepath.Join(dir, "nope.txt"), testutil.Logger()); err != nil {
+	if _, err := Sources(fc, filepath.Join(dir, "nope.txt"), "", testutil.Logger()); err != nil {
 		t.Fatalf("missing targets file should only warn: %v", err)
 	}
 }
