@@ -105,13 +105,14 @@ func ReadTargets(path string) ([]string, error) {
 
 // Result summarizes an import run.
 type Result struct {
-	Fetched   int
-	Created   int
-	Updated   int
-	Withheld  int // re-scrapes of recipes a user has edited: recorded, not applied
-	Unchanged int
-	Invalid   int
-	Errors    []error
+	Fetched    int
+	Created    int
+	Updated    int
+	Withheld   int // re-scrapes of recipes a user has edited: recorded, not applied
+	Unchanged  int
+	Invalid    int
+	PendingIDs []int64 // recipes left in the queue by this run (for targeted approval)
+	Errors     []error
 }
 
 func (r Result) String() string {
@@ -173,6 +174,7 @@ func (im *Importer) Import(ctx context.Context, raws []recipes.RawRecipe) Result
 			err = im.Recipes.Create(ctx, r, ch)
 			if err == nil {
 				res.Created++
+				res.PendingIDs = append(res.PendingIDs, r.ID)
 			}
 		case existing.Source == recipes.SourceUser:
 			ch.Note = "scrape withheld: user edits are authoritative"
@@ -193,12 +195,18 @@ func (im *Importer) Import(ctx context.Context, raws []recipes.RawRecipe) Result
 			}
 			if sameContent(existing, r) {
 				res.Unchanged++
+				if existing.Status == recipes.StatusPending {
+					res.PendingIDs = append(res.PendingIDs, existing.ID)
+				}
 				continue
 			}
 			ch.Note = "re-scraped from " + raw.URL
 			err = im.Recipes.Update(ctx, r, ch)
 			if err == nil {
 				res.Updated++
+				if r.Status == recipes.StatusPending {
+					res.PendingIDs = append(res.PendingIDs, r.ID)
+				}
 			}
 		}
 		if err != nil {
@@ -356,7 +364,7 @@ func firstNonEmpty(ss ...string) string {
 
 // Sources lists the available recipe sources by name. Add new sources here
 // (see docs/ingestion.md).
-func Sources(fetcher *fetch.Client, targetsFile string, log *slog.Logger) (map[string]recipes.RecipeSource, error) {
+func Sources(fetcher *fetch.Client, targetsFile, datasetInbox string, log *slog.Logger) (map[string]recipes.RecipeSource, error) {
 	targets, err := ReadTargets(targetsFile)
 	if err != nil && !errors.Is(err, fs.ErrNotExist) {
 		return nil, err
@@ -365,6 +373,7 @@ func Sources(fetcher *fetch.Client, targetsFile string, log *slog.Logger) (map[s
 		log.Warn("targets file not found; only --url targets will be scraped", "file", targetsFile)
 	}
 	return map[string]recipes.RecipeSource{
-		"jsonld": &JSONLDSource{Fetcher: fetcher, Targets: targets, Log: log},
+		"jsonld":  &JSONLDSource{Fetcher: fetcher, Targets: targets, Log: log},
+		"dataset": &DatasetSource{Fetcher: fetcher, Dir: datasetInbox, Log: log},
 	}, nil
 }
