@@ -9,6 +9,27 @@
 </div>
 <p class="muted">{{.T "admin.queue_hint"}}</p>
 
+<details class="card">
+  <summary><strong>{{.T "admin.import_recipes_title"}}</strong></summary>
+  <p class="help">{{.T "admin.import_recipes_help"}}</p>
+  <form method="post" action="/admin/queue/import" class="stack">
+    <div class="grid three">
+      <div><label for="import-file">{{.T "admin.import_dataset_file"}}</label>
+        <select id="import-file" name="file">
+          <option value="">{{.T "admin.import_dataset_none"}}</option>
+          {{range .Data.InboxFiles}}<option value="{{.}}">{{.}}</option>{{end}}
+        </select></div>
+      <div><label for="import-url">{{.T "admin.import_dataset_url"}}</label>
+        <input id="import-url" name="url" placeholder="https://…/recipes.json"></div>
+      <div><label for="import-limit">{{.T "admin.import_dataset_limit"}}</label>
+        <input id="import-limit" name="limit" inputmode="numeric" value="200"></div>
+    </div>
+    <label class="check"><input type="checkbox" name="approve" value="1"> {{.T "admin.import_dataset_approve"}}</label>
+    <p class="help">{{.T "admin.import_dataset_approve_hint"}}</p>
+    <button type="submit">⤓ {{.T "admin.import_dataset_button"}}</button>
+  </form>
+</details>
+
 <h2>{{.T "admin.queue_recipes" "Count" (len .Data.Recipes)}}</h2>
 {{if .Data.Recipes}}
 <div class="table-wrap"><table>
