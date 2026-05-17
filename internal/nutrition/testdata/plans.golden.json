@@ -11,75 +11,90 @@
     "plan": {
       "items": [
         {
-          "slug": "porridge-with-berries",
+          "slug": "fluffy-pancakes",
           "meal": "breakfast",
-          "servings": 1.5,
+          "servings": 1,
           "totals": {
-            "calories": 495,
-            "protein": 17,
-            "fat": 12,
-            "carbs": 81,
-            "fiber": 9,
-            "sugar": 26,
-            "sodium": 180,
-            "saturated_fat": 5
+            "calories": 310,
+            "protein": 9,
+            "fat": 11,
+            "carbs": 44,
+            "fiber": 2,
+            "sugar": 9,
+            "sodium": 520,
+            "saturated_fat": 6
           }
         },
         {
           "slug": "egg-fried-rice",
           "meal": "lunch",
-          "servings": 1.5,
+          "servings": 1.25,
           "totals": {
-            "calories": 720,
-            "protein": 23,
-            "fat": 27,
-            "carbs": 93,
-            "fiber": 5,
-            "sugar": 5,
-            "sodium": 1335,
-            "saturated_fat": 5
-          }
-        },
-        {
-          "slug": "pad-thai",
-          "meal": "dinner",
-          "servings": 1.75,
-          "totals": {
-            "calories": 1120,
-            "protein": 53,
-            "fat": 39,
-            "carbs": 140,
-            "fiber": 7,
-            "sugar": 32,
-            "sodium": 2590,
-            "saturated_fat": 7
-          }
-        },
-        {
-          "slug": "tomato-bruschetta",
-          "meal": "snack",
-          "servings": 1.75,
-          "totals": {
-            "calories": 333,
-            "protein": 9,
-            "fat": 14,
-            "carbs": 44,
+            "calories": 600,
+            "protein": 19,
+            "fat": 23,
+            "carbs": 78,
             "fiber": 4,
-            "sugar": 7,
-            "sodium": 578,
-            "saturated_fat": 2
+            "sugar": 4,
+            "sodium": 1113,
+            "saturated_fat": 4
+          }
+        },
+        {
+          "slug": "bibimbap",
+          "meal": "dinner",
+          "servings": 1.25,
+          "totals": {
+            "calories": 863,
+            "protein": 40,
+            "fat": 33,
+            "carbs": 103,
+            "fiber": 8,
+            "sugar": 13,
+            "sodium": 1500,
+            "saturated_fat": 8
+          }
+        },
+        {
+          "slug": "banana-bread",
+          "meal": "snack",
+          "servings": 1.25,
+          "totals": {
+            "calories": 413,
+            "protein": 8,
+            "fat": 19,
+            "carbs": 60,
+            "fiber": 4,
+            "sugar": 30,
+            "sodium": 313,
+            "saturated_fat": 11
+          }
+        },
+        {
+          "slug": "onigiri",
+          "meal": "snack",
+          "servings": 1.25,
+          "totals": {
+            "calories": 575,
+            "protein": 21,
+            "fat": 8,
+            "carbs": 98,
+            "fiber": 1,
+            "sugar": 1,
+            "sodium": 563,
+            "saturated_fat": 3
           }
         }
       ],
       "total": {
-        "calories": 2668,
-        "protein": 100,
+        "calories": 2760,
+        "protein": 97,
         "fat": 92,
-        "carbs": 358,
-        "fiber": 24,
-        "sugar": 69,
-        "sodium": 4683,
-        "saturated_fat": 18
+        "carbs": 382,
+        "fiber": 18,
+        "sugar": 57,
+        "sodium": 4008,
+        "saturated_fat": 31
       },
       "targets": {
         "bmr": 1780,
@@ -91,10 +106,10 @@
         "fiber_g": 39
       },
       "deviation": {
-        "calories": -0.034,
-        "protein": 0.044,
-        "fat": -0.005,
-        "carbs": -0.076
+        "calories": 0,
+        "protein": 0.005,
+        "fat": 0.003,
+        "carbs": -0.014
       },
       "within_tolerance": true
     }
@@ -111,75 +126,60 @@
     "plan": {
       "items": [
         {
-          "slug": "miso-soup",
+          "slug": "syrniki",
           "meal": "breakfast",
-          "servings": 1,
+          "servings": 1.25,
           "totals": {
-            "calories": 90,
-            "protein": 7,
-            "fat": 4,
-            "carbs": 7,
-            "fiber": 2,
-            "sugar": 2,
-            "sodium": 980,
-            "saturated_fat": 1
+            "calories": 475,
+            "protein": 33,
+            "fat": 20,
+            "carbs": 41,
+            "fiber": 1,
+            "sugar": 18,
+            "sodium": 263,
+            "saturated_fat": 10
           }
         },
         {
-          "slug": "seafood-paella",
+          "slug": "pico-de-gallo",
           "meal": "lunch",
           "servings": 0.75,
           "totals": {
-            "calories": 405,
-            "protein": 27,
-            "fat": 11,
-            "carbs": 47,
+            "calories": 26,
+            "protein": 1,
+            "fat": 1,
+            "carbs": 5,
             "fiber": 2,
             "sugar": 3,
-            "sodium": 713,
-            "saturated_fat": 3
+            "sodium": 113,
+            "saturated_fat": 0
           }
         },
         {
-          "slug": "chicken-biryani",
+          "slug": "chicken-tikka-masala",
           "meal": "dinner",
-          "servings": 0.75,
+          "servings": 1.25,
           "totals": {
-            "calories": 458,
-            "protein": 29,
-            "fat": 15,
-            "carbs": 51,
-            "fiber": 2,
-            "sugar": 5,
-            "sodium": 585,
-            "saturated_fat": 5
-          }
-        },
-        {
-          "slug": "syrniki",
-          "meal": "snack",
-          "servings": 0.75,
-          "totals": {
-            "calories": 285,
-            "protein": 20,
-            "fat": 12,
-            "carbs": 25,
-            "fiber": 1,
-            "sugar": 11,
-            "sodium": 158,
-            "saturated_fat": 6
+            "calories": 738,
+            "protein": 50,
+            "fat": 20,
+            "carbs": 78,
+            "fiber": 4,
+            "sugar": 10,
+            "sodium": 1000,
+            "saturated_fat": 13
           }
         }
       ],
       "total": {
-        "calories": 1238,
-        "protein": 82,
-        "fat": 42,
-        "carbs": 129,
-        "fiber": 7,
-        "sugar": 20,
-        "sodium": 2435,
-        "saturated_fat": 15
+        "calories": 1239,
+        "protein": 83,
+        "fat": 41,
+        "carbs": 124,
+        "fiber": 6,
+        "sugar": 31,
+        "sodium": 1375,
+        "saturated_fat": 23
       },
       "targets": {
         "bmr": 1345,
@@ -191,10 +191,10 @@
         "fiber_g": 25
       },
       "deviation": {
-        "calories": 0.031,
-        "protein": -0.089,
-        "fat": 0.056,
-        "carbs": 0.077
+        "calories": 0.032,
+        "protein": -0.075,
+        "fat": 0.019,
+        "carbs": 0.033
       },
       "within_tolerance": true
     }
@@ -211,75 +211,90 @@
     "plan": {
       "items": [
         {
-          "slug": "porridge-with-berries",
+          "slug": "overnight-oats",
           "meal": "breakfast",
-          "servings": 2.5,
-          "totals": {
-            "calories": 825,
-            "protein": 28,
-            "fat": 20,
-            "carbs": 135,
-            "fiber": 15,
-            "sugar": 43,
-            "sodium": 300,
-            "saturated_fat": 8
-          }
-        },
-        {
-          "slug": "seafood-paella",
-          "meal": "lunch",
-          "servings": 2,
-          "totals": {
-            "calories": 1080,
-            "protein": 72,
-            "fat": 30,
-            "carbs": 124,
-            "fiber": 6,
-            "sugar": 8,
-            "sodium": 1900,
-            "saturated_fat": 8
-          }
-        },
-        {
-          "slug": "egg-fried-rice",
-          "meal": "dinner",
-          "servings": 2,
-          "totals": {
-            "calories": 960,
-            "protein": 30,
-            "fat": 36,
-            "carbs": 124,
-            "fiber": 6,
-            "sugar": 6,
-            "sodium": 1780,
-            "saturated_fat": 6
-          }
-        },
-        {
-          "slug": "tomato-bruschetta",
-          "meal": "snack",
           "servings": 1.5,
           "totals": {
-            "calories": 285,
-            "protein": 8,
+            "calories": 660,
+            "protein": 21,
             "fat": 12,
-            "carbs": 38,
-            "fiber": 3,
-            "sugar": 6,
-            "sodium": 495,
-            "saturated_fat": 2
+            "carbs": 108,
+            "fiber": 12,
+            "sugar": 45,
+            "sodium": 165,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "bibimbap",
+          "meal": "lunch",
+          "servings": 1.25,
+          "totals": {
+            "calories": 863,
+            "protein": 40,
+            "fat": 33,
+            "carbs": 103,
+            "fiber": 8,
+            "sugar": 13,
+            "sodium": 1500,
+            "saturated_fat": 8
+          }
+        },
+        {
+          "slug": "pad-thai",
+          "meal": "dinner",
+          "servings": 1.25,
+          "totals": {
+            "calories": 800,
+            "protein": 38,
+            "fat": 28,
+            "carbs": 100,
+            "fiber": 5,
+            "sugar": 23,
+            "sodium": 1850,
+            "saturated_fat": 5
+          }
+        },
+        {
+          "slug": "onigiri",
+          "meal": "snack",
+          "servings": 1.25,
+          "totals": {
+            "calories": 575,
+            "protein": 21,
+            "fat": 8,
+            "carbs": 98,
+            "fiber": 1,
+            "sugar": 1,
+            "sodium": 563,
+            "saturated_fat": 3
+          }
+        },
+        {
+          "slug": "syrniki",
+          "meal": "snack",
+          "servings": 1,
+          "totals": {
+            "calories": 380,
+            "protein": 26,
+            "fat": 16,
+            "carbs": 33,
+            "fiber": 1,
+            "sugar": 14,
+            "sodium": 210,
+            "saturated_fat": 8
           }
         }
       ],
       "total": {
-        "calories": 3150,
-        "protein": 137,
-        "fat": 98,
-        "carbs": 421,
-        "fiber": 30,
-        "sugar": 63,
-        "sodium": 4475,
-        "saturated_fat": 23
+        "calories": 3278,
+        "protein": 146,
+        "fat": 96,
+        "carbs": 441,
+        "fiber": 27,
+        "sugar": 95,
+        "sodium": 4288,
+        "saturated_fat": 28
       },
       "targets": {
         "bmr": 1709,
@@ -291,10 +306,10 @@
         "fiber_g": 46
       },
       "deviation": {
-        "calories": -0.031,
-        "protein": -0.049,
-        "fat": 0.089,
-        "carbs": -0.098
+        "calories": 0.008,
+        "protein": 0.012,
+        "fat": 0.061,
+        "carbs": -0.054
       },
       "within_tolerance": true
     }
@@ -311,75 +326,90 @@
     "plan": {
       "items": [
         {
-          "slug": "porridge-with-berries",
+          "slug": "overnight-oats",
           "meal": "breakfast",
-          "servings": 1.5,
+          "servings": 1,
           "totals": {
-            "calories": 495,
-            "protein": 17,
-            "fat": 12,
-            "carbs": 81,
-            "fiber": 9,
-            "sugar": 26,
-            "sodium": 180,
-            "saturated_fat": 5
+            "calories": 440,
+            "protein": 14,
+            "fat": 8,
+            "carbs": 72,
+            "fiber": 8,
+            "sugar": 30,
+            "sodium": 110,
+            "saturated_fat": 3
           }
         },
         {
-          "slug": "pad-thai",
+          "slug": "spaghetti-carbonara",
           "meal": "lunch",
-          "servings": 1.25,
+          "servings": 1,
           "totals": {
-            "calories": 800,
-            "protein": 38,
-            "fat": 28,
-            "carbs": 100,
-            "fiber": 5,
-            "sugar": 23,
-            "sodium": 1850,
-            "saturated_fat": 5
-          }
-        },
-        {
-          "slug": "egg-fried-rice",
-          "meal": "dinner",
-          "servings": 1.25,
-          "totals": {
-            "calories": 600,
-            "protein": 19,
-            "fat": 23,
-            "carbs": 78,
-            "fiber": 4,
-            "sugar": 4,
-            "sodium": 1113,
-            "saturated_fat": 4
-          }
-        },
-        {
-          "slug": "tomato-bruschetta",
-          "meal": "snack",
-          "servings": 1.5,
-          "totals": {
-            "calories": 285,
-            "protein": 8,
-            "fat": 12,
-            "carbs": 38,
+            "calories": 610,
+            "protein": 27,
+            "fat": 24,
+            "carbs": 70,
             "fiber": 3,
-            "sugar": 6,
-            "sodium": 495,
+            "sugar": 3,
+            "sodium": 890,
+            "saturated_fat": 9
+          }
+        },
+        {
+          "slug": "buckwheat-with-mushrooms",
+          "meal": "dinner",
+          "servings": 1,
+          "totals": {
+            "calories": 410,
+            "protein": 11,
+            "fat": 19,
+            "carbs": 42,
+            "fiber": 8,
+            "sugar": 3,
+            "sodium": 350,
+            "saturated_fat": 12
+          }
+        },
+        {
+          "slug": "banana-bread",
+          "meal": "snack",
+          "servings": 1,
+          "totals": {
+            "calories": 330,
+            "protein": 6,
+            "fat": 15,
+            "carbs": 48,
+            "fiber": 3,
+            "sugar": 24,
+            "sodium": 250,
+            "saturated_fat": 9
+          }
+        },
+        {
+          "slug": "onigiri",
+          "meal": "snack",
+          "servings": 1,
+          "totals": {
+            "calories": 460,
+            "protein": 17,
+            "fat": 6,
+            "carbs": 78,
+            "fiber": 1,
+            "sugar": 1,
+            "sodium": 450,
             "saturated_fat": 2
           }
         }
       ],
       "total": {
-        "calories": 2180,
-        "protein": 80,
-        "fat": 74,
-        "carbs": 296,
-        "fiber": 21,
-        "sugar": 58,
-        "sodium": 3638,
-        "saturated_fat": 15
+        "calories": 2250,
+        "protein": 75,
+        "fat": 72,
+        "carbs": 310,
+        "fiber": 23,
+        "sugar": 61,
+        "sodium": 2050,
+        "saturated_fat": 35
       },
       "targets": {
         "bmr": 1244,
@@ -391,10 +421,10 @@
         "fiber_g": 31
       },
       "deviation": {
-        "calories": -0.014,
-        "protein": 0.07,
-        "fat": 0,
-        "carbs": -0.048
+        "calories": 0.018,
+        "protein": 0,
+        "fat": -0.027,
+        "carbs": -0.003
       },
       "within_tolerance": true
     }
@@ -411,60 +441,75 @@
     "plan": {
       "items": [
         {
-          "slug": "porridge-with-berries",
+          "slug": "overnight-oats",
           "meal": "breakfast",
-          "servings": 1.25,
+          "servings": 1,
           "totals": {
-            "calories": 413,
+            "calories": 440,
             "protein": 14,
-            "fat": 10,
-            "carbs": 68,
+            "fat": 8,
+            "carbs": 72,
             "fiber": 8,
-            "sugar": 21,
-            "sodium": 150,
-            "saturated_fat": 4
+            "sugar": 30,
+            "sodium": 110,
+            "saturated_fat": 3
           }
         },
         {
-          "slug": "pad-thai",
+          "slug": "bibimbap",
           "meal": "lunch",
-          "servings": 1.5,
+          "servings": 1,
           "totals": {
-            "calories": 960,
-            "protein": 45,
-            "fat": 33,
-            "carbs": 120,
+            "calories": 690,
+            "protein": 32,
+            "fat": 26,
+            "carbs": 82,
             "fiber": 6,
-            "sugar": 27,
-            "sodium": 2220,
+            "sugar": 10,
+            "sodium": 1200,
             "saturated_fat": 6
           }
         },
         {
-          "slug": "egg-fried-rice",
+          "slug": "pad-thai",
           "meal": "dinner",
-          "servings": 1.5,
+          "servings": 1,
           "totals": {
-            "calories": 720,
-            "protein": 23,
-            "fat": 27,
-            "carbs": 93,
-            "fiber": 5,
-            "sugar": 5,
-            "sodium": 1335,
-            "saturated_fat": 5
+            "calories": 640,
+            "protein": 30,
+            "fat": 22,
+            "carbs": 80,
+            "fiber": 4,
+            "sugar": 18,
+            "sodium": 1480,
+            "saturated_fat": 4
+          }
+        },
+        {
+          "slug": "banana-bread",
+          "meal": "snack",
+          "servings": 1,
+          "totals": {
+            "calories": 330,
+            "protein": 6,
+            "fat": 15,
+            "carbs": 48,
+            "fiber": 3,
+            "sugar": 24,
+            "sodium": 250,
+            "saturated_fat": 9
           }
         }
       ],
       "total": {
-        "calories": 2093,
-        "protein": 81,
-        "fat": 70,
-        "carbs": 281,
-        "fiber": 18,
-        "sugar": 53,
-        "sodium": 3705,
-        "saturated_fat": 14
+        "calories": 2100,
+        "protein": 82,
+        "fat": 71,
+        "carbs": 282,
+        "fiber": 21,
+        "sugar": 82,
+        "sodium": 3040,
+        "saturated_fat": 22
       },
       "targets": {
         "bmr": 1357,
@@ -476,10 +521,10 @@
         "fiber_g": 29
       },
       "deviation": {
-        "calories": -0.004,
-        "protein": -0.009,
-        "fat": 0,
-        "carbs": -0.019
+        "calories": 0,
+        "protein": 0,
+        "fat": 0.014,
+        "carbs": -0.014
       },
       "within_tolerance": true
     }
