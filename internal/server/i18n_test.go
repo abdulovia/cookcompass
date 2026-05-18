@@ -18,7 +18,7 @@ func TestLanguageSelection(t *testing.T) {
 		}
 	}
 	_, body = h.get("/recipes?f=1&cuisine=russian", "Accept-Language", "ru")
-	if !strings.Contains(body, "3 рецепта") || !strings.Contains(body, "Пельмени") || !strings.Contains(body, "Русская") {
+	if !strings.Contains(body, "5 рецептов") || !strings.Contains(body, "Пельмени") || !strings.Contains(body, "Русская") {
 		t.Fatalf("ru browse: %s", snippet(body, "рецепт"))
 	}
 	// Scraped/user recipes without a Russian translation fall back to English text

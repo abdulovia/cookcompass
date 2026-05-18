@@ -37,7 +37,7 @@ func TestCountryAvailabilityAndSubstitutions(t *testing.T) {
 			t.Errorf("RU should hide %s", hidden)
 		}
 	}
-	if !strings.Contains(body, ">25 recipes") || !strings.Contains(body, "Pad Thai") || !strings.Contains(body, "Needs a swap") {
+	if !strings.Contains(body, ">42 recipes") || !strings.Contains(body, "Pad Thai") || !strings.Contains(body, "Needs a swap") {
 		t.Fatalf("RU browse: %s", snippet(body, "recipes</p>"))
 	}
 	_, body = h.get("/recipes/pad-thai")
@@ -51,7 +51,7 @@ func TestCountryAvailabilityAndSubstitutions(t *testing.T) {
 	}
 	// Toggle on: everything is listed, unavailable ones are badged.
 	h.setCountry("RU", true)
-	if _, body = h.get("/recipes"); !strings.Contains(body, ">28 recipes") || !strings.Contains(body, "Not sold nearby") {
+	if _, body = h.get("/recipes"); !strings.Contains(body, ">46 recipes") || !strings.Contains(body, "Not sold nearby") {
 		t.Fatalf("show unavailable: %s", snippet(body, "recipes</p>"))
 	}
 	if _, body = h.get("/settings"); !strings.Contains(body, `name="show_unavailable" value="1" checked`) {
