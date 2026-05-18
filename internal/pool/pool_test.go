@@ -88,7 +88,7 @@ func TestPoolWithSeedData(t *testing.T) {
 	egg, _ := p.Ings.IDBySlug(ctx, "egg")
 
 	all, err := p.Items(ctx, Viewer{Locale: "en"})
-	if err != nil || len(all) != 28 {
+	if err != nil || len(all) != 46 {
 		t.Fatalf("items %d %v", len(all), err)
 	}
 	noPeanuts, _ := p.Items(ctx, Viewer{Allergies: []int64{peanut}})
