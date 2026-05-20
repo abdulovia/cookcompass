@@ -15,7 +15,7 @@ import (
 func TestBrowseFilters(t *testing.T) {
 	h := newHarness(t)
 	resp, body := h.get("/recipes")
-	if resp.StatusCode != http.StatusOK || !strings.Contains(body, "28 recipes") {
+	if resp.StatusCode != http.StatusOK || !strings.Contains(body, "46 recipes") {
 		t.Fatalf("browse all: %d %s", resp.StatusCode, snippet(body, "recipes</p>"))
 	}
 	tests := []struct {
@@ -24,10 +24,10 @@ func TestBrowseFilters(t *testing.T) {
 		has   []string
 		lacks []string
 	}{
-		{"f=1&cuisine=italian", "2 recipes", []string{"Spaghetti Carbonara", "Tomato Bruschetta"}, []string{"Pad Thai"}},
+		{"f=1&cuisine=italian", "5 recipes", []string{"Spaghetti Carbonara", "Tomato Bruschetta"}, []string{"Pad Thai"}},
 		{"f=1&meal=breakfast&difficulty=easy", "", []string{"Fluffy Pancakes", "Syrniki"}, []string{"Beef Bourguignon"}},
 		{"f=1&q=curry", "1 recipe", []string{"Thai Green Curry"}, nil},
-		{"f=1&difficulty=hard", "6 recipes", []string{"Pelmeni"}, []string{"Guacamole"}},
+		{"f=1&difficulty=hard", "8 recipes", []string{"Pelmeni"}, []string{"Guacamole"}},
 		{"f=1&cuisine=nope", "0 recipes", []string{"No recipes match"}, nil},
 	}
 	for _, tc := range tests {
