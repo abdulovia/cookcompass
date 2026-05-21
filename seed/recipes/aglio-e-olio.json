@@ -1,0 +1,51 @@
+{
+  "slug": "aglio-e-olio",
+  "cuisine": "italian",
+  "meal_times": ["dinner"],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 15,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=aglio+e+olio+pasta",
+  "nutrition": {"calories": 720, "protein": 18, "fat": 38, "carbs": 72, "fiber": 5, "sugar": 3, "sodium": 500, "saturated_fat": 8},
+  "ingredients": [
+    {"text": "200 g spaghetti", "ingredient": "spaghetti"},
+    {"text": "4 cloves garlic, sliced paper-thin", "ingredient": "garlic"},
+    {"text": "5 tbsp olive oil", "ingredient": "olive-oil"},
+    {"text": "1 tsp chili flakes", "ingredient": "chili-flakes"},
+    {"text": "1 handful parsley, finely chopped", "ingredient": "parsley"},
+    {"text": "30 g parmesan, grated", "ingredient": "parmesan"},
+    {"text": "1 tsp salt, for the pasta water", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Spaghetti Aglio e Olio",
+      "description": "The late-night Italian classic: pasta with nothing but garlic, oil and chili. Teaches gentle garlic cooking and the starch-water emulsion that turns an oil sauce creamy.",
+      "steps": [
+        "Slice the garlic paper-thin, 1 mm at most. Thick slices stay raw in the middle while their edges burn; thin slices melt into the oil and flavor every strand of pasta.",
+        "Bring a large pot of water to a boil, salt it, and drop in the spaghetti. Stir for the first minute and cook 1 minute less than the package says — it will finish in the sauce pan.",
+        "Meanwhile put the olive oil and garlic in a cold wide pan and set it over the lowest heat. Cold start, low heat: the garlic should barely bubble. Cook 4–5 minutes, swirling often, until the slices are pale blond and soft. The moment they turn dark brown, the oil is bitter and you must start over.",
+        "Add the chili flakes and cook 30 seconds more — just enough to bloom their color into the oil, then take the pan off the heat so nothing scorches.",
+        "Before draining the spaghetti, scoop out a mug of the starchy cooking water, at least 200 ml. This water is what turns oil and garlic into an actual sauce.",
+        "Drain the pasta and tip it into the oil pan. Return to medium heat and toss for 1 minute so every strand is coated.",
+        "Add 2–3 tablespoons of the pasta water and toss hard and constantly, as if you were beating eggs. The starch in the water binds with the oil into a cloudy, creamy emulsion that clings to the spaghetti. Add more water, a splash at a time, for 1–2 minutes until the sauce moves like thin custard.",
+        "Off the heat, add the parsley and parmesan, toss once more, and serve immediately. Aglio e olio waits for nobody — the emulsion breaks as it cools."
+      ]
+    },
+    "ru": {
+      "name": "Спагетти альо э олио",
+      "description": "Классика позднего итальянского ужина: паста только с чесноком, маслом и перцем. Учит мягкому обжариванию чеснока и эмульсии из крахмалистой воды, которая делает масляный соус кремовым.",
+      "steps": [
+        "Нарежьте чеснок тонкими лепестками не толще 1 мм. Толстые кружки остаются сырыми внутри, пока края горят; тонкие расходятся в масле и приправляют каждую нить пасты.",
+        "Доведите большую кастрюлю воды до кипения, посолите и опустите спагетти. Первую минуту помешивайте и варите на 1 минуту меньше, чем указано на упаковке, — паста дойдёт в сковороде.",
+        "Тем временем налейте оливковое масло в холодную широкую сковороду, добавьте чеснок и поставьте на самый слабый огонь. Холодный старт и слабый нагрев: чеснок должен лишь едва побулькивать. Готовьте 4–5 минут, потряхивая сковороду, пока лепестки не станут бледно-золотистыми и мягкими. Как только они потемнели — масло горчит, начинайте заново.",
+        "Добавьте хлопья чили и прогрейте ещё 30 секунд — ровно чтобы они отдали цвет маслу, — и снимите сковороду с огня, чтобы ничего не подгорело.",
+        "Прежде чем слить спагетти, зачерпните кружку крахмалистой воды от варки, минимум 200 мл. Именно эта вода превратит масло с чесноком в настоящий соус.",
+        "Слейте пасту и переложите в сковороду с маслом. Верните на средний огонь и перемешивайте минуту, чтобы каждая нить покрылась маслом.",
+        "Влейте 2–3 столовые ложки воды от пасты и мешайте энергично и непрерывно, словно взбиваете яйца. Крахмал воды соединится с маслом в мутную кремовую эмульсию, которая облепит спагетти. Подливайте воду по чуть-чуть ещё 1–2 минуты, пока соус не потечёт, как жидкий заварной крем.",
+        "Снимите с огня, добавьте петрушку и пармезан, ещё раз перемешайте и подавайте сразу. Альо э олио не ждёт никого: эмульсия разрушается по мере остывания."
+      ],
+      "ingredients": ["200 г спагетти", "4 зубчика чеснока, нарезанных тонкими лепестками", "5 ст. л. оливкового масла", "1 ч. л. хлопьев чили", "1 горсть петрушки, мелко рубленой", "30 г тёртого пармезана", "1 ч. л. соли для воды"]
+    }
+  }
+}

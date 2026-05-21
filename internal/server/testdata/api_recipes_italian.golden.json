@@ -1,6 +1,84 @@
 {
-  "count": 2,
+  "count": 5,
   "recipes": [
+    {
+      "slug": "caprese-salad",
+      "name": "Caprese Salad",
+      "description": "The Neapolitan tricolore: tomato, mozzarella and basil dressed with nothing but oil and salt. Teaches that great cold dishes live or die on ingredient temperature and timing.",
+      "cuisine": "italian",
+      "meal_times": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prep_minutes": 15,
+      "cook_minutes": 0,
+      "servings": 4,
+      "video_url": "https://www.youtube.com/results?search_query=caprese+salad+recipe",
+      "nutrition_per_serving": {
+        "calories": 280,
+        "protein": 13,
+        "fat": 24,
+        "carbs": 6,
+        "fiber": 2,
+        "sugar": 4,
+        "sodium": 500,
+        "saturated_fat": 13
+      },
+      "available": true,
+      "cookable_at_home": false
+    },
+    {
+      "slug": "mushroom-risotto",
+      "name": "Mushroom Risotto",
+      "description": "Carnaroli-style risotto with golden mushrooms and no wine, finished with lemon. Teaches the three rules that make or break risotto: hot stock, tostatura, and mantecatura.",
+      "cuisine": "italian",
+      "meal_times": [
+        "dinner"
+      ],
+      "difficulty": "hard",
+      "prep_minutes": 15,
+      "cook_minutes": 35,
+      "servings": 4,
+      "video_url": "https://www.youtube.com/results?search_query=mushroom+risotto+recipe",
+      "nutrition_per_serving": {
+        "calories": 520,
+        "protein": 12,
+        "fat": 21,
+        "carbs": 60,
+        "fiber": 3,
+        "sugar": 3,
+        "sodium": 850,
+        "saturated_fat": 13
+      },
+      "available": true,
+      "cookable_at_home": false
+    },
+    {
+      "slug": "aglio-e-olio",
+      "name": "Spaghetti Aglio e Olio",
+      "description": "The late-night Italian classic: pasta with nothing but garlic, oil and chili. Teaches gentle garlic cooking and the starch-water emulsion that turns an oil sauce creamy.",
+      "cuisine": "italian",
+      "meal_times": [
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "servings": 2,
+      "video_url": "https://www.youtube.com/results?search_query=aglio+e+olio+pasta",
+      "nutrition_per_serving": {
+        "calories": 720,
+        "protein": 18,
+        "fat": 38,
+        "carbs": 72,
+        "fiber": 5,
+        "sugar": 3,
+        "sodium": 500,
+        "saturated_fat": 8
+      },
+      "available": true,
+      "cookable_at_home": false
+    },
     {
       "slug": "spaghetti-carbonara",
       "name": "Spaghetti Carbonara",
