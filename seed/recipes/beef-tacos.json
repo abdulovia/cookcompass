@@ -1,0 +1,55 @@
+{
+  "slug": "beef-tacos",
+  "cuisine": "mexican",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 15,
+  "cook_minutes": 20,
+  "servings": 4,
+  "nutrition": {"calories": 730, "protein": 38, "fat": 42, "carbs": 40, "fiber": 4, "sugar": 5, "sodium": 950, "saturated_fat": 17},
+  "video_url": "https://www.youtube.com/results?search_query=beef+tacos+recipe",
+  "ingredients": [
+    {"text": "8 flour tortillas", "ingredient": "flour-tortillas"},
+    {"text": "500 g ground beef", "ingredient": "ground-beef"},
+    {"text": "1 onion, diced", "ingredient": "onion"},
+    {"text": "2 tomatoes, diced", "ingredient": "tomato"},
+    {"text": "150 g cheddar, grated", "ingredient": "cheddar"},
+    {"text": "1 tbsp cumin", "ingredient": "cumin"},
+    {"text": "1 tbsp paprika", "ingredient": "paprika"},
+    {"text": "1 lettuce heart, shredded", "ingredient": "lettuce"},
+    {"text": "1 lime, cut into wedges", "ingredient": "lime"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Beef Tacos",
+      "description": "Weeknight ground-beef tacos with a from-scratch spice mix. Teaches browning mince without stirring it to death and blooming spices in hot fat.",
+      "steps": [
+        "Heat a large frying pan over high heat, add the ground beef, press it into an even layer with a spatula, and do not touch it for 3 minutes. An undisturbed layer builds a browned crust; constant breaking and stirring traps steam and gives you grey, boiled-tasting meat.",
+        "Break the beef up now and cook 2 more minutes until no pink remains. Tip in a sieve and drain off all but a spoonful of the rendered fat, then return the meat to the pan.",
+        "Add the onion and cook over medium heat 3–4 minutes until translucent and just taking color at the edges.",
+        "Clear a spot in the middle of the pan, drop the cumin and paprika into it with a pinch of salt, and toast them in the hot fat for 30 seconds until fragrant. Blooming spices in fat wakes up their aromatic oils; sprinkled onto wet meat they taste dusty and flat. Stir everything together.",
+        "Pour in 100 ml water, scrape up the browned bits, and simmer 5 minutes until the mixture is saucy but not soupy — a spoon should leave a clean trail across the pan bottom. Taste and adjust the salt.",
+        "Warm the tortillas one by one in a dry pan, 15–20 seconds per side, until they are pliable and blister with small brown spots. Stack them on a plate under a clean towel so they stay soft while you assemble.",
+        "Dice the tomatoes and shred the lettuce if not done yet, and keep the grated cheddar at hand.",
+        "Assemble in order: tortilla, a bed of lettuce first — it is a waterproof layer between tortilla and hot filling that keeps the bottom from soaking through, — then the hot beef, and the cheddar right on top of the meat so it melts.",
+        "Finish with tomato, and serve with lime wedges: a squeeze of acid at the table is not decoration, it is what makes the whole taco taste alive."
+      ]
+    },
+    "ru": {
+      "name": "Тако с говядиной",
+      "description": "Быстрые тако из фарша со смесью специй, собранной на месте. Учит правильно обжаривать фарш, не мешая его без конца, и прогревать специи в горячем жире.",
+      "steps": [
+        "Разогрейте большую сковороду на сильном огне, выложите говяжий фарш, прижмите лопаткой ровным слоем и 3 минуты не трогайте: нетронутый слой даёт румяную корочку, а постоянное разбивание и помешивание запирает пар, и мясо получается серым, как варёным.",
+        "Теперь разбейте фарш и готовьте ещё 2 минуты, пока не исчезнет розовый цвет. Откиньте на сито и слейте вытопившийся жир, оставив примерно ложку, затем верните мясо на сковороду.",
+        "Добавьте лук и готовьте на среднем огне 3–4 минуты до прозрачности и лёгкой позолоты на краях.",
+        "Расчистите середину сковороды, всыпьте туда кумин и паприку с щепоткой соли и прогрейте в горячем жире 30 секунд до яркого аромата. Специи, прогретые в жире, раскрывают свои ароматические масла; брошенные на мокрое мясо, они на вкус пыльные и плоские. Перемешайте всё вместе.",
+        "Влейте 100 мл воды, поднимите со дна поджарки и тушите 5 минут, пока смесь не станет соусной, но не жидкой, — ложка должна оставлять чистый след по дну сковороды. Попробуйте и досолите.",
+        "Прогрейте тортильи по одной на сухой сковороде по 15–20 секунд с каждой стороны до мягкости и мелких коричневых пузырей. Складывайте на тарелку под чистое полотенце, чтобы они оставались тёплыми и эластичными.",
+        "Нарежьте помидоры и нашинкуйте салат, если ещё не готово, и держите тёртый чеддер под рукой.",
+        "Собирайте по порядку: тортилья, сначала подушка из салата — это водоотталкивающий слой между лепёшкой и горячей начинкой, не дающий низу размокнуть, — затем горячий фарш и чеддер прямо на мясо, чтобы он расплавился.",
+        "Завершите помидорами и подавайте с дольками лайма: выжатый за столом сок кислоты — не украшение, а то, что заставляет тако звучать."
+      ],
+      "ingredients": ["8 пшеничных тортилий", "500 г говяжьего фарша", "1 луковица", "2 помидора, нарезанных", "150 г тёртого чеддера", "1 ст. л. кумина", "1 ст. л. паприки", "1 кочан салата, нашинкованного", "1 лайм, разрезанный на дольки"]
+    }
+  }
+}

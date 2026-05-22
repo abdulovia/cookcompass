@@ -1,0 +1,53 @@
+{
+  "slug": "banana-bread",
+  "cuisine": "american",
+  "meal_times": ["breakfast", "snack"],
+  "difficulty": "medium",
+  "prep_minutes": 20,
+  "cook_minutes": 60,
+  "servings": 8,
+  "video_url": "https://www.youtube.com/results?search_query=banana+bread+recipe",
+  "nutrition": {"calories": 330, "protein": 6, "fat": 15, "carbs": 48, "fiber": 3, "sugar": 24, "sodium": 250, "saturated_fat": 9},
+  "ingredients": [
+    {"text": "3 bananas, very ripe", "ingredient": "banana"},
+    {"text": "220 g all-purpose flour", "ingredient": "all-purpose-flour"},
+    {"text": "1.5 tsp baking powder", "ingredient": "baking-powder"},
+    {"text": "110 g butter, melted", "ingredient": "butter"},
+    {"text": "150 g sugar", "ingredient": "sugar"},
+    {"text": "2 eggs", "ingredient": "egg"},
+    {"text": "1 tsp vanilla extract", "ingredient": "vanilla-extract"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Banana Bread",
+      "description": "The classic way to rescue overripe bananas. Teaches the muffin method — mixing wet and dry separately and folding briefly — which is the base of every quick bread.",
+      "steps": [
+        "Heat the oven to 180°C (350°F) and position the rack in the center. Butter a 23 cm loaf pan and line the base with parchment paper so the bread lifts out cleanly.",
+        "Use bananas covered in brown spots, or fully brown ones — as bananas ripen their starch converts to sugar, and pale yellow bananas make bland, starchy bread. This is the one rule you cannot fix later with extra sugar.",
+        "Mash the bananas with a fork in a large bowl until mostly smooth with a few lumps left. Lumps become moist pockets; a blender turns them to puree and the loaf goes gummy.",
+        "Whisk in the melted butter, then the sugar, then the eggs one at a time, whisking 20 seconds after each, and finally the vanilla. The mixture should look glossy and slightly thickened.",
+        "In a separate bowl, whisk the flour, baking powder and half a teaspoon of salt so the leavening is evenly distributed — clumps of baking powder taste bitter and rise unevenly.",
+        "Pour the dry over the wet and fold with a spatula just 15–20 strokes, stopping the moment no dry flour remains. This is the muffin method: overmixing develops gluten and the loaf comes out dense and rubbery. A few lumps in the batter are fine.",
+        "Scrape into the pan, smooth the top, and bake 55–60 minutes until a toothpick poked in the center comes out clean or with a crumb attached. If the top is browning fast after 40 minutes, tent it loosely with foil.",
+        "Cool in the pan 10 minutes — the structure is still setting — then lift the loaf out and cool on a rack at least 30 minutes before slicing. Cut hot and the crumb squashes into paste.",
+        "Store the cooled loaf wrapped in foil or paper at room temperature up to 3 days. The second day's slice is even more moist than the first."
+      ]
+    },
+    "ru": {
+      "name": "Банановый хлеб",
+      "description": "Классический способ спасти переспелые бананы. Учит «маффин-методу» — отдельному смешиванию сухого и жидкого и короткому соединению, — на котором строится любой быстрый хлеб.",
+      "steps": [
+        "Разогрейте духовку до 180°C и поставьте решётку в центр. Смажьте маслом форму для кекса 23 см и выстелите дно пергаментом, чтобы хлеб легко вынулся.",
+        "Берите бананы в коричневых крапинках или полностью коричневые: при созревании крахмал бананов превращается в сахар, а из бледно-жёлтых получается пресный крахмалистый хлеб. Это единственное правило, которое потом не исправить дополнительным сахаром.",
+        "Разомните бананы вилкой в большой миске почти до гладкости, оставив несколько комочков. Комочки станут влажными вкраплениями; блендер превратит их в пюре, и мякиш станет клейким.",
+        "Вмешайте растопленное масло, затем сахар, затем яйца по одному, взбивая по 20 секунд после каждого, и в конце ваниль. Смесь должна стать глянцевой и слегка загустеть.",
+        "В отдельной миске венчиком смешайте муку, разрыхлитель и половину чайной ложки соли, чтобы разрыхлитель распределился равномерно: комки разрыхлителя горчат и поднимают тесто неравномерно.",
+        "Высыпьте сухую смесь на жидкую и вмешивайте лопаткой всего 15–20 движений, останавливаясь, как только исчезнет сухая мука. Это и есть маффин-метод: долгое вымешивание развивает клейковину, и хлеб выходит плотным и резиновым. Небольшие комочки в тесте — не страшно.",
+        "Переложите тесто в форму, разровняйте и пеките 55–60 минут, пока деревянная шпажка из центра не выйдет чистой или с крошкой. Если верх быстро темнеет после 40 минут, накройте форму фольгой.",
+        "Остудите в форме 10 минут — мякиш ещё укрепляется, — затем выньте хлеб и дайте остыть на решётке минимум 30 минут перед нарезкой. Горячий мякиш размажется в пасту.",
+        "Остывший хлеб храните завёрнутым в фольгу или бумагу при комнатной температуре до 3 дней. Ломтик на второй день даже влажнее первого."
+      ],
+      "ingredients": ["3 очень спелых банана", "220 г пшеничной муки", "1,5 ч. л. разрыхлителя", "110 г сливочного масла, растопленного", "150 г сахара", "2 яйца", "1 ч. л. ванильного экстракта"]
+    }
+  }
+}
