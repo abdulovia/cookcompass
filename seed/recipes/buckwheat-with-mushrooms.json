@@ -1,0 +1,52 @@
+{
+  "slug": "buckwheat-with-mushrooms",
+  "cuisine": "russian",
+  "meal_times": ["dinner"],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 25,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=buckwheat+with+mushrooms+recipe",
+  "nutrition": {"calories": 410, "protein": 11, "fat": 19, "carbs": 42, "fiber": 8, "sugar": 3, "sodium": 350, "saturated_fat": 12},
+  "ingredients": [
+    {"text": "250 g buckwheat", "ingredient": "buckwheat"},
+    {"text": "400 g mushrooms, sliced", "ingredient": "mushrooms"},
+    {"text": "1 onion, diced", "ingredient": "onion"},
+    {"text": "50 g butter", "ingredient": "butter"},
+    {"text": "150 g sour cream", "ingredient": "sour-cream"},
+    {"text": "1 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Buckwheat with Mushrooms",
+      "description": "Russia's everyday kasha, here with a sour-cream mushroom gravy. Teaches toasting buckwheat and the pan-space rule for browning mushrooms.",
+      "steps": [
+        "Rinse the buckwheat in a fine sieve under running water until the water runs clear. Raw groats carry dusty, bitter notes that rinsing washes away.",
+        "Toast the drained groats in a dry pan over medium heat for 2–3 minutes, stirring, until they smell nutty and crackle softly. This old trick is what separates fluffy, aromatic kasha from a bland grey mass.",
+        "Bring 500 ml water to a boil with half the salt, add the buckwheat, cover with a tight lid and turn the heat to the lowest setting. Cook 15 minutes without stirring and without lifting the lid — every peek releases the steam that cooks the groats.",
+        "Turn off the heat and let the pot stand, still covered, 5–10 minutes. Then fluff with a fork: lifting and turning rather than stirring keeps the grains separate.",
+        "While the buckwheat stands, melt half the butter in a large frying pan over high heat. Add the mushrooms in a single layer — work in two batches if needed. Crowded mushrooms steam in their own liquid and come out grey and rubbery instead of brown.",
+        "Fry 4–5 minutes without moving them, then stir once and cook 2 minutes more until deeply golden. Lift them out and repeat with the second batch.",
+        "Lower the heat to medium, add the rest of the butter and the onion, and cook 4–5 minutes until soft and translucent with golden edges. Scrape up the brown mushroom bits — that is pure flavor.",
+        "Return all the mushrooms, stir in the sour cream, and warm through for 2 minutes over low heat — do not let it boil hard or the cream can split. Season with the remaining salt and pepper.",
+        "Serve the buckwheat hot with the mushroom gravy poured over, and an extra spoon of sour cream on top."
+      ]
+    },
+    "ru": {
+      "name": "Гречка с грибами",
+      "description": "Повседневная русская каша с грибной подливой на сметане. Учит прогревать гречку на сухой сковороде и правилу места на сковороде при жарке грибов.",
+      "steps": [
+        "Промойте гречку в мелком сите под проточной водой до её прозрачности. На сырой крупе остаётся горьковатая пыль, которую смывает промывание.",
+        "Прогрейте слитую крупу на сухой сковороде на среднем огне 2–3 минуты, помешивая, пока не появится ореховый запах и мягкий треск. Именно этот старый приём отличает рассыпчатую ароматную кашу от безвкусной серой массы.",
+        "Доведите 500 мл воды до кипения с половиной соли, всыпьте гречку, плотно накройте крышкой и убавьте огонь до минимума. Варите 15 минут, не перемешивая и не поднимая крышку: каждый взгляд выпускает пар, на котором варится крупа.",
+        "Выключите огонь и дайте кастрюле постоять под крышкой ещё 5–10 минут. Затем взрыхлите кашу вилкой: поднимайте и переворачивайте, а не мешайте, — зёрна останутся рассыпчатыми.",
+        "Пока гречка доходит, растопите половину масла на большой сковороде на сильном огне. Выложите грибы в один слой, при необходимости в два приёма: скученным грибам негде обжариваться, они тушатся в собственном соку и выходят серыми и резиновыми.",
+        "Жарьте 4–5 минут, не трогая, затем один раз перемешайте и готовьте ещё 2 минуты до глубокой золотистости. Выньте и повторите со второй партией.",
+        "Убавьте огонь до среднего, добавьте оставшееся масло и лук и готовьте 4–5 минут до мягкости и золотистых краёв. Поднимите лопаткой коричневые грибные пригарки — это чистый вкус.",
+        "Верните все грибы, вмешайте сметану и прогрейте 2 минуты на слабом огне, не давая бурно кипеть, иначе сметана может расслоиться. Посолите оставшейся солью и поперчите.",
+        "Подавайте гречку горячей, полив грибной подливой, с дополнительной ложкой сметаны сверху."
+      ],
+      "ingredients": ["250 г гречки", "400 г грибов, нарезанных", "1 луковица", "50 г сливочного масла", "150 г сметаны", "1 ч. л. соли"]
+    }
+  }
+}
