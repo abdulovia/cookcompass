@@ -1,0 +1,53 @@
+{
+  "slug": "bulgogi",
+  "cuisine": "korean",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 25,
+  "cook_minutes": 10,
+  "servings": 4,
+  "nutrition": {"calories": 700, "protein": 35, "fat": 32, "carbs": 62, "fiber": 1, "sugar": 9, "sodium": 1200, "saturated_fat": 10},
+  "video_url": "https://www.youtube.com/results?search_query=bulgogi+recipe",
+  "ingredients": [
+    {"text": "600 g beef chuck, thinly sliced", "ingredient": "beef-chuck"},
+    {"text": "5 tbsp soy sauce", "ingredient": "soy-sauce"},
+    {"text": "2 tbsp brown sugar", "ingredient": "brown-sugar"},
+    {"text": "1 tbsp sesame oil", "ingredient": "sesame-oil"},
+    {"text": "4 cloves garlic, grated", "ingredient": "garlic"},
+    {"text": "3 scallions, cut in pieces", "ingredient": "scallion"},
+    {"text": "300 g jasmine rice", "ingredient": "jasmine-rice"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Bulgogi",
+      "description": "Korean barbecue beef: thin slices marinated in soy, sugar, garlic and sesame, seared in seconds. Teaches slicing against the grain and fast caramelizing marinades.",
+      "steps": [
+        "Slicing is everything here. Put the beef chuck in the freezer for 30 minutes to firm it, then slice 3 mm thick against the grain — look at the muscle fibers and cut perpendicular to them. Thin, across-fiber slices turn tender in under a minute of cooking; thick or with-fiber ones stay chewy no matter what.",
+        "Grate the garlic on a fine grater into a bowl. Add the soy sauce, brown sugar and sesame oil and stir until the sugar dissolves into a dark marinade.",
+        "Toss the beef through the marinade with your hands, massaging it in for a minute. Marinate 30 minutes on the counter, or up to a day in the fridge. The sugar tenderizes the surface and, more importantly, caramelizes into a dark glaze in the pan.",
+        "Meanwhile cook the rice: rinse until the water is almost clear, 450 ml water, bring to a boil, cover, lowest heat 12 minutes, rest 10 minutes off the heat, fluff.",
+        "Set a heavy pan or wok over the highest heat until a drop of water dances and evaporates on contact, then wipe the pan with an oiled paper towel. Bulgogi needs violence of heat: a lukewarm pan boils the meat in the marinade instead of searing it.",
+        "Lay the slices in a single layer, a few at a time. They take 60–90 seconds on the first side — the marinade should sizzle loudly and caramelize to dark brown streaks — then flip for 20–30 seconds more. Never crowd the pan; work in 3–4 batches.",
+        "Add the scallion pieces to the last batch for the final 30 seconds, just long enough to blister and sweeten.",
+        "Return all the beef to the pan for 20 seconds with the accumulated juices, scraping up the caramelized marinade from the bottom — those brown streaks are the glaze you marinated for.",
+        "Pile over hot rice and pour the pan juices over the top. Eat immediately, straight from the sizzle."
+      ]
+    },
+    "ru": {
+      "name": "Пульгоги",
+      "description": "Корейская говядина для гриля: тонкие ломтики в маринаде из сои, сахара, чеснока и кунжутного масла, жареные за секунды. Учит резать поперёк волокон и быстро карамелизовывать маринад.",
+      "steps": [
+        "Здесь всё решает нарезка. Положите говядину в морозилку на 30 минут, чтобы она уплотнилась, затем нарежьте поперёк волокон толщиной 3 мм: посмотрите на направление мышечных волокон и режьте перпендикулярно им. Тонкие ломтики поперёк волокон становятся мягкими меньше чем за минуту жарки; толстые или вдоль волокон останутся жёсткими, что бы вы ни делали.",
+        "Натрите чеснок на мелкой тёрке в миску. Добавьте соевый соус, коричневый сахар и кунжутное масло и размешайте до растворения сахара в тёмный маринад.",
+        "Перемешайте говядину с маринадом руками, втирая его минуту. Маринуйте 30 минут при комнатной температуре или до суток в холодильнике. Сахар размягчает поверхность и, что важнее, карамелизуется в тёмную глазурь на сковороде.",
+        "Тем временем сварите рис: промойте почти до прозрачной воды, 450 мл воды, кипение, крышка, минимальный огонь 12 минут, 10 минут настаивания, взрыхлить вилкой.",
+        "Поставьте тяжёлую сковороду или вок на самый сильный огонь до состояния, когда капля воды танцует и мгновенно испаряется, и протрите сковороду промасленной бумажной салфеткой. Пульгоги нужен бешеный жар: на тёплой сковороде мясо тушится в маринаде вместо поджарки.",
+        "Выкладывайте ломтики в один слой, по несколько за раз. Первая сторона занимает 60–90 секунд — маринад должен громко шипеть и карамелизоваться в тёмно-коричневые полосы, — затем переверните ещё на 20–30 секунд. Никогда не заполняйте сковороду целиком; сделайте 3–4 партии.",
+        "В последнюю партию добавьте куски зелёного лука на финальные 30 секунд — ровно чтобы он вздулся и стал слаще.",
+        "Верните всю говядину на сковороду на 20 секунд вместе с собравшимся соком, поднимая лопаткой карамелизованный маринад со дна: эти коричневые полосы и есть глазурь, ради которой мариновали.",
+        "Выложите на горячий рис и полейте соками со сковороды. Ешьте сразу, пока шипит."
+      ],
+      "ingredients": ["600 г говядины (лопатка), тонко нарезанной", "5 ст. л. соевого соуса", "2 ст. л. коричневого сахара", "1 ст. л. кунжутного масла", "4 зубчика чеснока, натёртых", "3 стебля зелёного лука, нарезанных", "300 г жасминового риса"]
+    }
+  }
+}
