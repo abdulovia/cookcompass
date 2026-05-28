@@ -1,0 +1,55 @@
+{
+  "slug": "falafel",
+  "cuisine": "middle-eastern",
+  "meal_times": ["lunch"],
+  "difficulty": "medium",
+  "prep_minutes": 40,
+  "cook_minutes": 20,
+  "servings": 4,
+  "nutrition": {"calories": 380, "protein": 11, "fat": 22, "carbs": 36, "fiber": 9, "sugar": 4, "sodium": 620, "saturated_fat": 4},
+  "video_url": "https://www.youtube.com/results?search_query=homemade+falafel+recipe",
+  "ingredients": [
+    {"text": "2 cans chickpeas, drained", "ingredient": "chickpeas"},
+    {"text": "2 cloves garlic", "ingredient": "garlic"},
+    {"text": "1 onion, quartered", "ingredient": "onion"},
+    {"text": "1 bunch cilantro", "ingredient": "cilantro"},
+    {"text": "2 tsp cumin", "ingredient": "cumin"},
+    {"text": "3 tbsp tahini", "ingredient": "tahini"},
+    {"text": "1 lemon, juiced", "ingredient": "lemon"},
+    {"text": "300 ml vegetable oil, for shallow frying", "ingredient": "vegetable-oil"},
+    {"text": "0.5 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Falafel with Tahini Sauce",
+      "description": "Crisp chickpea fritters from the Levant, shallow-fried at home. Teaches pulse-to-sand texture, chilling before shaping, and whisking tahini sauce past its seize.",
+      "steps": [
+        "Drain the chickpeas thoroughly and pat them dry with paper towels — excess water is the enemy of crisp falafel.",
+        "Pulse the chickpeas, garlic, onion, cilantro, cumin and salt in a food processor to the texture of coarse damp sand that just clumps when pinched. Scrape the bowl down 2–3 times. Stop well before it becomes a smooth paste: over-processed falafel fries up dense and greasy.",
+        "Refrigerate the mixture 30 minutes. Cold firms the starch so the balls hold together in the oil — skipping this is why homemade falafel usually falls apart.",
+        "Meanwhile make the sauce: whisk the tahini with the lemon juice and a pinch of salt. It will seize into a stiff paste — that is normal. Whisk in cold water a tablespoon at a time until it suddenly turns pale, smooth and pourable like yogurt.",
+        "Roll the chilled mixture into 12–16 balls, pressing each firmly between your palms so there are no cracks. Cracked balls open up in the hot oil.",
+        "Pour the oil into a heavy pan to 1 cm depth and heat over medium until a wooden spoon dipped in produces a steady stream of bubbles, about 180°C.",
+        "Fry in batches of 4–5, without crowding, 3 minutes total, turning until deeply golden brown all over. Lift one out and cut it open: crisp shell, fluffy crumb inside. If the outside darkens before the inside heats through, the oil is too hot — lower the heat and give the next batch more time.",
+        "Drain on a wire rack or paper towels in a single layer, never piled in a closed bowl — trapped steam softens the crust you worked for.",
+        "Serve hot, drizzled with the tahini sauce, inside warm flatbread with salad. Both falafel and sauce keep a day in the fridge; re-crisp the falafel in a dry pan."
+      ]
+    },
+    "ru": {
+      "name": "Фалафель с соусом тахини",
+      "description": "Хрустящие нутовые котлетки с Леванта, жареные дома на небольшом слое масла. Учит текстуре «крупного влажного песка», охлаждению перед формовкой и работе с тахини, когда он «схватывается».",
+      "steps": [
+        "Тщательно слейте жидкость с нута и промокните его бумажными полотенцами: лишняя вода — главный враг хрустящего фалафеля.",
+        "Пробейте в блендере нут, чеснок, лук, кинзу, кумин и соль до текстуры крупного влажного песка, который слипается при сжатии. Дважды-трижды соскребайте массу со стенок. Остановитесь задолго до гладкой пасты: переизмельчённый фалафель при жарке получается плотным и жирным.",
+        "Уберите массу в холодильник на 30 минут. Холод укрепляет крахмал, и шарики держат форму в масле: без этого шага домашний фалафель обычно разваливается.",
+        "Тем временем сделайте соус: взбейте тахини с соком лимона и щепоткой соли. Он схватится в жёсткий комок — так и должно быть. Вливайте холодную воду по столовой ложке, взбивая, пока соус внезапно не станет светлым, гладким и льющимся, как йогурт.",
+        "Скатайте из охлаждённой массы 12–16 шариков, плотно сжимая каждый между ладонями, без трещин. Треснувшие шарики раскрываются в горячем масле.",
+        "Налейте масло в тяжёлую сковороду слоем 1 см и нагрейте на среднем огне до состояния, когда деревянная лопатка даёт ровную струйку пузырьков, — примерно 180°C.",
+        "Жарьте партиями по 4–5 штук, не тесня, по 3 минуты, поворачивая, до глубокого золотисто-коричневого цвета со всех сторон. Достаньте один и разрежьте: хрустящая корочка, пышный мякиш внутри. Если корочка темнеет раньше, чем середина прогревается, масло слишком горячее: убавьте огонь и дайте следующей партии больше времени.",
+        "Обсушите на решётке или бумажных полотенцах в один слой, не горкой в закрытой миске: пар размягчит корочку, ради которую вы старались.",
+        "Подавайте горячим, полив соусом тахини, в тёплой пите или лаваше с салатом. Фалафель и соус хранятся день в холодильнике; фалафель снова обжарьте на сухой сковороде."
+      ],
+      "ingredients": ["2 банки нута, жидкость слита", "2 зубчика чеснока", "1 луковица, разрезанная на четвертинки", "1 пучок кинзы", "2 ч. л. кумина", "3 ст. л. тахини", "1 лимон, сок", "300 мл растительного масла для жарки", "0,5 ч. л. соли"]
+    }
+  }
+}

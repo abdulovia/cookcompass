@@ -1,0 +1,52 @@
+{
+  "slug": "gazpacho",
+  "cuisine": "spanish",
+  "meal_times": ["lunch"],
+  "difficulty": "easy",
+  "prep_minutes": 25,
+  "cook_minutes": 0,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=gazpacho+recipe",
+  "nutrition": {"calories": 240, "protein": 4, "fat": 15, "carbs": 21, "fiber": 4, "sugar": 9, "sodium": 300, "saturated_fat": 2},
+  "ingredients": [
+    {"text": "800 g ripe tomatoes", "ingredient": "tomato"},
+    {"text": "1 cucumber, peeled and roughly chopped", "ingredient": "cucumber"},
+    {"text": "1 bell pepper, roughly chopped", "ingredient": "bell-pepper"},
+    {"text": "100 g white bread, crusts removed", "ingredient": "bread"},
+    {"text": "4 tbsp olive oil", "ingredient": "olive-oil"},
+    {"text": "1 tbsp white vinegar", "ingredient": "white-vinegar"},
+    {"text": "1 clove garlic", "ingredient": "garlic"},
+    {"text": "0.5 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Gazpacho",
+      "description": "Andalusian cold tomato soup blended raw in minutes. Teaches how bread thickens a soup and how to emulsify oil into a cold liquid.",
+      "steps": [
+        "Core the tomatoes and cut them in quarters. Peel the cucumber in stripes so a little green stays on — it colors the soup pale pink rather than red-orange.",
+        "Tear the bread into pieces and soak it in 100 ml water mixed with the vinegar for 5 minutes until it collapses when pressed. This old trick is the body of the soup: without bread it is just vegetable juice.",
+        "Put the tomatoes, cucumber, bell pepper, garlic clove, salt and the soaked bread (squeeze out most of the water) into a blender. Blend on high for 1–2 minutes until completely smooth — lift the lid and check that no flecks remain.",
+        "With the blender running on medium, pour the olive oil in a thin, steady stream through the lid opening. The soup will visibly change color, turning glossy orange as the oil emulsifies into it. Rush this and the oil separates into a greasy film on top.",
+        "Taste for salt and vinegar — it should be a touch sharper than you want, because chilling will mute it. If the soup is so thick it holds a spoon trail, thin it with a splash of cold water.",
+        "Refrigerate for at least 2 hours. This is not optional: freshly blended gazpacho tastes raw and flat, and only time in the cold pulls the flavors together.",
+        "Taste again once cold and adjust the salt. Cut a few tiny dice of cucumber and bell pepper for garnish.",
+        "Serve in chilled bowls with the vegetable dice on top and a few drops of olive oil. A cold soup in a warm bowl warms up before it reaches the table."
+      ]
+    },
+    "ru": {
+      "name": "Гаспачо",
+      "description": "Андалузский холодный томатный суп, взбитый сырым за считанные минуты. Учит, как хлеб загущает суп и как эмульгировать масло в холодной жидкости.",
+      "steps": [
+        "Удалите плодоножки у помидоров и разрежьте на четвертинки. Очистите огурец полосами, оставив немного зелени, — суп получится нежно-розовым, а не красно-оранжевым.",
+        "Порвите хлеб на куски и замочите в 100 мл воды с уксусом на 5 минут, пока он не начнёт расходиться при нажатии. Этот старый приём даёт супу плотность: без хлеба это просто овощной сок.",
+        "Положите в блендер помидоры, огурец, болгарский перец, зубчик чеснока, соль и отжатый хлеб (большую часть воды уберите). Взбивайте на высокой скорости 1–2 минуты до полной однородности — приподнимите крышку и убедитесь, что не осталось крупинок.",
+        "Не выключая блендер на средней скорости, тонкой струйкой вливайте оливковое масло через отверстие в крышке. Суп заметно поменяет цвет и станет глянцево-оранжевым: масло эмульгируется. Торопитесь — и масло отслоится жирной плёнкой сверху.",
+        "Попробуйте на соль и уксус: суп должен быть чуть острее, чем хочется, потому что охлаждение приглушит вкус. Если суп такой густой, что держит след от ложки, разбавьте глотком холодной воды.",
+        "Уберите в холодильник минимум на 2 часа. Это не пожелание: свежевзбитый гаспачо на вкус сырой и плоский, вкус собирается только на холоде со временем.",
+        "Остывший суп попробуйте снова и досолите. Нарежьте немного мелких кубиков огурца и перца для подачи.",
+        "Подавайте в охлаждённых тарелках с овощными кубиками и несколькими каплями оливкового масла. Холодный суп в тёплой тарелке успевает согреться по пути к столу."
+      ],
+      "ingredients": ["800 г спелых помидоров", "1 огурец, очищенный и крупно нарезанный", "1 болгарский перец, крупно нарезанный", "100 г белого хлеба без корок", "4 ст. л. оливкового масла", "1 ст. л. белого уксуса", "1 зубчик чеснока", "0,5 ч. л. соли"]
+    }
+  }
+}

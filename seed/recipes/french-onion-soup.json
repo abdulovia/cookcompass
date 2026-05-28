@@ -1,0 +1,54 @@
+{
+  "slug": "french-onion-soup",
+  "cuisine": "french",
+  "meal_times": ["dinner"],
+  "difficulty": "hard",
+  "prep_minutes": 20,
+  "cook_minutes": 80,
+  "servings": 4,
+  "nutrition": {"calories": 550, "protein": 17, "fat": 23, "carbs": 60, "fiber": 6, "sugar": 15, "sodium": 1150, "saturated_fat": 9},
+  "video_url": "https://www.youtube.com/results?search_query=french+onion+soup+recipe",
+  "ingredients": [
+    {"text": "6 onions, thinly sliced", "ingredient": "onion"},
+    {"text": "1.2 l beef stock", "ingredient": "beef-stock"},
+    {"text": "1 baguette, cut in slices", "ingredient": "baguette"},
+    {"text": "150 g cheddar, grated", "ingredient": "cheddar"},
+    {"text": "50 g butter", "ingredient": "butter"},
+    {"text": "3 sprigs thyme", "ingredient": "thyme"},
+    {"text": "1 bay leaf", "ingredient": "bay-leaf"},
+    {"text": "0.5 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "French Onion Soup",
+      "description": "Onions taken to the edge of burnt and drowned in beef stock under a broiled cheese crust. Teaches true caramelization — a 50-minute process with no shortcuts.",
+      "steps": [
+        "Slice the onions pole to pole, 3 mm thick, so the layers stay in arcs; paper-thin rounds dissolve into mush. You will think six onions is too many — they cook down to a sixth of their volume.",
+        "Melt the butter in a heavy pot over medium-low heat, add the onions and the salt, and stir to coat. The salt draws out water, which is the first stage: the onions must stew in their own liquid before they can brown.",
+        "Cook 45–50 minutes, stirring every 5 minutes at first and every 2–3 minutes near the end. Every time a brown glaze builds on the pot bottom, add 2–3 tablespoons of stock and scrape it up. This deglazing is not optional — that glaze, repeated dozens of times, is the entire flavor of the soup. Rush the heat and you get pale onions with a burnt bottom; a true batch is deep mahogany and smells like beef broth although no beef has touched it yet. If anything properly blackens, the pot is bitter: start again.",
+        "Add the thyme sprigs and the bay leaf, pour in the rest of the stock, and simmer gently 20 minutes. Fish out the thyme stalks and bay leaf, then taste and sharpen with salt as needed — stock varies enormously in saltiness.",
+        "While the soup simmers, cut the baguette into 2 cm slices and toast them dry in the oven or a pan until hard and golden right through. Bone-dry bread absorbs soup slowly and stays structural at the bottom of the bowl; fresh bread collapses instantly.",
+        "Ladle the soup into four ovenproof bowls set on a baking tray — the tray catches spills and carries the molten bowls to the table. Float 2–3 toast slices per bowl, overlapping the rim slightly.",
+        "Cover the bread completely with a thick layer of cheddar, all the way to the bowl's edge. An unbroken cheese seal keeps the steam inside the soup so the bread softens from below while the crust browns above.",
+        "Broil 3–4 minutes, about 10 cm from the element, watching without blinking: the cheese should bubble and develop dark brown spots. The line between browned and burnt here is a matter of seconds.",
+        "Carry the bowls out on the tray, set each on a plate, and warn everyone: the soup under that crust is still lava-hot. Let them sit 2–3 minutes — this is the pause the bowls' handles were made for."
+      ]
+    },
+    "ru": {
+      "name": "Французский луковый суп",
+      "description": "Лук, доведённый до грани подгорания, залитый говяжьим бульоном под запечённой сырной коркой. Учит настоящей карамелизации — процессу на 50 минут без коротких путей.",
+      "steps": [
+        "Нарежьте лук от полюса к полюсу толщиной 3 мм, чтобы слои остались дугами; бумажно-тонкие кольца расходятся в кашу. Вам покажется, что шести луковиц много — они уварятся до шестой части объёма.",
+        "Растопите сливочное масло в тяжёлой кастрюле на медленно-среднем огне, добавьте лук и соль и перемешайте. Соль вытягивает воду — это первая стадия: лук должен протушиться в собственной жидкости, прежде чем сможет подрумяниться.",
+        "Готовьте 45–50 минут, помешивая в начале каждые 5 минут, а к концу каждые 2–3 минуты. Каждый раз, когда на дне образуется коричневая глазурь, добавляйте 2–3 столовые ложки бульона и поднимайте её лопаткой. Это деглазирование не по желанию: глазурь, снятая десятки раз, — весь вкус супа. Поторопите огонь — получите бледный лук с подгоревшим дном; настоящая партия — глубокого цвета красного дерева и пахнет мясным бульоном, хотя мяса в ней ещё не было. Если что-то по-настоящему почернело, кастрюля горчит: начинайте заново.",
+        "Добавьте веточки тимьяна и лавровый лист, влейте остальной бульон и варите на слабом огне 20 минут. Выньте стебли тимьяна и лавровый лист, попробуйте и досолите по необходимости — солёность бульонов различается огромно.",
+        "Пока суп варится, нарежьте багет ломтиками по 2 см и подсушите в духовке или на сковороде до твёрдости и золотистости насквозь. Сухой хлеб впитывает суп медленно и держит конструкцию на дне тарелки; свежий разваливается мгновенно.",
+        "Разлейте суп по четырём огнеупорным мискам, стоящим на противне: противень поймает переливы и донесёт раскалённые миски до стола. В каждую положите по 2–3 ломтика хлеба, слегка выходя на край.",
+        "Полностью закройте хлеб толстым слоем чеддера до самого края миски. Неразрывная сырная печать держит пар внутри супа: хлеб размягчается снизу, пока корка румянится сверху.",
+        "Запекайте под грилем 3–4 минуты, примерно в 10 см от нагревателя, не отрывая глаз: сыр должен запузыриться и покрыться тёмно-коричневыми крапинами. Грань между румяным и подгоревшим здесь — вопрос секунд.",
+        "Вынесите миски на противне, поставьте каждую на тарелку и предупредите всех: суп под коркой всё ещё горяч, как лава. Дайте постоять 2–3 минуты — именно для этой паузы у мисок и сделаны ручки."
+      ],
+      "ingredients": ["6 луковиц, тонко нарезанных", "1,2 л говяжьего бульона", "1 багет, нарезанный ломтиками", "150 г тёртого чеддера", "50 г сливочного масла", "3 веточки тимьяна", "1 лавровый лист", "0,5 ч. л. соли"]
+    }
+  }
+}
