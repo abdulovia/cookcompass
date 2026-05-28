@@ -1,0 +1,55 @@
+{
+  "slug": "chicken-tikka-masala",
+  "cuisine": "indian",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 25,
+  "cook_minutes": 30,
+  "servings": 4,
+  "nutrition": {"calories": 590, "protein": 40, "fat": 16, "carbs": 62, "fiber": 3, "sugar": 8, "sodium": 800, "saturated_fat": 10},
+  "video_url": "https://www.youtube.com/results?search_query=chicken+tikka+masala+recipe",
+  "ingredients": [
+    {"text": "600 g chicken breast, cut in chunks", "ingredient": "chicken-breast"},
+    {"text": "150 g yogurt", "ingredient": "yogurt"},
+    {"text": "2 tsp garam masala", "ingredient": "garam-masala"},
+    {"text": "1 tsp turmeric", "ingredient": "turmeric"},
+    {"text": "1 can canned tomatoes (400 g)", "ingredient": "canned-tomatoes"},
+    {"text": "150 ml heavy cream", "ingredient": "heavy-cream"},
+    {"text": "3 cloves garlic, minced", "ingredient": "garlic"},
+    {"text": "1 tbsp ginger, grated", "ingredient": "ginger"},
+    {"text": "300 g basmati rice", "ingredient": "basmati-rice"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Chicken Tikka Masala",
+      "description": "Charred yogurt-marinated chicken in a creamy tomato curry. Teaches marinating in yogurt, charring without overcooking, and building a sauce in the same pan.",
+      "steps": [
+        "Cut the chicken breast into 4 cm chunks. In a bowl, mash half the garlic and half the ginger with 1 teaspoon of the garam masala, the turmeric, the yogurt and three-quarters of a teaspoon of salt into a marinade. The mild acid and enzymes in yogurt tenderize the meat and carry the spice color deep into it.",
+        "Fold the chicken through the marinade until every piece is coated and let it sit at least 30 minutes at room temperature, or up to overnight in the fridge. Marinating is the difference between spiced-around and spiced-through chicken.",
+        "Rinse the basmati in several changes of water until it runs clear, then cook it with 450 ml water and a pinch of salt: boil, cover, lowest heat 12 minutes, rest 10 minutes off the heat. Fluff with a fork at the end.",
+        "Heat a heavy frying pan over high heat until it just begins to smoke. Lay the chicken pieces in a single layer — in two batches if your pan is small — and leave them 2 minutes per side, about 5–6 minutes total. You want charred, spotty edges, not cooked-through meat: it finishes gently in the sauce later. Crowded pieces steam gray instead of charring.",
+        "Lift the charred chicken out onto a plate, leaving the browned spices behind in the pan. Lower the heat to medium.",
+        "Add the remaining garlic and ginger to the pan and sizzle 30 seconds — no longer, burnt garlic turns the whole sauce bitter.",
+        "Add the remaining teaspoon of garam masala and stir 30 seconds until it smells fragrant, then pour in the tomatoes with their juice. Crush them against the pan with your spoon and simmer 8–10 minutes, stirring now and then, until the sauce darkens from bright red to brick orange and thickens enough that fat glistens at the edges.",
+        "Pour in the cream, stir, and return the chicken with any juices from the plate. Simmer 6–8 minutes, until the chicken is cooked through and the sauce coats a spoon. Taste for salt now — cream dulls seasoning.",
+        "Serve over the fluffed basmati, with the sauce pooled around."
+      ]
+    },
+    "ru": {
+      "name": "Чикен тикка масала",
+      "description": "Обжаренная до подпалин курица в йогуртовой маринаде под сливочно-томатным карри. Учит маринованию в йогурте, обжарке до корочки без пережарки и построению соуса в той же сковороде.",
+      "steps": [
+        "Нарежьте куриную грудку кусками по 4 см. В миске разотрите половину чеснока и половину имбиря с 1 чайной ложкой гарам масала, куркумой, йогуртом и тремя четвертями чайной ложки соли. Мягкая кислота и ферменты йогурта размягчают мясо и проводят цвет специй в самую глубину.",
+        "Обваляйте курицу в маринаде, чтобы каждый кусок был покрыт, и оставьте минимум на 30 минут при комнатной температуре или до ночи в холодильнике. Маринование — это разница между курицей, обмазанной специями снаружи, и пропитанной ими насквозь.",
+        "Промойте басмати в нескольких водах до прозрачной и сварите с 450 мл воды и щепоткой соли: кипение, крышка, минимальный огонь 12 минут, 10 минут настаивания без огня. В конце взрыхлите вилкой.",
+        "Раскалите тяжёлую сковороду на сильном огне до лёгкого дымка. Выложите курицу в один слой — при маленькой сковороде в два приёма — и не трогайте по 2 минуты с каждой стороны, всего 5–6 минут. Нужны обугленные крапчатые края, а не готовое мясо: оно дойдёт в соусе. Если выложить куски скученно, они будут готовиться на пару и сереть вместо поджарки.",
+        "Переложите курицу на тарелку, оставив на сковороде поджарившиеся специи. Убавьте огонь до среднего.",
+        "Добавьте оставшийся чеснок и имбирь и прогрейте 30 секунд, не дольше: подгоревший чеснок сделает горьким весь соус.",
+        "Всыпьте оставшуюся чайную ложку гарам масала, помешивайте 30 секунд до яркого аромата, затем влейте помидоры вместе с соком. Раздавите их ложкой о дно сковороды и тушите 8–10 минут, изредка помешивая, пока соус не потемнеет от ярко-красного до кирпично-оранжевого и не загустеет так, чтобы по краям заблестел жир.",
+        "Влейте сливки, перемешайте и верните курицу вместе с соками с тарелки. Тушите 6–8 минут, пока курица не проготовится, а соус не станет держаться на ложке. Попробуйте на соль сейчас — сливки приглушают приправы.",
+        "Подавайте на взрыхлённом басмати, распределив соус вокруг."
+      ],
+      "ingredients": ["600 г куриной грудки, нарезанной кусками", "150 г йогурта", "2 ч. л. гарам масала", "1 ч. л. куркумы", "1 банка томатов в собственном соку (400 г)", "150 мл сливок", "3 зубчика чеснока", "1 ст. л. тёртого имбиря", "300 г риса басмати"]
+    }
+  }
+}

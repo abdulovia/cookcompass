@@ -1,0 +1,48 @@
+{
+  "slug": "caprese-salad",
+  "cuisine": "italian",
+  "meal_times": ["lunch"],
+  "difficulty": "easy",
+  "prep_minutes": 15,
+  "cook_minutes": 0,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=caprese+salad+recipe",
+  "nutrition": {"calories": 280, "protein": 13, "fat": 24, "carbs": 6, "fiber": 2, "sugar": 4, "sodium": 500, "saturated_fat": 13},
+  "ingredients": [
+    {"text": "3 large ripe tomatoes", "ingredient": "tomato"},
+    {"text": "250 g mozzarella", "ingredient": "mozzarella"},
+    {"text": "1 bunch basil", "ingredient": "basil"},
+    {"text": "3 tbsp olive oil", "ingredient": "olive-oil"},
+    {"text": "0.5 tsp flaky salt", "ingredient": "salt"},
+    {"text": "1 tsp black pepper, freshly ground", "ingredient": "black-pepper"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Caprese Salad",
+      "description": "The Neapolitan tricolore: tomato, mozzarella and basil dressed with nothing but oil and salt. Teaches that great cold dishes live or die on ingredient temperature and timing.",
+      "steps": [
+        "Take the tomatoes out of the fridge 30 minutes ahead — cold mutates their flavor into nothing. A caprese made with fridge-cold tomatoes is the most common way to ruin it.",
+        "Cut out the tough cores and slice the tomatoes into 5 mm rounds with a serrated or very sharp knife so you cut rather than crush.",
+        "Drain the mozzarella, pat it dry and slice it to exactly the same thickness as the tomatoes. Equal slices are not just pretty — every forkful then carries the same ratio of cheese to tomato.",
+        "Arrange tomato and mozzarella slices alternately on a platter, overlapping each slice halfway over the previous one so the pattern holds together.",
+        "Tear the basil leaves over the salad with your fingers instead of chopping them — a knife bruises and blackens the leaves within minutes.",
+        "Sprinkle with the flaky salt only now, right before dressing. Salted earlier, the tomatoes weep whey and the plate floods.",
+        "Drizzle the olive oil in a slow spiral, grind the pepper over, and serve within 20 minutes with crusty bread to mop the plate — this salad does not improve with waiting."
+      ]
+    },
+    "ru": {
+      "name": "Салат капрезе",
+      "description": "Неаполитанский триколор: помидоры, моцарелла и базилик, заправленные только маслом и солью. Учит, что холодные блюда решает температура продуктов и время подачи.",
+      "steps": [
+        "Достаньте помидоры из холодильника за 30 минут — холод убивает их вкус. Капрезе из холодильных помидоров — самая частая ошибка.",
+        "Вырежьте жёсткие плодоножки и нарежьте помидоры кружками по 5 мм зубчатым или очень острым ножом, чтобы резать, а не мять.",
+        "Слейте с моцареллы рассол, промокните её и нарежьте точно такой же толщины, как помидоры. Одинаковые ломтики — это не только красота: в каждом укусе будет то же соотношение сыра и помидора.",
+        "Разложите кружки помидоров и моцареллы по очереди на блюде, накладывая каждый следующий ломтик на половину предыдущего, чтобы узор держался.",
+        "Порвите листья базилика руками прямо над салатом вместо нарезки — нож уже через минуты чернит и мнёт листья.",
+        "Посолите хлопьями соли только сейчас, перед заправкой. Если посолить раньше, помидоры пустят сок и блюдо затопит.",
+        "Полейте оливковым маслом медленной спиралью, свежемолотый перец — сверху и подавайте в течение 20 минут с хрустящим хлебом, чтобы собирать соки со тарелки. Этот салат не ждёт."
+      ],
+      "ingredients": ["3 крупных спелых помидора", "250 г моцареллы", "1 пучок базилика", "3 ст. л. оливкового масла", "0,5 ч. л. хлопьев соли", "1 ч. л. свежемолотого чёрного перца"]
+    }
+  }
+}
