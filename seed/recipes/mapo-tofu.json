@@ -1,0 +1,55 @@
+{
+  "slug": "mapo-tofu",
+  "cuisine": "chinese",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 15,
+  "cook_minutes": 15,
+  "servings": 4,
+  "nutrition": {"calories": 480, "protein": 19, "fat": 17, "carbs": 66, "fiber": 3, "sugar": 2, "sodium": 900, "saturated_fat": 6},
+  "video_url": "https://www.youtube.com/results?search_query=mapo+tofu+recipe",
+  "ingredients": [
+    {"text": "400 g soft tofu, cubed", "ingredient": "tofu"},
+    {"text": "150 g ground pork", "ingredient": "ground-pork"},
+    {"text": "1 tsp sichuan peppercorns", "ingredient": "sichuan-peppercorn"},
+    {"text": "1 tbsp chili flakes", "ingredient": "chili-flakes"},
+    {"text": "2 tbsp soy sauce", "ingredient": "soy-sauce"},
+    {"text": "3 cloves garlic, minced", "ingredient": "garlic"},
+    {"text": "3 scallions, sliced", "ingredient": "scallion"},
+    {"text": "300 g jasmine rice", "ingredient": "jasmine-rice"},
+    {"text": "1 tsp cornstarch", "ingredient": "cornstarch"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Mapo Tofu",
+      "description": "Sichuan tofu in a numbing-spicy pork sauce, a 15-minute wok dish once the rice is on. Teaches handling silken tofu without stirring it to shreds and the má-là tingle of Sichuan pepper.",
+      "steps": [
+        "Start the rice: rinse the jasmine rice until the water runs almost clear, then cook with 450 ml water, covered, on the lowest heat for 12 minutes followed by 10 minutes resting. Mapo tofu is made fast, so the rice must be on first.",
+        "Cut the tofu into 2 cm cubes and slide them into a bowl of warm, lightly salted water. This restaurant trick keeps the tofu warm inside and firms the surface slightly so the cubes survive the wok.",
+        "Toast the Sichuan peppercorns in a dry pan over medium heat for 1 minute until they smell citrusy and smoky, then crush them coarsely in a mortar. Their buzz on the tongue is the má — the numbing half of má-là — and pre-ground pepper loses it within weeks.",
+        "Get everything next to the stove: this dish moves fast. Heat a wok or wide pan over high heat with 1–2 tablespoons of oil until it shimmers.",
+        "Add the ground pork and press it into the hot oil. Leave it 1 minute to crisp, then break it up and cook 2–3 minutes more until the pieces have browned, crisp edges. The little crunchy bits are half the dish's texture.",
+        "Turn the heat to medium, add the garlic and half the chili flakes, and stir for 30 seconds — the oil should turn red and smell fierce. If it is browning, lift the wok off the heat.",
+        "Pour in 200 ml water and the soy sauce, then slide in the tofu with the water from its bowl drained off. Do not stir: push the sauce gently under the tofu with the side of your spatula and shake the pan. Stirred tofu shreds; nudged tofu stays in cubes.",
+        "Simmer 5 minutes so the tofu soaks up the sauce. Slack the cornstarch with 2 tablespoons of cold water, stir it into the simmering liquid, and fold once, gently — the sauce will thicken in seconds into a glaze that clings to the cubes.",
+        "Kill the heat. Scatter over the scallions, the remaining chili flakes and half the crushed Sichuan pepper. Serve immediately over rice, with the rest of the pepper at the table for those who want more tingle."
+      ]
+    },
+    "ru": {
+      "name": "Мапо тофу",
+      "description": "Сычуаньский тофу в жгучем свином соусе с онемевающим эффектом; блюдо вок на 15 минут, пока варится рис. Учит обращаться с мягким тофу, не превращая его в кашу, и знаменитому покалыванию сычуаньского перца.",
+      "steps": [
+        "Начните с риса: промойте жасминовый рис почти до прозрачной воды и сварите с 450 мл воды под крышкой на минимальном огне 12 минут и 10 минут настаивания. Мапо тофу готовится быстро, поэтому рис ставят первым.",
+        "Нарежьте тофу кубиками по 2 см и опустите в миску с тёплой подсоленной водой. Этот ресторанный приём держит тофу тёплым внутри и слегка уплотняет поверхность, так что кубики выживают в воке.",
+        "Прогрейте сычуаньский перец на сухой сковороде на среднем огне 1 минуту до цитрусово-дымного запаха и крупно растолките в ступке. Его гудение на языке — это «ма», онемевающая половина «ма-ла»; молотый перец теряет это свойство за недели.",
+        "Поставьте всё рядом с плитой: блюдо движется быстро. Раскалите вок или широкую сковороду на сильном огне с 1–2 столовыми ложками масла до лёгкого марева.",
+        "Выложите свиной фарш и прижмите его в горячее масло. Дайте минуту схватиться корочкой, затем разбейте и готовьте ещё 2–3 минуты, пока кусочки не зажарятся до хрустящих краёв. Эти хрустящие крупинки — половина текстуры блюда.",
+        "Убавьте до среднего, добавьте чеснок и половину хлопьев чили и прогрейте 30 секунд — масло должно покраснеть и запахнуть ядрёно. Если чеснок темнеет, приподнимите вок с огня.",
+        "Влейте 200 мл воды и соевый соус, затем аккуратно переложите тофу, слив воду из миски. Не размешивайте: подводите соус под тофу боком лопатки и встряхивайте сковороду. Размешанный тофу рвётся, а подталкиваемый остаётся кубиками.",
+        "Тушите 5 минут, чтобы тофу впитал соус. Разведите крахмал в 2 столовых ложках холодной воды, влейте в кипящий соус и один раз мягко сложите — за секунды соус загустеет в глазурь, обволакивающую кубики.",
+        "Выключите огонь. Посыпьте зелёным луком, оставшимися хлопьями чили и половиной толчёного сычуаньского перца. Подавайте сразу с рисом, а остальной перец поставьте на стол для тех, кому мало покалывания."
+      ],
+      "ingredients": ["400 г мягкого тофу, кубиками", "150 г свиного фарша", "1 ч. л. сычуаньского перца горошком", "1 ст. л. хлопьев чили", "2 ст. л. соевого соуса", "3 зубчика чеснока", "3 стебля зелёного лука", "300 г жасминового риса", "1 ч. л. крахмала"]
+    }
+  }
+}
