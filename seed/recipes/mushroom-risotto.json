@@ -1,0 +1,54 @@
+{
+  "slug": "mushroom-risotto",
+  "cuisine": "italian",
+  "meal_times": ["dinner"],
+  "difficulty": "hard",
+  "prep_minutes": 15,
+  "cook_minutes": 35,
+  "servings": 4,
+  "nutrition": {"calories": 520, "protein": 12, "fat": 21, "carbs": 60, "fiber": 3, "sugar": 3, "sodium": 850, "saturated_fat": 13},
+  "video_url": "https://www.youtube.com/results?search_query=mushroom+risotto+recipe",
+  "ingredients": [
+    {"text": "300 g short-grain rice", "ingredient": "short-grain-rice"},
+    {"text": "400 g mushrooms, sliced", "ingredient": "mushrooms"},
+    {"text": "1 onion, finely chopped", "ingredient": "onion"},
+    {"text": "1.2 l vegetable stock", "ingredient": "vegetable-stock"},
+    {"text": "60 g parmesan, grated", "ingredient": "parmesan"},
+    {"text": "50 g butter", "ingredient": "butter"},
+    {"text": "1 lemon, zested and juiced", "ingredient": "lemon"},
+    {"text": "2 tbsp olive oil", "ingredient": "olive-oil"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Mushroom Risotto",
+      "description": "Carnaroli-style risotto with golden mushrooms and no wine, finished with lemon. Teaches the three rules that make or break risotto: hot stock, tostatura, and mantecatura.",
+      "steps": [
+        "Pour the stock into a saucepan and keep it at the barest simmer for the entire cooking time, with a ladle standing in it. Cold stock added to the rice shocks the starch and slows cooking; hot stock keeps the cream flowing.",
+        "Heat half the butter and the olive oil in a wide heavy pan over high heat. Fry the mushrooms in a single layer — in two batches — 4–5 minutes without moving them, until deeply browned, then salt them, turn, and give them 1 minute more. Lift them out and set aside. Mushrooms browned separately carry more flavor than any amount of stirring could recover.",
+        "Turn the heat to medium-low, add the onion and the rest of the butter, and cook 4 minutes until translucent with no color — browned onion muddies the risotto's pale cream.",
+        "Add the rice and toast it — the tostatura — for 2 minutes, stirring constantly, until the grains look glassy at the edges with a white pearl in the center and slide separately in the pan. Untoasted rice releases starch too fast and cooks to paste.",
+        "Ladle in enough hot stock to just cover the rice — it should give a gentle sizzle — and stir until it is absorbed, about 2 minutes.",
+        "Keep adding stock a ladle at a time, stirring often but not frantically, waiting until each ladleful is nearly absorbed before the next. Start tasting at minute 14: the rice is done at al dente — soft with a faint chalk line at the center, 16–18 minutes total. If you run out of stock, use hot water; never cold.",
+        "Take the pan off the heat. Add the cold parmesan, a knob of the remaining butter and the lemon zest with half its juice, and beat vigorously with a wooden spoon for 30 seconds — the mantecatura. This final whipping, off the heat, is what turns loose grains in broth into a creamy wave.",
+        "Fold the reserved mushrooms through, saving a few for the top. Let the risotto rest 2 minutes; it should be all'onda — when you shake the pan it ripples like a wave. If it stands in a mound, beat in another ladle of stock.",
+        "Serve on flat plates, topped with the reserved mushrooms and extra parmesan. Risotto waits for nobody: from pan to plate in thirty seconds."
+      ]
+    },
+    "ru": {
+      "name": "Грибной ризотто",
+      "description": "Ризотто с золотистыми грибами без вина, с лимоном в финале. Учит трём правилам, решающим ризотто: горячий бульон, тостатура и мантекатура.",
+      "steps": [
+        "Влейте бульон в сотейник и держите на самом лёгком кипении всё время готовки, с лежащей в нём половником. Холодный бульон, добавленный к рису, «шокирует» крахмал и тормозит варку; горячий бульон держит кремообразность.",
+        "Растопите половину масла с оливковым в широкой тяжёлой сковороде на сильном огне. Обжарьте грибы в один слой — в два приёма — 4–5 минут, не двигая, до глубокой золотистости, затем посолите, переверните и дайте ещё минуту. Выньте и отложите. Отдельно обжаренные грибы дают больше вкуса, чем способно вернуть любое помешивание.",
+        "Убавьте огонь до слабо-среднего, добавьте лук и оставшееся масло и готовьте 4 минуты до прозрачности без цвета: подрумяненный лук мутит кремовый цвет ризотто.",
+        "Добавьте рис и прогрейте — тостатура — 2 минуты, помешивая безостановочно, пока зёрна не станут стеклянными по краям с белой жемчужиной в центре и не заскользят в сковороде по отдельности. Непрогретый рис отдаёт крахмал слишком быстро и расходится в пасту.",
+        "Влейте горячего бульона столько, чтобы едва покрыть рис, — сковорода должна тихо зашипеть, — и мешайте, пока он не впитается, примерно 2 минуты.",
+        "Продолжайте добавлять бульон по половнику, помешивая часто, но не истерично, и дожидаясь почти полного впитывания перед следующей порцией. С 14-й минуты пробуйте: рис готов al dente — мягкий с едва заметной меловой жилкой в центре, всего 16–18 минут. Если бульон кончился, доливайте горячую воду, никогда холодную.",
+        "Снимите сковороду с огня. Добавьте холодный пармезан, кусочек оставшегося масла и цедру с половиной сока лимона и энергично взбивайте деревянной ложкой 30 секунд — это мантекатура. Именно этот финальный вбив, вне огня, превращает рассыпчатый рис в бульоне в кремовую волну.",
+        "Вмешайте отложенные грибы, несколько оставив для подачи. Дайте ризотто постоять 2 минуты: оно должно быть «алл'онда» — при встряхивании сковороды колыхаться волной. Если стоит горкой, вбейте ещё половник бульона.",
+        "Подавайте на плоских тарелках, сверху отложенные грибы и дополнительный пармезан. Ризотто не ждёт никого: от сковороды до тарелки за тридцать секунд."
+      ],
+      "ingredients": ["300 г круглозёрного риса", "400 г грибов, нарезанных", "1 луковица, мелко нарезанная", "1,2 л овощного бульона", "60 г тёртого пармезана", "50 г сливочного масла", "1 лимон, цедра и сок", "2 ст. л. оливкового масла"]
+    }
+  }
+}
