@@ -1,0 +1,48 @@
+{
+  "slug": "pico-de-gallo",
+  "cuisine": "mexican",
+  "meal_times": ["snack", "lunch"],
+  "difficulty": "easy",
+  "prep_minutes": 15,
+  "cook_minutes": 0,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=pico+de+gallo+recipe",
+  "nutrition": {"calories": 35, "protein": 1, "fat": 1, "carbs": 7, "fiber": 2, "sugar": 4, "sodium": 150, "saturated_fat": 0},
+  "ingredients": [
+    {"text": "4 ripe tomatoes", "ingredient": "tomato"},
+    {"text": "1 small red onion, finely diced", "ingredient": "red-onion"},
+    {"text": "1 bunch cilantro, chopped", "ingredient": "cilantro"},
+    {"text": "1 jalapeno, finely minced", "ingredient": "jalapeno"},
+    {"text": "2 limes, juiced", "ingredient": "lime"},
+    {"text": "0.5 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Pico de Gallo",
+      "description": "Fresh Mexican table salsa of tomato, onion, cilantro and lime. Teaches knife control, seeding tomatoes, and how salt and lime balance each other.",
+      "steps": [
+        "Halve the tomatoes through the equator and squeeze out the watery seeds over the sink — seeds and juice are what make salsa runny. Dice the flesh into 5 mm pieces and tip them into a colander set over a bowl for 10 minutes.",
+        "Finely dice the red onion to about half the size of the tomato pieces; nobody wants to bite into a slab of raw onion. Rinse the diced onion in a sieve under cold water for 30 seconds and shake dry — this washes away the harsh sulphur compounds and keeps the sweetness.",
+        "Halve the jalapeno lengthways. For a mild salsa scrape out the white membranes and seeds; for real heat keep them in — that is where the capsaicin lives. Mince the flesh as finely as you can, then wash your hands and do not touch your eyes.",
+        "Gather the cilantro into a tight bundle and chop the leaves together with the thin stems — the stems carry as much flavor as the leaves and give the salsa its distinctive scent.",
+        "Combine tomato, onion, jalapeno and cilantro in a bowl. Add the lime juice and salt, stir, and let everything sit for 15 minutes so the flavors marry and the salt pulls out a little juice.",
+        "Taste on a tortilla chip, not from the bowl — the saltiness of the chip matters. Almost always it needs one more squeeze of lime or a pinch of salt; adjust until it tastes bright, not flat.",
+        "Serve at room temperature with tortilla chips or on top of tacos. If liquid pools at the bottom, drain it off before serving so the salsa stays spoonable, not soupy."
+      ]
+    },
+    "ru": {
+      "name": "Пико-де-гальо",
+      "description": "Свежая мексиканская сальса из помидоров, лука, кинзы и лайма. Учит работе ножом, удалению семян из помидоров и балансу соли и лайма.",
+      "steps": [
+        "Разрежьте помидоры пополам по экватору и выдавите водянистые семена в раковину — именно семена и сок делают сальсу жидкой. Нарежьте мякоть кубиками по 5 мм и откиньте на дуршлаг над миской на 10 минут.",
+        "Нашинкуйте красный лук мельче помидоров примерно вдвое: никому не хочется откусить целую пластину сырого лука. Промойте нарезанный лук 30 секунд в сите холодной водой и стряхните — это смывает жгучие соединения и оставляет сладость.",
+        "Разрежьте халапеньо вдоль. Для мягкой сальсы удалите белые перегородки и семена; для настоящей остроты оставьте — капсаицин живёт именно там. Измельчите мякоть как можно мельче, затем вымойте руки и не трогайте глаза.",
+        "Соберите кинзу в плотный пучок и порубите листья вместе с тонкими стеблями — стебли пахнут не хуже листьев и дают сальсе характерный аромат.",
+        "Соедините помидоры, лук, халапеньо и кинзу в миске. Добавьте сок лайма и соль, перемешайте и оставьте на 15 минут, чтобы вкусы соединились, а соль вытянула немного сока.",
+        "Пробуйте на чипсе, а не из миски — солёность чипса важна. Почти всегда нужна ещё порция лайма или щепотка соли: добавляйте, пока вкус не станет ярким, а не плоским.",
+        "Подавайте при комнатной температуре с кукурузными чипсами или к тако. Если на дне скопилась жидкость, слейте её перед подачей, чтобы сальса оставалась густой, а не супом."
+      ],
+      "ingredients": ["4 спелых помидора", "1 небольшая красная луковица, мелко нарезанная", "1 пучок кинзы, рубленой", "1 халапеньо, очень мелко нарезанный", "2 лайма, сок", "0,5 ч. л. соли"]
+    }
+  }
+}

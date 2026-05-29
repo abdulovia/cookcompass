@@ -1,0 +1,55 @@
+{
+  "slug": "ratatouille",
+  "cuisine": "french",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 30,
+  "cook_minutes": 45,
+  "servings": 6,
+  "nutrition": {"calories": 160, "protein": 3, "fat": 12, "carbs": 15, "fiber": 5, "sugar": 8, "sodium": 250, "saturated_fat": 2},
+  "video_url": "https://www.youtube.com/results?search_query=ratatouille+recipe",
+  "ingredients": [
+    {"text": "1 eggplant, diced", "ingredient": "eggplant"},
+    {"text": "2 zucchini, diced", "ingredient": "zucchini"},
+    {"text": "2 bell peppers, diced", "ingredient": "bell-pepper"},
+    {"text": "4 tomatoes, roughly chopped", "ingredient": "tomato"},
+    {"text": "1 onion, diced", "ingredient": "onion"},
+    {"text": "3 cloves garlic, sliced", "ingredient": "garlic"},
+    {"text": "5 tbsp olive oil", "ingredient": "olive-oil"},
+    {"text": "1 tsp thyme", "ingredient": "thyme"},
+    {"text": "1 bunch basil", "ingredient": "basil"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Ratatouille",
+      "description": "Provençal stewed eggplant, zucchini and peppers in tomato. Teaches the one rule of vegetable cookery: brown each vegetable separately, combine only at the end.",
+      "steps": [
+        "Dice the eggplant, zucchini and bell peppers into uniform 2 cm pieces — with mixed vegetables cooking together, uneven sizes mean some pieces turn to mush while others stay raw. Chop the tomatoes roughly and slice the garlic.",
+        "Put the eggplant in a colander, sprinkle with a teaspoon of salt, toss, and leave 20 minutes. Beads of bitter brown liquid will rise to the surface. Rinse and pat very dry. Modern eggplants are rarely truly bitter, but the salt expels water, and drier eggplant fries instead of steaming and drinks far less oil.",
+        "Heat 2 tablespoons of the oil in a large frying pan over medium-high heat. Add the eggplant in one layer — two batches if needed — and fry 5–6 minutes, turning only occasionally, until golden on most sides. Lift out into your stew pot.",
+        "Add another tablespoon of oil and the zucchini, again in one layer, and fry 4–5 minutes until spotted brown. They should stay firm enough to resist a fork. Add to the eggplant.",
+        "Add the last of the oil with the onion and peppers and cook 6 minutes until the onion is translucent and the peppers have softened and sweetened at the edges.",
+        "Push the vegetables aside, add the garlic and thyme to the empty spot, and stir 1 minute until fragrant — garlic scorched in an empty hot pan turns bitter in seconds, so pull it into the onion as soon as it smells sweet.",
+        "Add the tomatoes with a splash of water, crush them with your spoon, and simmer 10 minutes until they collapse into a rough, glossy sauce.",
+        "Return the eggplant and zucchini and fold together gently — two or three turns, no more; the zucchini has done its browning and now only needs to soak, not disintegrate. Cover with the lid ajar and simmer over the lowest heat 25 minutes, stirring twice.",
+        "Kill the heat, tear in the basil leaves, taste for salt and pepper. Ratatouille is a dish of the day after even more than the day of: rest it overnight in the fridge and reheat gently, and the flavors will have settled into each other. Serve warm with crusty bread."
+      ]
+    },
+    "ru": {
+      "name": "Рататуй",
+      "description": "Прованский тушёный баклажан, цукини и перец в томате. Учит главному правилу овощной кухни: каждый овощ обжаривается отдельно, а соединяются они только в конце.",
+      "steps": [
+        "Нарежьте баклажан, цукини и болгарский перец одинаковыми кусками по 2 см: когда овощи готовятся вместе, разнокалиберные куски означают, что часть превратится в кашу, пока другая останется сырой. Помидоры нарубите крупно, чеснок нарежьте лепестками.",
+        "Сложите баклажан в дуршлаг, посыпьте чайной ложкой соли, перемешайте и оставьте на 20 минут. На поверхности выступят капли горько-коричневой жидкости. Промойте и тщательно обсушите. Современные баклажаны редко по-настоящему горчат, но соль изгоняет воду: сухой баклажан жарится, а не готовится на пару, и впитывает куда меньше масла.",
+        "Разогрейте 2 столовые ложки масла в большой сковороде на средне-сильном огне. Выложите баклажан в один слой — при необходимости в два приёма — и жарьте 5–6 минут, переворачивая лишь изредка, до золотистости с большинства сторон. Переложите в кастрюлю для тушения.",
+        "Добавьте ещё ложку масла и цукини, снова в один слой, и жарьте 4–5 минуты до коричневых подпалин. Они должны остаться плотными, сопротивляющимися вилке. Отправьте к баклажану.",
+        "Влейте оставшееся масло, добавьте лук и перцы и готовьте 6 минут, пока лук не станет прозрачным, а перцы не размягчатся и не подсластят по краям.",
+        "Отодвиньте овощи в сторону, на свободное место положите чеснок и тимьян и прогрейте минуту до аромата: чеснок на раскалённой пустой сковороде горчит за секунды, поэтому, как только запахнет сладко, вмешайте его в лук.",
+        "Добавьте помидоры с небольшим глотком воды, раздавите их ложкой и тушите 10 минут, пока они не развалятся в грубый глянцевый соус.",
+        "Верните баклажан и цукини и аккуратно сложите вместе — два-три движения, не больше: цукини уже обжарен, теперь ему нужно пропитаться, а не развалиться. Прикройте крышкой, оставив щель, и тушите на самом слабом огне 25 минут, дважды перемешав.",
+        "Выключите огонь, порвите в кастрюлю листья базилика, попробуйте на соль и перец. Рататуй — блюдо скорее следующего дня, чем сегодняшнего: дайте ему постоять ночь в холодильнике и осторожно разогрейте, и вкусы улягутся друг в друга. Подавайте тёплым с хрустящим хлебом."
+      ],
+      "ingredients": ["1 баклажан, нарезанный кубиком", "2 цукини, нарезанных кубиком", "2 болгарских перца, нарезанных кубиком", "4 помидора, крупно нарубленных", "1 луковица", "3 зубчика чеснока, нарезанных лепестками", "5 ст. л. оливкового масла", "1 ч. л. тимьяна", "1 пучок базилика"]
+    }
+  }
+}

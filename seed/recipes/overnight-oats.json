@@ -1,0 +1,48 @@
+{
+  "slug": "overnight-oats",
+  "cuisine": "american",
+  "meal_times": ["breakfast"],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 0,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=overnight+oats+recipe",
+  "nutrition": {"calories": 440, "protein": 14, "fat": 8, "carbs": 72, "fiber": 8, "sugar": 30, "sodium": 110, "saturated_fat": 3},
+  "ingredients": [
+    {"text": "100 g rolled oats", "ingredient": "rolled-oats"},
+    {"text": "250 ml milk", "ingredient": "milk"},
+    {"text": "150 g yogurt", "ingredient": "yogurt"},
+    {"text": "2 tbsp honey", "ingredient": "honey"},
+    {"text": "150 g berries", "ingredient": "berries"},
+    {"text": "1 apple, coarsely grated", "ingredient": "apple"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Overnight Oats",
+      "description": "A no-cook breakfast assembled in five minutes the night before. Teaches the classic 1:1 oats-to-liquid ratio and how oats absorb liquid as they rest.",
+      "steps": [
+        "The evening before, stir the rolled oats, milk and yogurt together in a 500 ml jar or bowl with a small pinch of salt. The mixture should look slightly too wet — the oats will drink up the liquid overnight.",
+        "Swirl in 1 tablespoon of the honey, taste, and add the rest if you like it sweeter. Remember: the berries and apple add their own sweetness later.",
+        "Seal the jar and refrigerate for at least 4 hours, ideally overnight. Anything shorter and the oats stay chewy instead of turning creamy.",
+        "In the morning, check the consistency before adding anything. If it is stiffer than pudding, loosen it with a splash of milk and stir. If it is soupy, note to use 50 ml less milk next time — this is the ratio lesson.",
+        "Coarsely grate the apple (skin on) straight over the oats and stir it through. Stirring it in stops the apple from browning and sweetens every spoonful.",
+        "Top with the berries — halve any large ones so each bite carries fruit.",
+        "Eat cold, straight from the jar. Overnight oats keep for 2 days in the fridge, so you can make two mornings at once."
+      ]
+    },
+    "ru": {
+      "name": "Овсянка на ночь",
+      "description": "Завтрак без готовки: пять минут вечером — и утром готово. Учит классической пропорции овсянки и жидкости 1:1 и показывает, как хлопья набухают при настаивании.",
+      "steps": [
+        "Вечером смешайте в банке или миске объёмом 500 мл овсяные хлопья, молоко и йогурт с небольшой щепоткой соли. Смесь должна выглядеть слегка жидковатой — за ночь хлопья впитают влагу.",
+        "Добавьте 1 столовую ложку мёда, попробуйте и при желании подсластите остальным. Помните: ягоды и яблоко позже добавят свою сладость.",
+        "Закройте банку и уберите в холодильник минимум на 4 часа, в идеале на ночь. Меньше времени — и хлопья останутся жёсткими, а не станут кремовыми.",
+        "Утром сначала проверьте консистенцию. Если гуще пудинга, добавьте немного молока и перемешайте. Если слишком жидко — в следующий раз наливайте на 50 мл меньше молока: это и есть урок пропорций.",
+        "Натрите яблоко на крупной тёрке прямо в банку и перемешайте. Так яблоко не потемнеет и подсластит каждую ложку.",
+        "Выложите сверху ягоды — крупные разрежьте пополам, чтобы фрукт был в каждом укусе.",
+        "Подавайте холодным прямо из банки. Овсянка хранится в холодильнике 2 дня, так что можно сразу приготовить на два утра."
+      ],
+      "ingredients": ["100 г овсяных хлопьев", "250 мл молока", "150 г йогурта", "2 ст. л. мёда", "150 г ягод", "1 яблоко, крупно натёртое"]
+    }
+  }
+}
