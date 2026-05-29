@@ -1,0 +1,52 @@
+{
+  "slug": "onigiri",
+  "cuisine": "japanese",
+  "meal_times": ["snack", "lunch"],
+  "difficulty": "medium",
+  "prep_minutes": 20,
+  "cook_minutes": 20,
+  "servings": 4,
+  "nutrition": {"calories": 460, "protein": 17, "fat": 6, "carbs": 78, "fiber": 1, "sugar": 1, "sodium": 450, "saturated_fat": 2},
+  "video_url": "https://www.youtube.com/results?search_query=onigiri+recipe",
+  "ingredients": [
+    {"text": "400 g short-grain rice", "ingredient": "short-grain-rice"},
+    {"text": "200 g salmon fillet", "ingredient": "salmon"},
+    {"text": "1 tbsp soy sauce", "ingredient": "soy-sauce"},
+    {"text": "2 tsp sesame seeds", "ingredient": "sesame-seeds"},
+    {"text": "0.5 tsp salt", "ingredient": "salt"},
+    {"text": "1 tsp vegetable oil", "ingredient": "vegetable-oil"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Salmon Onigiri",
+      "description": "Japanese rice balls shaped by hand with a salty-salmon center. Teaches cooking rice for shaping and the hand technique — gentle pressure, rotating turns.",
+      "steps": [
+        "Rinse the rice in 3–4 changes of cold water until the water runs almost clear, then drain 10 minutes. Measured washing is what makes the rice sticky enough to shape yet not gluey.",
+        "Cook the rice with 480 ml water: bring to a boil, cover tightly, lowest heat 12–13 minutes, then rest 10 minutes off the heat. Use slightly less water than for table rice — onigiri rice should be a touch firm so the balls keep their shape.",
+        "While the rice cooks, fry the salmon in the oil over medium heat, 3–4 minutes per side, until it flakes easily. Flake it with two forks, mix in the soy sauce, and let it cool. A hot filling steams the rice apart.",
+        "Dissolve the salt in a small bowl of water and keep it beside you. This salted water is the tool of the whole recipe: it seasons the outside of every ball and stops rice welding itself to your hands.",
+        "Have a bowl of cold water ready to rinse and a damp towel. Onigiri are shaped with hot rice — too hot to hold bare — but quick hands, moistened in the salted water, manage fine.",
+        "With wet, salted hands, scoop about 100 g of rice into one palm. Press a dimple in the middle and put a teaspoon of the salmon filling inside.",
+        "Fold the rice over the filling and shape into a triangle: cup one hand into a roof over the rice and press gently with two fingers of the other hand, about 20–30 seconds of light pressure. Rotate the ball a third of a turn and repeat, twice more. Squeeze too hard and the grains crush into a brick; too softly and it falls apart at first bite. Aim for rice that holds, compressed only at the surface.",
+        "Roll each finished triangle in the sesame seeds so the edges pick them up. Wet your hands again between balls — always.",
+        "Eat within a few hours at room temperature; the fridge turns the rice hard and chalky. Wrap one in cling film pressed into the shape for a packed lunch."
+      ]
+    },
+    "ru": {
+      "name": "Онигири с лососем",
+      "description": "Японские рисовые шарики, слепленные руками, с солёно-лососевой начинкой. Учит варить рис для лепки и технике рук: лёгкое давление с поворотами.",
+      "steps": [
+        "Промойте рис в 3–4 сменах холодной воды до почти прозрачной и откиньте на 10 минут. Именно тщательное промывание делает рис достаточно клейким для лепки, но не превращает его в клейстер.",
+        "Сварите рис с 480 мл воды: доведите до кипения, плотно накройте, на минимальном огне 12–13 минут, затем 10 минут настаивайте при выключенном огне. Воды берите чуть меньше, чем для риса на гарнир: рис для онигири должен быть немного плотным, чтобы шарики держали форму.",
+        "Пока варится рис, обжарьте лосося в масле на среднем огне по 3–4 минуты с каждой стороны до расслаивания. Разберите двумя вилками, смешайте с соевым соусом и остудите. Горячая начинка распаривает рис и мешает лепке.",
+        "Растворите соль в небольшой миске воды и держите рядом. Эта солёная вода — главный инструмент рецепта: она подсаливает каждый шарик снаружи и не даёт рису прилипнуть к рукам.",
+        "Приготовьте миску с холодной водой и влажное полотенце. Онигири лепят из горячего риса — руками держать трудно, — но смоченными в солёной воде ладонями это вполне удобно.",
+        "Смоченными солёной водой руками зачерпните около 100 г риса на ладонь. Сделайте в середине углубление и положите чайную ложку начинки из лосося.",
+        "Закройте рис над начинкой и сформируйте треугольник: накройте рис ладонью «крышей» и мягко прижмите двумя пальцами другой руки примерно 20–30 секунд. Поверните шарик на треть оборота и повторите, затем ещё дважды. Слишком сильное сжатие раздавит зёрна в кирпич, слишком слабое — развалится при первом укусе. Рис должен держаться, сжатой должна быть только поверхность.",
+        "Готовые треугольники обваляйте краями в кунжуте. Перед следующим шариком снова смочите руки — всегда.",
+        "Едят онигири в течение нескольких часов при комнатной температуре; в холодильнике рис становится жёстким и рассыпчатым. Один шарик можно обернуть плёнкой, прижав её к форме, и взять с собой."
+      ],
+      "ingredients": ["400 г круглозёрного риса", "200 г филе лосося", "1 ст. л. соевого соуса", "2 ч. л. кунжута", "0,5 ч. л. соли", "1 ч. л. растительного масла"]
+    }
+  }
+}
