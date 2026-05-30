@@ -279,13 +279,28 @@ func TestTargetsAndBundledSamples(t *testing.T) {
 		t.Fatal("bad glob")
 	}
 
-	// The bundled samples work end-to-end offline.
+	// The bundled samples work end-to-end offline. Only the file: targets are
+	// fetched so the test never touches the network, no matter which live
+	// sites the bundled targets list grows to.
 	fc := fetch.New("CookCompassBot/test", "", 0, time.Second, time.Second)
 	srcs, err := Sources(fc, "../../seed/sources/jsonld_targets.txt", "", testutil.Logger())
 	if err != nil {
 		t.Fatal(err)
 	}
-	raws, err := srcs["jsonld"].Fetch(context.Background(), recipes.FetchOpts{})
+	bundled, err := ReadTargets("../../seed/sources/jsonld_targets.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var files []string
+	for _, t := range bundled {
+		if strings.HasPrefix(t, "file:") {
+			files = append(files, t)
+		}
+	}
+	if len(files) == 0 {
+		t.Fatal("bundled targets lost their offline samples")
+	}
+	raws, err := srcs["jsonld"].Fetch(context.Background(), recipes.FetchOpts{URLs: files})
 	if err != nil || len(raws) != 3 {
 		t.Fatalf("bundled samples: %d %v", len(raws), err)
 	}

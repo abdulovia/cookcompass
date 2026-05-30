@@ -7,5 +7,14 @@
 # - "file:" entries read local HTML (relative to this file; globs allowed).
 #   They let the pipeline run offline and are a handy way to import pages
 #   you saved from your browser.
+# - Most big recipe sites block bots (Cloudflare, robots AI bans) or ship
+#   incomplete JSON-LD. Before adding a site, verify: robots.txt allows all
+#   agents, the page returns 200 to CookCompassBot, and the Recipe JSON-LD
+#   carries ingredients AND steps. For bulk loading prefer the dataset
+#   import (admin queue → "Import recipes from a dataset").
 file:samples/*.html
-# https://example.com/recipes/my-favourite-soup
+# Verified 2026-11: robots.txt allows all agents, full Recipe JSON-LD.
+https://www.recipetineats.com/devilled-eggs/
+https://www.recipetineats.com/beef-stroganoff/
+https://www.recipetineats.com/greek-salad/
+https://www.recipetineats.com/chicken-enchiladas/
