@@ -1,0 +1,52 @@
+{
+  "slug": "russian-vinaigrette",
+  "cuisine": "russian",
+  "meal_times": ["lunch", "dinner"],
+  "difficulty": "easy",
+  "prep_minutes": 25,
+  "cook_minutes": 45,
+  "servings": 6,
+  "nutrition": {"calories": 165, "protein": 4, "fat": 10, "carbs": 17, "fiber": 4, "sugar": 5, "sodium": 450, "saturated_fat": 2},
+  "video_url": "https://www.youtube.com/results?search_query=russian+vinaigrette+salad+recipe",
+  "ingredients": [
+    {"text": "3 beetroots", "ingredient": "beetroot"},
+    {"text": "3 potatoes", "ingredient": "potato"},
+    {"text": "2 carrots", "ingredient": "carrot"},
+    {"text": "3 pickles, diced", "ingredient": "pickles"},
+    {"text": "200 g peas", "ingredient": "peas"},
+    {"text": "3 tbsp vegetable oil", "ingredient": "vegetable-oil"},
+    {"text": "1 bunch scallions, sliced", "ingredient": "scallion"},
+    {"text": "1 tsp salt", "ingredient": "salt"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Russian Vinaigrette Salad",
+      "description": "The Soviet-era beetroot salad found at every holiday table. Teaches cooking root vegetables separately and why cold ingredients matter in a chopped salad.",
+      "steps": [
+        "Boil the beetroots in their skins in a separate pot, 40–45 minutes, until a knife slides in with no resistance. Never cook them with the other vegetables — beets bleed pink over everything. Drain, cool under cold water and slip off the skins.",
+        "In a second pot boil the unpeeled potatoes and carrots for 20 minutes until a fork meets just-tender resistance. They must keep their shape; if the potato falls off the fork, it is overcooked for a salad.",
+        "Cool everything completely — spread the vegetables on a plate for 30 minutes or refrigerate. This is the step everyone skips: warm vegetables sweat, and the salad turns watery and mushy by the second bowl.",
+        "Peel the potatoes and carrots. Dice the potatoes, carrots and beetroots into uniform 1 cm cubes — uniform size means each spoonful carries all five vegetables. Keep the beetroot on its own board until the end.",
+        "Dice the pickles the same size. Their brine does part of the dressing's job, so taste before adding much salt later.",
+        "Combine potato, carrot, pickles, peas and scallions in a bowl. Pour over the vegetable oil and fold gently.",
+        "Add the beetroot last and fold just 3–4 times. Folded too early or too long, the whole salad dyes uniform pink; folded briefly, you get the classic jewel-toned mosaic.",
+        "Season with the salt, taste, and chill 1 hour before serving. Vinaigrette is honestly better the next day, when the oil and pickle brine have soaked into the potatoes."
+      ]
+    },
+    "ru": {
+      "name": "Винегрет",
+      "description": "Советский свекольный салат с любого праздничного стола. Учит варить корнеплоды по отдельности и объясняет, почему в нарезном салате всё должно быть холодным.",
+      "steps": [
+        "Свёклу отварите в кожуре в отдельной кастрюле 40–45 минут, пока нож не будет входить без усилия. Ни в коем случае не варите её вместе с другими овощами — свёкла окрашивает всё в розовый. Слейте воду, охладите под холодной водой и снимите кожицу.",
+        "Во второй кастрюле отварите картофель в мундире и морковь 20 минут: вилка должна входить с лёгким усилием. Овощи должны держать форму; если картофелина сползает с вилки — для салата она переварена.",
+        "Полностью остудите всё — разложите овощи на тарелке на 30 минут или уберите в холодильник. Именно этот шаг все пропускают: тёплые овощи потеют, и салат уже ко второй порции становится водянистым и кашеобразным.",
+        "Очистите картофель и морковь. Нарежьте картофель, морковь и свёклу одинаковыми кубиками по 1 см — одинаковый размер значит, что в каждой ложке будут все пять овощей. Свёклу до конца держите на отдельной доске.",
+        "Огурцы нарежьте тем же кубиком. Их рассол выполняет часть работы заправки, так что солью потом увлекаться не стоит.",
+        "Соедините в миске картофель, морковь, огурцы, горошек и зелёный лук. Полейте растительным маслом и аккуратно перемешайте.",
+        "Свёклу добавьте последней и перемешайте всего 3–4 раза. Если вмешать её рано или долго, весь салат окрасится в сплошной розовый цвет; при коротком перемешивании получится классическая разноцветная мозаика.",
+        "Посолите, попробуйте и охладите час перед подачей. Винегрет честно вкуснее на следующий день, когда масло и огуречный рассол впитаются в картофель."
+      ],
+      "ingredients": ["3 свёклы", "3 картофелины", "2 моркови", "3 солёных огурца, нарезанных кубиком", "200 г зелёного горошка", "3 ст. л. растительного масла", "1 пучок зелёного лука, нарезанного", "1 ч. л. соли"]
+    }
+  }
+}
