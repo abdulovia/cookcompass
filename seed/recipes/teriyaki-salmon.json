@@ -1,0 +1,53 @@
+{
+  "slug": "teriyaki-salmon",
+  "cuisine": "japanese",
+  "meal_times": ["dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 10,
+  "cook_minutes": 15,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=teriyaki+salmon+recipe",
+  "nutrition": {"calories": 640, "protein": 36, "fat": 22, "carbs": 66, "fiber": 1, "sugar": 12, "sodium": 950, "saturated_fat": 5},
+  "ingredients": [
+    {"text": "600 g salmon fillets", "ingredient": "salmon"},
+    {"text": "4 tbsp soy sauce", "ingredient": "soy-sauce"},
+    {"text": "2 tbsp honey", "ingredient": "honey"},
+    {"text": "1 tbsp ginger, grated", "ingredient": "ginger"},
+    {"text": "2 cloves garlic, minced", "ingredient": "garlic"},
+    {"text": "300 g jasmine rice", "ingredient": "jasmine-rice"},
+    {"text": "1 tbsp sesame seeds", "ingredient": "sesame-seeds"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Teriyaki Salmon",
+      "description": "Pan-seared salmon lacquered in a glossy soy-honey glaze. Teaches crispy-skin searing and reducing a sauce to a glaze that actually clings.",
+      "steps": [
+        "Rinse the rice in 3–4 changes of water until it is no longer cloudy, then drain. Put it in a pot with 450 ml water, bring to a boil, cover with a tight lid, turn the heat to the lowest setting and cook 12 minutes. Turn off and let it rest, covered, 10 minutes more — no peeking, the steam is still working.",
+        "Stir the soy sauce, honey, ginger and garlic together in a small bowl. That is the whole teriyaki: sweet, salt and aromatics in equal partnership.",
+        "Pat the salmon fillets completely dry with paper towels. Dry skin sears; damp skin steams and sticks to the pan.",
+        "Place the fillets skin-side down in a cold non-stick pan and press them flat with a spatula for the first 10 seconds of cooking — this stops the skin from buckling. Then turn the heat to medium-high.",
+        "Sear 4 minutes without moving, until the skin releases by itself and looks crisp and golden, and the flesh has turned pale pink two-thirds of the way up the side. If it is spitting violently, the heat is a touch high.",
+        "Flip the fillets, cook 2 minutes, then pour the teriyaki mixture into the pan. It will bubble immediately.",
+        "Simmer the sauce 2–3 minutes, tilting the pan and spooning the glaze over the fish repeatedly. Watch it constantly from this point: honey goes from glaze to burnt in seconds. The teriyaki is ready when it coats the back of a spoon and leaves a trail, and the fish edges caramelize dark brown.",
+        "The salmon is done at about 50–52°C in the center — it should flake but still look slightly translucent in the middle. It will carry on cooking in the glaze, so pull it a touch early.",
+        "Fluff the rice with a fork, serve the fillets on top skin-side up so the crisp survives, pour the remaining glaze over, and scatter with sesame seeds."
+      ]
+    },
+    "ru": {
+      "name": "Лосось терияки",
+      "description": "Лосось с хрустящей кожей в глянцевой глазури из сои и мёда. Учит жарке кожей вниз и увариванию соуса до глазури, которая действительно держится на рыбе.",
+      "steps": [
+        "Промойте рис в 3–4 водах, пока вода не станет почти прозрачной, и слейте. Положите в кастрюлю с 450 мл воды, доведите до кипения, плотно накройте крышкой, убавьте огонь до минимума и варите 12 минут. Выключите и дайте постоять под крышкой ещё 10 минут — не заглядывайте, пар ещё работает.",
+        "Смешайте в маленькой миске соевый соус, мёд, имбирь и чеснок. Это и есть весь терияки: сладость, соль и ароматика в равном союзе.",
+        "Полностью промокните филе лосося бумажными полотенцами. Сухая кожа жарится до хруста; влажная готовится на пару и прилипает к сковороде.",
+        "Выложите филе кожей вниз в холодную антипригарную сковороду и первые 10 секунд прижмите лопаткой, чтобы кожа не стянулась и не покоробилась. Затем включите средне-сильный огонь.",
+        "Жарьте 4 минуты, не двигая, пока кожа сама не отойдёт от дна и не станет хрустящей и золотистой, а мякоть не побледнеет на две трети высоты. Если сковорода брызжет слишком сильно, огонь чуть великоват.",
+        "Переверните филе, готовьте 2 минуты, затем влейте в сковороду смесь терияки. Она сразу забурлит.",
+        "Тушите соус 2–3 минуты, наклоняя сковороду и поливая рыбу глазурью. С этого момента не отводите глаз: мёд за секунды переходит из глазури в подгоревшее состояние. Терияки готов, когда соус держится на ложке и оставляет след, а края рыбы карамелизуются до тёмно-коричневого.",
+        "Лосось готов при 50–52°C в центре: должен расслаиваться, но оставаться слегка полупрозрачным внутри. В глазури он продолжит готовиться, так что снимите чуть раньше.",
+        "Взрыхлите рис вилкой, выложите филе сверху кожей вверх, чтобы хруст сохранился, полейте оставшейся глазурью и посыпьте кунжутом."
+      ],
+      "ingredients": ["600 г филе лосося", "4 ст. л. соевого соуса", "2 ст. л. мёда", "1 ст. л. тёртого имбиря", "2 зубчика чеснока, измельчённых", "300 г жасминового риса", "1 ст. л. кунжута"]
+    }
+  }
+}
