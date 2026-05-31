@@ -39,6 +39,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/recipes/{id}/delete", h.recipeDelete)
 	r.Post("/recipes/{id}/restore", h.recipeRestore)
 	r.Get("/recipes/{id}/revisions", h.recipeRevisions)
+	r.Post("/recipes/{id}/cache-image", h.cacheImage)
 	r.Get("/queue", h.queue)
 	r.Post("/queue/recipes/{id}/approve", h.setRecipeStatus(recipes.StatusApproved, "approved"))
 	r.Post("/queue/recipes/{id}/reject", h.setRecipeStatus(recipes.StatusRejected, "rejected"))
@@ -46,6 +47,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/queue/purge", h.purgePending)
 	r.Post("/queue/scrape", h.scrapeNow)
 	r.Post("/queue/import", h.datasetImport)
+	r.Post("/queue/cache-images", h.cacheAllImages)
 	h.productRoutes(r)
 	h.shopRoutes(r)
 }
