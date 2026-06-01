@@ -46,6 +46,43 @@ type recipeForm struct {
 	Deleted      bool
 }
 
+// cacheImage mirrors one recipe's remote image into storage and points the
+// recipe at the local /media proxy.
+func (h *Handler) cacheImage(w http.ResponseWriter, r *http.Request) {
+	id, err := idParam(r)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	rec, err := h.App.Recipes.Get(r.Context(), id)
+	if errors.Is(err, recipes.ErrNotFound) {
+		http.NotFound(w, r)
+		return
+	}
+	if err != nil {
+		h.fail(w, r, err)
+		return
+	}
+	if err := h.App.Media.CacheRecipeImage(r.Context(), rec); err != nil {
+		h.Log.Warn("cache image", "recipe", rec.Slug, "err", err)
+		web.Redirect(w, r, fmt.Sprintf("/admin/recipes/%d/edit", id), "media_failed")
+		return
+	}
+	web.Redirect(w, r, fmt.Sprintf("/admin/recipes/%d/edit", id), "media_cached")
+}
+
+// cacheAllImages mirrors every remote recipe image into storage (queue page
+// bulk action).
+func (h *Handler) cacheAllImages(w http.ResponseWriter, r *http.Request) {
+	n, err := h.App.Media.CacheImages(r.Context())
+	if err != nil {
+		h.fail(w, r, err)
+		return
+	}
+	h.Log.Info("cached recipe images", "count", n)
+	web.Redirect(w, r, "/admin/queue", "media_cached")
+}
+
 func (h *Handler) recipeList(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
 	f := recipes.Filter{Query: q.Get("q"), Cuisine: q.Get("cuisine")}
@@ -115,6 +152,7 @@ func (h *Handler) renderForm(w http.ResponseWriter, r *http.Request, status int,
 	p.Data = map[string]any{
 		"Form": form, "Cuisines": cuisines, "MealTimes": recipes.MealTimes,
 		"Difficulties": recipes.Difficulties, "NutritionFields": NutritionFields,
+		"StorageEnabled": h.App.Media.Enabled(),
 	}
 	h.R.Page(w, status, "admin/recipe_form", p)
 }
