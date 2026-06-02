@@ -15,6 +15,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/seed"
 	"github.com/abdulovia/cookcompass/internal/shops"
+	"github.com/abdulovia/cookcompass/internal/storage"
 	"github.com/abdulovia/cookcompass/internal/users"
 	seedfs "github.com/abdulovia/cookcompass/seed"
 )
@@ -30,6 +31,8 @@ type App struct {
 	Shops   *shops.Store
 	Users   *users.Store
 	Pool    *pool.Pool
+	// Media mirrors recipe images into S3 storage; Disabled when unconfigured.
+	Media *Media
 	// DefaultUserID is the account used in single-user mode.
 	DefaultUserID int64
 }
@@ -56,6 +59,7 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 		Users:   users.NewStore(d),
 	}
 	a.Pool = &pool.Pool{Recipes: a.Recipes, Ings: ings, Catalog: a.Catalog, Threshold: cfg.Availability.Threshold}
+	a.Media = &Media{Backend: storage.NewS3(cfg.Storage.S3, log), Fetcher: a.Fetcher(), Recipes: a.Recipes}
 	return a, nil
 }
 
