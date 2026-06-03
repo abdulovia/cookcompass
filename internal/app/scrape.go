@@ -52,10 +52,20 @@ func (a *App) ImportDataset(ctx context.Context, opt DatasetOptions) (ingest.Res
 		return ingest.Result{}, err
 	}
 	res := im.Import(ctx, raws)
-	if opt.Approve {
-		for _, id := range res.PendingIDs {
+	for _, id := range res.PendingIDs {
+		r, err := a.Recipes.Get(ctx, id)
+		if err != nil {
+			continue
+		}
+		if opt.Approve {
 			if err := a.Recipes.SetStatus(ctx, id, recipes.StatusApproved, recipes.Change{Source: "dataset", Note: "approved on import"}); err != nil {
 				res.Errors = append(res.Errors, err)
+			}
+		}
+		// Mirror remote images into the bucket so pages don't hotlink.
+		if a.Cfg.Storage.S3.CacheImages && a.Media.Enabled() {
+			if err := a.Media.CacheRecipeImage(ctx, r); err != nil {
+				a.Log.Warn("cache image", "recipe", r.Slug, "err", err)
 			}
 		}
 	}
