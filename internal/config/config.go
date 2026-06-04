@@ -22,6 +22,7 @@ type Config struct {
 	Auth         Auth         `yaml:"auth"`
 	Recipes      Recipes      `yaml:"recipes"`
 	Scrape       Scrape       `yaml:"scrape"`
+	Storage      Storage      `yaml:"storage"`
 	Availability Availability `yaml:"availability"`
 	Defaults     Defaults     `yaml:"defaults"`
 }
@@ -77,6 +78,21 @@ type Scrape struct {
 	DatasetDir  string        `yaml:"recipe_inbox_dir"` // dataset drops for the "dataset" recipe source
 }
 
+// Storage configures the S3-compatible image bucket.
+type Storage struct {
+	S3 S3 `yaml:"s3"`
+}
+
+// S3 is one S3-compatible endpoint. An empty Endpoint disables storage.
+type S3 struct {
+	Endpoint    string `yaml:"endpoint"` // host:port, e.g. minio:9000
+	AccessKey   string `yaml:"access_key"`
+	SecretKey   string `yaml:"secret_key"`
+	Bucket      string `yaml:"bucket"`
+	Secure      bool   `yaml:"secure"`
+	CacheImages bool   `yaml:"cache_images"` // mirror fetched recipes' images into the bucket
+}
+
 // Availability configures the recipe feasibility matcher.
 type Availability struct {
 	// Threshold is the fraction (0..1] of essential ingredients that must be
@@ -111,6 +127,7 @@ func Default() Config {
 			InboxDir:    "data/catalog-inbox",
 			DatasetDir:  "data/recipe-inbox",
 		},
+		Storage:      Storage{S3: S3{Bucket: "cookcompass", CacheImages: true}},
 		Availability: Availability{Threshold: 1.0},
 		Defaults:     Defaults{Country: "US", Locale: "en"},
 	}
@@ -226,6 +243,12 @@ func applyEnv(c *Config, lookup lookupFunc) error {
 	str("COOK_CATALOG_TARGETS", &c.Scrape.CatalogFile)
 	str("COOK_CATALOG_INBOX", &c.Scrape.InboxDir)
 	str("COOK_RECIPE_INBOX", &c.Scrape.DatasetDir)
+	str("COOK_S3_ENDPOINT", &c.Storage.S3.Endpoint)
+	str("COOK_S3_ACCESS_KEY", &c.Storage.S3.AccessKey)
+	str("COOK_S3_SECRET_KEY", &c.Storage.S3.SecretKey)
+	str("COOK_S3_BUCKET", &c.Storage.S3.Bucket)
+	boolean("COOK_S3_SECURE", &c.Storage.S3.Secure)
+	boolean("COOK_S3_CACHE_IMAGES", &c.Storage.S3.CacheImages)
 	float("COOK_AVAILABILITY_THRESHOLD", &c.Availability.Threshold)
 	str("COOK_DEFAULT_COUNTRY", &c.Defaults.Country)
 	str("COOK_DEFAULT_LOCALE", &c.Defaults.Locale)

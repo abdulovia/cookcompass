@@ -86,3 +86,24 @@ func TestValidateEmptyFields(t *testing.T) {
 		t.Fatal("expected error")
 	}
 }
+
+func TestStorageEnvOverrides(t *testing.T) {
+	t.Setenv("COOK_S3_ENDPOINT", "minio:9000")
+	t.Setenv("COOK_S3_ACCESS_KEY", "ak")
+	t.Setenv("COOK_S3_SECRET_KEY", "sk")
+	t.Setenv("COOK_S3_BUCKET", "bkt")
+	t.Setenv("COOK_S3_SECURE", "true")
+	t.Setenv("COOK_S3_CACHE_IMAGES", "false")
+	t.Setenv("COOK_RECIPE_INBOX", "/tmp/inbox")
+	cfg, err := Load("")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.Storage.S3.Endpoint != "minio:9000" || cfg.Storage.S3.AccessKey != "ak" || cfg.Storage.S3.SecretKey != "sk" ||
+		cfg.Storage.S3.Bucket != "bkt" || !cfg.Storage.S3.Secure || cfg.Storage.S3.CacheImages {
+		t.Fatalf("s3 env: %+v", cfg.Storage.S3)
+	}
+	if cfg.Scrape.DatasetDir != "/tmp/inbox" {
+		t.Fatalf("recipe inbox: %q", cfg.Scrape.DatasetDir)
+	}
+}
