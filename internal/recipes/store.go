@@ -349,6 +349,21 @@ func (s *Store) SetStatus(ctx context.Context, id int64, status string, ch Chang
 	return s.mutate(ctx, id, ch, `UPDATE recipes SET status = ?, updated_at = ? WHERE id = ? AND status <> ?`, status, db.Now(), id, status)
 }
 
+// SetImageURL points a recipe at (usually) the local /media proxy after its
+// image was mirrored into storage. This is bookkeeping for a derived asset,
+// so unlike content edits it records no revision row.
+func (s *Store) SetImageURL(ctx context.Context, id int64, image string) error {
+	res, err := s.db.ExecContext(ctx, `UPDATE recipes SET image_url = ?, updated_at = ? WHERE id = ?`,
+		image, db.Now(), id)
+	if err != nil {
+		return err
+	}
+	if n, _ := res.RowsAffected(); n == 0 {
+		return ErrNotFound
+	}
+	return nil
+}
+
 // ApproveAllPending approves every pending recipe and returns the count.
 func (s *Store) ApproveAllPending(ctx context.Context, ch Change) (int, error) {
 	list, err := s.List(ctx, Filter{Statuses: []string{StatusPending}, Deleted: DeletedInclude})
