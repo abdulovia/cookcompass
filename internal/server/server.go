@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/fs"
 	"log/slog"
 	"net/http"
@@ -20,6 +21,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/i18n"
 	"github.com/abdulovia/cookcompass/internal/site"
+	"github.com/abdulovia/cookcompass/internal/storage"
 	"github.com/abdulovia/cookcompass/internal/users"
 	"github.com/abdulovia/cookcompass/internal/web"
 	webfs "github.com/abdulovia/cookcompass/web"
@@ -70,6 +72,7 @@ func (s *Server) Handler() http.Handler {
 	static, _ := fs.Sub(webfs.FS, "static")
 	r.Handle("/static/*", http.StripPrefix("/static/", cacheStatic(http.FileServer(http.FS(static)))))
 	r.Get("/healthz", s.healthz)
+	r.Get("/media/*", s.media)
 	r.Post("/lang", s.setLanguage)
 
 	pub.Routes(r)
@@ -92,6 +95,26 @@ func (s *Server) contentLocales() []string {
 		}
 	}
 	return out
+}
+
+// media streams objects from the storage bucket. Keys are immutable
+// content-addressed-ish paths, so responses cache for a year.
+func (s *Server) media(w http.ResponseWriter, r *http.Request) {
+	key := strings.TrimPrefix(r.URL.Path, "/media/")
+	if key == "" || strings.Contains(key, "..") || strings.Contains(key, `\`) {
+		http.NotFound(w, r)
+		return
+	}
+	obj, err := s.app.Media.Open(r.Context(), key)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	defer obj.Close()
+	w.Header().Set("Content-Type", storage.ContentTypeByExt(key))
+	w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+	w.WriteHeader(http.StatusOK)
+	_, _ = io.Copy(w, obj)
 }
 
 func (s *Server) healthz(w http.ResponseWriter, r *http.Request) {
