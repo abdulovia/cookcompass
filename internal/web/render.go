@@ -126,5 +126,15 @@ func Funcs() template.FuncMap {
 		},
 		"lower": strings.ToLower,
 		"list":  func(items ...string) []string { return items },
+		// hue maps a string (cuisine slug) to a stable 0..360 hue for the
+		// CSS gradient placeholders used by cards without a photo.
+		"hue": func(s string) int {
+			var h uint32 = 2166136261
+			for i := 0; i < len(s); i++ {
+				h ^= uint32(s[i])
+				h *= 16777619
+			}
+			return int(h%360) + 1
+		},
 	}
 }
