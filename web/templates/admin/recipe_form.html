@@ -83,6 +83,13 @@
     <label for="image">{{.T "admin.field_image"}}</label>
     <input id="image" name="image_url" type="url" value="{{$f.ImageURL}}">
     {{template "field_error" (.Err "image_url")}}
+    {{if and $f.ID $f.ImageURL}}
+    <form method="post" action="/admin/recipes/{{$f.ID}}/cache-image" class="row-gap" style="margin-top:.5rem">
+      {{if $.Data.StorageEnabled}}<button type="submit" class="secondary small">⤓ {{.T "admin.cache_image"}}</button>
+      <span class="help">{{.T "admin.cache_image_hint"}}</span>
+      {{else}}<p class="help">{{.T "admin.storage_disabled"}}</p>{{end}}
+    </form>
+    {{end}}
   </fieldset>
 
   {{if $f.Translations}}
