@@ -41,6 +41,14 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Get("/recipes/{slug}", h.detail)
 	r.Post("/recipes/{slug}/cooked", h.cooked)
 	r.Post("/recipes/{slug}/learned", h.learnedToggle)
+	r.Post("/recipes/{slug}/favorite", h.favoriteToggle)
+	r.Post("/recipes/{slug}/shopping", h.addShopping)
+	r.Get("/list", h.list)
+	r.Post("/list/clear", h.shoppingClear)
+	r.Post("/list/{id}/bought", h.shoppingBought)
+	r.Post("/list/{id}/delete", h.shoppingDelete)
+	r.Post("/list/{id}/pantry", h.shoppingPantry)
+	r.Post("/goals/shopping", h.planShopping)
 	r.Get("/learn", h.learn)
 	r.Get("/goals", h.goals)
 	r.Post("/goals", h.saveGoals)
@@ -118,6 +126,9 @@ func browseQuery(r *http.Request) pool.Query {
 	}
 }
 
+// favoritesOnly reports whether the browse view is the favorites tab.
+func favoritesOnly(r *http.Request) bool { return r.URL.Query().Get("fav") == "1" }
+
 func oneOf(v string, set []string) string {
 	for _, s := range set {
 		if s == v {
@@ -171,6 +182,22 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 		h.Fail(w, r, err)
 		return
 	}
+	favoritesTab := favoritesOnly(r)
+	if favoritesTab {
+		prof := web.Profile(r.Context())
+		favs, err := h.App.Users.Favorites(r.Context(), prof.ID)
+		if err != nil {
+			h.Fail(w, r, err)
+			return
+		}
+		filtered := make([]pool.Item, 0, len(items))
+		for _, it := range items {
+			if favs[it.Base.ID] {
+				filtered = append(filtered, it)
+			}
+		}
+		items = filtered
+	}
 	cuisines, err := h.App.Recipes.Cuisines(r.Context())
 	if err != nil {
 		h.Fail(w, r, err)
@@ -181,6 +208,7 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 	p.Data = map[string]any{
 		"Items": items, "Q": q, "Cuisines": cuisines, "MealTimes": recipes.MealTimes, "Difficulties": recipes.Difficulties,
 		"HasPantry": prof != nil && len(prof.Pantry) > 0, "HasDislikes": len(v.Dislikes) > 0, "CountryAware": v.Country != "",
+		"FavoritesTab": favoritesTab,
 	}
 	if r.Header.Get("HX-Request") == "true" && r.Header.Get("HX-Target") == "results" {
 		h.R.Partial(w, http.StatusOK, "pages/browse", "results", p)
