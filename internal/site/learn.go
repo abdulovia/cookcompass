@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"sort"
+	"strconv"
 
 	"github.com/go-chi/chi/v5"
 
@@ -142,10 +143,12 @@ func (h *Handler) learn(w http.ResponseWriter, r *http.Request) {
 	h.R.Page(w, http.StatusOK, "pages/learn", p)
 }
 
-// cooked logs "I cooked this".
+// cooked logs "I cooked this", with an optional star rating and note from
+// the inline form.
 func (h *Handler) cooked(w http.ResponseWriter, r *http.Request) {
+	rating, _ := strconv.Atoi(r.FormValue("rating"))
 	h.recipeAction(w, r, "cooked", func(prof *users.Profile, rec *recipes.Recipe) error {
-		return h.App.Users.LogCooked(r.Context(), prof.ID, rec.ID)
+		return h.App.Users.LogCooked(r.Context(), prof.ID, rec.ID, rating, r.FormValue("note"))
 	})
 }
 
@@ -202,7 +205,12 @@ func (h *Handler) detailExtra(r *http.Request, it *pool.Item) map[string]any {
 		h.Log.Error("learned", "err", err)
 	}
 	_, isLearned := learned[it.Base.ID]
-	return map[string]any{"CanTrack": true, "Cooked": cooked[it.Base.ID], "Learned": isLearned}
+	favs, err := h.App.Users.Favorites(r.Context(), prof.ID)
+	if err != nil {
+		h.Log.Error("favorites", "err", err)
+		favs = map[int64]bool{}
+	}
+	return map[string]any{"CanTrack": true, "Cooked": cooked[it.Base.ID], "Learned": isLearned, "Favorite": favs[it.Base.ID]}
 }
 
 // homeExtra adds learning progress to the home page.
