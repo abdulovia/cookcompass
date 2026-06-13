@@ -2,6 +2,7 @@
 {{$it := .Data.Item}}{{$r := $it.Recipe}}{{$b := $it.Base}}
 <p><a href="/recipes">← {{.T "recipe.back"}}</a></p>
 <h1>{{$r.Name}}</h1>
+{{if $b.ImageURL}}<img class="hero-img" src="{{$b.ImageURL}}" alt="{{$r.Name}}" decoding="async">{{end}}
 {{with $r.Description}}<p class="lead">{{.}}</p>{{end}}
 <div class="facts">
   <span class="badge diff-{{$b.Difficulty}}">{{.T (printf "difficulty.%s" $b.Difficulty)}}</span>
