@@ -290,9 +290,18 @@ func (s *Store) DeleteSession(ctx context.Context, token string) error {
 	return err
 }
 
-// LogCooked records that the user cooked a recipe.
-func (s *Store) LogCooked(ctx context.Context, userID, recipeID int64) error {
-	_, err := s.db.ExecContext(ctx, `INSERT INTO cooked_log (user_id, recipe_id, cooked_at) VALUES (?,?,?)`, userID, recipeID, db.Now())
+// LogCooked records that the user cooked a recipe, with an optional
+// 1–5 star rating and a note.
+func (s *Store) LogCooked(ctx context.Context, userID, recipeID int64, rating int, note string) error {
+	if rating != 0 && (rating < 1 || rating > 5) {
+		rating = 0
+	}
+	var r any
+	if rating > 0 {
+		r = rating
+	}
+	_, err := s.db.ExecContext(ctx, `INSERT INTO cooked_log (user_id, recipe_id, rating, note, cooked_at) VALUES (?,?,?,?,?)`,
+		userID, recipeID, r, strings.TrimSpace(note), db.Now())
 	return err
 }
 
@@ -318,13 +327,15 @@ func (s *Store) CookedCounts(ctx context.Context, userID int64) (map[int64]int, 
 // CookEvent is one entry of the cooking history.
 type CookEvent struct {
 	RecipeID int64
+	Rating   int
+	Note     string
 	At       time.Time
 }
 
 // RecentCooked returns the latest cooking events, newest first.
 func (s *Store) RecentCooked(ctx context.Context, userID int64, limit int) ([]CookEvent, error) {
-	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id, cooked_at FROM cooked_log WHERE user_id = ? ORDER BY cooked_at DESC, id DESC LIMIT ?`,
-		userID, limit)
+	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id, COALESCE(rating, 0), note, cooked_at
+		FROM cooked_log WHERE user_id = ? ORDER BY cooked_at DESC, id DESC LIMIT ?`, userID, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -333,7 +344,7 @@ func (s *Store) RecentCooked(ctx context.Context, userID int64, limit int) ([]Co
 	for rows.Next() {
 		var e CookEvent
 		var at string
-		if err := rows.Scan(&e.RecipeID, &at); err != nil {
+		if err := rows.Scan(&e.RecipeID, &e.Rating, &e.Note, &at); err != nil {
 			return nil, err
 		}
 		e.At = db.ParseTime(at)
@@ -370,4 +381,131 @@ func (s *Store) Learned(ctx context.Context, userID int64) (map[int64]time.Time,
 		out[id] = db.ParseTime(at)
 	}
 	return out, rows.Err()
+}
+
+// Favorites returns the ids of the user's favorite recipes.
+func (s *Store) Favorites(ctx context.Context, userID int64) (map[int64]bool, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id FROM favorites WHERE user_id = ?`, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := map[int64]bool{}
+	for rows.Next() {
+		var id int64
+		if err := rows.Scan(&id); err != nil {
+			return nil, err
+		}
+		out[id] = true
+	}
+	return out, rows.Err()
+}
+
+// SetFavorite adds or removes a favorite.
+func (s *Store) SetFavorite(ctx context.Context, userID, recipeID int64, on bool) error {
+	var err error
+	if on {
+		_, err = s.db.ExecContext(ctx, `INSERT OR IGNORE INTO favorites (user_id, recipe_id) VALUES (?,?)`, userID, recipeID)
+	} else {
+		_, err = s.db.ExecContext(ctx, `DELETE FROM favorites WHERE user_id = ? AND recipe_id = ?`, userID, recipeID)
+	}
+	return err
+}
+
+// ShoppingItem is one line of the user's shopping list.
+type ShoppingItem struct {
+	ID           int64
+	RecipeID     int64
+	IngredientID int64
+	Text         string
+	Bought       bool
+}
+
+// AddShoppingItems appends lines to the user's list, skipping exact text
+// duplicates that are still unbought.
+func (s *Store) AddShoppingItems(ctx context.Context, userID int64, items []ShoppingItem) (int, error) {
+	existing, err := s.ShoppingList(ctx, userID)
+	if err != nil {
+		return 0, err
+	}
+	seen := map[string]bool{}
+	for _, it := range existing {
+		if !it.Bought {
+			seen[it.Text] = true
+		}
+	}
+	n := 0
+	for _, it := range items {
+		t := strings.TrimSpace(it.Text)
+		if t == "" || seen[t] {
+			continue
+		}
+		seen[t] = true
+		var recipe, ing any
+		if it.RecipeID != 0 {
+			recipe = it.RecipeID
+		}
+		if it.IngredientID != 0 {
+			ing = it.IngredientID
+		}
+		if _, err := s.db.ExecContext(ctx, `INSERT INTO shopping_items (user_id, recipe_id, ingredient_id, text) VALUES (?,?,?,?)`,
+			userID, recipe, ing, t); err != nil {
+			return n, err
+		}
+		n++
+	}
+	return n, nil
+}
+
+// ShoppingList returns the user's list, unbought first, then by id.
+func (s *Store) ShoppingList(ctx context.Context, userID int64) ([]ShoppingItem, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT id, COALESCE(recipe_id, 0), COALESCE(ingredient_id, 0), text, bought
+		FROM shopping_items WHERE user_id = ? ORDER BY bought, id`, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []ShoppingItem
+	for rows.Next() {
+		var it ShoppingItem
+		var bought int
+		if err := rows.Scan(&it.ID, &it.RecipeID, &it.IngredientID, &it.Text, &bought); err != nil {
+			return nil, err
+		}
+		it.Bought = bought == 1
+		out = append(out, it)
+	}
+	return out, rows.Err()
+}
+
+// SetShoppingBought toggles the "bought" flag of one line.
+func (s *Store) SetShoppingBought(ctx context.Context, userID, id int64, bought bool) error {
+	b := 0
+	if bought {
+		b = 1
+	}
+	return s.execUserRow(ctx, `UPDATE shopping_items SET bought = ? WHERE id = ? AND user_id = ?`, b, id, userID)
+}
+
+// DeleteShoppingItem removes one line.
+func (s *Store) DeleteShoppingItem(ctx context.Context, userID, id int64) error {
+	return s.execUserRow(ctx, `DELETE FROM shopping_items WHERE id = ? AND user_id = ?`, id, userID)
+}
+
+// ClearBought removes every bought line of the user.
+func (s *Store) ClearBought(ctx context.Context, userID int64) error {
+	_, err := s.db.ExecContext(ctx, `DELETE FROM shopping_items WHERE user_id = ? AND bought = 1`, userID)
+	return err
+}
+
+// execUserRow runs a statement that must affect exactly the user's own row.
+func (s *Store) execUserRow(ctx context.Context, q string, args ...any) error {
+	res, err := s.db.ExecContext(ctx, q, args...)
+	if err != nil {
+		return err
+	}
+	if n, _ := res.RowsAffected(); n == 0 {
+		return ErrNotFound
+	}
+	return nil
 }
