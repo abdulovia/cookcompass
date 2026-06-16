@@ -99,7 +99,7 @@ func TestUsersStore(t *testing.T) {
 
 	// Cooking history and learned.
 	for i := 0; i < 3; i++ {
-		if err := s.LogCooked(ctx, id, 1); err != nil {
+		if err := s.LogCooked(ctx, id, 1, 0, ""); err != nil {
 			t.Fatal(err)
 		}
 	}
