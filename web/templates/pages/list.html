@@ -1,0 +1,35 @@
+{{define "content"}}
+<h1>{{.T "list.title"}}</h1>
+<p class="muted">{{.T "list.open_count" "Count" .Data.Open}}</p>
+{{block "list_items" .}}
+<div id="list-items">
+  {{if .Data.Items}}
+  <ul class="shop-list">
+    {{range .Data.Items}}{{$it := .}}
+    <li class="shop-item {{if .Bought}}bought{{end}}" id="item-{{.ID}}">
+      <form method="post" action="/list/{{.ID}}/bought" class="inline">
+        {{if .Bought}}<input type="hidden" name="bought" value="0">
+        <button class="check-box done" aria-label="{{$.T "list.unmark"}}">✓</button>
+        {{else}}<input type="hidden" name="bought" value="1">
+        <button class="check-box" aria-label="{{$.T "list.mark_bought"}}"></button>{{end}}
+      </form>
+      <span class="shop-text">{{$it.Text}}{{with $it.RecipeName}} <a class="muted" href="/recipes/{{$it.RecipeSlug}}">({{.}})</a>{{end}}</span>
+      <span class="row-gap">
+        {{if .BuyURL}}<a class="buy-link" href="{{.BuyURL}}" target="_blank" rel="noopener noreferrer">🛒 {{$.T "recipe.buy"}}</a>{{end}}
+        {{if and (not .Bought) .IngredientID}}
+        <form method="post" action="/list/{{.ID}}/pantry" class="inline"><button class="link">🏠 {{$.T "list.have_it"}}</button></form>
+        {{end}}
+        <form method="post" action="/list/{{.ID}}/delete" class="inline"><button class="link danger">✕</button></form>
+      </span>
+    </li>
+    {{end}}
+  </ul>
+  {{else}}<p class="empty">{{.T "list.empty"}}</p>{{end}}
+</div>
+{{end}}
+{{if .Data.Items}}
+<form method="post" action="/list/clear" class="row-gap" style="margin-top:1rem">
+  <button class="secondary">🧹 {{.T "list.clear_bought"}}</button>
+</form>
+{{end}}
+{{end}}

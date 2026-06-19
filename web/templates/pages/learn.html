@@ -27,7 +27,8 @@
 <section aria-labelledby="history">
   <h2 id="history">{{.T "learn.history"}}</h2>
   {{if .Data.History}}
-  <ul class="plan">{{range .Data.History}}<li class="plan-item"><a href="/recipes/{{.Recipe.Slug}}">{{.Recipe.Name}}</a> <time class="muted" datetime="{{.At.Format "2006-01-02T15:04:05Z"}}">{{.At.Format "2006-01-02"}}</time></li>{{end}}</ul>
+  <ul class="plan">{{range .Data.History}}{{$e := .}}<li class="plan-item"><a href="/recipes/{{$e.Recipe.Slug}}">{{$e.Recipe.Name}}</a>
+    <span class="muted">{{if $e.Rating}}<span class="stars" aria-label="{{$.T "list.rating_count" "Count" $e.Rating}}">{{range $i := seq 5}}{{if le $i $e.Rating}}★{{else}}☆{{end}}{{end}}</span> · {{end}}<time datetime="{{$e.At.Format "2006-01-02T15:04:05Z"}}">{{$e.At.Format "2006-01-02"}}</time>{{with $e.Note}} · {{.}}{{end}}</span></li>{{end}}</ul>
   {{else}}<p class="empty">{{.T "learn.no_history"}}</p>{{end}}
 </section>
 {{end}}
