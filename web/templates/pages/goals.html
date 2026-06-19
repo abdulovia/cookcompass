@@ -61,6 +61,7 @@
     <div class="title-row">
       <h2>{{$.T "plan.title"}}</h2>
       <a class="btn secondary small" href="/goals?shuffle={{add .Shuffle 1}}#plan">↻ {{$.T "plan.shuffle"}}</a>
+      <form method="post" action="/goals/shopping"><button class="secondary small">🛒 {{$.T "plan.to_list"}}</button></form>
     </div>
     {{if .Items}}
       {{if .Plan.Within}}<p class="badge ok">{{$.T "plan.within"}}</p>{{else}}<p class="badge warn">{{$.T "plan.closest"}}</p>{{end}}

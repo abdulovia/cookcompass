@@ -28,6 +28,7 @@
   {{if .Data.HasDislikes}}<label class="check"><input type="checkbox" name="hide_disliked" value="1" {{if $q.HideDisliked}}checked{{end}}> {{.T "browse.hide_disliked"}}</label>{{end}}
   <noscript><button type="submit">{{.T "common.filter"}}</button></noscript>
   <a href="/recipes" class="muted">{{.T "common.reset"}}</a>
+  <a href="/recipes?f=1&fav=1" class="pill {{if .Data.FavoritesTab}}pill-on{{end}}" id="fav-tab">★ {{.T "browse.favorites"}}</a>
 </form>
 {{if and $q.OnlyCookable (not .Data.HasPantry)}}<p class="flash">{{.T "browse.pantry_hint"}} <a href="/settings#pantry">{{.T "nav.settings"}}</a></p>{{end}}
 {{block "results" .}}
