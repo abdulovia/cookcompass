@@ -30,6 +30,7 @@
           <li><a href="/" {{if .Active "/"}}aria-current="page"{{end}}>{{.T "nav.home"}}</a></li>
           <li><a href="/recipes" {{if .Active "/recipes"}}aria-current="page"{{end}}>{{.T "nav.recipes"}}</a></li>
           <li><a href="/learn" {{if .Active "/learn"}}aria-current="page"{{end}}>{{.T "nav.learn"}}</a></li>
+          <li><a href="/list" {{if .Active "/list"}}aria-current="page"{{end}}>{{.T "nav.list"}}</a></li>
           <li><a href="/goals" {{if .Active "/goals"}}aria-current="page"{{end}}>{{.T "nav.goals"}}</a></li>
           <li><a href="/settings" {{if .Active "/settings"}}aria-current="page"{{end}}>{{.T "nav.settings"}}</a></li>
           {{if .MultiUser}}{{if and .User .User.ID}}<li><form method="post" action="/logout"><button class="link">{{.T "auth.logout"}}</button></form></li>{{else}}<li><a href="/login">{{.T "auth.login"}}</a></li>{{end}}{{end}}
