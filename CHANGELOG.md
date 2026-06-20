@@ -5,6 +5,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-07
+### Added
+- Grocery shops with search URL templates (RU/US/GB/DE presets, `/admin/shops` CRUD): every ingredient line gets a "Buy" link — the exact product page when the catalog has one, otherwise a search in the user's shop with the localized ingredient name.
+- Products gain a shop and a direct product URL (admin form, CSV/JSON import, scanner targets `<CC> <SHOP> <URL>`); dedup keys are namespaced per shop.
+- Settings: shop picker and "strict shop" availability (my shop + generic products only).
+- One-click recipe dataset import: JSON/JSONL streams of schema.org Recipe objects (OpenRecipes-shaped items included) from the inbox folder or a URL, with a per-run limit and targeted approve; `recipes-import` CLI and `make import-recipes`.
+- Seed dataset grew to 46 bilingual EN/RU recipes across 14 cuisines.
+- S3-compatible image storage (MinIO in compose by default, graceful degradation without it): `/media` proxy with immutable caching, per-recipe and bulk mirror actions, automatic mirroring after dataset imports; recipe cards and pages show images, imageless cards get per-cuisine gradient placeholders.
+- Shopping list page: add from a recipe or the whole meal plan, bought toggles, per-line buy links, "have it" moves items into the pantry, clear bought.
+- Recipe favorites with a browse tab; 1–5 star ratings and notes on "I cooked this" shown in the history.
+- Serving scaler on the recipe page (client-side, unicode fractions included).
+- Optional self-hosted LibreTranslate (`--profile translate`) drafts recipe translations for review.
+
+### Changed
+- Migration 00002 (shops, product shop/URL, user shop settings) and 00003 (favorites, shopping list, cooked-log rating/note); `jsonld_targets.txt` documents a vetting checklist and lists four verified live pages.
+
 ## [1.0.0] - 2026-11-07
 ### Added
 - README quickstart, `docs/pipelines.md` (CI gates, refresh schedule, review SLAs), admin dashboard summary of pending reviews.
