@@ -24,11 +24,18 @@
     <p><a class="btn secondary" href="{{$b.VideoURL}}" target="_blank" rel="noopener noreferrer">▶ {{.T "recipe.watch_video"}}</a></p>
     {{end}}
 
-    <h2 id="ingredients">{{.T "recipe.ingredients"}}</h2>
+    <div class="row-gap" x-data="servings({{$b.Servings}})" style="margin:.2rem 0 .6rem">
+      <h2 id="ingredients" style="margin:0">{{.T "recipe.ingredients"}}</h2>
+      <span class="muted">{{.T "recipe.servings"}}:</span>
+      <button type="button" class="small" x-on:click="dec()" aria-label="{{.T "recipe.servings_less"}}">−</button>
+      <strong x-text="count"></strong>
+      <button type="button" class="small" x-on:click="inc()" aria-label="{{.T "recipe.servings_more"}}">+</button>
+      <button type="button" class="link" x-show="count !== base" x-cloak x-on:click="reset()">{{.T "recipe.servings_reset"}}</button>
+    </div>
     <ul class="ingredients" aria-labelledby="ingredients">
       {{range .Data.Lines}}
       <li>
-        <span>{{.Text}}{{if .Optional}} <span class="muted">({{$.T "common.optional"}})</span>{{end}}
+        <span><span class="ing-line" data-line="{{.Text}}">{{.Text}}</span>{{if .Optional}} <span class="muted">({{$.T "common.optional"}})</span>{{end}}
           {{with .SubNote}}<span class="sub-note">↺ {{.}}</span>{{end}}</span>
         <span class="row-gap">
           {{if .AtHome}}<span class="badge ok">{{$.T "availability.at_home"}}</span>{{end}}
@@ -78,8 +85,29 @@
       {{if .Flash}}<p class="flash" role="status">{{.T .Flash}}</p>{{end}}
       {{if .Data.CanTrack}}
       <p class="muted">{{if .Data.Cooked}}{{.T "recipe.cooked_count" "Count" .Data.Cooked}}{{else}}{{.T "recipe.never_cooked"}}{{end}}</p>
+      <div class="row-gap" style="margin-bottom:.6rem">
+        <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-post="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-target="#recipe-actions" hx-swap="outerHTML">
+          {{if .Data.Favorite}}<input type="hidden" name="favorite" value="0">
+          <button type="submit" class="secondary small">★ {{.T "recipe.unfavorite"}}</button>
+          {{else}}<input type="hidden" name="favorite" value="1">
+          <button type="submit" class="secondary small">☆ {{.T "recipe.favorite"}}</button>{{end}}
+        </form>
+        <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/shopping">
+          <button type="submit" class="secondary small">🛒 {{.T "recipe.to_list"}}</button>
+        </form>
+      </div>
       <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-post="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-target="#recipe-actions" hx-swap="outerHTML">
-        <button type="submit">🍳 {{.T "recipe.cooked_this"}}</button>
+        <details class="cooked-details">
+          <summary>🍳 {{.T "recipe.cooked_this"}}</summary>
+          <fieldset class="stars-input">
+            <legend class="visually-hidden">{{.T "list.rating"}}</legend>
+            {{range $s := seq 5}}<label class="star"><input type="radio" name="rating" value="{{$s}}"><span>★</span><span class="visually-hidden">{{$s}}</span></label>{{end}}
+          </fieldset>
+          <label class="visually-hidden" for="cooked-note">{{.T "list.note"}}</label>
+          <input id="cooked-note" name="note" placeholder="{{.T "list.note_placeholder"}}" maxlength="500">
+          <button type="submit">{{.T "recipe.cooked_log"}}</button>
+        </details>
+        <noscript><button type="submit">🍳 {{.T "recipe.cooked_this"}}</button></noscript>
       </form>
       <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-post="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-target="#recipe-actions" hx-swap="outerHTML" style="margin-top:.6rem">
         {{if .Data.Learned}}
