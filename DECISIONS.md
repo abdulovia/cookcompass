@@ -4,6 +4,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 
 ## Platform
 - Go 1.24 with `GOTOOLCHAIN=local`; dependencies pinned to versions that support it.
+- Image storage: minio-go v7 behind a 3-method `Backend` interface (Put/Get/Enabled); an empty `COOK_S3_ENDPOINT` or an unreachable endpoint degrades to a no-op backend, so `make run` on a laptop never needs a MinIO container.
 - Router: `go-chi/chi` (stdlib-compatible handlers, small, well known).
 - SQLite driver: `modernc.org/sqlite` (pure Go) so the binary is static and the image can be distroless.
 - One binary (`cookcompass`) for the server and every maintenance command; the Makefile calls it, `RUN=` switches to the container.
@@ -17,6 +18,9 @@ One line per decision that the requirements left open. Newest at the bottom of e
 
 ## Data model
 - One initial goose migration holds the whole schema; later changes get new numbered files.
+- 00002: `shops` (country, slug, search template) + `products.shop_id`/`url` + `user_settings.shop_id`/`strict_shop`; deleting a shop falls products back to the country's generic catalog (ON DELETE SET NULL).
+- Product dedup keys are namespaced by shop slug (`shop:lenta|sku:…`) so one country can hold the same SKU in several shops; existing generic rows keep their old keys.
+- 00003: `favorites`, `shopping_items` (recipe + ingredient links kept nullable so deleting a source never loses the line) and `cooked_log.rating`/`note`.
 - `recipe_revisions` is append-only, enforced by a trigger that rejects UPDATE; pruning past `keep_revisions` is the only DELETE.
 - Revisions also record soft-delete, restore and status changes, so the diff view shows the full lifecycle.
 - `recipe_i18n` also stores `description` and `ingredients_json` (localized display lines aligned by position) so Russian ingredient lists read naturally.
@@ -69,6 +73,8 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Body data is stored metric; imperial users enter ft/in and lb, converted on save.
 
 ## Ingestion
+- Dataset source: any stream of schema.org Recipe JSON values (array, JSONL, pretty-printed) parsed with a streaming `json.Decoder`, so multi-line records work and one broken tail stops the scan instead of half-importing. Untyped items with a name + ingredients (the OpenRecipes dump shape) are accepted; the normalizer still rejects anything without steps or ingredients.
+- Dataset drops go to `recipe_inbox_dir` (`data/recipe-inbox/`); URLs are fetched by the polite client and therefore capped at 5 MB — bigger dumps belong in the inbox. The admin import form offers inbox files, a URL, a per-run limit and an approve-now checkbox that approves only what this run queued (`PendingIDs`), not older pending items.
 - One working source: schema.org `Recipe` JSON-LD. No public JSON-LD recipe site with clearly permissive terms was found, so the default targets are three bundled sample pages (`file:` URLs) and operators add sites they may index.
 - `file:` targets (globs, relative to the targets file) make the pipeline work offline and double as "import a saved page".
 - robots.txt: specific user-agent group beats `*`; longest match wins, Allow wins ties; 4xx = allow all, 5xx = disallow all; Crawl-delay honoured up to 30 s on top of the 1 s minimum.
@@ -80,6 +86,10 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - An offline `scrape` run logs a warning and exits 0 so scripts and cron jobs don't fail when the network is down.
 
 ## Catalog & availability
+- Shops are data, not code: every shop carries a search URL template with a `{q}` placeholder (never fetched by CookCompass — it only builds hrefs), seeded as presets for RU/US/GB/DE and editable in `/admin/shops`. Store chains change rarely; templates that drift are a one-field fix.
+- Buy links per ingredient line: an exact product page (user's shop → generic catalog → any other shop) wins; otherwise the selected shop's search with the localized ingredient name as the query. No shop selected → only exact product links.
+- "Strict shop" mode narrows availability to the user's shop plus generic (shop-less) products; the default stays country-wide.
+- Catalog targets may carry a shop slug (`<CC> <SHOP> <URL>`); scanned products capture `offers.url` as their product page.
 - A country "has" an ingredient when at least one approved, non-deleted product links to it; pending and rejected products never count.
 - Recipe availability defaults to 100% of essential, non-staple ingredients (direct or via a declared substitute); optional lines never block. Threshold: `availability.threshold`.
 - Unlinked essential ingredients count as missing (the recipe page says so), which keeps unreviewed scraped recipes from surfacing as cookable.
@@ -92,6 +102,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - The seed was missing a farmer's cheese → ricotta substitute; added so syrniki is cookable where only ricotta is sold.
 
 ## Internationalisation
+- Machine translation drafts: an optional self-hosted LibreTranslate (`--profile translate`, `COOK_TRANSLATE_URL`) fills one locale's fields from the English base and records a "machine translation draft" revision — a human reviews in the same form; without the endpoint the button explains itself and nothing happens.
 - English and Russian are complete; German, Spanish and French ship navigation and common labels and fall back to English, labelled "(partial)" in Settings. A test enforces this split.
 - Language priority: explicit switcher cookie → profile setting → `Accept-Language` → English.
 - Recipe text, descriptions, steps and hand-written ingredient lines are per-locale rows in `recipe_i18n`; recipes without a translation show English text with localized units and ingredient names.
