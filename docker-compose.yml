@@ -62,6 +62,24 @@ services:
         condition: service_healthy
     restart: "no"
 
+  # Optional machine translation for recipe drafts:
+  #   docker compose --profile translate up -d libretranslate
+  #   then set COOK_TRANSLATE_URL=http://libretranslate:5000 for the app.
+  libretranslate:
+    image: libretranslate/libretranslate:1.6.2
+    command: libretranslate --load-only en,ru,de,es,fr
+    ports:
+      - "127.0.0.1:15000:5000"
+    volumes:
+      - ltmodels:/home/libretranslate/.local/share/argos-translate
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:5000/languages | grep -q ru"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+    restart: unless-stopped
+
   # Optional local TLS: `docker compose --profile tls up -d` → https://localhost:8443
   caddy:
     image: caddy:2-alpine
@@ -79,4 +97,5 @@ services:
 volumes:
   cookdata:
   cookmedia:
+  ltmodels:
   caddydata:
