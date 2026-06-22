@@ -34,6 +34,8 @@ storage:
     bucket: cookcompass    # COOK_S3_BUCKET
     secure: false          # COOK_S3_SECURE; true for https endpoints
     cache_images: true     # COOK_S3_CACHE_IMAGES; mirror fetched recipes' images into the bucket
+translate:
+  url: ""                 # COOK_TRANSLATE_URL; e.g. http://localhost:15000 (compose --profile translate); drafts are always marked for review
 availability:
   threshold: 1.0           # fraction of essential ingredients required
 defaults:
