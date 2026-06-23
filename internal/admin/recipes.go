@@ -71,6 +71,32 @@ func (h *Handler) cacheImage(w http.ResponseWriter, r *http.Request) {
 	web.Redirect(w, r, fmt.Sprintf("/admin/recipes/%d/edit", id), "media_cached")
 }
 
+// translateRecipe drafts a machine translation for one locale and stores it
+// flagged for review.
+func (h *Handler) translateRecipe(w http.ResponseWriter, r *http.Request) {
+	id, err := idParam(r)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	locale := r.FormValue("locale")
+	rec, err := h.App.Recipes.Get(r.Context(), id)
+	if errors.Is(err, recipes.ErrNotFound) {
+		http.NotFound(w, r)
+		return
+	}
+	if err != nil {
+		h.fail(w, r, err)
+		return
+	}
+	if err := h.App.TranslateRecipeDraft(r.Context(), rec, locale); err != nil {
+		h.Log.Warn("translate draft", "recipe", rec.Slug, "locale", locale, "err", err)
+		web.Redirect(w, r, fmt.Sprintf("/admin/recipes/%d/edit", id), "translate_failed")
+		return
+	}
+	web.Redirect(w, r, fmt.Sprintf("/admin/recipes/%d/edit", id), "translated")
+}
+
 // cacheAllImages mirrors every remote recipe image into storage (queue page
 // bulk action).
 func (h *Handler) cacheAllImages(w http.ResponseWriter, r *http.Request) {
@@ -152,7 +178,8 @@ func (h *Handler) renderForm(w http.ResponseWriter, r *http.Request, status int,
 	p.Data = map[string]any{
 		"Form": form, "Cuisines": cuisines, "MealTimes": recipes.MealTimes,
 		"Difficulties": recipes.Difficulties, "NutritionFields": NutritionFields,
-		"StorageEnabled": h.App.Media.Enabled(),
+		"StorageEnabled":    h.App.Media.Enabled(),
+		"TranslatorEnabled": h.App.Translator() != nil,
 	}
 	h.R.Page(w, status, "admin/recipe_form", p)
 }
