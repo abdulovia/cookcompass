@@ -23,6 +23,7 @@ type Config struct {
 	Recipes      Recipes      `yaml:"recipes"`
 	Scrape       Scrape       `yaml:"scrape"`
 	Storage      Storage      `yaml:"storage"`
+	Translate    Translate    `yaml:"translate"`
 	Availability Availability `yaml:"availability"`
 	Defaults     Defaults     `yaml:"defaults"`
 }
@@ -91,6 +92,12 @@ type S3 struct {
 	Bucket      string `yaml:"bucket"`
 	Secure      bool   `yaml:"secure"`
 	CacheImages bool   `yaml:"cache_images"` // mirror fetched recipes' images into the bucket
+}
+
+// Translate configures the optional self-hosted LibreTranslate endpoint
+// used to draft recipe translations for review.
+type Translate struct {
+	URL string `yaml:"url"` // e.g. http://localhost:15000; empty disables drafting
 }
 
 // Availability configures the recipe feasibility matcher.
@@ -249,6 +256,7 @@ func applyEnv(c *Config, lookup lookupFunc) error {
 	str("COOK_S3_BUCKET", &c.Storage.S3.Bucket)
 	boolean("COOK_S3_SECURE", &c.Storage.S3.Secure)
 	boolean("COOK_S3_CACHE_IMAGES", &c.Storage.S3.CacheImages)
+	str("COOK_TRANSLATE_URL", &c.Translate.URL)
 	float("COOK_AVAILABILITY_THRESHOLD", &c.Availability.Threshold)
 	str("COOK_DEFAULT_COUNTRY", &c.Defaults.Country)
 	str("COOK_DEFAULT_LOCALE", &c.Defaults.Locale)
