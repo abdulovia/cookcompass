@@ -40,6 +40,7 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/recipes/{id}/restore", h.recipeRestore)
 	r.Get("/recipes/{id}/revisions", h.recipeRevisions)
 	r.Post("/recipes/{id}/cache-image", h.cacheImage)
+	r.Post("/recipes/{id}/translate", h.translateRecipe)
 	r.Get("/queue", h.queue)
 	r.Post("/queue/recipes/{id}/approve", h.setRecipeStatus(recipes.StatusApproved, "approved"))
 	r.Post("/queue/recipes/{id}/reject", h.setRecipeStatus(recipes.StatusRejected, "rejected"))

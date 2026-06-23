@@ -22,6 +22,7 @@ Tests never touch the network: scrapers are exercised against recorded fixtures 
 | Job | Command | Cadence | Notes |
 |---|---|---|---|
 | Recipe ingestion | `cookcompass scrape --source jsonld` | weekly (Sun 03:00 local) | Polite by construction: robots.txt, ≥ 1 s/host, 7-day HTTP cache, so a weekly run re-fetches each page at most once. |
+| Dataset import | `cookcompass recipes-import --file <drop> --approve` | whenever you drop a file | Inbox-driven, not scheduled; repeats are deduplicated, so re-running the same dump is a no-op. |
 | Catalog scan | `cookcompass scan --country all` | weekly (Sun 04:00) | Shop pages + inbox files; offline runs fall back to the seed catalog. |
 | Backup | `make backup` | daily (02:00) | `VACUUM INTO` snapshot; keep 14 daily + 8 weekly copies. |
 | Purge stale queue | `cookcompass purge-pending` | monthly | Only items nobody reviewed within the SLA below. |
