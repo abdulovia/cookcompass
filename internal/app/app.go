@@ -6,6 +6,7 @@ import (
 	"context"
 	"database/sql"
 	"log/slog"
+	"os"
 
 	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/config"
@@ -39,6 +40,15 @@ type App struct {
 
 // Open opens the database, applies migrations and builds services.
 func Open(cfg config.Config, log *slog.Logger) (*App, error) {
+	// Inbox directories are drop zones; create them on start so upgrades
+	// (and fresh non-Docker runs) don't require manual mkdir.
+	for _, dir := range []string{cfg.Scrape.InboxDir, cfg.Scrape.DatasetDir} {
+		if dir != "" {
+			if err := os.MkdirAll(dir, 0o755); err != nil {
+				return nil, err
+			}
+		}
+	}
 	d, err := db.Open(cfg.DB.Path)
 	if err != nil {
 		return nil, err
