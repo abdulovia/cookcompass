@@ -97,7 +97,14 @@
     <legend>{{.T "admin.section_translations"}}</legend>
     {{range $f.Translations}}
     <details {{if .Name}}open{{end}}>
-      <summary><strong>{{.Locale}}</strong></summary>
+      <summary><strong>{{.Locale}}</strong>
+        {{if and $f.ID $.Data.TranslatorEnabled}}
+        <form method="post" action="/admin/recipes/{{$f.ID}}/translate" class="inline" style="margin-left:auto">
+          <input type="hidden" name="locale" value="{{.Locale}}">
+          <button class="secondary small" type="submit">🤖 {{$.T "admin.translate_draft"}} {{.Locale}}</button>
+        </form>
+        {{end}}
+      </summary>
       <input type="hidden" name="translation_locales" value="{{.Locale}}">
       <label for="t-{{.Locale}}-name">{{$.T "admin.field_translation_name"}}</label>
       <input id="t-{{.Locale}}-name" name="t_{{.Locale}}_name" value="{{.Name}}" lang="{{.Locale}}">
