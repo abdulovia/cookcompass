@@ -4,6 +4,11 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- German, Spanish and French UI translations are now complete (previously partial with English fallback); Settings no longer labels them "(partial)".
+
+### Fixed
+- Serving scaler kept no space between the scaled quantity and its unit ("500г" instead of "500 г").
 
 ## [1.1.0] - 2026-11-07
 ### Added
