@@ -33,8 +33,8 @@ func TestLanguageSelection(t *testing.T) {
 		t.Fatalf("switch: %d %s", resp.StatusCode, resp.Header.Get("Location"))
 	}
 	_, body = h.get("/recipes", "Accept-Language", "ru")
-	if !strings.Contains(body, `<html lang="de">`) || !strings.Contains(body, "Rezepte") || !strings.Contains(body, "Only what I can cook now") {
-		t.Fatal("German partial locale with English fallback")
+	if !strings.Contains(body, `<html lang="de">`) || !strings.Contains(body, "Rezepte") || !strings.Contains(body, "Nur was ich gerade kochen kann") {
+		t.Fatal("German locale should be fully translated")
 	}
 	// Unknown languages are ignored.
 	h.post("/lang", url.Values{"lang": {"xx"}})
@@ -49,8 +49,8 @@ func TestLanguageSelection(t *testing.T) {
 	if _, body = fresh.get("/"); !strings.Contains(body, `<html lang="ru">`) || !strings.Contains(body, "С чего начать") {
 		t.Fatal("profile language not applied")
 	}
-	if _, body = fresh.get("/settings"); !strings.Contains(body, "Deutsch (частично)") {
-		t.Fatal("partial languages should be labelled in settings")
+	if _, body = fresh.get("/settings"); !strings.Contains(body, "Deutsch") || strings.Contains(body, "частично") {
+		t.Fatal("complete languages should not be labelled partial in settings")
 	}
 	if _, body = fresh.get("/does-not-exist"); !strings.Contains(body, "Страница не найдена") {
 		t.Fatal("404 page in Russian")
