@@ -52,13 +52,14 @@ func placeholders(v any) string {
 	return strings.Join(keys, ",")
 }
 
-// TestShippedLocales checks the real translation files: Russian is complete,
-// partial locales only use known ids, and placeholders always match English.
+// TestShippedLocales checks the real translation files: en, ru, de, es and fr
+// are complete, any other locale only uses known ids, and placeholders always
+// match English.
 func TestShippedLocales(t *testing.T) {
 	en := readLocale(t, "en")
 	files, _ := filepath.Glob(filepath.Join(localesDir, "*.json"))
 	if len(files) < 5 {
-		t.Fatalf("expected en, ru and at least three partial locales, got %v", files)
+		t.Fatalf("expected the five shipped locales, got %v", files)
 	}
 	for _, f := range files {
 		code := strings.TrimSuffix(filepath.Base(f), ".json")
@@ -102,7 +103,7 @@ func TestShippedLocales(t *testing.T) {
 	}
 	for _, l := range b.Languages() {
 		switch l.Code {
-		case "en", "ru":
+		case "en", "ru", "de", "es", "fr":
 			if !l.Complete() {
 				t.Errorf("%s should be complete (%.0f%%)", l.Code, l.Coverage*100)
 			}
@@ -115,8 +116,8 @@ func TestShippedLocales(t *testing.T) {
 	if got := b.Localizer("ru").T("browse.count", "Count", 22); got != "22 рецепта" {
 		t.Errorf("ru plural few: %q", got)
 	}
-	if got := b.Localizer("de").T("settings.prefs_title"); got != "Allergies & dislikes" {
-		t.Errorf("partial locale should fall back to English: %q", got)
+	if got := b.Localizer("de").T("settings.prefs_title"); got != "Allergien & Abneigungen" {
+		t.Errorf("German settings.prefs_title: %q", got)
 	}
 }
 

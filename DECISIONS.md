@@ -103,7 +103,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 
 ## Internationalisation
 - Machine translation drafts: an optional self-hosted LibreTranslate (`--profile translate`, `COOK_TRANSLATE_URL`) fills one locale's fields from the English base and records a "machine translation draft" revision — a human reviews in the same form; without the endpoint the button explains itself and nothing happens.
-- English and Russian are complete; German, Spanish and French ship navigation and common labels and fall back to English, labelled "(partial)" in Settings. A test enforces this split.
+- English, Russian, German, Spanish and French are complete; any new locale may ship partially translated and falls back to English, labelled "(partial)" in Settings until every id is done. A test enforces the split.
 - Language priority: explicit switcher cookie → profile setting → `Accept-Language` → English.
 - Recipe text, descriptions, steps and hand-written ingredient lines are per-locale rows in `recipe_i18n`; recipes without a translation show English text with localized units and ingredient names.
 - Russian plurals use go-i18n CLDR forms (one/few/many/other); unit labels are plural-aware.
