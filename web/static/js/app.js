@@ -68,7 +68,9 @@ function scaleLine(text, factor) {
   if (fm) { frac = FRACTIONS[fm[0]]; matched = true; }
   if (!matched) return text;
   const scaled = (whole + frac) * factor;
-  return formatQty(scaled) + text.slice(lead.length);
+  const rest = text.slice(lead.length);
+  // lead's trailing space is consumed by the match; keep one before the unit.
+  return formatQty(scaled) + (rest && !rest.startsWith(' ') ? ' ' : '') + rest;
 }
 
 function formatQty(q) {
