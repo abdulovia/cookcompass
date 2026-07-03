@@ -108,6 +108,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Recipe text, descriptions, steps and hand-written ingredient lines are per-locale rows in `recipe_i18n`; recipes without a translation show English text with localized units and ingredient names.
 - Russian plurals use go-i18n CLDR forms (one/few/many/other); unit labels are plural-aware.
 - Locale files must use only English message ids with identical placeholders — checked by `go test ./internal/i18n`.
+- Float plural counts (ingredient quantities) are formatted to strings before go-i18n sees them (1.0 → "1" = one, 1.5 → other); bare `{Name}` placeholders are rejected by the locale test.
 
 ## Learning
 - "I cooked this" appends to `cooked_log` (any number of times); "learned" is a separate, reversible flag — cooking once doesn't mean you've learned it.
