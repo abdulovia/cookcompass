@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"path"
 	"sort"
+	"strconv"
 	"strings"
 
 	goi18n "github.com/nicksnyder/go-i18n/v2/i18n"
@@ -147,7 +148,7 @@ func (l *Localizer) T(id string, kv ...any) string {
 			k := fmt.Sprint(kv[i])
 			data[k] = kv[i+1]
 			if k == "Count" {
-				cfg.PluralCount = kv[i+1]
+				cfg.PluralCount = pluralCount(kv[i+1])
 			}
 		}
 		cfg.TemplateData = data
@@ -165,4 +166,16 @@ func (l *Localizer) T(id string, kv ...any) string {
 		return id
 	}
 	return s
+}
+
+// pluralCount adapts a count for go-i18n, which rejects floats and expects
+// them pre-formatted: 1.0 → "1" (one), 1.5 → "1.5" (CLDR decimal rules).
+func pluralCount(v any) any {
+	switch n := v.(type) {
+	case float64:
+		return strconv.FormatFloat(n, 'f', -1, 64)
+	case float32:
+		return strconv.FormatFloat(float64(n), 'f', -1, 32)
+	}
+	return v
 }
