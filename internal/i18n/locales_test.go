@@ -14,6 +14,26 @@ const localesDir = "../../web/locales"
 
 var rePlaceholder = regexp.MustCompile(`\{\{\s*\.(\w+)\s*\}\}`)
 
+// reBareBrace catches ICU-style "{Count}" placeholders, which go-i18n prints
+// literally (it wants "{{.Count}}"). Lowercase "{q}" is shop-URL syntax.
+var reBareBrace = regexp.MustCompile(`(^|[^{])\{[A-Z]\w*\}`)
+
+func strs(v any) []string {
+	switch t := v.(type) {
+	case string:
+		return []string{t}
+	case map[string]any:
+		var out []string
+		for _, x := range t {
+			if s, ok := x.(string); ok {
+				out = append(out, s)
+			}
+		}
+		return out
+	}
+	return nil
+}
+
 func readLocale(t *testing.T, code string) map[string]any {
 	t.Helper()
 	b, err := os.ReadFile(filepath.Join(localesDir, code+".json"))
@@ -70,6 +90,11 @@ func TestShippedLocales(t *testing.T) {
 				t.Errorf("%s: unknown message id %q", code, k)
 				continue
 			}
+			for _, str := range strs(v) {
+				if reBareBrace.MatchString(str) {
+					t.Errorf("%s %s: bare {Name} placeholder in %q; use {{.Name}}", code, k, str)
+				}
+			}
 			if placeholders(v) != placeholders(ev) {
 				t.Errorf("%s %s: placeholders %q, English has %q", code, k, placeholders(v), placeholders(ev))
 			}
@@ -122,3 +147,36 @@ func TestShippedLocales(t *testing.T) {
 }
 
 func isMap(v any) bool { _, ok := v.(map[string]any); return ok }
+
+// TestFloatPluralCounts: quantities are float64; go-i18n refuses unformatted
+// floats, which used to fall back to the "other" form for every unit.
+func TestFloatPluralCounts(t *testing.T) {
+	b, err := Load(os.DirFS("../../web"), "locales")
+	if err != nil {
+		t.Fatal(err)
+	}
+	cases := []struct {
+		lang  string
+		count any
+		want  string
+	}{
+		{"en", 1.0, "clove"},
+		{"en", 2.0, "cloves"},
+		{"en", 1.5, "cloves"},
+		{"en", float32(1), "clove"},
+		{"en", 1, "clove"},
+		{"ru", 1.0, "зубчик"},
+		{"ru", 3.0, "зубчика"},
+		{"ru", 5.0, "зубчиков"},
+		{"ru", 21.0, "зубчик"},
+		{"ru", 1.5, "зубчика"},
+	}
+	for _, c := range cases {
+		if got := b.Localizer(c.lang).T("unit.clove", "Count", c.count); got != c.want {
+			t.Errorf("%s %v: got %q, want %q", c.lang, c.count, got, c.want)
+		}
+	}
+	if got := b.Localizer("en").T("list.open_count", "Count", 3); got != "3 items to buy" {
+		t.Errorf("list.open_count: %q", got)
+	}
+}
