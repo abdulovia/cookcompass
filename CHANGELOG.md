@@ -11,6 +11,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Serving scaler kept no space between the scaled quantity and its unit ("500г" instead of "500 г").
 - Unit labels always used the plural "other" form ("1 cloves", Russian "5 зубчика"): float counts are now formatted for CLDR plural rules.
 - Shopping list header and rating labels printed a literal `{Count}`.
+- Admin recipe editor: the "Cache image" and "Draft translation" forms were nested inside the main form, so browsers turned them into a Save and detached the translations and the Save button; they now live outside and are wired with `form=` attributes.
 
 ## [1.1.0] - 2026-11-07
 ### Added
