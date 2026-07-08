@@ -12,6 +12,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Unit labels always used the plural "other" form ("1 cloves", Russian "5 зубчика"): float counts are now formatted for CLDR plural rules.
 - Shopping list header and rating labels printed a literal `{Count}`.
 - Admin recipe editor: the "Cache image" and "Draft translation" forms were nested inside the main form, so browsers turned them into a Save and detached the translations and the Save button; they now live outside and are wired with `form=` attributes.
+- Image storage was always disabled under `docker compose`: the endpoint `http://minio:9000` was passed to minio-go, which only accepts `host:port`. Endpoints now accept an `http(s)://` prefix, and an endpoint that is not up yet is re-probed in the background instead of disabling storage until restart.
+- LibreTranslate started (and downloaded its models) on every `docker compose up`; it is now behind `--profile translate`, the app receives `COOK_TRANSLATE_URL`, and the healthcheck no longer relies on curl.
 
 ## [1.1.0] - 2026-11-07
 ### Added
