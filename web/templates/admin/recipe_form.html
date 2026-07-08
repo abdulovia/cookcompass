@@ -84,11 +84,11 @@
     <input id="image" name="image_url" type="url" value="{{$f.ImageURL}}">
     {{template "field_error" (.Err "image_url")}}
     {{if and $f.ID $f.ImageURL}}
-    <form method="post" action="/admin/recipes/{{$f.ID}}/cache-image" class="row-gap" style="margin-top:.5rem">
-      {{if $.Data.StorageEnabled}}<button type="submit" class="secondary small">⤓ {{.T "admin.cache_image"}}</button>
+    <div class="row-gap" style="margin-top:.5rem">
+      {{if $.Data.StorageEnabled}}<button type="submit" form="cache-image-form" class="secondary small">⤓ {{.T "admin.cache_image"}}</button>
       <span class="help">{{.T "admin.cache_image_hint"}}</span>
       {{else}}<p class="help">{{.T "admin.storage_disabled"}}</p>{{end}}
-    </form>
+    </div>
     {{end}}
   </fieldset>
 
@@ -99,10 +99,7 @@
     <details {{if .Name}}open{{end}}>
       <summary><strong>{{.Locale}}</strong>
         {{if and $f.ID $.Data.TranslatorEnabled}}
-        <form method="post" action="/admin/recipes/{{$f.ID}}/translate" class="inline" style="margin-left:auto">
-          <input type="hidden" name="locale" value="{{.Locale}}">
-          <button class="secondary small" type="submit">🤖 {{$.T "admin.translate_draft"}} {{.Locale}}</button>
-        </form>
+        <button class="secondary small" type="submit" form="translate-form" name="locale" value="{{.Locale}}" style="margin-left:auto">🤖 {{$.T "admin.translate_draft"}} {{.Locale}}</button>
         {{end}}
       </summary>
       <input type="hidden" name="translation_locales" value="{{.Locale}}">
@@ -124,4 +121,10 @@
     <a class="btn secondary" href="/admin/recipes">{{.T "common.cancel"}}</a>
   </div>
 </form>
+{{/* Side actions live outside the main form: HTML forms cannot nest, so
+     their buttons point here through the form attribute. */}}
+{{if $f.ID}}
+<form id="cache-image-form" method="post" action="/admin/recipes/{{$f.ID}}/cache-image" hidden></form>
+<form id="translate-form" method="post" action="/admin/recipes/{{$f.ID}}/translate" hidden></form>
+{{end}}
 {{end}}
