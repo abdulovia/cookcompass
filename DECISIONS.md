@@ -121,3 +121,4 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Request bodies are capped at 6 MB (catalog uploads at 5 MB).
 - CI pins golangci-lint to the same version as `make lint`.
 - Secondary actions inside a larger form use an external `<form id>` plus `form="id"` on the button; a markup test rejects nested forms on every page.
+- S3 endpoints are normalized (`http://` / `https://` prefix → host:port + TLS flag); an unreachable endpoint is re-probed every 10 s for ~10 min, images keep their original URLs meanwhile.
