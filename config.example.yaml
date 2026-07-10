@@ -28,7 +28,7 @@ scrape:
   recipe_inbox_dir: data/recipe-inbox  # COOK_RECIPE_INBOX; dataset drops for the admin import
 storage:
   s3:
-    endpoint: ""           # COOK_S3_ENDPOINT; host:port, e.g. minio:9000; empty disables image storage
+    endpoint: ""           # COOK_S3_ENDPOINT; host:port (e.g. minio:9000) or http(s):// URL; empty disables image storage
     access_key: ""         # COOK_S3_ACCESS_KEY
     secret_key: ""         # COOK_S3_SECRET_KEY
     bucket: cookcompass    # COOK_S3_BUCKET
