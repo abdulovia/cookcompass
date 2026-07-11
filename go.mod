@@ -4,6 +4,7 @@ go 1.24.3
 
 require (
 	github.com/go-chi/chi/v5 v5.2.1
+	github.com/minio/minio-go/v7 v7.0.70
 	github.com/nicksnyder/go-i18n/v2 v2.5.1
 	github.com/pressly/goose/v3 v3.24.3
 	golang.org/x/crypto v0.38.0
@@ -22,7 +23,6 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mfridman/interpolate v0.0.2 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
-	github.com/minio/minio-go/v7 v7.0.70 // indirect
 	github.com/ncruces/go-strftime v0.1.9 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/rs/xid v1.5.0 // indirect
