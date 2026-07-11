@@ -12,10 +12,12 @@ services:
       COOK_ADMIN_PASSWORD: ${COOK_ADMIN_PASSWORD:-cookcompass}
       COOK_DEFAULT_COUNTRY: ${COOK_DEFAULT_COUNTRY:-US}
       COOK_LOG_FORMAT: ${COOK_LOG_FORMAT:-json}
-      COOK_S3_ENDPOINT: http://minio:9000
+      COOK_S3_ENDPOINT: minio:9000
       COOK_S3_ACCESS_KEY: ${MINIO_ROOT_USER:-cookcompass}
       COOK_S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-cookcompass-secret}
       COOK_S3_BUCKET: ${COOK_S3_BUCKET:-cookcompass}
+      # Empty = drafting off; with --profile translate use http://libretranslate:5000
+      COOK_TRANSLATE_URL: ${COOK_TRANSLATE_URL:-}
     volumes:
       - cookdata:/data
     healthcheck:
@@ -63,17 +65,19 @@ services:
     restart: "no"
 
   # Optional machine translation for recipe drafts:
-  #   docker compose --profile translate up -d libretranslate
-  #   then set COOK_TRANSLATE_URL=http://libretranslate:5000 for the app.
+  #   COOK_TRANSLATE_URL=http://libretranslate:5000 docker compose --profile translate up -d
+  # (or put COOK_TRANSLATE_URL in .env). The first start downloads the models.
   libretranslate:
     image: libretranslate/libretranslate:1.6.2
+    profiles: ["translate"]
     command: libretranslate --load-only en,ru,de,es,fr
     ports:
       - "127.0.0.1:15000:5000"
     volumes:
       - ltmodels:/home/libretranslate/.local/share/argos-translate
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:5000/languages | grep -q ru"]
+      # The image ships no curl; this is its own probe script.
+      test: ["CMD-SHELL", "./venv/bin/python scripts/healthcheck.py"]
       interval: 30s
       timeout: 10s
       retries: 10
