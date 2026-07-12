@@ -2,7 +2,17 @@ package storage
 
 import (
 	"context"
+	"errors"
+	"io"
+	"log/slog"
+	"net/http"
+	"net/http/httptest"
+	"strings"
+	"sync/atomic"
 	"testing"
+	"time"
+
+	"github.com/abdulovia/cookcompass/internal/config"
 )
 
 func TestContentTypes(t *testing.T) {
@@ -51,5 +61,78 @@ func TestDisabledBackend(t *testing.T) {
 	}
 	if _, err := b.Get(context.TODO(), "k"); err != ErrNotFound {
 		t.Fatalf("get should be ErrNotFound, got %v", err)
+	}
+}
+
+func TestNormalizeEndpoint(t *testing.T) {
+	cases := []struct {
+		in         string
+		secure     bool
+		want       string
+		wantSecure bool
+	}{
+		{"minio:9000", false, "minio:9000", false},
+		{"minio:9000", true, "minio:9000", true},
+		{"http://minio:9000", true, "minio:9000", false},
+		{"https://s3.example.com/", false, "s3.example.com", true},
+		{" http://localhost:9000/ ", false, "localhost:9000", false},
+	}
+	for _, c := range cases {
+		got, sec := NormalizeEndpoint(c.in, c.secure)
+		if got != c.want || sec != c.wantSecure {
+			t.Errorf("NormalizeEndpoint(%q, %v) = %q, %v; want %q, %v", c.in, c.secure, got, sec, c.want, c.wantSecure)
+		}
+	}
+}
+
+// fakeS3 answers just enough of the S3 API for BucketExists: the bucket
+// location lookup and a HEAD on the bucket. Until up is set it fails.
+func fakeS3(t *testing.T, up *atomic.Bool) *httptest.Server {
+	t.Helper()
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if !up.Load() {
+			http.Error(w, "starting", http.StatusServiceUnavailable)
+			return
+		}
+		if _, ok := r.URL.Query()["location"]; ok {
+			w.Header().Set("Content-Type", "application/xml")
+			_, _ = io.WriteString(w, `<?xml version="1.0" encoding="UTF-8"?><LocationConstraint xmlns="http://s3.amazonaws.com/doc/2006-03-01/">us-east-1</LocationConstraint>`)
+			return
+		}
+		w.WriteHeader(http.StatusOK)
+	}))
+	t.Cleanup(srv.Close)
+	return srv
+}
+
+func TestNewS3RetriesUntilReachable(t *testing.T) {
+	oldEvery, oldN := retryEvery, retryAttempts
+	retryEvery, retryAttempts = 20*time.Millisecond, 200
+	t.Cleanup(func() { retryEvery, retryAttempts = oldEvery, oldN })
+
+	var up atomic.Bool
+	srv := fakeS3(t, &up)
+	log := slog.New(slog.NewTextHandler(io.Discard, nil))
+	b := NewS3(config.S3{Endpoint: srv.URL, AccessKey: "ak", SecretKey: "sk", Bucket: "cookcompass"}, log)
+	if b.Enabled() {
+		t.Fatal("backend must not be enabled while the endpoint is down")
+	}
+	if err := b.Put(context.Background(), "k", "image/png", strings.NewReader("x"), 1); !errors.Is(err, ErrUnavailable) {
+		t.Fatalf("Put while down: %v", err)
+	}
+	up.Store(true)
+	deadline := time.Now().Add(3 * time.Second)
+	for !b.Enabled() {
+		if time.Now().After(deadline) {
+			t.Fatal("backend never became ready after the endpoint came up")
+		}
+		time.Sleep(10 * time.Millisecond)
+	}
+}
+
+func TestNewS3BadEndpoint(t *testing.T) {
+	log := slog.New(slog.NewTextHandler(io.Discard, nil))
+	if _, ok := NewS3(config.S3{Endpoint: "http://bad host:9000", Bucket: "b"}, log).(Disabled); !ok {
+		t.Fatal("malformed endpoint should disable storage")
 	}
 }
