@@ -25,14 +25,12 @@ func fakeLibreTranslate(t *testing.T) *httptest.Server {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		type pair struct {
-			TranslatedText string `json:"translatedText"`
-		}
-		out := make([]pair, len(req.Q))
+		// Real LibreTranslate shape for a batched q: one object, array value.
+		out := make([]string, len(req.Q))
 		for i, q := range req.Q {
-			out[i] = pair{TranslatedText: "[" + req.Target + "] " + q}
+			out[i] = "[" + req.Target + "] " + q
 		}
-		_ = json.NewEncoder(w).Encode(out)
+		_ = json.NewEncoder(w).Encode(map[string]any{"translatedText": out})
 	})
 	srv := httptest.NewServer(mux)
 	t.Cleanup(srv.Close)
