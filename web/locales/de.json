@@ -207,6 +207,7 @@
   "admin.import_recipes_title": "Rezepte aus einem Datensatz importieren",
   "admin.cache_image": "Bild in den Speicher spiegeln",
   "admin.translate_draft": "Übersetzungsentwurf",
+  "admin.translate_overwrite_confirm": "Die vorhandene Übersetzung ({{.Locale}}) durch einen maschinellen Entwurf ersetzen? Der bisherige Text bleibt im Änderungsverlauf.",
   "flash.translated": "Maschineller Entwurf gespeichert und zur Prüfung markiert.",
   "flash.translate_failed": "Übersetzung fehlgeschlagen — ist der Übersetzer konfiguriert und erreichbar?",
   "admin.cache_image_hint": "Lädt das Bild herunter und liefert es von diesem Server aus (/media), damit die Seiten es nicht mehr direkt von der Quellseite laden.",
