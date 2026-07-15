@@ -207,6 +207,7 @@
   "admin.import_recipes_title": "Import recipes from a dataset",
   "admin.cache_image": "Mirror image into storage",
   "admin.translate_draft": "Draft translation",
+  "admin.translate_overwrite_confirm": "Replace the existing {{.Locale}} translation with a machine draft? The current text stays in the revision history.",
   "flash.translated": "Machine draft saved and flagged for review.",
   "flash.translate_failed": "Translation failed — is the translator configured and reachable?",
   "admin.cache_image_hint": "Downloads the image and serves it from this server (/media), so pages stop hotlinking the source site.",
