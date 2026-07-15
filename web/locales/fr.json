@@ -209,6 +209,7 @@
   "admin.import_recipes_title": "Importer des recettes depuis un jeu de données",
   "admin.cache_image": "Copier l'image dans le stockage",
   "admin.translate_draft": "Brouillon de traduction",
+  "admin.translate_overwrite_confirm": "Remplacer la traduction actuelle ({{.Locale}}) par un brouillon automatique ? Le texte actuel reste dans l'historique des révisions.",
   "flash.translated": "Brouillon automatique enregistré et marqué pour révision.",
   "flash.translate_failed": "La traduction a échoué — le traducteur est-il configuré et joignable ?",
   "admin.cache_image_hint": "Télécharge l'image et la sert depuis ce serveur (/media), pour que les pages cessent de la charger depuis le site d'origine.",
