@@ -209,6 +209,7 @@
   "admin.import_recipes_title": "Importar recetas de un conjunto de datos",
   "admin.cache_image": "Copiar imagen al almacenamiento",
   "admin.translate_draft": "Borrador de traducción",
+  "admin.translate_overwrite_confirm": "¿Sustituir la traducción actual ({{.Locale}}) por un borrador automático? El texto actual queda en el historial de revisiones.",
   "flash.translated": "Borrador automático guardado y marcado para revisión.",
   "flash.translate_failed": "La traducción falló — ¿está el traductor configurado y accesible?",
   "admin.cache_image_hint": "Descarga la imagen y la sirve desde este servidor (/media), para que las páginas dejen de cargarla directamente del sitio de origen.",
