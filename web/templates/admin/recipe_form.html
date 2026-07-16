@@ -99,7 +99,8 @@
     <details {{if .Name}}open{{end}}>
       <summary><strong>{{.Locale}}</strong>
         {{if and $f.ID $.Data.TranslatorEnabled}}
-        <button class="secondary small" type="submit" form="translate-form" name="locale" value="{{.Locale}}" style="margin-left:auto">🤖 {{$.T "admin.translate_draft"}} {{.Locale}}</button>
+        <button class="secondary small" type="submit" form="translate-form" name="locale" value="{{.Locale}}" style="margin-left:auto"
+          {{if .Name}}onclick="return confirm('{{$.T "admin.translate_overwrite_confirm" "Locale" .Locale}}')"{{end}}>🤖 {{$.T "admin.translate_draft"}} {{.Locale}}</button>
         {{end}}
       </summary>
       <input type="hidden" name="translation_locales" value="{{.Locale}}">
