@@ -31,6 +31,25 @@ func TestFavoritesFlow(t *testing.T) {
 	if _, body := h.get("/recipes?f=1&fav=1"); strings.Contains(body, "Pad Thai") {
 		t.Fatal("favorites tab should hide the rest")
 	}
+	// The favorites filter is part of the filter form, so combining it with
+	// another filter (an HTMX swap of #results) keeps it.
+	_, page := h.get("/recipes?f=1&fav=1")
+	if !strings.Contains(page, `name="fav" value="1" checked`) {
+		t.Fatal("favorites checkbox should be checked on the favorites view")
+	}
+	_, body := h.get("/recipes?f=1&fav=1&difficulty=", "HX-Request", "true", "HX-Target", "results")
+	if !strings.Contains(body, "Borscht") || strings.Contains(body, "Pad Thai") {
+		t.Fatal("favorites filter lost on an HTMX filter change")
+	}
+	// Full page loads show the action flash once (layout), not twice.
+	if _, body := h.get("/recipes/borscht?flash=favorited"); strings.Count(body, "Added to favorites.") != 1 {
+		t.Fatalf("flash shown %d times", strings.Count(body, "Added to favorites."))
+	}
+	// HTMX swaps of the actions card carry their own flash.
+	form.Set("favorite", "1")
+	if _, body := h.post("/recipes/borscht/favorite", form, "HX-Request", "true", "HX-Target", "recipe-actions"); !strings.Contains(body, "Added to favorites.") {
+		t.Fatal("HTMX favorite response lacks its flash")
+	}
 	// Toggle off.
 	form.Set("favorite", "0")
 	h.post("/recipes/borscht/favorite", form)

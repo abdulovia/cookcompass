@@ -15,6 +15,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Image storage was always disabled under `docker compose`: the endpoint `http://minio:9000` was passed to minio-go, which only accepts `host:port`. Endpoints now accept an `http(s)://` prefix, and an endpoint that is not up yet is re-probed in the background instead of disabling storage until restart.
 - LibreTranslate started (and downloaded its models) on every `docker compose up`; it is now behind `--profile translate`, the app receives `COOK_TRANSLATE_URL`, and the healthcheck no longer relies on curl.
 - Machine-translation drafts failed against a real LibreTranslate: batched requests return `{"translatedText": [...]}`, not an array of objects. Both shapes (and API error messages) are handled now; drafting over an existing translation asks for confirmation first.
+- Browse favorites: the tab was a link outside the filter form, so any filter change dropped it; it is now a "Favorites" checkbox in the form (hidden for guests).
+- Star rating input only highlighted the picked star; now every star up to it lights up, with a hover preview.
+- Recipe page showed the same flash message twice after a non-HTMX action.
 
 ## [1.1.0] - 2026-11-07
 ### Added
