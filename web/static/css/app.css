@@ -175,14 +175,17 @@ td.actions form { display: inline; margin: 0; }
 .check-box { width: 1.25rem; height: 1.25rem; border: 2px solid var(--line); border-radius: 6px; background: none; padding: 0; cursor: pointer; font-size: .9rem; line-height: 1; color: var(--brand); }
 .check-box.done { background: var(--brand); border-color: var(--brand); }
 .pill { border: 1px solid var(--line); border-radius: 999px; padding: .1rem .7rem; text-decoration: none; font-size: .9rem; }
-.pill-on { background: var(--brand); border-color: var(--brand); color: #fff; }
 
 /* stars and serving scaler */
 .stars { color: #d99a1b; letter-spacing: .05em; }
 .stars-input { display: inline-flex; gap: .1rem; border: 0; padding: 0; margin: .4rem 0; }
 .stars-input input { position: absolute; opacity: 0; }
 .stars-input .star span:first-of-type { color: var(--muted); font-size: 1.3rem; cursor: pointer; }
-.stars-input .star input:checked ~ span:first-of-type,
-.stars-input .star input:focus-visible ~ span:first-of-type { color: #d99a1b; }
+/* The picked star and every star before it light up; hovering previews. */
+.stars-input .star:has(input:checked) span:first-of-type,
+.stars-input .star:has(~ .star input:checked) span:first-of-type { color: #d99a1b; }
+.stars-input:hover .star:has(input) span:first-of-type { color: var(--muted); }
+.stars-input:hover .star:hover span:first-of-type,
+.stars-input:hover .star:has(~ .star:hover) span:first-of-type { color: #d99a1b; }
 .stars-input .star input:focus-visible ~ span:first-of-type { outline: 2px solid var(--brand); border-radius: 4px; }
 .cooked-summary { border: 1px solid var(--line); border-radius: var(--radius); padding: .6rem .8rem; }

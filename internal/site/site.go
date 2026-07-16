@@ -208,7 +208,7 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 	p.Data = map[string]any{
 		"Items": items, "Q": q, "Cuisines": cuisines, "MealTimes": recipes.MealTimes, "Difficulties": recipes.Difficulties,
 		"HasPantry": prof != nil && len(prof.Pantry) > 0, "HasDislikes": len(v.Dislikes) > 0, "CountryAware": v.Country != "",
-		"FavoritesTab": favoritesTab,
+		"FavoritesTab": favoritesTab, "CanTrack": prof != nil && prof.ID != 0,
 	}
 	if r.Header.Get("HX-Request") == "true" && r.Header.Get("HX-Target") == "results" {
 		h.R.Partial(w, http.StatusOK, "pages/browse", "results", p)
@@ -252,12 +252,15 @@ func (h *Handler) renderDetail(w http.ResponseWriter, r *http.Request, slug, blo
 	}
 	p := web.NewPage(r, "")
 	p.Title = it.Recipe.Name
-	if flash != "" {
-		p.Flash = "flash." + flash
-	}
+
 	lines := h.ingredientViews(r.Context(), p, it, byID, h.units(r))
 	embed, _ := recipes.EmbedURL(it.Base.VideoURL)
 	data := map[string]any{"Item": it, "Lines": lines, "Embed": embed, "CountryAware": v.Country != ""}
+	if flash != "" {
+		// Only HTMX swaps of the actions card pass a flash; full page loads
+		// show ?flash= once, in the layout.
+		data["ActionFlash"] = "flash." + flash
+	}
 	for k, val := range h.detailExtra(r, it) {
 		data[k] = val
 	}
