@@ -82,7 +82,7 @@
     {{block "recipe_actions" .}}
     <section class="card" id="recipe-actions" aria-labelledby="actions">
       <h2 id="actions">{{.T "recipe.your_progress"}}</h2>
-      {{if .Flash}}<p class="flash" role="status">{{.T .Flash}}</p>{{end}}
+      {{with .Data.ActionFlash}}<p class="flash" role="status">{{$.T .}}</p>{{end}}
       {{if .Data.CanTrack}}
       <p class="muted">{{if .Data.Cooked}}{{.T "recipe.cooked_count" "Count" .Data.Cooked}}{{else}}{{.T "recipe.never_cooked"}}{{end}}</p>
       <div class="row-gap" style="margin-bottom:.6rem">
