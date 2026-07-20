@@ -18,6 +18,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Browse favorites: the tab was a link outside the filter form, so any filter change dropped it; it is now a "Favorites" checkbox in the form (hidden for guests).
 - Star rating input only highlighted the picked star; now every star up to it lights up, with a hover preview.
 - Recipe page showed the same flash message twice after a non-HTMX action.
+- Dataset import accepted any `file` name joined onto the inbox path (`../…`); only listed inbox files are allowed now. A run that adds nothing says so instead of "imported". "Cache all images" is hidden while storage is off, and cooked-log notes are capped at 500 characters server-side.
 
 ## [1.1.0] - 2026-11-07
 ### Added
