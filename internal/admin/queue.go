@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -21,7 +22,8 @@ func (h *Handler) queue(w http.ResponseWriter, r *http.Request) {
 		h.fail(w, r, err)
 		return
 	}
-	data := map[string]any{"Recipes": pending, "Sources": h.App.RecipeSourceNames(), "InboxFiles": h.App.RecipeInboxFiles()}
+	data := map[string]any{"Recipes": pending, "Sources": h.App.RecipeSourceNames(), "InboxFiles": h.App.RecipeInboxFiles(),
+		"StorageEnabled": h.App.Media.Enabled()}
 	for k, v := range h.queueExtra(ctx) {
 		data[k] = v
 	}
@@ -43,7 +45,14 @@ func (h *Handler) datasetImport(w http.ResponseWriter, r *http.Request) {
 	if n, err := strconv.Atoi(r.FormValue("limit")); err == nil && n > 0 && n <= 10000 {
 		limit = n
 	}
-	opt := app.DatasetOptions{File: r.FormValue("file"), URL: u, Limit: limit,
+	// Only files actually listed in the inbox: the name is joined onto the
+	// inbox path, so anything else ("../…") is refused.
+	file := r.FormValue("file")
+	if file != "" && !slices.Contains(h.App.RecipeInboxFiles(), file) {
+		web.Redirect(w, r, "/admin/queue", "import_failed")
+		return
+	}
+	opt := app.DatasetOptions{File: file, URL: u, Limit: limit,
 		Approve: r.FormValue("approve") == "1"}
 	res, err := h.App.ImportDataset(r.Context(), opt)
 	if err != nil {
@@ -54,6 +63,12 @@ func (h *Handler) datasetImport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	h.Log.Info("dataset import", "result", res.String())
+	// Re-importing with approve still publishes queued duplicates; only a
+	// run that neither created nor approved anything is "nothing new".
+	if res.Created == 0 && (!opt.Approve || len(res.PendingIDs) == 0) {
+		web.Redirect(w, r, "/admin/queue", "import_nothing_new")
+		return
+	}
 	web.Redirect(w, r, "/admin/queue", "recipes_imported")
 }
 
