@@ -52,7 +52,19 @@ func TestAdminDatasetImport(t *testing.T) {
 		t.Fatal("pending recipe leaked to the public list")
 	}
 
-	// Import again with approve: duplicate is skipped, nothing new approved.
+	// The same drop again without approve: nothing new, and the flash says so.
+	if resp, _ := h.post("/admin/queue/import", form); !strings.Contains(resp.Header.Get("Location"), "import_nothing_new") {
+		t.Fatalf("re-import: %s", resp.Header.Get("Location"))
+	}
+	// Only listed inbox files are accepted.
+	for _, bad := range []string{"../drop.jsonl", "/etc/passwd", "missing.json"} {
+		if resp, _ := h.post("/admin/queue/import", url.Values{"file": {bad}}); !strings.Contains(resp.Header.Get("Location"), "import_failed") {
+			t.Fatalf("file %q: %s", bad, resp.Header.Get("Location"))
+		}
+	}
+
+	// Import again with approve: no new recipe, but the queued duplicate is
+	// approved.
 	form.Set("approve", "1")
 	if resp, _ := h.post("/admin/queue/import", form); !strings.Contains(resp.Header.Get("Location"), "recipes_imported") {
 		t.Fatalf("approve import: %s", resp.Header.Get("Location"))
