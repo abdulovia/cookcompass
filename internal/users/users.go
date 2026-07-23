@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"golang.org/x/crypto/bcrypt"
 
@@ -301,8 +302,18 @@ func (s *Store) LogCooked(ctx context.Context, userID, recipeID int64, rating in
 		r = rating
 	}
 	_, err := s.db.ExecContext(ctx, `INSERT INTO cooked_log (user_id, recipe_id, rating, note, cooked_at) VALUES (?,?,?,?,?)`,
-		userID, recipeID, r, strings.TrimSpace(note), db.Now())
+		userID, recipeID, r, clipRunes(strings.TrimSpace(note), MaxNoteRunes), db.Now())
 	return err
+}
+
+// MaxNoteRunes caps cooked-log notes (the form says maxlength=500 too).
+const MaxNoteRunes = 500
+
+func clipRunes(s string, n int) string {
+	if utf8.RuneCountInString(s) <= n {
+		return s
+	}
+	return string([]rune(s)[:n])
 }
 
 // CookedCounts returns how many times the user cooked each recipe.

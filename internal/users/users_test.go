@@ -3,7 +3,9 @@ package users
 import (
 	"context"
 	"errors"
+	"strings"
 	"testing"
+	"unicode/utf8"
 
 	"github.com/abdulovia/cookcompass/internal/testutil"
 )
@@ -107,6 +109,13 @@ func TestUsersStore(t *testing.T) {
 	recent, _ := s.RecentCooked(ctx, id, 2)
 	if counts[1] != 3 || len(recent) != 2 || recent[0].At.IsZero() {
 		t.Fatalf("cooked %v %v", counts, recent)
+	}
+	// Notes are capped server-side (the form's maxlength is only a hint).
+	if err := s.LogCooked(ctx, id, 1, 5, strings.Repeat("щ", MaxNoteRunes+50)); err != nil {
+		t.Fatal(err)
+	}
+	if recent, _ := s.RecentCooked(ctx, id, 1); len(recent) != 1 || utf8.RuneCountInString(recent[0].Note) != MaxNoteRunes {
+		t.Fatalf("note not capped: %+v", recent)
 	}
 	if err := s.SetLearned(ctx, id, 1, true); err != nil {
 		t.Fatal(err)
