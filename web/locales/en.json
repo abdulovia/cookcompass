@@ -177,6 +177,7 @@
   "recipe.back": "All recipes",
   "recipe.buy": "Buy",
   "flash.recipes_imported": "Dataset imported: new recipes are in the queue.",
+  "flash.import_nothing_new": "Nothing new: every recipe in that dataset is already known (or was invalid). See the server log for counts.",
   "nav.list": "Shopping list",
   "list.title": "Shopping list",
   "list.open_count": {"one": "{{.Count}} item to buy", "other": "{{.Count}} items to buy"},
