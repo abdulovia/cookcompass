@@ -179,6 +179,7 @@
   "recipe.back": "Toutes les recettes",
   "recipe.buy": "Acheter",
   "flash.recipes_imported": "Jeu de données importé : les nouvelles recettes sont dans la file.",
+  "flash.import_nothing_new": "Rien de nouveau : toutes les recettes de ce jeu sont déjà connues (ou invalides). Voir le journal du serveur.",
   "nav.list": "Liste de courses",
   "list.title": "Liste de courses",
   "list.open_count": {"one": "{{.Count}} article à acheter", "many": "{{.Count}} d'articles à acheter", "other": "{{.Count}} articles à acheter"},
