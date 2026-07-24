@@ -179,6 +179,7 @@
   "recipe.back": "Todas las recetas",
   "recipe.buy": "Comprar",
   "flash.recipes_imported": "Conjunto de datos importado: las recetas nuevas están en la cola.",
+  "flash.import_nothing_new": "Nada nuevo: todas las recetas de ese conjunto ya existen (o no eran válidas). Consulta el registro del servidor.",
   "nav.list": "Lista de la compra",
   "list.title": "Lista de la compra",
   "list.open_count": {"one": "{{.Count}} artículo por comprar", "many": "{{.Count}} de artículos por comprar", "other": "{{.Count}} artículos por comprar"},
