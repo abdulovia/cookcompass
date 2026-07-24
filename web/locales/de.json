@@ -177,6 +177,7 @@
   "recipe.back": "Alle Rezepte",
   "recipe.buy": "Kaufen",
   "flash.recipes_imported": "Datensatz importiert: Neue Rezepte sind in der Prüfqueue.",
+  "flash.import_nothing_new": "Nichts Neues: Alle Rezepte dieses Datensatzes sind schon bekannt (oder ungültig). Zahlen stehen im Server-Log.",
   "nav.list": "Einkaufsliste",
   "list.title": "Einkaufsliste",
   "list.open_count": {"one": "{{.Count}} Artikel zu kaufen", "other": "{{.Count}} Artikel zu kaufen"},
