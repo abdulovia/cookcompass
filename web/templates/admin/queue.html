@@ -4,7 +4,7 @@
   <div class="row-gap">
     {{range .Data.Sources}}<form method="post" action="/admin/queue/scrape"><input type="hidden" name="source" value="{{.}}"><button class="secondary">↻ {{$.T "admin.scrape_now" "Source" .}}</button></form>{{end}}
     <form method="post" action="/admin/queue/approve-all" onsubmit="return confirm('{{.T "admin.confirm_approve_all"}}')"><button>{{.T "admin.approve_all"}}</button></form>
-    <form method="post" action="/admin/queue/cache-images"><button class="secondary">⤓ {{.T "admin.cache_all_images"}}</button></form>
+    {{if .Data.StorageEnabled}}<form method="post" action="/admin/queue/cache-images"><button class="secondary">⤓ {{.T "admin.cache_all_images"}}</button></form>{{end}}
     <form method="post" action="/admin/queue/purge" onsubmit="return confirm('{{.T "admin.confirm_purge"}}')"><button class="secondary danger">{{.T "admin.purge"}}</button></form>
   </div>
 </div>
