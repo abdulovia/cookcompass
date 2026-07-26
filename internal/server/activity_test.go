@@ -107,6 +107,14 @@ func TestShoppingListFlow(t *testing.T) {
 	if !found {
 		t.Fatal("row vanished")
 	}
+	// The same toggle over HTMX returns the refreshed block, count included.
+	resp, body := h.post("/list/"+itoa(first.ID)+"/bought", url.Values{"bought": {"0"}},
+		"HX-Request", "true", "HX-Target", "list-items")
+	if resp.StatusCode != http.StatusOK || !strings.HasPrefix(strings.TrimSpace(body), `<div id="list-items">`) ||
+		!strings.Contains(body, "items to buy") || strings.Contains(body, "{Count}") || strings.Contains(body, "<html") {
+		t.Fatalf("htmx toggle: %d %s", resp.StatusCode, snippet(body, "list-items"))
+	}
+	h.post("/list/"+itoa(first.ID)+"/bought", form, "HX-Request", "true")
 
 	// "Have it" for a line with a linked ingredient adds it to the pantry.
 	var withIng users.ShoppingItem
