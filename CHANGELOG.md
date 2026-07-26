@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 ### Changed
+- Serving scaler is plural-aware for composed lines ("1 clove" → "2 cloves", ru "5 зубчиков") via `Intl.PluralRules`, and scales `1/2`, `1 1/2` and `2-3` in hand-written lines.
+- Shopping list actions (bought, have it, delete, clear) swap the list in place over HTMX; without JavaScript they still post and redirect.
 - German, Spanish and French UI translations are now complete (previously partial with English fallback); Settings no longer labels them "(partial)".
 
 ### Fixed
