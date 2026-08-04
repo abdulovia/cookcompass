@@ -73,3 +73,26 @@ func TestNoNestedForms(t *testing.T) {
 		}
 	}
 }
+
+// TestServingScalerHints: composed ingredient lines carry the base quantity,
+// the text after the unit and the unit's plural forms; units read singular
+// for one ("1 handful") on the server too.
+func TestServingScalerHints(t *testing.T) {
+	h := newHarness(t)
+	_, body := h.get("/recipes/aglio-e-olio")
+	for _, want := range []string{
+		`data-line="4 cloves garlic, sliced paper-thin" data-qty="4" data-rest="garlic, sliced paper-thin"`,
+		`&#34;1&#34;:&#34;clove&#34;`, `&#34;2&#34;:&#34;cloves&#34;`,
+		`>1 handful parsley, finely chopped<`,
+	} {
+		if !strings.Contains(body, want) {
+			t.Errorf("recipe page lacks %s", want)
+		}
+	}
+	// Hand-written Russian lines have no structured quantity: the client
+	// falls back to scaling the leading number of the text.
+	_, body = h.get("/recipes/aglio-e-olio", "Cookie", "lang=ru")
+	if !strings.Contains(body, `data-line="4 зубчика чеснока`) || strings.Contains(body, "data-qty=") {
+		t.Fatal("ru hand-written lines should render without scaler hints")
+	}
+}
