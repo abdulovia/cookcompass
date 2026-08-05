@@ -4,10 +4,12 @@ package site
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"log/slog"
 	"net/http"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/go-chi/chi/v5"
@@ -227,6 +229,11 @@ type IngredientView struct {
 	BuyURL   string // direct product page or shop search
 	BuyExact bool   // true = exact product page
 	BuyShop  string // shop name for labels
+	// Serving-scaler hints for composed lines (empty for hand-written ones):
+	// base quantity, text after the unit, unit label per plural sample.
+	Qty   string
+	Rest  string
+	Units string
 }
 
 func (h *Handler) detail(w http.ResponseWriter, r *http.Request) {
@@ -285,10 +292,15 @@ func (h *Handler) ingredientViews(ctx context.Context, p *web.Page, it *pool.Ite
 	}
 	out := make([]IngredientView, len(it.Base.Ingredients))
 	for i, in := range it.Base.Ingredients {
+		lp := composeLine(it.Base, i, p.Lang, units, byID, p.T)
 		iv := IngredientView{
-			Text:     DisplayLine(it.Base, i, p.Lang, units, byID, p.T),
+			Text:     lp.Text,
 			Optional: !in.Essential,
 			AtHome:   in.IngredientID != 0 && (it.Home.Lines[i] == availability.Have || it.Home.Lines[i] == availability.Staple),
+		}
+		if lp.Qty != nil {
+			iv.Qty = strconv.FormatFloat(*lp.Qty, 'f', -1, 64)
+			iv.Rest, iv.Units = lp.Rest, unitForms(lp.UnitKey, p.T)
 		}
 		if i < len(it.Market.Lines) {
 			iv.Status = it.Market.Lines[i]
@@ -319,32 +331,66 @@ func (h *Handler) ingredientViews(ctx context.Context, p *web.Page, it *pool.Ite
 // the parsed quantity, converted unit and localized ingredient name.
 func DisplayLine(r *recipes.Recipe, i int, locale, units string, byID map[int64]ingredients.Ingredient,
 	t func(string, ...any) string) string {
+	return composeLine(r, i, locale, units, byID, t).Text
+}
+
+// lineParts is a rendered ingredient line plus what the serving scaler
+// needs to recompute it: quantity, unit message id and the text after the
+// unit. Qty is nil for hand-written translations and unquantified lines.
+type lineParts struct {
+	Text    string
+	Qty     *float64
+	UnitKey string // "unit.clove", or "" when the line has no unit label
+	Rest    string // name and note, as rendered after the unit
+}
+
+func composeLine(r *recipes.Recipe, i int, locale, units string, byID map[int64]ingredients.Ingredient,
+	t func(string, ...any) string) lineParts {
 	if locale != recipes.BaseLocale {
 		if line := r.IngredientLine(locale, i); line != "" {
-			return line
+			return lineParts{Text: line}
 		}
 	}
 	in := r.Ingredients[i]
-	name := in.Name
+	rest := in.Name
 	if locale != recipes.BaseLocale && in.IngredientID != 0 {
 		if ing, ok := byID[in.IngredientID]; ok {
-			name = ing.LocalName(locale)
+			rest = ing.LocalName(locale)
 		}
 	}
-	var parts []string
-	if in.Quantity != nil {
-		q, unit := recipes.ConvertUnits(*in.Quantity, in.Unit, units)
-		parts = append(parts, recipes.FormatQuantity(q))
-		if unit != "" && unit != "to taste" {
-			parts = append(parts, t("unit."+strings.ReplaceAll(unit, " ", "_"), "Count", q))
-		}
-	}
-	parts = append(parts, name)
-	line := strings.Join(parts, " ")
 	if in.Unit == "to taste" {
-		line += ", " + t("unit.to_taste")
+		rest += ", " + t("unit.to_taste")
 	} else if in.Note != "" && locale == recipes.BaseLocale {
-		line += ", " + in.Note
+		rest += ", " + in.Note
 	}
-	return line
+	if in.Quantity == nil {
+		return lineParts{Text: rest, Rest: rest}
+	}
+	q, unit := recipes.ConvertUnits(*in.Quantity, in.Unit, units)
+	lp := lineParts{Qty: &q, Rest: rest}
+	parts := []string{recipes.FormatQuantity(q)}
+	if unit != "" && unit != "to taste" {
+		lp.UnitKey = "unit." + strings.ReplaceAll(unit, " ", "_")
+		parts = append(parts, t(lp.UnitKey, "Count", q))
+	}
+	lp.Text = strings.Join(append(parts, rest), " ")
+	return lp
+}
+
+// pluralSamples cover every CLDR category of the shipped locales (one, few,
+// many, other — including fractions and French/Spanish "many"); the client
+// picks the sample whose Intl.PluralRules category matches the scaled count.
+var pluralSamples = []float64{1, 2, 5, 21, 1.5, 0.5, 1000000}
+
+// unitForms renders a unit label for each plural sample, keyed by sample.
+func unitForms(key string, t func(string, ...any) string) string {
+	if key == "" {
+		return ""
+	}
+	forms := make(map[string]string, len(pluralSamples))
+	for _, n := range pluralSamples {
+		forms[strconv.FormatFloat(n, 'f', -1, 64)] = t(key, "Count", n)
+	}
+	b, _ := json.Marshal(forms)
+	return string(b)
 }
