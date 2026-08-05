@@ -91,6 +91,10 @@ func (h *Handler) list(w http.ResponseWriter, r *http.Request) {
 	if prof == nil {
 		return
 	}
+	if r.Header.Get("HX-Request") == "true" && r.Header.Get("HX-Target") == "list-items" {
+		h.listItems(w, r, prof, "")
+		return
+	}
 	views, open, err := h.shoppingData(r, prof)
 	if err != nil {
 		h.Fail(w, r, err)
@@ -98,11 +102,33 @@ func (h *Handler) list(w http.ResponseWriter, r *http.Request) {
 	}
 	p := web.NewPage(r, "list.title")
 	p.Data = map[string]any{"Items": views, "Open": open}
-	if r.Header.Get("HX-Request") == "true" && r.Header.Get("HX-Target") == "list-items" {
-		h.R.Partial(w, http.StatusOK, "pages/list", "list_items", p)
+	h.R.Page(w, http.StatusOK, "pages/list", p)
+}
+
+// listItems renders just the #list-items block (HTMX swaps after an action).
+func (h *Handler) listItems(w http.ResponseWriter, r *http.Request, prof *users.Profile, flash string) {
+	views, open, err := h.shoppingData(r, prof)
+	if err != nil {
+		h.Fail(w, r, err)
 		return
 	}
-	h.R.Page(w, http.StatusOK, "pages/list", p)
+	p := web.NewPage(r, "list.title")
+	data := map[string]any{"Items": views, "Open": open}
+	if flash != "" {
+		data["ActionFlash"] = "flash." + flash
+	}
+	p.Data = data
+	h.R.Partial(w, http.StatusOK, "pages/list", "list_items", p)
+}
+
+// listDone finishes a list action: the refreshed block for HTMX, a redirect
+// back to the page otherwise.
+func (h *Handler) listDone(w http.ResponseWriter, r *http.Request, prof *users.Profile, flash string) {
+	if r.Header.Get("HX-Request") == "true" {
+		h.listItems(w, r, prof, flash)
+		return
+	}
+	web.Redirect(w, r, "/list", flash)
 }
 
 // shoppingLines builds list rows from a recipe's ingredient lines, skipping
@@ -194,7 +220,7 @@ func (h *Handler) shoppingAction(w http.ResponseWriter, r *http.Request, flash s
 		h.Fail(w, r, err)
 		return
 	}
-	web.Redirect(w, r, "/list", flash)
+	h.listDone(w, r, prof, flash)
 }
 
 func (h *Handler) shoppingBought(w http.ResponseWriter, r *http.Request) {
@@ -255,7 +281,7 @@ func (h *Handler) shoppingPantry(w http.ResponseWriter, r *http.Request) {
 		h.Fail(w, r, err)
 		return
 	}
-	web.Redirect(w, r, "/list", "pantry_added")
+	h.listDone(w, r, prof, "pantry_added")
 }
 
 func (h *Handler) shoppingClear(w http.ResponseWriter, r *http.Request) {
@@ -267,5 +293,5 @@ func (h *Handler) shoppingClear(w http.ResponseWriter, r *http.Request) {
 		h.Fail(w, r, err)
 		return
 	}
-	web.Redirect(w, r, "/list", "cleared_bought")
+	h.listDone(w, r, prof, "cleared_bought")
 }
