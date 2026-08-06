@@ -1,13 +1,14 @@
 {{define "content"}}
 <h1>{{.T "list.title"}}</h1>
-<p class="muted">{{.T "list.open_count" "Count" .Data.Open}}</p>
 {{block "list_items" .}}
 <div id="list-items">
+  {{with .Data.ActionFlash}}<p class="flash" role="status">{{$.T .}}</p>{{end}}
+  <p class="muted">{{.T "list.open_count" "Count" .Data.Open}}</p>
   {{if .Data.Items}}
   <ul class="shop-list">
     {{range .Data.Items}}{{$it := .}}
     <li class="shop-item {{if .Bought}}bought{{end}}" id="item-{{.ID}}">
-      <form method="post" action="/list/{{.ID}}/bought" class="inline">
+      <form method="post" action="/list/{{.ID}}/bought" class="inline" {{template "list_hx" (printf "/list/%d/bought" .ID)}}>
         {{if .Bought}}<input type="hidden" name="bought" value="0">
         <button class="check-box done" aria-label="{{$.T "list.unmark"}}">✓</button>
         {{else}}<input type="hidden" name="bought" value="1">
@@ -17,19 +18,18 @@
       <span class="row-gap">
         {{if .BuyURL}}<a class="buy-link" href="{{.BuyURL}}" target="_blank" rel="noopener noreferrer">🛒 {{$.T "recipe.buy"}}</a>{{end}}
         {{if and (not .Bought) .IngredientID}}
-        <form method="post" action="/list/{{.ID}}/pantry" class="inline"><button class="link">🏠 {{$.T "list.have_it"}}</button></form>
+        <form method="post" action="/list/{{.ID}}/pantry" class="inline" {{template "list_hx" (printf "/list/%d/pantry" .ID)}}><button class="link">🏠 {{$.T "list.have_it"}}</button></form>
         {{end}}
-        <form method="post" action="/list/{{.ID}}/delete" class="inline"><button class="link danger">✕</button></form>
+        <form method="post" action="/list/{{.ID}}/delete" class="inline" {{template "list_hx" (printf "/list/%d/delete" .ID)}}><button class="link danger" aria-label="{{$.T "common.delete"}}">✕</button></form>
       </span>
     </li>
     {{end}}
   </ul>
+  <form method="post" action="/list/clear" class="row-gap" style="margin-top:1rem" {{template "list_hx" "/list/clear"}}>
+    <button class="secondary">🧹 {{.T "list.clear_bought"}}</button>
+  </form>
   {{else}}<p class="empty">{{.T "list.empty"}}</p>{{end}}
 </div>
 {{end}}
-{{if .Data.Items}}
-<form method="post" action="/list/clear" class="row-gap" style="margin-top:1rem">
-  <button class="secondary">🧹 {{.T "list.clear_bought"}}</button>
-</form>
 {{end}}
-{{end}}
+{{define "list_hx"}}hx-post="{{.}}" hx-target="#list-items" hx-swap="outerHTML"{{end}}
