@@ -35,7 +35,7 @@
     <ul class="ingredients" aria-labelledby="ingredients">
       {{range .Data.Lines}}
       <li>
-        <span><span class="ing-line" data-line="{{.Text}}">{{.Text}}</span>{{if .Optional}} <span class="muted">({{$.T "common.optional"}})</span>{{end}}
+        <span><span class="ing-line" data-line="{{.Text}}"{{if .Qty}} data-qty="{{.Qty}}" data-rest="{{.Rest}}"{{with .Units}} data-units="{{.}}"{{end}}{{end}}>{{.Text}}</span>{{if .Optional}} <span class="muted">({{$.T "common.optional"}})</span>{{end}}
           {{with .SubNote}}<span class="sub-note">↺ {{.}}</span>{{end}}</span>
         <span class="row-gap">
           {{if .AtHome}}<span class="badge ok">{{$.T "availability.at_home"}}</span>{{end}}
