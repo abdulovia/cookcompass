@@ -23,3 +23,7 @@ web/dist/
 
 # ZCode session artifacts
 .zcode/
+# operator content: only the guide and examples are versioned
+content/*
+!content/README.md
+!content/examples/
