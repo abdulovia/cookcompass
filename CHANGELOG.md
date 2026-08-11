@@ -4,6 +4,9 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Content directory (`content/`, `COOK_CONTENT_DIR`) layered over the bundled data: extra recipes, countries, cuisines, shops and products merged entry by entry, UI text overrides key by key, extra static files — applied on restart, no rebuild. Examples in `content/examples/`.
+
 ### Changed
 - Serving scaler is plural-aware for composed lines ("1 clove" → "2 cloves", ru "5 зубчиков") via `Intl.PluralRules`, and scales `1/2`, `1 1/2` and `2-3` in hand-written lines.
 - Shopping list actions (bought, have it, delete, clear) swap the list in place over HTMX; without JavaScript they still post and redirect.

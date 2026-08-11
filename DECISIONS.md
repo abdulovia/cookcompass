@@ -124,3 +124,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Secondary actions inside a larger form use an external `<form id>` plus `form="id"` on the button; a markup test rejects nested forms on every page.
 - S3 endpoints are normalized (`http://` / `https://` prefix → host:port + TLS flag); an unreachable endpoint is re-probed every 10 s for ~10 min, images keep their original URLs meanwhile.
 - MinIO image: `pgsty/minio` (pinned RELEASE tag), since upstream stopped publishing Docker images; no init job or healthcheck — bucket creation and startup ordering are the app's job.
+
+## Content layering
+- Embedded `seed/` and `web/` stay the offline defaults; `content/` is layered on top. JSON lists merge by slug/code, CSV rows by country+slug or SKU, locale files by message id; templates are not overridable, so upgrades can't break pages.
+- Content recipes are created once, like seed recipes; later changes go through `/admin` so user edits keep winning.
