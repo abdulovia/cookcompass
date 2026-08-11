@@ -21,6 +21,7 @@ ENV COOK_ADDR=:8080 \
     COOK_SCRAPE_CACHE=/data/cache/http \
     COOK_CATALOG_INBOX=/data/catalog-inbox \
     COOK_RECIPE_INBOX=/data/recipe-inbox \
+    COOK_CONTENT_DIR=/data/content \
     COOK_SCRAPE_TARGETS=/app/seed/sources/jsonld_targets.txt \
     COOK_CATALOG_TARGETS=/app/seed/sources/catalog_targets.txt
 EXPOSE 8080
