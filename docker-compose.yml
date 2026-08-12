@@ -20,6 +20,8 @@ services:
       COOK_TRANSLATE_URL: ${COOK_TRANSLATE_URL:-}
     volumes:
       - cookdata:/data
+      # Your recipes, reference data and text overrides (see content/README.md).
+      - ./content:/data/content:ro
     healthcheck:
       test: ["CMD", "/app/cookcompass", "healthcheck"]
       interval: 10s

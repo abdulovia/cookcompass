@@ -41,3 +41,5 @@ availability:
 defaults:
   country: US              # COOK_DEFAULT_COUNTRY
   locale: en               # COOK_DEFAULT_LOCALE
+content:
+  dir: content             # COOK_CONTENT_DIR; your recipes, data and text overrides layered over the bundled ones
