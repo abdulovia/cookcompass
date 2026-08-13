@@ -1,0 +1,4 @@
+[
+  {"code": "FR", "name": "France", "currency": "EUR", "lat": 46.6, "lng": 2.2, "default_locale": "fr",
+   "cities": [{"name": "Paris", "lat": 48.8566, "lng": 2.3522}, {"name": "Lyon", "lat": 45.764, "lng": 4.8357}]}
+]
