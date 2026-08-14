@@ -1,0 +1,2 @@
+country,slug,name,website,search_url_template
+FR,monoprix,Monoprix,https://www.monoprix.fr,https://www.monoprix.fr/search?q={q}
