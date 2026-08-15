@@ -5,11 +5,13 @@ package app
 import (
 	"context"
 	"database/sql"
+	"io/fs"
 	"log/slog"
 	"os"
 
 	"github.com/abdulovia/cookcompass/internal/catalog"
 	"github.com/abdulovia/cookcompass/internal/config"
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/db"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/pool"
@@ -19,6 +21,7 @@ import (
 	"github.com/abdulovia/cookcompass/internal/storage"
 	"github.com/abdulovia/cookcompass/internal/users"
 	seedfs "github.com/abdulovia/cookcompass/seed"
+	webfs "github.com/abdulovia/cookcompass/web"
 )
 
 // App holds long-lived services.
@@ -76,7 +79,7 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 // Seed loads the bundled dataset (idempotent) and makes sure the default
 // single-user account exists.
 func (a *App) Seed(ctx context.Context) (seed.Report, error) {
-	s := &seed.Seeder{FS: seedfs.FS, Ings: a.Ings, Recipes: a.Recipes, Catalog: a.Catalog, Shops: a.Shops, Log: a.Log}
+	s := &seed.Seeder{FS: a.SeedFS(), Ings: a.Ings, Recipes: a.Recipes, Catalog: a.Catalog, Shops: a.Shops, Log: a.Log}
 	rep, err := s.Run(ctx)
 	if err != nil {
 		return rep, err
@@ -84,6 +87,13 @@ func (a *App) Seed(ctx context.Context) (seed.Report, error) {
 	a.DefaultUserID, err = a.Users.EnsureDefault(ctx, a.Cfg.Defaults.Country)
 	return rep, err
 }
+
+// SeedFS is the bundled dataset overlaid with the content directory.
+func (a *App) SeedFS() fs.FS { return content.Layer(a.Cfg.Content.Dir, seedfs.FS) }
+
+// WebFS is the embedded UI (templates, static assets, locales) overlaid
+// with the content directory's locales/ and static/.
+func (a *App) WebFS() fs.FS { return content.Layer(a.Cfg.Content.Dir, webfs.FS) }
 
 // Close releases resources.
 func (a *App) Close() error { return a.DB.Close() }
