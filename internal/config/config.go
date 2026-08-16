@@ -26,6 +26,13 @@ type Config struct {
 	Translate    Translate    `yaml:"translate"`
 	Availability Availability `yaml:"availability"`
 	Defaults     Defaults     `yaml:"defaults"`
+	Content      Content      `yaml:"content"`
+}
+
+// Content points at the operator-editable directory layered over the
+// embedded defaults (reference data, recipes, UI text, site settings).
+type Content struct {
+	Dir string `yaml:"dir"` // missing directory = embedded defaults only
 }
 
 // Server holds HTTP listener settings.
@@ -137,6 +144,7 @@ func Default() Config {
 		Storage:      Storage{S3: S3{Bucket: "cookcompass", CacheImages: true}},
 		Availability: Availability{Threshold: 1.0},
 		Defaults:     Defaults{Country: "US", Locale: "en"},
+		Content:      Content{Dir: "content"},
 	}
 }
 
@@ -260,6 +268,7 @@ func applyEnv(c *Config, lookup lookupFunc) error {
 	float("COOK_AVAILABILITY_THRESHOLD", &c.Availability.Threshold)
 	str("COOK_DEFAULT_COUNTRY", &c.Defaults.Country)
 	str("COOK_DEFAULT_LOCALE", &c.Defaults.Locale)
+	str("COOK_CONTENT_DIR", &c.Content.Dir)
 	c.Defaults.Country = strings.ToUpper(c.Defaults.Country)
 	return errors.Join(errs...)
 }
