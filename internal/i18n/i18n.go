@@ -12,6 +12,8 @@ import (
 	"strings"
 
 	goi18n "github.com/nicksnyder/go-i18n/v2/i18n"
+
+	"github.com/abdulovia/cookcompass/internal/content"
 	"golang.org/x/text/language"
 )
 
@@ -46,21 +48,25 @@ func Load(fsys fs.FS, dir string) (*Bundle, error) {
 	}
 	ids := map[string]map[string]bool{}
 	for _, f := range files {
-		data, err := fs.ReadFile(fsys, f)
-		if err != nil {
-			return nil, err
-		}
 		code := strings.TrimSuffix(path.Base(f), ".json")
 		if _, err := language.Parse(code); err != nil {
 			return nil, fmt.Errorf("%s: bad language code: %w", f, err)
 		}
-		mf, err := b.ParseMessageFileBytes(data, f)
+		// Layered file systems yield the bundled file and then the content
+		// override; later messages replace earlier ones id by id.
+		layers, err := content.ReadLayers(fsys, f)
 		if err != nil {
-			return nil, fmt.Errorf("%s: %w", f, err)
+			return nil, err
 		}
 		set := map[string]bool{}
-		for _, m := range mf.Messages {
-			set[m.ID] = true
+		for _, data := range layers {
+			mf, err := b.ParseMessageFileBytes(data, f)
+			if err != nil {
+				return nil, fmt.Errorf("%s: %w", f, err)
+			}
+			for _, m := range mf.Messages {
+				set[m.ID] = true
+			}
 		}
 		ids[code] = set
 	}
