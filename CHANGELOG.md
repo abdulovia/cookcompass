@@ -4,6 +4,9 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Names of cuisines, countries and product categories moved from the UI locale files into the data (`names` maps in `seed/cuisines.json`, `seed/countries.json` and the new `seed/categories.json`); a new country or cuisine no longer needs edits in five locale files.
+
 ### Added
 - Content directory (`content/`, `COOK_CONTENT_DIR`) layered over the bundled data: extra recipes, countries, cuisines, shops and products merged entry by entry, UI text overrides key by key, extra static files — applied on restart, no rebuild. Examples in `content/examples/`.
 
