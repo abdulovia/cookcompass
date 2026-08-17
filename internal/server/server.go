@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/fs"
 	"log/slog"
 	"net/http"
 	"net/url"
@@ -19,6 +18,7 @@ import (
 
 	"github.com/abdulovia/cookcompass/internal/admin"
 	"github.com/abdulovia/cookcompass/internal/app"
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/i18n"
 	"github.com/abdulovia/cookcompass/internal/site"
 	"github.com/abdulovia/cookcompass/internal/storage"
@@ -44,7 +44,9 @@ type Server struct {
 
 // New builds a Server around an opened App.
 func New(a *app.App) (*Server, error) {
-	bundle, err := i18n.Load(webfs.FS, "locales")
+	// UI text and static assets may be overridden from the content
+	// directory; templates stay embedded so upgrades never break pages.
+	bundle, err := i18n.Load(a.WebFS(), "locales")
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +71,7 @@ func (s *Server) Handler() http.Handler {
 	r.Use(middleware.RequestID, s.logRequests, middleware.Recoverer, securityHeaders, limitBody, sameOrigin, s.identify, s.locale,
 		s.recoverer(pub))
 
-	static, _ := fs.Sub(webfs.FS, "static")
+	static, _ := content.Sub(s.app.WebFS(), "static")
 	r.Handle("/static/*", http.StripPrefix("/static/", cacheStatic(http.FileServer(http.FS(static)))))
 	r.Get("/healthz", s.healthz)
 	r.Get("/media/*", s.media)
