@@ -4,6 +4,7 @@
 package seed
 
 import (
+	"bytes"
 	"context"
 	"encoding/csv"
 	"encoding/json"
@@ -17,6 +18,7 @@ import (
 	"strings"
 
 	"github.com/abdulovia/cookcompass/internal/catalog"
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/shops"
@@ -90,8 +92,8 @@ func (s *Seeder) readJSON(name string, v any) error {
 }
 
 func (s *Seeder) ingredients(ctx context.Context, rep *Report) error {
-	var list []ingredientFile
-	if err := s.readJSON("ingredients.json", &list); err != nil {
+	list, err := content.MergeJSON(s.FS, "ingredients.json", func(i ingredientFile) string { return i.Slug })
+	if err != nil {
 		return err
 	}
 	for _, in := range list {
@@ -112,8 +114,8 @@ func (s *Seeder) ingredients(ctx context.Context, rep *Report) error {
 }
 
 func (s *Seeder) cuisines(ctx context.Context, rep *Report) error {
-	var list []recipes.Cuisine
-	if err := s.readJSON("cuisines.json", &list); err != nil {
+	list, err := content.MergeJSON(s.FS, "cuisines.json", func(c recipes.Cuisine) string { return c.Slug })
+	if err != nil {
 		return err
 	}
 	for _, c := range list {
@@ -126,8 +128,8 @@ func (s *Seeder) cuisines(ctx context.Context, rep *Report) error {
 }
 
 func (s *Seeder) countries(ctx context.Context, rep *Report) error {
-	var list []countryFile
-	if err := s.readJSON("countries.json", &list); err != nil {
+	list, err := content.MergeJSON(s.FS, "countries.json", func(c countryFile) string { return strings.ToUpper(c.Code) })
+	if err != nil {
 		return err
 	}
 	for _, c := range list {
@@ -149,14 +151,24 @@ func (s *Seeder) countries(ctx context.Context, rep *Report) error {
 // admin edits to name/website intact only when the seed row itself changes;
 // the shop list is small and stable by design.
 func (s *Seeder) shops(ctx context.Context, rep *Report) error {
-	f, err := s.FS.Open("shops.csv")
+	layers, err := content.ReadLayers(s.FS, "shops.csv")
 	if errors.Is(err, fs.ErrNotExist) {
 		return nil // test/minimal datasets may omit shop presets
 	}
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	// Every layer is applied in order, so a content file can add shops or
+	// change one preset (same country+slug) without repeating the rest.
+	for _, data := range layers {
+		if err := s.shopRows(ctx, bytes.NewReader(data), rep); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s *Seeder) shopRows(ctx context.Context, f io.Reader, rep *Report) error {
 	cr := csv.NewReader(f)
 	cr.TrimLeadingSpace = true
 	header, err := cr.Read()
@@ -202,14 +214,19 @@ func (s *Seeder) products(ctx context.Context, rep *Report) error {
 	sort.Strings(files)
 	for _, f := range files {
 		country := strings.ToUpper(strings.TrimSuffix(path.Base(f), ".csv"))
-		r, err := s.FS.Open(f)
+		layers, err := content.ReadLayers(s.FS, f)
 		if err != nil {
 			return err
 		}
-		products, err := catalog.ReadCSV(r, country)
-		r.Close()
-		if err != nil {
-			return fmt.Errorf("%s: %w", f, err)
+		// Layers add up: bundled rows first, then content rows (same SKU
+		// updates the product, as a catalog import would).
+		var products []*catalog.Product
+		for _, data := range layers {
+			list, err := catalog.ReadCSV(bytes.NewReader(data), country)
+			if err != nil {
+				return fmt.Errorf("%s: %w", f, err)
+			}
+			products = append(products, list...)
 		}
 		for _, p := range products {
 			p.Source = "seed"
