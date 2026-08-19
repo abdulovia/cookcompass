@@ -37,6 +37,9 @@ type App struct {
 	Pool    *pool.Pool
 	// Media mirrors recipe images into S3 storage; Disabled when unconfigured.
 	Media *Media
+	// Labels are display names of cuisines, countries and categories from
+	// the bundled data and the content directory.
+	Labels *content.Labels
 	// DefaultUserID is the account used in single-user mode.
 	DefaultUserID int64
 }
@@ -61,7 +64,13 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 		return nil, err
 	}
 	ings := ingredients.NewStore(d)
+	labels, err := content.LoadLabels(content.Layer(cfg.Content.Dir, seedfs.FS))
+	if err != nil {
+		_ = d.Close()
+		return nil, err
+	}
 	a := &App{
+		Labels:  labels,
 		Cfg:     cfg,
 		Log:     log,
 		DB:      d,

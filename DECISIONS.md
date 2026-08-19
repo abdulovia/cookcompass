@@ -128,3 +128,4 @@ One line per decision that the requirements left open. Newest at the bottom of e
 ## Content layering
 - Embedded `seed/` and `web/` stay the offline defaults; `content/` is layered on top. JSON lists merge by slug/code, CSV rows by country+slug or SKU, locale files by message id; templates are not overridable, so upgrades can't break pages.
 - Content recipes are created once, like seed recipes; later changes go through `/admin` so user edits keep winning.
+- Reference data carries its own display names (`names: {lang: …}`); the UI resolves them through one helper (`.L kind key`) with English, then a humanized slug, as fallbacks. Locale files hold UI text only — enforced by the locale test.
