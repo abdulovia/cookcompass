@@ -117,3 +117,42 @@ func TestMergeJSON(t *testing.T) {
 		t.Fatalf("broken content file should name the file: %v", err)
 	}
 }
+
+func TestLabels(t *testing.T) {
+	seed := fstest.MapFS{
+		"cuisines.json":  {Data: []byte(`[{"slug":"thai","name":"Thai","names":{"ru":"Тайская"}},{"slug":"greek","name":"Greek"}]`)},
+		"countries.json": {Data: []byte(`[{"code":"US","name":"United States","names":{"ru":"США"}}]`)},
+	}
+	dir := writeFiles(t, map[string]string{
+		"cuisines.json":   `[{"slug":"greek","name":"Hellenic","names":{"ru":"Греческая"}}]`,
+		"categories.json": `[{"slug":"spices","names":{"en":"Spices","de":"Gewürze"}}]`,
+	})
+	l, err := LoadLabels(Layer(dir, seed))
+	if err != nil {
+		t.Fatal(err)
+	}
+	cases := []struct{ kind, key, lang, want string }{
+		{Cuisine, "thai", "ru", "Тайская"},
+		{Cuisine, "thai", "de", "Thai"}, // English fallback
+		{Cuisine, "greek", "en", "Hellenic"},
+		{Cuisine, "greek", "ru", "Греческая"},
+		{Country, "us", "ru", "США"}, // codes are case-insensitive
+		{Category, "spices", "de", "Gewürze"},
+		{Cuisine, "middle-eastern", "en", "Middle eastern"}, // unknown → humanized
+	}
+	for _, c := range cases {
+		if got, _ := l.Label(c.kind, c.key, c.lang); got != c.want {
+			t.Errorf("%s/%s/%s = %q, want %q", c.kind, c.key, c.lang, got, c.want)
+		}
+	}
+	if _, ok := l.Label(Cuisine, "nope", "en"); ok {
+		t.Error("unknown key reported as known")
+	}
+	var nilLabels *Labels
+	if got, _ := nilLabels.Label(Cuisine, "thai", "en"); got != "Thai" {
+		t.Errorf("nil registry should humanize: %q", got)
+	}
+	if _, err := LoadLabels(fstest.MapFS{"countries.json": {Data: []byte("{")}}); err == nil {
+		t.Error("broken file should fail")
+	}
+}
