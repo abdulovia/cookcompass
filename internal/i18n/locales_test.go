@@ -90,6 +90,13 @@ func TestShippedLocales(t *testing.T) {
 				t.Errorf("%s: unknown message id %q", code, k)
 				continue
 			}
+			// Names of data (cuisines, countries, categories) live with the
+			// data in seed/*.json and content/*.json, not in UI text.
+			for _, prefix := range []string{"cuisine.", "country.", "category."} {
+				if strings.HasPrefix(k, prefix) {
+					t.Errorf("%s: %q belongs in seed/content data (names), not in locale files", code, k)
+				}
+			}
 			for _, str := range strs(v) {
 				if reBareBrace.MatchString(str) {
 					t.Errorf("%s %s: bare {Name} placeholder in %q; use {{.Name}}", code, k, str)
