@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/i18n"
 	"github.com/abdulovia/cookcompass/internal/users"
 )
@@ -16,7 +17,18 @@ const (
 	langsKey
 	profileKey
 	multiUserKey
+	uiKey
 )
+
+// UI is the backend-owned presentation data shared by every page: display
+// names of reference data (and, later, site branding and features). It is
+// built once at startup from the bundled defaults plus the content dir.
+type UI struct {
+	Labels *content.Labels
+}
+
+// WithUI stores the shared UI data in ctx.
+func WithUI(ctx context.Context, ui *UI) context.Context { return context.WithValue(ctx, uiKey, ui) }
 
 // WithProfile stores the current user's profile in ctx.
 func WithProfile(ctx context.Context, p *users.Profile, multiUser bool) context.Context {
@@ -47,6 +59,7 @@ type Page struct {
 	Data      any
 
 	loc *i18n.Localizer
+	ui  *UI
 }
 
 // T translates id with optional key/value template data.
@@ -55,6 +68,22 @@ func (p *Page) T(id string, kv ...any) string {
 		return id
 	}
 	return p.loc.T(id, kv...)
+}
+
+// L returns the display name of reference data — kind is "cuisine",
+// "country" or "category" — in the page language. Names live with the data
+// (seed/ and content/ JSON); unknown keys read as a humanized slug, and an
+// empty key as "Other".
+func (p *Page) L(kind, key string) string {
+	if key == "" {
+		return p.T("common.other")
+	}
+	var labels *content.Labels
+	if p.ui != nil {
+		labels = p.ui.Labels
+	}
+	name, _ := labels.Label(kind, key, p.Lang)
+	return name
 }
 
 // Err returns the translated validation message for a form field.
@@ -102,6 +131,7 @@ func NewPage(r *http.Request, title string) *Page {
 	if langs, ok := r.Context().Value(langsKey).([]i18n.Language); ok {
 		p.Languages = langs
 	}
+	p.ui, _ = r.Context().Value(uiKey).(*UI)
 	p.User = Profile(r.Context())
 	p.MultiUser, _ = r.Context().Value(multiUserKey).(bool)
 	if f := r.URL.Query().Get("flash"); isFlashID(f) {
