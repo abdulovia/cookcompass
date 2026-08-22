@@ -14,9 +14,13 @@ any id missing from a locale is shown in English, so a language can ship partial
 4. **Check.** `go test ./internal/i18n/` fails on unknown ids, mismatched placeholders or a plural/non-plural
    mismatch. A language is shown as "(partial)" in Settings until every English id is translated; once complete,
    update the expectation in `internal/i18n/locales_test.go`.
-5. **Recipe content** is translated separately, per recipe, in the admin form (Translations section) or in the
-   seed files (`seed/recipes/*.json`, `"i18n": {"<code>": {...}}`). Ingredient names are translated in
-   `seed/ingredients.json` (`"names"`).
-6. Rebuild (`make build` / `make up`): locale files are embedded in the binary.
+5. **Data names** — cuisines, countries and product categories — are not UI text: add your language to the
+   `"names"` map of each entry in `seed/cuisines.json`, `seed/countries.json` and `seed/categories.json`
+   (or in the same files under `content/` without a rebuild). Missing names fall back to English.
+6. **Recipe content** is translated separately, per recipe, in the admin form (Translations section) or in the
+   recipe files (`seed/recipes/*.json` / `content/recipes/*.json`, `"i18n": {"<code>": {...}}`). Ingredient names
+   are translated in `ingredients.json` (`"names"`).
+7. **No rebuild needed** to try a language: put the file in `content/locales/<code>.json` and restart the app.
+   To ship it with the binary, move it to `web/locales/` and rebuild (`make build` / `make up`).
 
-Status: `en` and `ru` are complete; `de`, `es` and `fr` contain navigation and common labels only.
+Status: `en`, `ru`, `de`, `es` and `fr` are complete.
