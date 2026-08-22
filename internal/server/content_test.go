@@ -33,7 +33,8 @@ func TestContentDirectory(t *testing.T) {
 		t.Fatal(err)
 	}
 	dir := contentDir(t, map[string]string{
-		"countries.json": `[{"code":"FR","name":"France","currency":"EUR","lat":46.6,"lng":2.2,"default_locale":"fr",
+		"cuisines.json": `[{"slug":"greek","name":"Hellenic","names":{"ru":"Эллинская"}}]`,
+		"countries.json": `[{"code":"FR","name":"France","names":{"ru":"Франция"},"currency":"EUR","lat":46.6,"lng":2.2,"default_locale":"fr",
 			"cities":[{"name":"Paris","lat":48.8566,"lng":2.3522}]}]`,
 		"shops.csv":             "country,slug,name,website,search_url_template\nFR,monoprix,Monoprix,https://www.monoprix.fr,https://www.monoprix.fr/search?q={q}\n",
 		"products/fr.csv":       "sku,name,category,ingredient,price,unit\nFR-BREAD-1,Baguette,bakery,bread,,1 pc\n",
@@ -62,6 +63,16 @@ func TestContentDirectory(t *testing.T) {
 	}
 	if resp, _ := h.get("/static/css/app.css"); resp.StatusCode != 200 {
 		t.Fatal("bundled static asset lost")
+	}
+	// Names come with the data, per language, with English as fallback.
+	if _, body := h.get("/recipes"); !strings.Contains(body, ">Hellenic<") {
+		t.Fatal("content cuisine name not used")
+	}
+	if _, body := h.get("/settings", "Cookie", "lang=ru"); !strings.Contains(body, ">Франция<") || !strings.Contains(body, ">США<") {
+		t.Fatal("country names should be localized from data")
+	}
+	if _, body := h.get("/recipes", "Cookie", "lang=ru"); !strings.Contains(body, ">Эллинская<") || !strings.Contains(body, ">Тайская<") {
+		t.Fatal("cuisine names should be localized from data")
 	}
 	h.setCountry("FR", false)
 	if _, body := h.get("/settings"); !strings.Contains(body, "Monoprix") {
