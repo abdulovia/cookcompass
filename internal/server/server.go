@@ -38,6 +38,7 @@ type Server struct {
 	app     *app.App
 	log     *slog.Logger
 	i18n    *i18n.Bundle
+	ui      *web.UI
 	render  *web.Renderer
 	started time.Time
 }
@@ -59,7 +60,7 @@ func New(a *app.App) (*Server, error) {
 			return nil, err
 		}
 	}
-	return &Server{app: a, log: a.Log, i18n: bundle, render: r, started: time.Now()}, nil
+	return &Server{app: a, log: a.Log, i18n: bundle, ui: &web.UI{Labels: a.Labels}, render: r, started: time.Now()}, nil
 }
 
 // Handler returns the root HTTP handler.
@@ -192,6 +193,7 @@ func (s *Server) locale(next http.Handler) http.Handler {
 		}
 		lang := s.i18n.Match(pref, r.Header.Get("Accept-Language"))
 		ctx := web.WithLocalizer(r.Context(), s.i18n.Localizer(lang), s.i18n.Languages())
+		ctx = web.WithUI(ctx, s.ui)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
