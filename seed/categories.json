@@ -1,0 +1,22 @@
+[
+  {"slug": "pantry", "names": {"en": "Pantry", "ru": "Бакалея", "de": "Vorratsschrank", "es": "Despensa", "fr": "Garde-manger"}},
+  {"slug": "spices", "names": {"en": "Spices", "ru": "Специи", "de": "Gewürze", "es": "Especias", "fr": "Épices"}},
+  {"slug": "oils", "names": {"en": "Oils", "ru": "Масла", "de": "Öle", "es": "Aceites", "fr": "Huiles"}},
+  {"slug": "dairy", "names": {"en": "Dairy & eggs", "ru": "Молочное и яйца", "de": "Milchprodukte & Eier", "es": "Lácteos y huevos", "fr": "Produits laitiers et œufs"}},
+  {"slug": "meat", "names": {"en": "Meat", "ru": "Мясо", "de": "Fleisch", "es": "Carne", "fr": "Viande"}},
+  {"slug": "seafood", "names": {"en": "Fish & seafood", "ru": "Рыба и морепродукты", "de": "Fisch & Meeresfrüchte", "es": "Pescado y marisco", "fr": "Poisson et fruits de mer"}},
+  {"slug": "protein", "names": {"en": "Plant protein", "ru": "Растительный белок", "de": "Pflanzliches Protein", "es": "Proteína vegetal", "fr": "Protéines végétales"}},
+  {"slug": "baking", "names": {"en": "Baking", "ru": "Выпечка", "de": "Backen", "es": "Repostería", "fr": "Pâtisserie"}},
+  {"slug": "grains", "names": {"en": "Grains & pasta", "ru": "Крупы и макароны", "de": "Getreide & Nudeln", "es": "Cereales y pasta", "fr": "Céréales et pâtes"}},
+  {"slug": "bakery", "names": {"en": "Bread", "ru": "Хлеб", "de": "Brot", "es": "Pan", "fr": "Pain"}},
+  {"slug": "snacks", "names": {"en": "Snacks", "ru": "Снеки", "de": "Snacks", "es": "Aperitivos", "fr": "Collations"}},
+  {"slug": "frozen", "names": {"en": "Frozen", "ru": "Заморозка", "de": "Tiefkühl", "es": "Congelados", "fr": "Surgelés"}},
+  {"slug": "vegetables", "names": {"en": "Vegetables", "ru": "Овощи", "de": "Gemüse", "es": "Verduras", "fr": "Légumes"}},
+  {"slug": "herbs", "names": {"en": "Fresh herbs", "ru": "Зелень", "de": "Frische Kräuter", "es": "Hierbas frescas", "fr": "Herbes fraîches"}},
+  {"slug": "fruit", "names": {"en": "Fruit", "ru": "Фрукты и ягоды", "de": "Obst", "es": "Fruta", "fr": "Fruits"}},
+  {"slug": "legumes", "names": {"en": "Beans & legumes", "ru": "Бобовые", "de": "Hülsenfrüchte", "es": "Legumbres", "fr": "Légumineuses"}},
+  {"slug": "nuts", "names": {"en": "Nuts & seeds", "ru": "Орехи и семечки", "de": "Nüsse & Samen", "es": "Frutos secos y semillas", "fr": "Noix et graines"}},
+  {"slug": "condiments", "names": {"en": "Sauces & condiments", "ru": "Соусы и приправы", "de": "Soßen & Würzmittel", "es": "Salsas y condimentos", "fr": "Sauces et condiments"}},
+  {"slug": "drinks", "names": {"en": "Drinks", "ru": "Напитки", "de": "Getränke", "es": "Bebidas", "fr": "Boissons"}},
+  {"slug": "other", "names": {"en": "Other", "ru": "Другое", "de": "Sonstiges", "es": "Otros", "fr": "Autre"}}
+]
