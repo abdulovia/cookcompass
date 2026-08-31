@@ -9,7 +9,7 @@
   <label for="cuisine">{{.T "browse.cuisine"}}
     <select id="cuisine" name="cuisine">
       <option value="">{{.T "common.all"}}</option>
-      {{range .Data.Cuisines}}<option value="{{.Slug}}" {{if eq .Slug $q.Cuisine}}selected{{end}}>{{$.T (printf "cuisine.%s" .Slug)}}</option>{{end}}
+      {{range .Data.Cuisines}}<option value="{{.Slug}}" {{if eq .Slug $q.Cuisine}}selected{{end}}>{{$.L "cuisine" .Slug}}</option>{{end}}
     </select>
   </label>
   <label for="meal">{{.T "browse.meal"}}

@@ -42,7 +42,7 @@
       {{if .NeedsReview}}<span class="badge warn">{{$.T "admin.needs_review"}}</span>{{end}}
       <div class="muted">{{$.T "admin.queue_counts" "Ingredients" (len .Ingredients) "Steps" (len .Steps)}}</div></td>
     <td><code>{{.Source}}</code>{{with .CanonicalURL}}<div><a href="{{.}}" rel="noopener noreferrer" target="_blank">{{.}}</a></div>{{end}}</td>
-    <td>{{$.T (printf "difficulty.%s" .Difficulty)}} · {{range $i, $m := .MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}{{with .Cuisine}} · {{$.T (printf "cuisine.%s" .)}}{{end}}</td>
+    <td>{{$.T (printf "difficulty.%s" .Difficulty)}} · {{range $i, $m := .MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}{{with .Cuisine}} · {{$.L "cuisine" .}}{{end}}</td>
     <td class="actions">
       <form method="post" action="/admin/queue/recipes/{{.ID}}/approve" hx-post="/admin/queue/recipes/{{.ID}}/approve" hx-target="#rq-{{.ID}}" hx-swap="outerHTML"><button class="small">{{$.T "admin.approve"}}</button></form>
       <form method="post" action="/admin/queue/recipes/{{.ID}}/reject" hx-post="/admin/queue/recipes/{{.ID}}/reject" hx-target="#rq-{{.ID}}" hx-swap="outerHTML"><button class="small secondary danger">{{$.T "admin.reject"}}</button></form>
