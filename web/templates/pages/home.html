@@ -36,7 +36,7 @@
 <section aria-labelledby="by-cuisine">
   <h2 id="by-cuisine">{{.T "home.by_cuisine"}}</h2>
   <ul class="pill-list">
-    {{range .Data.Cuisines}}<li><a class="btn secondary small" href="/recipes?cuisine={{.Slug}}">{{$.T (printf "cuisine.%s" .Slug)}}</a></li>{{end}}
+    {{range .Data.Cuisines}}<li><a class="btn secondary small" href="/recipes?cuisine={{.Slug}}">{{$.L "cuisine" .Slug}}</a></li>{{end}}
   </ul>
 </section>
 {{end}}

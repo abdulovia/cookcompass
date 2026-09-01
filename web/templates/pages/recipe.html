@@ -9,7 +9,7 @@
   <span>{{.T "recipe.prep"}}: <strong>{{.T "common.minutes" "N" $b.PrepMinutes}}</strong></span>
   <span>{{.T "recipe.cook"}}: <strong>{{.T "common.minutes" "N" $b.CookMinutes}}</strong></span>
   <span>{{.T "recipe.servings"}}: <strong>{{$b.Servings}}</strong></span>
-  <span>{{.T (printf "cuisine.%s" $b.Cuisine)}}</span>
+  <span>{{.L "cuisine" $b.Cuisine}}</span>
   <span>{{range $i, $m := $b.MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}</span>
 </div>
 {{if and .Data.CountryAware (not $it.Market.Available)}}
