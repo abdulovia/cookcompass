@@ -6,6 +6,7 @@ Nothing here is required: an empty folder means "use the bundled defaults".
 
 | Put here | Effect |
 |---|---|
+| `site.yaml` | name, logo, tagline, brand colour, footer links, feature switches (shopping list, learning, goals, favorites, geolocation) — see [`seed/site.yaml`](../seed/site.yaml) |
 | `recipes/<slug>.json` | extra recipes, same format as [`examples/recipes/buttered-toast.json`](examples/recipes/buttered-toast.json); loaded once (later edits happen in `/admin`) |
 | `countries.json`, `cuisines.json`, `categories.json`, `ingredients.json` | entries **merged by `code`/`slug`**: list only what you add or change |
 | `shops.csv`, `products/<cc>.csv` | extra shops and products; same country+slug / SKU updates the bundled row |
@@ -13,6 +14,6 @@ Nothing here is required: an empty folder means "use the bundled defaults".
 | `static/...` | add or replace static files (`/static/...`) |
 
 Only this README and `examples/` are versioned; everything else you put here stays local (see `.gitignore`).
-Copy an example to start: `cp -r content/examples/* content/`.
+Start from an example, one file at a time: `cp content/examples/site.yaml content/` (then edit it).
 
 Full guide: [docs/content.md](../docs/content.md).
