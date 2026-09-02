@@ -8,6 +8,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Names of cuisines, countries and product categories moved from the UI locale files into the data (`names` maps in `seed/cuisines.json`, `seed/countries.json` and the new `seed/categories.json`); a new country or cuisine no longer needs edits in five locale files.
 
 ### Added
+- `site.yaml` (bundled defaults in `seed/site.yaml`, overrides in `content/site.yaml`): site name and tagline per language, logo, brand colour, extra stylesheet, footer links and feature switches — a disabled area (shopping list, learning, goals, favorites, geolocation) loses its routes, menu entry and buttons.
 - Content directory (`content/`, `COOK_CONTENT_DIR`) layered over the bundled data: extra recipes, countries, cuisines, shops and products merged entry by entry, UI text overrides key by key, extra static files — applied on restart, no rebuild. Examples in `content/examples/`.
 
 ### Changed
