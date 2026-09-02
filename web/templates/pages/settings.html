@@ -16,7 +16,7 @@
       <div>
         <label for="country">{{.T "settings.country"}}</label>
         <select id="country" name="country">
-          {{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $u.CountryCode}}selected{{end}}>{{$.T (printf "country.%s" .Code)}}</option>{{end}}
+          {{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $u.CountryCode}}selected{{end}}>{{$.L "country" .Code}}</option>{{end}}
         </select>
       </div>
       <div>
@@ -66,12 +66,12 @@
   <form method="post" action="/settings/preferences">
     <details {{if $u.Prefs}}open{{end}}>
       <summary><strong>{{.T "settings.allergies"}}</strong> — {{.T "settings.allergies_hint"}}</summary>
-      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.L "category" .Category}}</h3>
         <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="allergy" value="{{.ID}}" {{if eq (index $u.Prefs .ID) "allergy"}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
     </details>
     <details>
       <summary><strong>{{.T "settings.dislikes"}}</strong> — {{.T "settings.dislikes_hint"}}</summary>
-      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.L "category" .Category}}</h3>
         <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="dislike" value="{{.ID}}" {{if eq (index $u.Prefs .ID) "dislike"}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
     </details>
     <button type="submit">{{.T "common.save"}}</button>
@@ -84,7 +84,7 @@
   <form method="post" action="/settings/pantry">
     <details {{if $u.Pantry}}open{{end}}>
       <summary>{{.T "settings.pantry_count" "Count" (len $u.Pantry)}}</summary>
-      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.T (printf "category.%s" .Category)}}</h3>
+      {{range .Data.Groups}}<div class="cat-group"><h3>{{$.L "category" .Category}}</h3>
         <ul class="pill-list">{{range .Items}}<li><label><input type="checkbox" name="pantry" value="{{.ID}}" {{if index $u.Pantry .ID}}checked{{end}}> {{.LocalName $.Lang}}</label></li>{{end}}</ul></div>{{end}}
     </details>
     <button type="submit">{{.T "common.save"}}</button>

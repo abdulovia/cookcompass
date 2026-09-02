@@ -32,7 +32,7 @@
   <div class="meta">
     <span>⏱ {{$p.T "common.minutes" "N" .Base.TotalMinutes}}</span>
     <span>🔥 {{num .Base.Nutrition.Calories}} {{$p.T "nutrition.unit.calories"}}</span>
-    <span>{{$p.T (printf "cuisine.%s" .Base.Cuisine)}}</span>
+    <span>{{$p.L "cuisine" .Base.Cuisine}}</span>
   </div>
 </a>{{end}}{{end}}
 
