@@ -1,0 +1,9 @@
+# Only list what you change; everything else keeps the bundled default
+# (see seed/site.yaml for every key).
+name: {en: Family Kitchen, ru: Семейная кухня}
+tagline: {en: "Cook what our local shops sell.", ru: "Готовим из того, что есть в наших магазинах."}
+accent: "#c0392b"
+footer_links:
+  - {label: {en: About, ru: О проекте}, url: "https://example.org/about"}
+features:
+  goals: false            # hide nutrition goals and the meal plan
