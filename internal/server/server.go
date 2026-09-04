@@ -60,7 +60,7 @@ func New(a *app.App) (*Server, error) {
 			return nil, err
 		}
 	}
-	return &Server{app: a, log: a.Log, i18n: bundle, ui: &web.UI{Labels: a.Labels}, render: r, started: time.Now()}, nil
+	return &Server{app: a, log: a.Log, i18n: bundle, ui: &web.UI{Labels: a.Labels, Site: a.Site}, render: r, started: time.Now()}, nil
 }
 
 // Handler returns the root HTTP handler.
