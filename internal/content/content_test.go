@@ -156,3 +156,44 @@ func TestLabels(t *testing.T) {
 		t.Error("broken file should fail")
 	}
 }
+
+func TestLoadSite(t *testing.T) {
+	seed := fstest.MapFS{"site.yaml": {Data: []byte("logo: \"🧭\"\nfeatures:\n  learning: true\n  goals: true\n")}}
+	dir := writeFiles(t, map[string]string{"site.yaml": `
+name: {en: Our Kitchen, ru: Наша кухня}
+tagline: Cook what your shop sells
+accent: "#c0392b"
+logo: /static/logo.svg
+features: {learning: false}
+footer_links:
+  - {label: About, url: https://example.org/about}
+`})
+	s, err := LoadSite(Layer(dir, seed))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if s.Name.In("ru") != "Наша кухня" || s.Name.In("de") != "Our Kitchen" || s.Tagline.In("ru") != "Cook what your shop sells" {
+		t.Fatalf("texts: %+v %+v", s.Name, s.Tagline)
+	}
+	if s.On(FeatureLearning) || !s.On(FeatureGoals) || !s.On(FeatureShoppingList) {
+		t.Fatalf("features merge across layers: %v", s.Features)
+	}
+	if !s.LogoImage() || s.Accent != "#c0392b" || len(s.FooterLinks) != 1 {
+		t.Fatalf("site: %+v", s)
+	}
+	if d, err := LoadSite(fstest.MapFS{}); err != nil || !d.On(FeatureFavorites) || d.Logo == "" {
+		t.Fatalf("defaults without site.yaml: %+v %v", d, err)
+	}
+	for _, bad := range []string{
+		"accent: red; } body { display:none",
+		"stylesheet: https://evil.example/x.css",
+		"logo: /etc/../passwd",
+		"features: {shoping_list: false}",
+		"footer_links: [{label: x, url: 'javascript:alert(1)'}]",
+		"name: [1, 2",
+	} {
+		if _, err := LoadSite(Layer(writeFiles(t, map[string]string{"site.yaml": bad}), seed)); err == nil {
+			t.Errorf("site.yaml %q should be rejected", bad)
+		}
+	}
+}
