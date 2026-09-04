@@ -79,3 +79,58 @@ func TestContentDirectory(t *testing.T) {
 		t.Fatal("content shop missing for its country")
 	}
 }
+
+// TestSiteConfig: branding and feature switches come from site.yaml in the
+// content directory — routes, navigation and buttons follow.
+func TestSiteConfig(t *testing.T) {
+	dir := contentDir(t, map[string]string{"site.yaml": `
+name: {en: Family Kitchen, ru: Семейная кухня}
+accent: "#c0392b"
+footer_links: [{label: {en: About us, ru: О нас}, url: "https://example.org/about"}]
+features: {shopping_list: false, learning: false}
+`})
+	h := newHarness(t, func(c *config.Config) { c.Content.Dir = dir })
+
+	_, body := h.get("/")
+	for _, want := range []string{"<title>Family Kitchen</title>", "Family Kitchen</a>", "--brand: #c0392b",
+		`href="https://example.org/about">About us<`, `href="/goals"`} {
+		if !strings.Contains(body, want) {
+			t.Errorf("home lacks %q", want)
+		}
+	}
+	for _, gone := range []string{`href="/list"`, `href="/learn"`, `id="progress"`} {
+		if strings.Contains(body, gone) {
+			t.Errorf("disabled feature still shows %q", gone)
+		}
+	}
+	if _, body := h.get("/", "Cookie", "lang=ru"); !strings.Contains(body, "Семейная кухня") || !strings.Contains(body, ">О нас<") {
+		t.Error("site texts should follow the page language")
+	}
+	for _, p := range []string{"/list", "/learn"} {
+		if resp, _ := h.get(p); resp.StatusCode != 404 {
+			t.Errorf("%s: %d, want 404 for a disabled feature", p, resp.StatusCode)
+		}
+	}
+	if resp, _ := h.post("/recipes/pad-thai/shopping", nil); resp.StatusCode != 404 {
+		t.Errorf("shopping POST: %d", resp.StatusCode)
+	}
+	_, body = h.get("/recipes/pad-thai")
+	if strings.Contains(body, "/shopping") || strings.Contains(body, "/learned") || !strings.Contains(body, "/favorite") {
+		t.Error("recipe actions should follow the feature switches")
+	}
+}
+
+// TestOptionsHelper: option lists come from one backend table, with
+// labels, descriptions and the current selection.
+func TestOptionsHelper(t *testing.T) {
+	h := newHarness(t)
+	_, body := h.get("/recipes?f=1&meal=dinner&difficulty=hard")
+	if !strings.Contains(body, `<option value="dinner" selected>Dinner</option>`) ||
+		!strings.Contains(body, `<option value="hard" selected>Hard</option>`) {
+		t.Fatal("browse options should mark the current filter")
+	}
+	_, body = h.get("/goals")
+	if !strings.Contains(body, `name="goal" value="lose_weight"`) || !strings.Contains(body, " — <span class=\"muted\">") {
+		t.Fatal("goal options should carry their descriptions")
+	}
+}
