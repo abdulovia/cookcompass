@@ -176,8 +176,7 @@ func (h *Handler) renderForm(w http.ResponseWriter, r *http.Request, status int,
 	p := h.page(r, title)
 	p.Errors = errs
 	p.Data = map[string]any{
-		"Form": form, "Cuisines": cuisines, "MealTimes": recipes.MealTimes,
-		"Difficulties": recipes.Difficulties, "NutritionFields": NutritionFields,
+		"Form": form, "Cuisines": cuisines, "NutritionFields": NutritionFields,
 		"StorageEnabled":    h.App.Media.Enabled(),
 		"TranslatorEnabled": h.App.Translator() != nil,
 	}

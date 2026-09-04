@@ -40,6 +40,8 @@ type App struct {
 	// Labels are display names of cuisines, countries and categories from
 	// the bundled data and the content directory.
 	Labels *content.Labels
+	// Site is branding and feature switches (seed/site.yaml + content).
+	Site *content.Site
 	// DefaultUserID is the account used in single-user mode.
 	DefaultUserID int64
 }
@@ -64,13 +66,20 @@ func Open(cfg config.Config, log *slog.Logger) (*App, error) {
 		return nil, err
 	}
 	ings := ingredients.NewStore(d)
-	labels, err := content.LoadLabels(content.Layer(cfg.Content.Dir, seedfs.FS))
+	data := content.Layer(cfg.Content.Dir, seedfs.FS)
+	labels, err := content.LoadLabels(data)
+	if err != nil {
+		_ = d.Close()
+		return nil, err
+	}
+	siteCfg, err := content.LoadSite(data)
 	if err != nil {
 		_ = d.Close()
 		return nil, err
 	}
 	a := &App{
 		Labels:  labels,
+		Site:    siteCfg,
 		Cfg:     cfg,
 		Log:     log,
 		DB:      d,
