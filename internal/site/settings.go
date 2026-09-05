@@ -86,7 +86,7 @@ func (h *Handler) settings(w http.ResponseWriter, r *http.Request) {
 	})
 	p.Data = map[string]any{
 		"Countries": countries, "Cities": cities, "Shops": shopList, "Groups": groupIngredients(list, true),
-		"Units": []string{recipes.Metric, recipes.Imperial}, "CountryAware": h.CountryAware,
+		"CountryAware": h.CountryAware,
 	}
 	h.R.Page(w, http.StatusOK, "pages/settings", p)
 }

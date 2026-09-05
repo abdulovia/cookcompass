@@ -110,7 +110,7 @@ func (h *Handler) renderGoals(w http.ResponseWriter, r *http.Request, status int
 	p := web.NewPage(r, "goals.title")
 	p.Errors = errs
 	p.Data = map[string]any{
-		"Form": f, "Plan": plan, "Goals": nutrition.Goals, "Activities": nutrition.Activities,
+		"Form": f, "Plan": plan,
 		"Imperial": h.units(r) == recipes.Imperial,
 	}
 	h.R.Page(w, status, "pages/goals", p)
