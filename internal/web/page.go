@@ -21,10 +21,11 @@ const (
 )
 
 // UI is the backend-owned presentation data shared by every page: display
-// names of reference data (and, later, site branding and features). It is
+// names of reference data, site branding and feature switches. It is
 // built once at startup from the bundled defaults plus the content dir.
 type UI struct {
 	Labels *content.Labels
+	Site   *content.Site
 }
 
 // WithUI stores the shared UI data in ctx.

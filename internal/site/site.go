@@ -16,6 +16,7 @@ import (
 
 	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/availability"
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/i18n"
 	"github.com/abdulovia/cookcompass/internal/ingredients"
 	"github.com/abdulovia/cookcompass/internal/pool"
@@ -36,29 +37,43 @@ type Handler struct {
 	CountryAware bool
 }
 
-// Routes registers public routes.
+// Routes registers public routes. Areas switched off in site.yaml are not
+// mounted at all (404), matching the navigation in web.PublicNav.
 func (h *Handler) Routes(r chi.Router) {
+	on := h.App.Site.On
 	r.Get("/", h.home)
 	r.Get("/recipes", h.browse)
 	r.Get("/recipes/{slug}", h.detail)
 	r.Post("/recipes/{slug}/cooked", h.cooked)
-	r.Post("/recipes/{slug}/learned", h.learnedToggle)
-	r.Post("/recipes/{slug}/favorite", h.favoriteToggle)
-	r.Post("/recipes/{slug}/shopping", h.addShopping)
-	r.Get("/list", h.list)
-	r.Post("/list/clear", h.shoppingClear)
-	r.Post("/list/{id}/bought", h.shoppingBought)
-	r.Post("/list/{id}/delete", h.shoppingDelete)
-	r.Post("/list/{id}/pantry", h.shoppingPantry)
-	r.Post("/goals/shopping", h.planShopping)
-	r.Get("/learn", h.learn)
-	r.Get("/goals", h.goals)
-	r.Post("/goals", h.saveGoals)
+	if on(content.FeatureLearning) {
+		r.Post("/recipes/{slug}/learned", h.learnedToggle)
+		r.Get("/learn", h.learn)
+	}
+	if on(content.FeatureFavorites) {
+		r.Post("/recipes/{slug}/favorite", h.favoriteToggle)
+	}
+	if on(content.FeatureShoppingList) {
+		r.Post("/recipes/{slug}/shopping", h.addShopping)
+		r.Get("/list", h.list)
+		r.Post("/list/clear", h.shoppingClear)
+		r.Post("/list/{id}/bought", h.shoppingBought)
+		r.Post("/list/{id}/delete", h.shoppingDelete)
+		r.Post("/list/{id}/pantry", h.shoppingPantry)
+	}
+	if on(content.FeatureGoals) {
+		r.Get("/goals", h.goals)
+		r.Post("/goals", h.saveGoals)
+		if on(content.FeatureShoppingList) {
+			r.Post("/goals/shopping", h.planShopping)
+		}
+	}
 	r.Get("/settings", h.settings)
 	r.Post("/settings", h.saveSettings)
 	r.Post("/settings/preferences", h.savePreferences)
 	r.Post("/settings/pantry", h.savePantry)
-	r.Post("/settings/locate", h.locate)
+	if on(content.FeatureGeolocation) {
+		r.Post("/settings/locate", h.locate)
+	}
 	r.Post("/settings/rescan", h.rescan)
 	r.Get("/api/recipes", h.apiList)
 	r.Get("/api/recipes/{slug}", h.apiDetail)
@@ -208,7 +223,7 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 	p := web.NewPage(r, "browse.title")
 	prof := web.Profile(r.Context())
 	p.Data = map[string]any{
-		"Items": items, "Q": q, "Cuisines": cuisines, "MealTimes": recipes.MealTimes, "Difficulties": recipes.Difficulties,
+		"Items": items, "Q": q, "Cuisines": cuisines,
 		"HasPantry": prof != nil && len(prof.Pantry) > 0, "HasDislikes": len(v.Dislikes) > 0, "CountryAware": v.Country != "",
 		"FavoritesTab": favoritesTab, "CanTrack": prof != nil && prof.ID != 0,
 	}
