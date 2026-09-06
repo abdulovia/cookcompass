@@ -7,5 +7,5 @@ import "embed"
 
 // FS holds the seed files.
 //
-//go:embed ingredients.json cuisines.json countries.json categories.json shops.csv products/*.csv recipes/*.json
+//go:embed ingredients.json cuisines.json countries.json categories.json site.yaml shops.csv products/*.csv recipes/*.json
 var FS embed.FS
