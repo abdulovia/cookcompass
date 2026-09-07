@@ -1,0 +1,19 @@
+# Site presentation. Copy keys you want to change into content/site.yaml
+# (only those keys) and restart the app. Strings can be plain text or a map
+# per language, e.g.  name: {en: Our Kitchen, ru: Наша кухня}
+
+# name: CookCompass          # empty = the UI text "app.name"
+logo: "🧭"                   # emoji / short text, or /static/logo.svg (put the file in content/static/)
+# tagline: Learn to cook with what your shops sell
+# accent: "#1f6f50"          # brand colour, #rgb or #rrggbb (unset = bundled theme)
+# stylesheet: /static/custom.css   # extra CSS loaded after the bundled one
+# footer_links:
+#   - {label: {en: About, ru: О проекте}, url: https://example.org/about}
+
+# Whole areas of the site. Off = no routes, no menu entry, no buttons.
+features:
+  shopping_list: true
+  learning: true
+  goals: true                # nutrition goals and the daily meal plan
+  favorites: true
+  geolocation: true          # "Use my location" in Settings
