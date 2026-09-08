@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>{{if .Title}}{{.Title}} · {{end}}{{.T "app.name"}}</title>
+  <title>{{if .Title}}{{.Title}} · {{end}}{{.SiteName}}</title>
   <link rel="stylesheet" href="/static/css/app.css">
+  {{with .Site.Stylesheet}}<link rel="stylesheet" href="{{.}}">{{end}}
+  {{with .Site.Accent}}<style>:root { --brand: {{.}}; --brand-dark: color-mix(in srgb, {{.}} 75%, black); --brand-soft: color-mix(in srgb, {{.}} 14%, white); }</style>{{end}}
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <script src="/static/js/app.js" defer></script>
   <script src="/static/vendor/htmx.min.js" defer></script>
@@ -15,26 +17,12 @@
   <a class="skip" href="#main">{{.T "nav.skip"}}</a>
   <header class="site-header">
     <div class="wrap header-row">
-      <a class="brand" href="/">🧭 {{.T "app.name"}}</a>
+      <a class="brand" href="/">{{with .Site}}{{if .LogoImage}}<img src="{{.Logo}}" alt="" class="brand-logo">{{else}}{{.Logo}}{{end}}{{end}} {{.SiteName}}</a>
       <nav aria-label="{{.T "nav.main"}}">
         <ul class="nav">
-          {{if .Admin}}
-          <li><a href="/admin" {{if eq .Path "/admin"}}aria-current="page"{{end}}>{{.T "admin.title"}}</a></li>
-          <li><a href="/admin/recipes" {{if .Active "/admin/recipes"}}aria-current="page"{{end}}>{{.T "admin.recipes"}}</a></li>
-          <li><a href="/admin/products" {{if .Active "/admin/products"}}aria-current="page"{{end}}>{{.T "admin.products"}}</a></li>
-          <li><a href="/admin/shops" {{if .Active "/admin/shops"}}aria-current="page"{{end}}>{{.T "admin.shops"}}</a></li>
-          <li><a href="/admin/queue" {{if .Active "/admin/queue"}}aria-current="page"{{end}}>{{.T "admin.queue"}}</a></li>
-          {{block "admin_nav_extra" .}}{{end}}
-          <li><a href="/">{{.T "nav.home"}} ↗</a></li>
-          {{else}}
-          <li><a href="/" {{if .Active "/"}}aria-current="page"{{end}}>{{.T "nav.home"}}</a></li>
-          <li><a href="/recipes" {{if .Active "/recipes"}}aria-current="page"{{end}}>{{.T "nav.recipes"}}</a></li>
-          <li><a href="/learn" {{if .Active "/learn"}}aria-current="page"{{end}}>{{.T "nav.learn"}}</a></li>
-          <li><a href="/list" {{if .Active "/list"}}aria-current="page"{{end}}>{{.T "nav.list"}}</a></li>
-          <li><a href="/goals" {{if .Active "/goals"}}aria-current="page"{{end}}>{{.T "nav.goals"}}</a></li>
-          <li><a href="/settings" {{if .Active "/settings"}}aria-current="page"{{end}}>{{.T "nav.settings"}}</a></li>
-          {{if .MultiUser}}{{if and .User .User.ID}}<li><form method="post" action="/logout"><button class="link">{{.T "auth.logout"}}</button></form></li>{{else}}<li><a href="/login">{{.T "auth.login"}}</a></li>{{end}}{{end}}
-          {{end}}
+          {{range .Nav}}<li><a href="{{.Path}}" {{if .Active}}aria-current="page"{{end}}>{{.Label}}</a></li>{{end}}
+          {{if .Admin}}<li><a href="/">{{.T "nav.home"}} ↗</a></li>
+          {{else if .MultiUser}}{{if and .User .User.ID}}<li><form method="post" action="/logout"><button class="link">{{.T "auth.logout"}}</button></form></li>{{else}}<li><a href="/login">{{.T "auth.login"}}</a></li>{{end}}{{end}}
         </ul>
       </nav>
       {{template "lang_switch" .}}
@@ -44,6 +32,6 @@
     {{if .Flash}}<div class="flash" role="status">{{.T .Flash}}</div>{{end}}
     {{template "content" .}}
   </main>
-  <footer class="site-footer"><div class="wrap">{{.T "footer.local"}}</div></footer>
+  <footer class="site-footer"><div class="wrap">{{.T "footer.local"}}{{range .FooterLinks}} · <a href="{{.URL}}">{{.Label}}</a>{{end}}</div></footer>
 </body>
 </html>{{end}}
