@@ -12,6 +12,7 @@ html { font-size: 106.25%; }
 body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; }
 img { max-width: 100%; }
 a { color: var(--brand); text-underline-offset: 2px; }
+.brand-logo { height: 1.6em; width: auto; vertical-align: middle; }
 a:hover { color: var(--brand-dark); }
 :focus-visible { outline: 3px solid #f2a900; outline-offset: 2px; border-radius: 4px; }
 h1, h2, h3 { line-height: 1.2; margin: 1.2em 0 .5em; }
