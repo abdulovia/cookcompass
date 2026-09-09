@@ -1,7 +1,7 @@
 {{define "content"}}
 {{$f := .Data.Form}}
 <h1>{{.Title}}{{if $f.ID}}: {{$f.Name}}{{end}}</h1>
-{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.T (printf "status.%s" $f.Status))}} — {{.T "admin.product_user_wins"}}</p>{{end}}
+{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.E "status" $f.Status)}} — {{.T "admin.product_user_wins"}}</p>{{end}}
 {{template "error_summary" .}}
 <form method="post" action="{{if $f.ID}}/admin/products/{{$f.ID}}{{else}}/admin/products{{end}}" class="card stack" novalidate>
   <div class="grid three">
