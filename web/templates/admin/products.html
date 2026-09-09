@@ -14,7 +14,7 @@
   <label>{{.T "admin.filter_status"}}
     <select name="status">
       <option value="all">{{.T "common.all"}}</option>
-      {{range $s := (list "approved" "pending" "rejected")}}<option value="{{$s}}" {{if eq ($.Query.Get "status") $s}}selected{{end}}>{{$.T (printf "status.%s" $s)}}</option>{{end}}
+      {{range $.Options "status" ($.Query.Get "status")}}<option value="{{.Value}}" {{if .Selected}}selected{{end}}>{{.Label}}</option>{{end}}
     </select>
   </label>
   <label>{{.T "admin.filter_deleted"}}
@@ -48,7 +48,7 @@
     <td><code>{{.SKU}}</code></td>
     <td>{{if .IngredientSlug}}{{.IngredientSlug}}{{else}}<span class="badge warn">{{$.T "admin.unmapped"}}</span>{{end}}</td>
     <td>{{money .Price}} {{.Currency}}</td>
-    <td>{{if .Deleted}}<span class="badge">{{$.T "status.deleted"}}</span>{{else}}<span class="badge st-{{.Status}}">{{$.T (printf "status.%s" .Status)}}</span>{{end}}</td>
+    <td>{{if .Deleted}}<span class="badge">{{$.T "status.deleted"}}</span>{{else}}<span class="badge st-{{.Status}}">{{$.E "status" .Status}}</span>{{end}}</td>
     <td><code>{{.Source}}</code></td>
     <td class="actions">
       <a href="/admin/products/{{.ID}}/edit">{{$.T "common.edit"}}</a>
