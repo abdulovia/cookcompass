@@ -7,7 +7,7 @@
     <a class="btn secondary" href="/admin/recipes/{{$f.ID}}/revisions">{{.T "admin.history"}}</a>
   </div>{{end}}
 </div>
-{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.T (printf "status.%s" $f.Status))}} — {{.T "admin.user_wins"}}</p>{{end}}
+{{if $f.ID}}<p class="muted">{{.T "admin.provenance" "Source" $f.Source "Status" ($.E "status" $f.Status)}} — {{.T "admin.user_wins"}}</p>{{end}}
 {{template "error_summary" .}}
 <form method="post" action="{{if $f.ID}}/admin/recipes/{{$f.ID}}{{else}}/admin/recipes{{end}}" class="stack" novalidate>
   <fieldset>
@@ -29,13 +29,13 @@
       <div>
         <label for="difficulty">{{.T "admin.field_difficulty"}}</label>
         <select id="difficulty" name="difficulty">
-          {{range .Data.Difficulties}}<option value="{{.}}" {{if eq . $f.Difficulty}}selected{{end}}>{{$.T (printf "difficulty.%s" .)}}</option>{{end}}
+          {{range $.Options "difficulty" $f.Difficulty}}<option value="{{.Value}}" {{if .Selected}}selected{{end}}>{{.Label}}</option>{{end}}
         </select>
         {{template "field_error" (.Err "difficulty")}}
       </div>
       <fieldset class="inline">
         <legend>{{.T "admin.field_meal_times"}}</legend>
-        {{range .Data.MealTimes}}<label class="check"><input type="checkbox" name="meal_times" value="{{.}}" {{if has $f.MealTimes .}}checked{{end}}> {{$.T (printf "meal.%s" .)}}</label>{{end}}
+        {{range $.Options "meal" $f.MealTimes}}<label class="check"><input type="checkbox" name="meal_times" value="{{.Value}}" {{if .Selected}}checked{{end}}> {{.Label}}</label>{{end}}
         {{template "field_error" (.Err "meal_times")}}
       </fieldset>
     </div>
@@ -68,7 +68,7 @@
     <legend>{{.T "admin.section_nutrition"}}</legend>
     <div class="grid four">
       {{range .Data.NutritionFields}}<div>
-        <label for="n-{{.}}">{{$.T (printf "nutrition.%s" .)}}</label>
+        <label for="n-{{.}}">{{$.E "nutrient" .}}</label>
         <input id="n-{{.}}" name="{{.}}" inputmode="decimal" value="{{index $f.Nutrition .}}">
         {{template "field_error" ($.Err .)}}
       </div>{{end}}
