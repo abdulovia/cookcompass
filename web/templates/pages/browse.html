@@ -15,20 +15,20 @@
   <label for="meal">{{.T "browse.meal"}}
     <select id="meal" name="meal">
       <option value="">{{.T "common.all"}}</option>
-      {{range .Data.MealTimes}}<option value="{{.}}" {{if eq . $q.MealTime}}selected{{end}}>{{$.T (printf "meal.%s" .)}}</option>{{end}}
+      {{range $.Options "meal" $q.MealTime}}<option value="{{.Value}}" {{if .Selected}}selected{{end}}>{{.Label}}</option>{{end}}
     </select>
   </label>
   <label for="difficulty">{{.T "browse.difficulty"}}
     <select id="difficulty" name="difficulty">
       <option value="">{{.T "common.all"}}</option>
-      {{range .Data.Difficulties}}<option value="{{.}}" {{if eq . $q.Difficulty}}selected{{end}}>{{$.T (printf "difficulty.%s" .)}}</option>{{end}}
+      {{range $.Options "difficulty" $q.Difficulty}}<option value="{{.Value}}" {{if .Selected}}selected{{end}}>{{.Label}}</option>{{end}}
     </select>
   </label>
   <label class="check"><input type="checkbox" name="cookable" value="1" {{if $q.OnlyCookable}}checked{{end}}> {{.T "browse.only_cookable"}}</label>
   {{if .Data.HasDislikes}}<label class="check"><input type="checkbox" name="hide_disliked" value="1" {{if $q.HideDisliked}}checked{{end}}> {{.T "browse.hide_disliked"}}</label>{{end}}
   <noscript><button type="submit">{{.T "common.filter"}}</button></noscript>
   <a href="/recipes" class="muted">{{.T "common.reset"}}</a>
-  {{if .Data.CanTrack}}<label class="check" id="fav-tab"><input type="checkbox" name="fav" value="1" {{if .Data.FavoritesTab}}checked{{end}}> ★ {{.T "browse.favorites"}}</label>{{end}}
+  {{if and .Data.CanTrack (.Feature "favorites")}}<label class="check" id="fav-tab"><input type="checkbox" name="fav" value="1" {{if .Data.FavoritesTab}}checked{{end}}> ★ {{.T "browse.favorites"}}</label>{{end}}
 </form>
 {{if and $q.OnlyCookable (not .Data.HasPantry)}}<p class="flash">{{.T "browse.pantry_hint"}} <a href="/settings#pantry">{{.T "nav.settings"}}</a></p>{{end}}
 {{block "results" .}}
