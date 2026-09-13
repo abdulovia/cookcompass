@@ -5,7 +5,7 @@
 <ol class="path">
   {{range .Data.Levels}}
   <li class="card level {{if not .Unlocked}}locked{{end}}" {{if .Current}}aria-current="step"{{end}}>
-    <h2>{{$.T (printf "difficulty.%s" .Difficulty)}}
+    <h2>{{$.E "difficulty" .Difficulty}}
       {{if .Done}}<span class="badge ok">✓ {{$.T "learn.done"}}</span>{{else if not .Unlocked}}<span class="badge">🔒 {{$.T "learn.locked"}}</span>{{else}}<span class="badge warn">{{$.T "learn.in_progress"}}</span>{{end}}</h2>
     <div class="dots" role="img" aria-label="{{$.T "learn.level_progress" "Learned" .Learned "Goal" .Goal}}">{{$n := .Learned}}{{range $i := seq .Goal}}<span class="dot {{if lt $i $n}}done{{end}}"></span>{{end}}</div>
     <p class="muted">{{$.T "learn.level_progress" "Learned" .Learned "Goal" .Goal}}{{if not .Unlocked}} · {{$.T "learn.unlock_hint"}}{{end}}</p>
