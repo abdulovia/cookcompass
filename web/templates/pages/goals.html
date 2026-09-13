@@ -25,19 +25,19 @@
   {{template "field_error" (.Err "height")}}{{template "field_error" (.Err "weight")}}{{template "field_error" (.Err "age")}}
   <fieldset class="inline">
     <legend>{{.T "goals.sex"}}</legend>
-    {{range (list "female" "male")}}<label class="check"><input type="radio" name="sex" value="{{.}}" {{if eq . $f.Sex}}checked{{end}}> {{$.T (printf "sex.%s" .)}}</label>{{end}}
+    {{range $.Options "sex" $f.Sex}}<label class="check"><input type="radio" name="sex" value="{{.Value}}" {{if .Selected}}checked{{end}}> {{.Label}}</label>{{end}}
     {{template "field_error" (.Err "sex")}}
   </fieldset>
   <label for="activity">{{.T "goals.activity"}}</label>
   <select id="activity" name="activity">
     <option value="">—</option>
-    {{range .Data.Activities}}<option value="{{.}}" {{if eq . $f.Activity}}selected{{end}}>{{$.T (printf "activity.%s" .)}}</option>{{end}}
+    {{range $.Options "activity" $f.Activity}}<option value="{{.Value}}" {{if .Selected}}selected{{end}}>{{.Label}}</option>{{end}}
   </select>
   {{template "field_error" (.Err "activity")}}
   <fieldset>
     <legend>{{.T "goals.goal"}}</legend>
-    {{range .Data.Goals}}<label class="check" style="display:flex;margin:.35rem 0"><input type="radio" name="goal" value="{{.}}" {{if eq . $f.Goal}}checked{{end}}>
-      <span><strong>{{$.T (printf "goal.%s" .)}}</strong> — <span class="muted">{{$.T (printf "goal.%s_desc" .)}}</span></span></label>{{end}}
+    {{range $.Options "goal" $f.Goal}}<label class="check" style="display:flex;margin:.35rem 0"><input type="radio" name="goal" value="{{.Value}}" {{if .Selected}}checked{{end}}>
+      <span><strong>{{.Label}}</strong>{{with .Desc}} — <span class="muted">{{.}}</span>{{end}}</span></label>{{end}}
     {{template "field_error" (.Err "goal")}}
   </fieldset>
   <button type="submit">{{.T "goals.save"}}</button>
@@ -61,7 +61,7 @@
     <div class="title-row">
       <h2>{{$.T "plan.title"}}</h2>
       <a class="btn secondary small" href="/goals?shuffle={{add .Shuffle 1}}#plan">↻ {{$.T "plan.shuffle"}}</a>
-      <form method="post" action="/goals/shopping"><button class="secondary small">🛒 {{$.T "plan.to_list"}}</button></form>
+      {{if $.Feature "shopping_list"}}<form method="post" action="/goals/shopping"><button class="secondary small">🛒 {{$.T "plan.to_list"}}</button></form>{{end}}
     </div>
     {{if .Items}}
       {{if .Plan.Within}}<p class="badge ok">{{$.T "plan.within"}}</p>{{else}}<p class="badge warn">{{$.T "plan.closest"}}</p>{{end}}

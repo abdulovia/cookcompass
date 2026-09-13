@@ -1,13 +1,13 @@
 {{define "content"}}
 <section class="hero">
   <h1>{{.T "home.hero_title"}}</h1>
-  <p>{{.T "app.tagline"}} {{.T "home.hero_count" "Count" .Data.Count}}</p>
+  <p>{{or .Tagline (.T "app.tagline")}} {{.T "home.hero_count" "Count" .Data.Count}}</p>
   <p class="row-gap">
     <a class="btn" href="/recipes">{{.T "home.cta_browse"}}</a>
-    <a class="btn" href="/goals">{{.T "home.cta_goal"}}</a>
+    {{if .Feature "goals"}}<a class="btn" href="/goals">{{.T "home.cta_goal"}}</a>{{end}}
   </p>
 </section>
-{{with .Data.Plan}}
+{{if .Feature "goals"}}{{with .Data.Plan}}
 <section class="card settings-section" aria-labelledby="today">
   <div class="title-row"><h2 id="today">{{$.T "home.today_title"}}</h2><a href="/goals#plan">{{$.T "home.today_more"}}</a></div>
   <p class="muted">{{$.T "home.today_summary" "Kcal" (num .Plan.Total.Calories) "Target" (num .Targets.Calories) "Protein" (num .Plan.Total.Protein)}}</p>
@@ -19,13 +19,15 @@
   <p>{{.T "home.goal_cta_body"}}</p>
   <p><a class="btn" href="/goals">{{.T "home.cta_goal"}}</a></p>
 </section>
-{{end}}
+{{end}}{{end}}
+{{if .Feature "learning"}}
 <section class="card settings-section" aria-labelledby="progress">
   <div class="title-row"><h2 id="progress">{{.T "learn.path_title"}}</h2><a href="/learn">{{.T "learn.open"}}</a></div>
-  {{with .Data.Current}}<p>{{$.T "learn.current" "Level" ($.T (printf "difficulty.%s" .Difficulty)) "Learned" .Learned "Goal" .Goal}}</p>
+  {{with .Data.Current}}<p>{{$.T "learn.current" "Level" ($.E "difficulty" .Difficulty) "Learned" .Learned "Goal" .Goal}}</p>
   <div class="dots" aria-hidden="true">{{range $i := seq .Goal}}<span class="dot {{if lt $i $.Data.Current.Learned}}done{{end}}"></span>{{end}}</div>
   {{else}}<p>🏆 {{.T "learn.all_done"}}</p>{{end}}
 </section>
+{{end}}
 <section aria-labelledby="start-here">
   <h2 id="start-here">{{.T "home.start_here"}}</h2>
   <p class="muted">{{.T "home.start_here_hint"}}</p>
