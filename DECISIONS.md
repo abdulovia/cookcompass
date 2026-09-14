@@ -131,3 +131,4 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Reference data carries its own display names (`names: {lang: …}`); the UI resolves them through one helper (`.L kind key`) with English, then a humanized slug, as fallbacks. Locale files hold UI text only — enforced by the locale test.
 - Navigation and option lists come from one backend table each (`web.PublicNav`/`AdminNav`, `web.Enums`); templates call `.Nav`, `.Options kind selected` and `.E kind value` instead of spelling out keys. Feature switches gate routes and UI from the same registry.
 - `site.yaml` is validated on start (colour format, /static/ paths, known features, http(s) links) so a typo fails loudly instead of breaking pages.
+- The bundled product catalog is an availability baseline without prices; showing an invented price is worse than showing none.
