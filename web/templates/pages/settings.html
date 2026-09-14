@@ -5,12 +5,12 @@
 <section class="card settings-section" aria-labelledby="where">
   <h2 id="where">{{.T "settings.where_title"}}</h2>
   <p class="muted">{{.T "settings.where_hint"}}</p>
-  <form method="post" action="/settings/locate" x-data="locate" x-on:submit.prevent="find($el)" class="row-gap" style="margin-bottom:1rem">
+  {{if .Feature "geolocation"}}<form method="post" action="/settings/locate" x-data="locate" x-on:submit.prevent="find($el)" class="row-gap" style="margin-bottom:1rem">
     <input type="hidden" name="lat"><input type="hidden" name="lng">
     <button type="submit" class="secondary" x-bind:disabled="busy">📍 <span x-text="busy ? '{{.T "settings.locating"}}' : '{{.T "settings.locate"}}'">{{.T "settings.locate"}}</span></button>
     <span class="help" x-show="failed" x-cloak>{{.T "flash.location_failed"}}</span>
     <noscript><span class="help">{{.T "settings.locate_nojs"}}</span></noscript>
-  </form>
+  </form>{{end}}
   <form method="post" action="/settings" class="stack">
     <div class="grid four">
       <div>
@@ -44,7 +44,7 @@
     <p class="help">{{.T "settings.shop_hint"}}</p>
     <fieldset class="inline">
       <legend>{{.T "settings.units"}}</legend>
-      {{range .Data.Units}}<label class="check"><input type="radio" name="units" value="{{.}}" {{if eq . $u.Units}}checked{{end}}> {{$.T (printf "settings.units_%s" .)}}</label>{{end}}
+      {{range $.Options "units" $u.Units}}<label class="check"><input type="radio" name="units" value="{{.Value}}" {{if .Selected}}checked{{end}}> {{.Label}}</label>{{end}}
     </fieldset>
     {{if .Data.CountryAware}}
     <label class="check"><input type="checkbox" name="show_unavailable" value="1" {{if $u.ShowUnavailable}}checked{{end}}> {{.T "settings.show_unavailable"}}</label>

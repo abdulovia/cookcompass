@@ -5,12 +5,12 @@
 {{if $b.ImageURL}}<img class="hero-img" src="{{$b.ImageURL}}" alt="{{$r.Name}}" decoding="async">{{end}}
 {{with $r.Description}}<p class="lead">{{.}}</p>{{end}}
 <div class="facts">
-  <span class="badge diff-{{$b.Difficulty}}">{{.T (printf "difficulty.%s" $b.Difficulty)}}</span>
+  <span class="badge diff-{{$b.Difficulty}}">{{.E "difficulty" $b.Difficulty}}</span>
   <span>{{.T "recipe.prep"}}: <strong>{{.T "common.minutes" "N" $b.PrepMinutes}}</strong></span>
   <span>{{.T "recipe.cook"}}: <strong>{{.T "common.minutes" "N" $b.CookMinutes}}</strong></span>
   <span>{{.T "recipe.servings"}}: <strong>{{$b.Servings}}</strong></span>
   <span>{{.L "cuisine" $b.Cuisine}}</span>
-  <span>{{range $i, $m := $b.MealTimes}}{{if $i}}, {{end}}{{$.T (printf "meal.%s" $m)}}{{end}}</span>
+  <span>{{range $i, $m := $b.MealTimes}}{{if $i}}, {{end}}{{$.E "meal" $m}}{{end}}</span>
 </div>
 {{if and .Data.CountryAware (not $it.Market.Available)}}
 <div class="error-summary" role="status">{{.T "availability.recipe_unavailable" "Count" $it.Market.MissingCount}}</div>
@@ -86,15 +86,15 @@
       {{if .Data.CanTrack}}
       <p class="muted">{{if .Data.Cooked}}{{.T "recipe.cooked_count" "Count" .Data.Cooked}}{{else}}{{.T "recipe.never_cooked"}}{{end}}</p>
       <div class="row-gap" style="margin-bottom:.6rem">
-        <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-post="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-target="#recipe-actions" hx-swap="outerHTML">
+        {{if .Feature "favorites"}}<form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-post="/recipes/{{.Data.Item.Base.Slug}}/favorite" hx-target="#recipe-actions" hx-swap="outerHTML">
           {{if .Data.Favorite}}<input type="hidden" name="favorite" value="0">
           <button type="submit" class="secondary small">★ {{.T "recipe.unfavorite"}}</button>
           {{else}}<input type="hidden" name="favorite" value="1">
           <button type="submit" class="secondary small">☆ {{.T "recipe.favorite"}}</button>{{end}}
-        </form>
-        <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/shopping">
+        </form>{{end}}
+        {{if .Feature "shopping_list"}}<form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/shopping">
           <button type="submit" class="secondary small">🛒 {{.T "recipe.to_list"}}</button>
-        </form>
+        </form>{{end}}
       </div>
       <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-post="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-target="#recipe-actions" hx-swap="outerHTML">
         <details class="cooked-details">
@@ -109,7 +109,7 @@
         </details>
         <noscript><button type="submit">🍳 {{.T "recipe.cooked_this"}}</button></noscript>
       </form>
-      <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-post="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-target="#recipe-actions" hx-swap="outerHTML" style="margin-top:.6rem">
+      {{if .Feature "learning"}}<form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-post="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-target="#recipe-actions" hx-swap="outerHTML" style="margin-top:.6rem">
         {{if .Data.Learned}}
         <input type="hidden" name="learned" value="0">
         <p><span class="badge ok">✓ {{.T "recipe.learned"}}</span> <button type="submit" class="link">{{.T "recipe.unlearn"}}</button></p>
@@ -118,7 +118,7 @@
         <button type="submit" class="secondary">🎓 {{.T "recipe.mark_learned"}}</button>
         <p class="help">{{.T "recipe.learned_hint"}}</p>
         {{end}}
-      </form>
+      </form>{{end}}
       {{else}}<p class="muted"><a href="/login">{{.T "auth.login"}}</a> — {{.T "recipe.login_to_track"}}</p>{{end}}
     </section>
     {{end}}
