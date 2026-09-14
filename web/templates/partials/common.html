@@ -22,7 +22,7 @@
   <div class="thumb placeholder" style="--h: {{hue .Base.Cuisine}}" aria-hidden="true"></div>
   {{end}}
   <div class="card-badges">
-    <span class="badge diff-{{.Base.Difficulty}}">{{$p.T (printf "difficulty.%s" .Base.Difficulty)}}</span>
+    <span class="badge diff-{{.Base.Difficulty}}">{{$p.E "difficulty" .Base.Difficulty}}</span>
     {{if not .Market.Available}}<span class="badge bad">{{$p.T "availability.badge_unavailable"}}</span>
     {{else if .Market.Substitutions}}<span class="badge warn">{{$p.T "availability.badge_swap"}}</span>{{end}}
     {{if .Home.Available}}<span class="badge ok">{{$p.T "availability.badge_cookable"}}</span>{{end}}
@@ -39,7 +39,7 @@
 {{define "plan_list"}}{{$p := .P}}{{with .Plan}}
 <ol class="plan">
   {{range .Items}}<li class="plan-item">
-    <span><span class="badge">{{$p.T (printf "meal.%s" .Meal)}}</span> <a href="/recipes/{{.Slug}}">{{if .Recipe}}{{.Recipe.Name}}{{else}}{{.Slug}}{{end}}</a>
+    <span><span class="badge">{{$p.E "meal" .Meal}}</span> <a href="/recipes/{{.Slug}}">{{if .Recipe}}{{.Recipe.Name}}{{else}}{{.Slug}}{{end}}</a>
       <span class="muted">· {{$p.T "plan.servings" "N" (qty .Servings) "Count" .Servings}}</span></span>
     <span>{{num .Totals.Calories}} {{$p.T "nutrition.unit.calories"}}</span>
   </li>{{end}}
