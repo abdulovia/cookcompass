@@ -33,8 +33,8 @@ make purge-pending                          # drop everything still waiting
 Inside Docker: `make scrape-recipes RUN="docker compose exec -T app /app/cookcompass"`.
 
 **Offline:** unreachable or blocked targets are logged and skipped. If nothing could be fetched the command
-prints a warning and exits 0; the bundled seed recipes are untouched. The default targets file points at
-three sample pages in `seed/sources/samples/` so the pipeline can be tried without network access.
+prints a warning and exits 0; the bundled seed recipes are untouched. The default targets file lists a few
+vetted live pages only; to try the pipeline offline, save pages from your browser and add `file:` entries.
 
 ## Dataset import (bulk loading)
 
