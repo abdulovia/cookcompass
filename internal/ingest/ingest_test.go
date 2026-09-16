@@ -279,15 +279,13 @@ func TestTargetsAndBundledSamples(t *testing.T) {
 		t.Fatal("bad glob")
 	}
 
-	// The bundled samples work end-to-end offline. Only the file: targets are
-	// fetched so the test never touches the network, no matter which live
-	// sites the bundled targets list grows to.
+	// The offline sample pages (test data only) work end to end.
 	fc := fetch.New("CookCompassBot/test", "", 0, time.Second, time.Second)
-	srcs, err := Sources(fc, "../../seed/sources/jsonld_targets.txt", "", testutil.Logger())
+	srcs, err := Sources(fc, "testdata/targets.txt", "", testutil.Logger())
 	if err != nil {
 		t.Fatal(err)
 	}
-	bundled, err := ReadTargets("../../seed/sources/jsonld_targets.txt")
+	bundled, err := ReadTargets("testdata/targets.txt")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -298,7 +296,18 @@ func TestTargetsAndBundledSamples(t *testing.T) {
 		}
 	}
 	if len(files) == 0 {
-		t.Fatal("bundled targets lost their offline samples")
+		t.Fatal("test targets lost their offline samples")
+	}
+	// The shipped targets list holds real, vetted pages only: no sample
+	// files that would fill a fresh install's queue with demo recipes.
+	shipped, err := ReadTargets("../../seed/sources/jsonld_targets.txt")
+	if err != nil || len(shipped) == 0 {
+		t.Fatalf("shipped targets: %v %v", shipped, err)
+	}
+	for _, u := range shipped {
+		if !strings.HasPrefix(u, "https://") {
+			t.Errorf("shipped targets must be live https pages, got %q", u)
+		}
 	}
 	raws, err := srcs["jsonld"].Fetch(context.Background(), recipes.FetchOpts{URLs: files})
 	if err != nil || len(raws) != 3 {

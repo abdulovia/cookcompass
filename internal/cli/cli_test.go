@@ -229,7 +229,7 @@ func TestCommandsFailWithBadDB(t *testing.T) {
 func TestScrapeCommand(t *testing.T) {
 	dbPath := filepath.Join(t.TempDir(), "scrape.db")
 	fixture, _ := filepath.Abs("../ingest/testdata/graph_recipe.html")
-	t.Setenv("COOK_SCRAPE_TARGETS", "../../seed/sources/jsonld_targets.txt")
+	t.Setenv("COOK_SCRAPE_TARGETS", "../ingest/testdata/targets.txt")
 	t.Setenv("COOK_SCRAPE_CACHE", t.TempDir())
 	code, out, errs := run(t, dbPath, "", "scrape", "--source", "jsonld", "--url", "file:"+fixture)
 	if code != 0 || !strings.Contains(out, "created=1") || !strings.Contains(out, "review new items") {
