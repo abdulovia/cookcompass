@@ -1,0 +1,2 @@
+# Test-only targets: the offline sample pages next to this file.
+file:pages/*.html
