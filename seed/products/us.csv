@@ -1,158 +1,158 @@
 sku,name,category,ingredient,price,unit
-US-SALT-1,"Salt, 1 kg",spices,salt,0.99,1 kg
-US-BLACKPEPPE-1,"Black pepper, 50 g",spices,black-pepper,3.49,50 g
-US-VEGETABLEO-1,"Vegetable oil, 1 l",oils,vegetable-oil,3.99,1 l
-US-VEGETABLEO-2,"Vegetable oil, 2 l",oils,vegetable-oil,7.49,2 l
-US-OLIVEOIL-1,"Olive oil, 500 ml",oils,olive-oil,8.99,500 ml
-US-OLIVEOIL-2,"Olive oil, 1 l",oils,olive-oil,16.49,1 l
-US-SESAMEOIL-1,"Sesame oil, 250 ml",oils,sesame-oil,4.99,250 ml
-US-BUTTER-1,"Butter, 250 g",dairy,butter,4.49,250 g
-US-BUTTER-2,"Butter, 500 g",dairy,butter,8.49,500 g
-US-MILK-1,"Milk, 1 l",dairy,milk,1.49,1 l
-US-MILK-2,"Milk, 2 l",dairy,milk,2.99,2 l
-US-HEAVYCREAM-1,"Heavy cream, 200 ml",dairy,heavy-cream,2.99,200 ml
-US-HEAVYCREAM-2,"Heavy cream, 500 ml",dairy,heavy-cream,6.99,500 ml
-US-SOURCREAM-1,"Sour cream, 300 g",dairy,sour-cream,2.49,300 g
-US-YOGURT-1,"Yogurt, 500 g",dairy,yogurt,2.49,500 g
-US-YOGURT-2,"Yogurt, 1 kg",dairy,yogurt,4.49,1 kg
-US-RICOTTA-1,"Ricotta, 250 g",dairy,ricotta,3.99,250 g
-US-CHEDDAR-1,"Cheddar, 200 g",dairy,cheddar,4.49,200 g
-US-CHEDDAR-2,"Cheddar, 400 g",dairy,cheddar,8.49,400 g
-US-MOZZARELLA-1,"Mozzarella, 125 g",dairy,mozzarella,2.99,125 g
-US-PARMESAN-1,"Parmesan, 100 g",dairy,parmesan,5.99,100 g
-US-PARMESAN-2,"Parmesan, 200 g",dairy,parmesan,10.99,200 g
-US-PECORINO-1,"Pecorino, 100 g",dairy,pecorino,6.49,100 g
-US-FETA-1,"Feta, 200 g",dairy,feta,3.49,200 g
-US-EGG-1,"Egg, 10 pcs",dairy,egg,3.49,10 pcs
-US-EGG-2,"Egg, 6 pcs",dairy,egg,2.49,6 pcs
-US-CHICKENBRE-1,"Chicken breast, 1 kg",meat,chicken-breast,8.99,1 kg
-US-CHICKENBRE-2,"Chicken breast, 500 g",meat,chicken-breast,4.99,500 g
-US-CHICKENTHI-1,"Chicken thigh, 1 kg",meat,chicken-thigh,6.99,1 kg
-US-GROUNDBEEF-1,"Ground beef, 500 g",meat,ground-beef,5.99,500 g
-US-GROUNDBEEF-2,"Ground beef, 1 kg",meat,ground-beef,11.49,1 kg
-US-GROUNDPORK-1,"Ground pork, 500 g",meat,ground-pork,4.99,500 g
-US-LAMBMINCE-1,"Ground lamb, 500 g",meat,lamb-mince,8.49,500 g
-US-BEEFCHUCK-1,"Stewing beef, 1 kg",meat,beef-chuck,10.99,1 kg
-US-BACON-1,"Bacon, 200 g",meat,bacon,5.49,200 g
-US-PANCETTA-1,"Pancetta, 150 g",meat,pancetta,5.99,150 g
-US-CHORIZO-1,"Chorizo, 200 g",meat,chorizo,4.99,200 g
-US-SHRIMP-1,"Shrimp, 500 g",seafood,shrimp,11.99,500 g
-US-MUSSELS-1,"Mussels, 1 kg",seafood,mussels,6.99,1 kg
-US-SALMON-1,"Salmon, 400 g",seafood,salmon,12.99,400 g
-US-TOFU-1,"Tofu, 400 g",protein,tofu,2.49,400 g
-US-ALLPURPOSE-1,"Flour, 1 kg",baking,all-purpose-flour,2.99,1 kg
-US-ALLPURPOSE-2,"Flour, 2 kg",baking,all-purpose-flour,5.49,2 kg
-US-CORNSTARCH-1,"Cornstarch, 400 g",baking,cornstarch,1.99,400 g
-US-BAKINGPOWD-1,"Baking powder, 100 g",baking,baking-powder,1.49,100 g
-US-SUGAR-1,"Sugar, 1 kg",baking,sugar,1.99,1 kg
-US-BROWNSUGAR-1,"Brown sugar, 500 g",baking,brown-sugar,2.49,500 g
-US-HONEY-1,"Honey, 350 g",pantry,honey,5.99,350 g
-US-MAPLESYRUP-1,"Maple syrup, 250 ml",pantry,maple-syrup,7.99,250 ml
-US-VANILLAEXT-1,"Vanilla extract, 50 ml",baking,vanilla-extract,4.99,50 ml
-US-ROLLEDOATS-1,"Rolled oats, 500 g",grains,rolled-oats,2.49,500 g
-US-ROLLEDOATS-2,"Rolled oats, 1 kg",grains,rolled-oats,4.49,1 kg
-US-LONGGRAINR-1,"Rice, 1 kg",grains,long-grain-rice,2.49,1 kg
-US-BASMATIRIC-1,"Basmati rice, 1 kg",grains,basmati-rice,3.99,1 kg
-US-JASMINERIC-1,"Jasmine rice, 1 kg",grains,jasmine-rice,3.99,1 kg
-US-SHORTGRAIN-1,"Short-grain rice, 1 kg",grains,short-grain-rice,3.49,1 kg
-US-SPAGHETTI-1,"Spaghetti, 500 g",grains,spaghetti,1.99,500 g
-US-RICENOODLE-1,"Rice noodles, 400 g",grains,rice-noodles,2.99,400 g
-US-BAGUETTE-1,"Baguette, 1 pc",bakery,baguette,2.49,1 pc
-US-BREAD-1,"Bread, 500 g",bakery,bread,3.49,500 g
-US-BURGERBUNS-1,"Burger buns, 4 pcs",bakery,burger-buns,3.49,4 pcs
-US-FLOURTORTI-1,"Flour tortillas, 8 pcs",bakery,flour-tortillas,2.99,8 pcs
-US-TORTILLACH-1,"Tortilla chips, 200 g",snacks,tortilla-chips,2.99,200 g
-US-DUMPLINGWR-1,"Gyoza wrappers, 30 pcs",frozen,dumpling-wrappers,3.99,30 pcs
-US-ONION-1,"Onion, 1 kg",vegetables,onion,1.49,1 kg
-US-REDONION-1,"Red onion, 500 g",vegetables,red-onion,1.99,500 g
-US-GARLIC-1,"Garlic, 3 pcs",vegetables,garlic,0.79,3 pcs
-US-GINGER-1,"Ginger, 150 g",vegetables,ginger,1.49,150 g
-US-TOMATO-1,"Tomato, 1 kg",vegetables,tomato,3.49,1 kg
-US-TOMATO-2,"Cherry tomatoes, 250 g",vegetables,tomato,2.99,250 g
-US-CANNEDTOMA-1,"Canned tomatoes, 400 g",pantry,canned-tomatoes,1.49,400 g
-US-TOMATOPAST-1,"Tomato paste, 140 g",pantry,tomato-paste,1.49,140 g
-US-POTATO-1,"Potato, 2 kg",vegetables,potato,2.99,2 kg
-US-CARROT-1,"Carrot, 1 kg",vegetables,carrot,1.49,1 kg
-US-BELLPEPPER-1,"Bell pepper, 1 pc",vegetables,bell-pepper,1.49,1 pc
-US-BELLPEPPER-2,"Bell pepper, 3 pcs",vegetables,bell-pepper,3.99,3 pcs
-US-EGGPLANT-1,"Eggplant, 1 pc",vegetables,eggplant,1.99,1 pc
-US-ZUCCHINI-1,"Zucchini, 1 pc",vegetables,zucchini,1.49,1 pc
-US-CUCUMBER-1,"Cucumber, 1 pc",vegetables,cucumber,0.99,1 pc
-US-SPINACH-1,"Spinach, 250 g",vegetables,spinach,2.99,250 g
-US-BEETROOT-1,"Beetroot, 1 kg",vegetables,beetroot,1.99,1 kg
-US-CABBAGE-1,"Cabbage, 1 pc",vegetables,cabbage,1.49,1 pc
-US-SCALLION-1,"Scallion, 1 bunch",vegetables,scallion,0.99,1 bunch
-US-CHIVES-1,"Chives, 1 bunch",herbs,chives,1.49,1 bunch
-US-CILANTRO-1,"Cilantro, 1 bunch",herbs,cilantro,0.99,1 bunch
-US-PARSLEY-1,"Parsley, 1 bunch",herbs,parsley,0.99,1 bunch
-US-BASIL-1,"Basil, 1 bunch",herbs,basil,2.49,1 bunch
-US-DILL-1,"Dill, 1 bunch",herbs,dill,0.99,1 bunch
-US-MINT-1,"Mint, 1 bunch",herbs,mint,1.49,1 bunch
-US-LETTUCE-1,"Lettuce, 1 pc",vegetables,lettuce,1.99,1 pc
-US-MUSHROOMS-1,"Mushrooms, 400 g",vegetables,mushrooms,2.99,400 g
-US-BEANSPROUT-1,"Bean sprouts, 200 g",vegetables,bean-sprouts,1.99,200 g
-US-AVOCADO-1,"Avocado, 1 pc",fruit,avocado,1.49,1 pc
-US-AVOCADO-2,"Avocado, 4 pcs",fruit,avocado,4.99,4 pcs
-US-LIME-1,"Lime, 1 pc",fruit,lime,0.49,1 pc
-US-LEMON-1,"Lemon, 1 pc",fruit,lemon,0.69,1 pc
-US-CHILIPEPPE-1,"Chili pepper, 100 g",vegetables,chili-pepper,0.99,100 g
-US-JALAPENO-1,"Jalapeño, 200 g",vegetables,jalapeno,1.99,200 g
-US-PEAS-1,"Peas, 450 g",frozen,peas,1.99,450 g
-US-BERRIES-1,"Berries, 300 g",fruit,berries,4.99,300 g
-US-BANANA-1,"Banana, 1 kg",fruit,banana,1.49,1 kg
-US-APPLE-1,"Apple, 1 kg",fruit,apple,2.99,1 kg
-US-OLIVES-1,"Olives, 200 g",pantry,olives,3.49,200 g
-US-CHICKPEAS-1,"Chickpeas, 400 g",legumes,chickpeas,1.49,400 g
-US-PEANUTS-1,"Peanuts, 200 g",nuts,peanuts,2.99,200 g
-US-PEANUTBUTT-1,"Peanut butter, 340 g",pantry,peanut-butter,3.99,340 g
-US-TAHINI-1,"Tahini, 300 g",pantry,tahini,5.99,300 g
-US-SESAMESEED-1,"Sesame seeds, 100 g",pantry,sesame-seeds,2.49,100 g
-US-SOYSAUCE-1,"Soy sauce, 250 ml",condiments,soy-sauce,2.99,250 ml
-US-SOYSAUCE-2,"Soy sauce, 500 ml",condiments,soy-sauce,5.49,500 ml
-US-FISHSAUCE-1,"Fish sauce, 200 ml",condiments,fish-sauce,3.49,200 ml
-US-RICEVINEGA-1,"Rice vinegar, 250 ml",condiments,rice-vinegar,2.99,250 ml
-US-WHITEVINEG-1,"Vinegar, 500 ml",condiments,white-vinegar,1.49,500 ml
-US-REDWINEVIN-1,"Red wine vinegar, 500 ml",condiments,red-wine-vinegar,2.99,500 ml
-US-REDWINE-1,"Red wine, 750 ml",drinks,red-wine,9.99,750 ml
-US-BEEFSTOCK-1,"Beef stock, 1 l",pantry,beef-stock,2.99,1 l
-US-CHICKENSTO-1,"Chicken stock, 1 l",pantry,chicken-stock,2.99,1 l
-US-VEGETABLES-1,"Vegetable stock, 1 l",pantry,vegetable-stock,2.99,1 l
-US-MISOPASTE-1,"Miso paste, 300 g",condiments,miso-paste,5.49,300 g
-US-DASHI-1,"Dashi, 50 g",condiments,dashi,4.99,50 g
-US-WAKAME-1,"Wakame, 50 g",pantry,wakame,3.99,50 g
-US-GOCHUJANG-1,"Gochujang, 500 g",condiments,gochujang,6.99,500 g
-US-SRIRACHA-1,"Sriracha, 435 ml",condiments,sriracha,3.99,435 ml
-US-GREENCURRY-1,"Green curry paste, 110 g",condiments,green-curry-paste,3.49,110 g
-US-COCONUTMIL-1,"Coconut milk, 400 ml",pantry,coconut-milk,1.99,400 ml
-US-TAMARINDPA-1,"Tamarind paste, 200 g",condiments,tamarind-paste,3.99,200 g
-US-KETCHUP-1,"Ketchup, 500 g",condiments,ketchup,2.49,500 g
-US-MUSTARD-1,"Mustard, 200 g",condiments,mustard,1.99,200 g
-US-WORCESTERS-1,"Worcestershire sauce, 150 ml",condiments,worcestershire,3.49,150 ml
-US-MAYONNAISE-1,"Mayonnaise, 400 g",condiments,mayonnaise,3.49,400 g
-US-CUMIN-1,"Cumin, 50 g",spices,cumin,2.99,50 g
-US-GROUNDCORI-1,"Ground coriander, 50 g",spices,ground-coriander,2.49,50 g
-US-TURMERIC-1,"Turmeric, 50 g",spices,turmeric,2.49,50 g
-US-GARAMMASAL-1,"Garam masala, 50 g",spices,garam-masala,3.49,50 g
-US-CURRYPOWDE-1,"Curry powder, 50 g",spices,curry-powder,2.99,50 g
-US-CHILIPOWDE-1,"Chili powder, 50 g",spices,chili-powder,2.49,50 g
-US-PAPRIKA-1,"Paprika, 50 g",spices,paprika,2.49,50 g
-US-SMOKEDPAPR-1,"Smoked paprika, 50 g",spices,smoked-paprika,3.49,50 g
-US-CHILIFLAKE-1,"Chili flakes, 50 g",spices,chili-flakes,2.49,50 g
-US-DRIEDCHILI-1,"Dried chilies, 30 g",spices,dried-chilies,2.99,30 g
-US-SICHUANPEP-1,"Sichuan peppercorns, 30 g",spices,sichuan-peppercorn,4.99,30 g
-US-SAFFRON-1,"Saffron, 0.5 g",spices,saffron,7.99,0.5 g
-US-OREGANO-1,"Oregano, 20 g",spices,oregano,1.99,20 g
-US-THYME-1,"Thyme, 20 g",spices,thyme,1.99,20 g
-US-BAYLEAF-1,"Bay leaf, 10 g",spices,bay-leaf,1.49,10 g
-US-CINNAMON-1,"Cinnamon, 50 g",spices,cinnamon,2.49,50 g
-US-NUTMEG-1,"Nutmeg, 30 g",spices,nutmeg,2.99,30 g
-US-CARDAMOM-1,"Cardamom, 30 g",spices,cardamom,4.49,30 g
-US-COFFEE-1,"Coffee, 250 g",drinks,coffee,7.99,250 g
-US-BLACKTEA-1,"Black tea, 25 pcs",drinks,black-tea,3.49,25 pcs
-US-ORANGEJUIC-1,"Orange juice, 1 l",drinks,orange-juice,3.49,1 l
-US-BUCKWHEAT-1,"Buckwheat, 900 g",grains,buckwheat,3.49,900 g
-US-KEFIR-1,"Kefir, 1 l",dairy,kefir,2.49,1 l
-US-KEFIR-2,"Kefir, 500 ml",dairy,kefir,1.49,500 ml
-US-CONDENSEDM-1,"Condensed milk, 380 g",pantry,condensed-milk,2.49,380 g
-US-PICKLES-1,"Pickles, 680 g",pantry,pickles,2.99,680 g
-US-SUNFLOWERS-1,"Sunflower seeds, 200 g",nuts,sunflower-seeds,1.99,200 g
+US-SALT-1,"Salt, 1 kg",spices,salt,,1 kg
+US-BLACKPEPPE-1,"Black pepper, 50 g",spices,black-pepper,,50 g
+US-VEGETABLEO-1,"Vegetable oil, 1 l",oils,vegetable-oil,,1 l
+US-VEGETABLEO-2,"Vegetable oil, 2 l",oils,vegetable-oil,,2 l
+US-OLIVEOIL-1,"Olive oil, 500 ml",oils,olive-oil,,500 ml
+US-OLIVEOIL-2,"Olive oil, 1 l",oils,olive-oil,,1 l
+US-SESAMEOIL-1,"Sesame oil, 250 ml",oils,sesame-oil,,250 ml
+US-BUTTER-1,"Butter, 250 g",dairy,butter,,250 g
+US-BUTTER-2,"Butter, 500 g",dairy,butter,,500 g
+US-MILK-1,"Milk, 1 l",dairy,milk,,1 l
+US-MILK-2,"Milk, 2 l",dairy,milk,,2 l
+US-HEAVYCREAM-1,"Heavy cream, 200 ml",dairy,heavy-cream,,200 ml
+US-HEAVYCREAM-2,"Heavy cream, 500 ml",dairy,heavy-cream,,500 ml
+US-SOURCREAM-1,"Sour cream, 300 g",dairy,sour-cream,,300 g
+US-YOGURT-1,"Yogurt, 500 g",dairy,yogurt,,500 g
+US-YOGURT-2,"Yogurt, 1 kg",dairy,yogurt,,1 kg
+US-RICOTTA-1,"Ricotta, 250 g",dairy,ricotta,,250 g
+US-CHEDDAR-1,"Cheddar, 200 g",dairy,cheddar,,200 g
+US-CHEDDAR-2,"Cheddar, 400 g",dairy,cheddar,,400 g
+US-MOZZARELLA-1,"Mozzarella, 125 g",dairy,mozzarella,,125 g
+US-PARMESAN-1,"Parmesan, 100 g",dairy,parmesan,,100 g
+US-PARMESAN-2,"Parmesan, 200 g",dairy,parmesan,,200 g
+US-PECORINO-1,"Pecorino, 100 g",dairy,pecorino,,100 g
+US-FETA-1,"Feta, 200 g",dairy,feta,,200 g
+US-EGG-1,"Egg, 10 pcs",dairy,egg,,10 pcs
+US-EGG-2,"Egg, 6 pcs",dairy,egg,,6 pcs
+US-CHICKENBRE-1,"Chicken breast, 1 kg",meat,chicken-breast,,1 kg
+US-CHICKENBRE-2,"Chicken breast, 500 g",meat,chicken-breast,,500 g
+US-CHICKENTHI-1,"Chicken thigh, 1 kg",meat,chicken-thigh,,1 kg
+US-GROUNDBEEF-1,"Ground beef, 500 g",meat,ground-beef,,500 g
+US-GROUNDBEEF-2,"Ground beef, 1 kg",meat,ground-beef,,1 kg
+US-GROUNDPORK-1,"Ground pork, 500 g",meat,ground-pork,,500 g
+US-LAMBMINCE-1,"Ground lamb, 500 g",meat,lamb-mince,,500 g
+US-BEEFCHUCK-1,"Stewing beef, 1 kg",meat,beef-chuck,,1 kg
+US-BACON-1,"Bacon, 200 g",meat,bacon,,200 g
+US-PANCETTA-1,"Pancetta, 150 g",meat,pancetta,,150 g
+US-CHORIZO-1,"Chorizo, 200 g",meat,chorizo,,200 g
+US-SHRIMP-1,"Shrimp, 500 g",seafood,shrimp,,500 g
+US-MUSSELS-1,"Mussels, 1 kg",seafood,mussels,,1 kg
+US-SALMON-1,"Salmon, 400 g",seafood,salmon,,400 g
+US-TOFU-1,"Tofu, 400 g",protein,tofu,,400 g
+US-ALLPURPOSE-1,"Flour, 1 kg",baking,all-purpose-flour,,1 kg
+US-ALLPURPOSE-2,"Flour, 2 kg",baking,all-purpose-flour,,2 kg
+US-CORNSTARCH-1,"Cornstarch, 400 g",baking,cornstarch,,400 g
+US-BAKINGPOWD-1,"Baking powder, 100 g",baking,baking-powder,,100 g
+US-SUGAR-1,"Sugar, 1 kg",baking,sugar,,1 kg
+US-BROWNSUGAR-1,"Brown sugar, 500 g",baking,brown-sugar,,500 g
+US-HONEY-1,"Honey, 350 g",pantry,honey,,350 g
+US-MAPLESYRUP-1,"Maple syrup, 250 ml",pantry,maple-syrup,,250 ml
+US-VANILLAEXT-1,"Vanilla extract, 50 ml",baking,vanilla-extract,,50 ml
+US-ROLLEDOATS-1,"Rolled oats, 500 g",grains,rolled-oats,,500 g
+US-ROLLEDOATS-2,"Rolled oats, 1 kg",grains,rolled-oats,,1 kg
+US-LONGGRAINR-1,"Rice, 1 kg",grains,long-grain-rice,,1 kg
+US-BASMATIRIC-1,"Basmati rice, 1 kg",grains,basmati-rice,,1 kg
+US-JASMINERIC-1,"Jasmine rice, 1 kg",grains,jasmine-rice,,1 kg
+US-SHORTGRAIN-1,"Short-grain rice, 1 kg",grains,short-grain-rice,,1 kg
+US-SPAGHETTI-1,"Spaghetti, 500 g",grains,spaghetti,,500 g
+US-RICENOODLE-1,"Rice noodles, 400 g",grains,rice-noodles,,400 g
+US-BAGUETTE-1,"Baguette, 1 pc",bakery,baguette,,1 pc
+US-BREAD-1,"Bread, 500 g",bakery,bread,,500 g
+US-BURGERBUNS-1,"Burger buns, 4 pcs",bakery,burger-buns,,4 pcs
+US-FLOURTORTI-1,"Flour tortillas, 8 pcs",bakery,flour-tortillas,,8 pcs
+US-TORTILLACH-1,"Tortilla chips, 200 g",snacks,tortilla-chips,,200 g
+US-DUMPLINGWR-1,"Gyoza wrappers, 30 pcs",frozen,dumpling-wrappers,,30 pcs
+US-ONION-1,"Onion, 1 kg",vegetables,onion,,1 kg
+US-REDONION-1,"Red onion, 500 g",vegetables,red-onion,,500 g
+US-GARLIC-1,"Garlic, 3 pcs",vegetables,garlic,,3 pcs
+US-GINGER-1,"Ginger, 150 g",vegetables,ginger,,150 g
+US-TOMATO-1,"Tomato, 1 kg",vegetables,tomato,,1 kg
+US-TOMATO-2,"Cherry tomatoes, 250 g",vegetables,tomato,,250 g
+US-CANNEDTOMA-1,"Canned tomatoes, 400 g",pantry,canned-tomatoes,,400 g
+US-TOMATOPAST-1,"Tomato paste, 140 g",pantry,tomato-paste,,140 g
+US-POTATO-1,"Potato, 2 kg",vegetables,potato,,2 kg
+US-CARROT-1,"Carrot, 1 kg",vegetables,carrot,,1 kg
+US-BELLPEPPER-1,"Bell pepper, 1 pc",vegetables,bell-pepper,,1 pc
+US-BELLPEPPER-2,"Bell pepper, 3 pcs",vegetables,bell-pepper,,3 pcs
+US-EGGPLANT-1,"Eggplant, 1 pc",vegetables,eggplant,,1 pc
+US-ZUCCHINI-1,"Zucchini, 1 pc",vegetables,zucchini,,1 pc
+US-CUCUMBER-1,"Cucumber, 1 pc",vegetables,cucumber,,1 pc
+US-SPINACH-1,"Spinach, 250 g",vegetables,spinach,,250 g
+US-BEETROOT-1,"Beetroot, 1 kg",vegetables,beetroot,,1 kg
+US-CABBAGE-1,"Cabbage, 1 pc",vegetables,cabbage,,1 pc
+US-SCALLION-1,"Scallion, 1 bunch",vegetables,scallion,,1 bunch
+US-CHIVES-1,"Chives, 1 bunch",herbs,chives,,1 bunch
+US-CILANTRO-1,"Cilantro, 1 bunch",herbs,cilantro,,1 bunch
+US-PARSLEY-1,"Parsley, 1 bunch",herbs,parsley,,1 bunch
+US-BASIL-1,"Basil, 1 bunch",herbs,basil,,1 bunch
+US-DILL-1,"Dill, 1 bunch",herbs,dill,,1 bunch
+US-MINT-1,"Mint, 1 bunch",herbs,mint,,1 bunch
+US-LETTUCE-1,"Lettuce, 1 pc",vegetables,lettuce,,1 pc
+US-MUSHROOMS-1,"Mushrooms, 400 g",vegetables,mushrooms,,400 g
+US-BEANSPROUT-1,"Bean sprouts, 200 g",vegetables,bean-sprouts,,200 g
+US-AVOCADO-1,"Avocado, 1 pc",fruit,avocado,,1 pc
+US-AVOCADO-2,"Avocado, 4 pcs",fruit,avocado,,4 pcs
+US-LIME-1,"Lime, 1 pc",fruit,lime,,1 pc
+US-LEMON-1,"Lemon, 1 pc",fruit,lemon,,1 pc
+US-CHILIPEPPE-1,"Chili pepper, 100 g",vegetables,chili-pepper,,100 g
+US-JALAPENO-1,"Jalapeño, 200 g",vegetables,jalapeno,,200 g
+US-PEAS-1,"Peas, 450 g",frozen,peas,,450 g
+US-BERRIES-1,"Berries, 300 g",fruit,berries,,300 g
+US-BANANA-1,"Banana, 1 kg",fruit,banana,,1 kg
+US-APPLE-1,"Apple, 1 kg",fruit,apple,,1 kg
+US-OLIVES-1,"Olives, 200 g",pantry,olives,,200 g
+US-CHICKPEAS-1,"Chickpeas, 400 g",legumes,chickpeas,,400 g
+US-PEANUTS-1,"Peanuts, 200 g",nuts,peanuts,,200 g
+US-PEANUTBUTT-1,"Peanut butter, 340 g",pantry,peanut-butter,,340 g
+US-TAHINI-1,"Tahini, 300 g",pantry,tahini,,300 g
+US-SESAMESEED-1,"Sesame seeds, 100 g",pantry,sesame-seeds,,100 g
+US-SOYSAUCE-1,"Soy sauce, 250 ml",condiments,soy-sauce,,250 ml
+US-SOYSAUCE-2,"Soy sauce, 500 ml",condiments,soy-sauce,,500 ml
+US-FISHSAUCE-1,"Fish sauce, 200 ml",condiments,fish-sauce,,200 ml
+US-RICEVINEGA-1,"Rice vinegar, 250 ml",condiments,rice-vinegar,,250 ml
+US-WHITEVINEG-1,"Vinegar, 500 ml",condiments,white-vinegar,,500 ml
+US-REDWINEVIN-1,"Red wine vinegar, 500 ml",condiments,red-wine-vinegar,,500 ml
+US-REDWINE-1,"Red wine, 750 ml",drinks,red-wine,,750 ml
+US-BEEFSTOCK-1,"Beef stock, 1 l",pantry,beef-stock,,1 l
+US-CHICKENSTO-1,"Chicken stock, 1 l",pantry,chicken-stock,,1 l
+US-VEGETABLES-1,"Vegetable stock, 1 l",pantry,vegetable-stock,,1 l
+US-MISOPASTE-1,"Miso paste, 300 g",condiments,miso-paste,,300 g
+US-DASHI-1,"Dashi, 50 g",condiments,dashi,,50 g
+US-WAKAME-1,"Wakame, 50 g",pantry,wakame,,50 g
+US-GOCHUJANG-1,"Gochujang, 500 g",condiments,gochujang,,500 g
+US-SRIRACHA-1,"Sriracha, 435 ml",condiments,sriracha,,435 ml
+US-GREENCURRY-1,"Green curry paste, 110 g",condiments,green-curry-paste,,110 g
+US-COCONUTMIL-1,"Coconut milk, 400 ml",pantry,coconut-milk,,400 ml
+US-TAMARINDPA-1,"Tamarind paste, 200 g",condiments,tamarind-paste,,200 g
+US-KETCHUP-1,"Ketchup, 500 g",condiments,ketchup,,500 g
+US-MUSTARD-1,"Mustard, 200 g",condiments,mustard,,200 g
+US-WORCESTERS-1,"Worcestershire sauce, 150 ml",condiments,worcestershire,,150 ml
+US-MAYONNAISE-1,"Mayonnaise, 400 g",condiments,mayonnaise,,400 g
+US-CUMIN-1,"Cumin, 50 g",spices,cumin,,50 g
+US-GROUNDCORI-1,"Ground coriander, 50 g",spices,ground-coriander,,50 g
+US-TURMERIC-1,"Turmeric, 50 g",spices,turmeric,,50 g
+US-GARAMMASAL-1,"Garam masala, 50 g",spices,garam-masala,,50 g
+US-CURRYPOWDE-1,"Curry powder, 50 g",spices,curry-powder,,50 g
+US-CHILIPOWDE-1,"Chili powder, 50 g",spices,chili-powder,,50 g
+US-PAPRIKA-1,"Paprika, 50 g",spices,paprika,,50 g
+US-SMOKEDPAPR-1,"Smoked paprika, 50 g",spices,smoked-paprika,,50 g
+US-CHILIFLAKE-1,"Chili flakes, 50 g",spices,chili-flakes,,50 g
+US-DRIEDCHILI-1,"Dried chilies, 30 g",spices,dried-chilies,,30 g
+US-SICHUANPEP-1,"Sichuan peppercorns, 30 g",spices,sichuan-peppercorn,,30 g
+US-SAFFRON-1,"Saffron, 0.5 g",spices,saffron,,0.5 g
+US-OREGANO-1,"Oregano, 20 g",spices,oregano,,20 g
+US-THYME-1,"Thyme, 20 g",spices,thyme,,20 g
+US-BAYLEAF-1,"Bay leaf, 10 g",spices,bay-leaf,,10 g
+US-CINNAMON-1,"Cinnamon, 50 g",spices,cinnamon,,50 g
+US-NUTMEG-1,"Nutmeg, 30 g",spices,nutmeg,,30 g
+US-CARDAMOM-1,"Cardamom, 30 g",spices,cardamom,,30 g
+US-COFFEE-1,"Coffee, 250 g",drinks,coffee,,250 g
+US-BLACKTEA-1,"Black tea, 25 pcs",drinks,black-tea,,25 pcs
+US-ORANGEJUIC-1,"Orange juice, 1 l",drinks,orange-juice,,1 l
+US-BUCKWHEAT-1,"Buckwheat, 900 g",grains,buckwheat,,900 g
+US-KEFIR-1,"Kefir, 1 l",dairy,kefir,,1 l
+US-KEFIR-2,"Kefir, 500 ml",dairy,kefir,,500 ml
+US-CONDENSEDM-1,"Condensed milk, 380 g",pantry,condensed-milk,,380 g
+US-PICKLES-1,"Pickles, 680 g",pantry,pickles,,680 g
+US-SUNFLOWERS-1,"Sunflower seeds, 200 g",nuts,sunflower-seeds,,200 g
