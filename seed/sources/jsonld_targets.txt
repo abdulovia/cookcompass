@@ -4,15 +4,14 @@
 # - http(s) URLs are fetched politely: robots.txt is obeyed, at most one
 #   request per second per site, responses are cached on disk.
 # - Only add sites whose terms of use allow indexing for personal use.
-# - "file:" entries read local HTML (relative to this file; globs allowed).
-#   They let the pipeline run offline and are a handy way to import pages
-#   you saved from your browser.
+# - "file:" entries read local HTML (relative to this file; globs allowed),
+#   a handy way to import pages you saved from your browser, e.g.
+#     file:/data/recipe-inbox/pages/*.html
 # - Most big recipe sites block bots (Cloudflare, robots AI bans) or ship
 #   incomplete JSON-LD. Before adding a site, verify: robots.txt allows all
 #   agents, the page returns 200 to CookCompassBot, and the Recipe JSON-LD
 #   carries ingredients AND steps. For bulk loading prefer the dataset
 #   import (admin queue → "Import recipes from a dataset").
-file:samples/*.html
 # Verified 2026-11: robots.txt allows all agents, full Recipe JSON-LD.
 https://www.recipetineats.com/devilled-eggs/
 https://www.recipetineats.com/beef-stroganoff/
