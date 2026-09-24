@@ -28,7 +28,7 @@
     <div><label for="unit">{{.T "admin.field_unit"}}</label><input id="unit" name="unit" value="{{$f.Unit}}" placeholder="500 g"></div>
   </div>
   <label for="url">{{.T "admin.product_url"}}</label>
-  <input id="url" name="url" value="{{$f.URL}}" placeholder="https://lenta.com/products/grechka-800g">
+  <input id="url" name="url" value="{{$f.URL}}" placeholder="https://shop.example/products/buckwheat-800g">
   {{template "field_error" (.Err "url")}}
   <p class="help">{{.T "admin.product_url_hint"}}</p>
   <div class="grid three">
