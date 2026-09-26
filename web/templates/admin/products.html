@@ -47,7 +47,7 @@
     <td><a href="/admin/products/{{.ID}}/edit">{{.Name}}</a><div class="muted">{{.Category}}{{with .Unit}} · {{.}}{{end}}</div></td>
     <td><code>{{.SKU}}</code></td>
     <td>{{if .IngredientSlug}}{{.IngredientSlug}}{{else}}<span class="badge warn">{{$.T "admin.unmapped"}}</span>{{end}}</td>
-    <td>{{money .Price}} {{.Currency}}</td>
+    <td>{{if .Price}}{{money .Price}} {{.Currency}}{{else}}<span class="muted">—</span>{{end}}</td>
     <td>{{if .Deleted}}<span class="badge">{{$.T "status.deleted"}}</span>{{else}}<span class="badge st-{{.Status}}">{{$.E "status" .Status}}</span>{{end}}</td>
     <td><code>{{.Source}}</code></td>
     <td class="actions">
