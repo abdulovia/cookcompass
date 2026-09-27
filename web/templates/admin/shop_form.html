@@ -11,14 +11,14 @@
       <input id="name" name="name" value="{{$f.Name}}" required {{if .Err "name"}}aria-invalid="true"{{end}}>
       {{template "field_error" (.Err "name")}}</div>
     <div><label for="slug">{{.T "admin.shop_slug"}}</label>
-      <input id="slug" name="slug" value="{{$f.Slug}}" placeholder="lenta">
+      <input id="slug" name="slug" value="{{$f.Slug}}" placeholder="my-shop">
       {{template "field_error" (.Err "slug")}}</div>
   </div>
   <label for="website">{{.T "admin.shop_website"}}</label>
-  <input id="website" name="website" value="{{$f.Website}}" placeholder="https://lenta.com">
+  <input id="website" name="website" value="{{$f.Website}}" placeholder="https://shop.example">
   {{template "field_error" (.Err "website")}}
   <label for="search_url_template">{{.T "admin.shop_search_template"}}</label>
-  <input id="search_url_template" name="search_url_template" value="{{$f.SearchURL}}" placeholder="https://lenta.com/search/?searchText={q}">
+  <input id="search_url_template" name="search_url_template" value="{{$f.SearchURL}}" placeholder="https://shop.example/search?q={q}">
   {{template "field_error" (.Err "search_url_template")}}
   <p class="help">{{.T "admin.shop_template_hint"}}</p>
   <label class="check"><input type="checkbox" name="active" value="1" {{if $f.Active}}checked{{end}}> {{.T "admin.shop_active"}}</label>

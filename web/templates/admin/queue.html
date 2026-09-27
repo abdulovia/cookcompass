@@ -69,7 +69,7 @@
     <td><a href="/admin/products/{{.ID}}/edit">{{.Name}}</a>{{with .SKU}} <code>{{.}}</code>{{end}}</td>
     <td>{{.CountryCode}}</td>
     <td>{{if .IngredientSlug}}{{.IngredientSlug}}{{else}}<span class="badge warn">{{$.T "admin.unmapped"}}</span>{{end}}</td>
-    <td>{{money .Price}} {{.Currency}}</td>
+    <td>{{if .Price}}{{money .Price}} {{.Currency}}{{else}}<span class="muted">—</span>{{end}}</td>
     <td><code>{{.Source}}</code></td>
     <td class="actions">
       <form method="post" action="/admin/queue/products/{{.ID}}/approve" hx-post="/admin/queue/products/{{.ID}}/approve" hx-target="#pq-{{.ID}}" hx-swap="outerHTML"><button class="small">{{$.T "admin.approve"}}</button></form>
