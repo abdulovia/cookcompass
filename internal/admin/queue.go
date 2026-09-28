@@ -23,7 +23,7 @@ func (h *Handler) queue(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data := map[string]any{"Recipes": pending, "Sources": h.App.RecipeSourceNames(), "InboxFiles": h.App.RecipeInboxFiles(),
-		"StorageEnabled": h.App.Media.Enabled()}
+		"StorageEnabled": h.App.Media.Enabled(), "Jobs": h.App.JobStatuses()}
 	for k, v := range h.queueExtra(ctx) {
 		data[k] = v
 	}
@@ -130,7 +130,18 @@ func (h *Handler) purgePending(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) scrapeNow(w http.ResponseWriter, r *http.Request) {
-	res, err := h.App.ScrapeRecipes(r.Context(), r.FormValue("source"), recipes.FetchOpts{})
+	source := r.FormValue("source")
+	// Slow sources (a full TheMealDB pass) run as a background job; the
+	// queue page shows progress and the result.
+	if h.App.IsLongRunning(source) {
+		flash := "scrape_started"
+		if !h.App.StartScrape(source) {
+			flash = "scrape_running"
+		}
+		web.Redirect(w, r, "/admin/queue", flash)
+		return
+	}
+	res, err := h.App.ScrapeRecipes(r.Context(), source, recipes.FetchOpts{})
 	if err != nil {
 		h.Log.Warn("scrape from admin", "err", err, "result", res.String())
 	}
