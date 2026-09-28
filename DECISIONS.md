@@ -132,3 +132,4 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Navigation and option lists come from one backend table each (`web.PublicNav`/`AdminNav`, `web.Enums`); templates call `.Nav`, `.Options kind selected` and `.E kind value` instead of spelling out keys. Feature switches gate routes and UI from the same registry.
 - `site.yaml` is validated on start (colour format, /static/ paths, known features, http(s) links) so a typo fails loudly instead of breaking pages.
 - The bundled product catalog is an availability baseline without prices; showing an invented price is worse than showing none.
+- TheMealDB is walked by first letter (26 cached requests at the per-site rate limit); canonical URL `themealdb.com/meal/<id>` is the dedup key. Sources that declare `LongRunning()` run as in-memory background jobs from the admin (one per source); the queue stays the durable result.

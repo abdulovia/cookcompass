@@ -26,6 +26,9 @@ scrape:
   catalog_targets_file: seed/sources/catalog_targets.txt
   catalog_inbox_dir: data/catalog-inbox
   recipe_inbox_dir: data/recipe-inbox  # COOK_RECIPE_INBOX; dataset drops for the admin import
+  themealdb:               # recipe source "themealdb" (admin queue → Scrape now)
+    key: "1"               # COOK_MEALDB_KEY; "1" is the public test key for personal/educational use
+    # letters: abc         # walk only some first letters (default a–z)
 storage:
   s3:
     endpoint: ""           # COOK_S3_ENDPOINT; host:port (e.g. minio:9000) or http(s):// URL; empty disables image storage
