@@ -44,6 +44,8 @@ type App struct {
 	Site *content.Site
 	// DefaultUserID is the account used in single-user mode.
 	DefaultUserID int64
+
+	jobs Jobs
 }
 
 // Open opens the database, applies migrations and builds services.
@@ -113,5 +115,8 @@ func (a *App) SeedFS() fs.FS { return content.Layer(a.Cfg.Content.Dir, seedfs.FS
 // with the content directory's locales/ and static/.
 func (a *App) WebFS() fs.FS { return content.Layer(a.Cfg.Content.Dir, webfs.FS) }
 
-// Close releases resources.
-func (a *App) Close() error { return a.DB.Close() }
+// Close waits for background jobs and releases resources.
+func (a *App) Close() error {
+	a.WaitJobs()
+	return a.DB.Close()
+}
