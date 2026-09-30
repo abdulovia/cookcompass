@@ -19,7 +19,13 @@ func (a *App) Fetcher() *fetch.Client {
 
 // RecipeSources lists the configured recipe sources by name.
 func (a *App) RecipeSources() (map[string]recipes.RecipeSource, error) {
-	return ingest.Sources(a.Fetcher(), a.Cfg.Scrape.TargetsFile, a.Cfg.Scrape.DatasetDir, a.Log)
+	srcs, err := ingest.Sources(a.Fetcher(), a.Cfg.Scrape.TargetsFile, a.Cfg.Scrape.DatasetDir, a.Log)
+	if err != nil {
+		return nil, err
+	}
+	m := a.Cfg.Scrape.MealDB
+	srcs["themealdb"] = &ingest.MealDBSource{Fetcher: a.Fetcher(), BaseURL: m.URL, Key: m.Key, Letters: m.Letters, Log: a.Log}
+	return srcs, nil
 }
 
 // DatasetOptions describe one dataset import run.

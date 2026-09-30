@@ -84,6 +84,14 @@ type Scrape struct {
 	CatalogFile string        `yaml:"catalog_targets_file"`
 	InboxDir    string        `yaml:"catalog_inbox_dir"`
 	DatasetDir  string        `yaml:"recipe_inbox_dir"` // dataset drops for the "dataset" recipe source
+	MealDB      MealDB        `yaml:"themealdb"`
+}
+
+// MealDB configures the TheMealDB recipe source.
+type MealDB struct {
+	URL     string `yaml:"url"`     // API base, default https://www.themealdb.com/api/json/v1
+	Key     string `yaml:"key"`     // "1" = public test key (personal/educational use)
+	Letters string `yaml:"letters"` // first letters to walk, default a–z
 }
 
 // Storage configures the S3-compatible image bucket.
@@ -258,6 +266,8 @@ func applyEnv(c *Config, lookup lookupFunc) error {
 	str("COOK_CATALOG_TARGETS", &c.Scrape.CatalogFile)
 	str("COOK_CATALOG_INBOX", &c.Scrape.InboxDir)
 	str("COOK_RECIPE_INBOX", &c.Scrape.DatasetDir)
+	str("COOK_MEALDB_URL", &c.Scrape.MealDB.URL)
+	str("COOK_MEALDB_KEY", &c.Scrape.MealDB.Key)
 	str("COOK_S3_ENDPOINT", &c.Storage.S3.Endpoint)
 	str("COOK_S3_ACCESS_KEY", &c.Storage.S3.AccessKey)
 	str("COOK_S3_SECRET_KEY", &c.Storage.S3.SecretKey)
