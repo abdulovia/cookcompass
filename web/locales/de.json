@@ -499,5 +499,10 @@
   "recipe.unlearn": "rückgängig machen",
   "recipe.learned_hint": "Gelernt = du könntest es erneut kochen, ohne die Schritte offen zu haben.",
   "recipe.login_to_track": "logge dich ein, um festzuhalten, was du kochst.",
-  "admin.pending_summary": "{{.Recipes}} Rezepte und {{.Products}} Produkte warten auf die Prüfung."
+  "admin.pending_summary": "{{.Recipes}} Rezepte und {{.Products}} Produkte warten auf die Prüfung.",
+  "flash.scrape_started": "Import läuft im Hintergrund. Lade die Seite in einer Minute neu — neue Rezepte erscheinen unten in der Warteschlange.",
+  "flash.scrape_running": "Dieser Import läuft bereits.",
+  "admin.job_running": "{{.Source}}: läuft seit {{.Since}}",
+  "admin.job_done": "{{.Source}}: fertig um {{.At}}",
+  "admin.job_refresh": "neu laden"
 }
