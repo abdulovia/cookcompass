@@ -499,5 +499,10 @@
   "recipe.unlearn": "undo",
   "recipe.learned_hint": "Learned = you could cook it again without the steps open.",
   "recipe.login_to_track": "log in to track what you cook.",
-  "admin.pending_summary": "{{.Recipes}} recipes and {{.Products}} products are waiting for review."
+  "admin.pending_summary": "{{.Recipes}} recipes and {{.Products}} products are waiting for review.",
+  "flash.scrape_started": "Import started in the background. Refresh this page in a minute — new recipes appear in the queue below.",
+  "flash.scrape_running": "That import is already running.",
+  "admin.job_running": "{{.Source}}: running since {{.Since}}",
+  "admin.job_done": "{{.Source}}: finished at {{.At}}",
+  "admin.job_refresh": "refresh"
 }
