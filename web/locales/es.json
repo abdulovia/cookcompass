@@ -509,5 +509,10 @@
   "recipe.unlearn": "deshacer",
   "recipe.learned_hint": "Aprendida = podrías volver a cocinarla sin mirar los pasos.",
   "recipe.login_to_track": "inicia sesión para registrar lo que cocinas.",
-  "admin.pending_summary": "{{.Recipes}} recetas y {{.Products}} productos esperan revisión."
+  "admin.pending_summary": "{{.Recipes}} recetas y {{.Products}} productos esperan revisión.",
+  "flash.scrape_started": "Importación iniciada en segundo plano. Recarga la página en un minuto: las recetas nuevas aparecerán en la cola de abajo.",
+  "flash.scrape_running": "Esa importación ya está en marcha.",
+  "admin.job_running": "{{.Source}}: en marcha desde las {{.Since}}",
+  "admin.job_done": "{{.Source}}: terminado a las {{.At}}",
+  "admin.job_refresh": "recargar"
 }
