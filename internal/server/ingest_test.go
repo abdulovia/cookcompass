@@ -130,3 +130,33 @@ func (h *harness) mustFindByURL(u string) *recipes.Recipe {
 	}
 	return r
 }
+
+// TestAdminMealDBBackgroundImport: the TheMealDB source runs as a background
+// job from the queue page and fills the review queue.
+func TestAdminMealDBBackgroundImport(t *testing.T) {
+	fixture, err := os.ReadFile("../ingest/testdata/mealdb/search_a.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	mux := http.NewServeMux()
+	mux.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) { _, _ = w.Write([]byte("User-agent: *\nAllow: /\n")) })
+	mux.HandleFunc("/api/1/search.php", func(w http.ResponseWriter, r *http.Request) { _, _ = w.Write(fixture) })
+	api := httptest.NewServer(mux)
+	defer api.Close()
+
+	h := newHarness(t, func(c *config.Config) {
+		c.Scrape.MealDB = config.MealDB{URL: api.URL + "/api", Letters: "a"}
+	})
+	if _, body := h.get("/admin/queue"); !strings.Contains(body, `value="themealdb"`) {
+		t.Fatal("queue page should offer the themealdb source")
+	}
+	resp, _ := h.post("/admin/queue/scrape", url.Values{"source": {"themealdb"}})
+	if !strings.Contains(resp.Header.Get("Location"), "scrape_started") {
+		t.Fatalf("start: %s", resp.Header.Get("Location"))
+	}
+	h.app.WaitJobs()
+	_, body := h.get("/admin/queue")
+	if !strings.Contains(body, "Test Tomato Pasta") || !strings.Contains(body, "themealdb: finished") {
+		t.Fatalf("queue after the job: %s", snippet(body, "job-list"))
+	}
+}
