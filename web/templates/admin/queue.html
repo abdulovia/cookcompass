@@ -9,6 +9,10 @@
   </div>
 </div>
 <p class="muted">{{.T "admin.queue_hint"}}</p>
+{{with .Data.Jobs}}<ul class="job-list" aria-live="polite">
+  {{range .}}<li>{{if .Running}}<span class="badge warn">⏳ {{$.T "admin.job_running" "Source" .Source "Since" (.Started.Format "15:04:05")}}</span> <a href="/admin/queue">{{$.T "admin.job_refresh"}}</a>
+  {{else}}<span class="badge {{if .Err}}bad{{else}}ok{{end}}">{{$.T "admin.job_done" "Source" .Source "At" (.Finished.Format "15:04:05")}}</span> <code>{{.Summary}}</code>{{with .Err}} <span class="muted">{{.}}</span>{{end}}{{end}}</li>{{end}}
+</ul>{{end}}
 
 <details class="card">
   <summary><strong>{{.T "admin.import_recipes_title"}}</strong></summary>
