@@ -509,5 +509,10 @@
   "recipe.unlearn": "annuler",
   "recipe.learned_hint": "Apprise = vous pourriez la recuisiner sans regarder les étapes.",
   "recipe.login_to_track": "connectez-vous pour suivre ce que vous cuisinez.",
-  "admin.pending_summary": "{{.Recipes}} recettes et {{.Products}} produits attendent une révision."
+  "admin.pending_summary": "{{.Recipes}} recettes et {{.Products}} produits attendent une révision.",
+  "flash.scrape_started": "Import lancé en arrière-plan. Rechargez la page dans une minute : les nouvelles recettes apparaîtront dans la file ci-dessous.",
+  "flash.scrape_running": "Cet import est déjà en cours.",
+  "admin.job_running": "{{.Source}} : en cours depuis {{.Since}}",
+  "admin.job_done": "{{.Source}} : terminé à {{.At}}",
+  "admin.job_refresh": "actualiser"
 }
