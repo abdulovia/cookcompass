@@ -68,6 +68,7 @@ func (h *Handler) Routes(r chi.Router) {
 		}
 	}
 	r.Get("/settings", h.settings)
+	r.Get("/settings/places", h.places)
 	r.Post("/settings", h.saveSettings)
 	r.Post("/settings/preferences", h.savePreferences)
 	r.Post("/settings/pantry", h.savePantry)

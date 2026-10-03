@@ -192,3 +192,4 @@ td.actions form { display: inline; margin: 0; }
 .cooked-summary { border: 1px solid var(--line); border-radius: var(--radius); padding: .6rem .8rem; }
 
 .job-list { list-style: none; padding: 0; margin: .5rem 0 1rem; display: grid; gap: .35rem; }
+.contents { display: contents; }
