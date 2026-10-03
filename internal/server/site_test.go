@@ -239,3 +239,38 @@ func snippet(body, near string) string {
 	}
 	return body[max(0, i-200):min(len(body), i+100)]
 }
+
+// TestSettingsPlacesFollowCountry: picking another country in the form
+// swaps in that country's cities and shops before saving.
+func TestSettingsPlacesFollowCountry(t *testing.T) {
+	h := newHarness(t)
+	ctx := context.Background()
+	cities, err := h.app.Catalog.Cities(ctx, "US")
+	if err != nil || len(cities) == 0 {
+		t.Fatal(err)
+	}
+	h.post("/settings", url.Values{"country": {"US"}, "city": {strconv.FormatInt(cities[0].ID, 10)}, "units": {"metric"}})
+
+	_, page := h.get("/settings")
+	if !strings.Contains(page, `hx-get="/settings/places"`) || !strings.Contains(page, `id="place-fields"`) {
+		t.Fatal("country select should refresh the place fields")
+	}
+	_, body := h.get("/settings/places?country=RU", "HX-Request", "true")
+	if !strings.HasPrefix(strings.TrimSpace(body), `<div id="place-fields"`) || strings.Contains(body, "<html") {
+		t.Fatalf("expected the fragment only: %.120s", body)
+	}
+	if !strings.Contains(body, "Moscow") || strings.Contains(body, cities[0].Name) || !strings.Contains(body, "Пятёрочка") {
+		t.Fatalf("RU fragment should list RU cities and shops: %s", body)
+	}
+	if strings.Contains(body, " selected>") {
+		t.Fatal("nothing should be preselected for a country that isn't saved")
+	}
+	// Back to the saved country: the saved city is selected again.
+	_, body = h.get("/settings/places?country=US", "HX-Request", "true")
+	if !strings.Contains(body, `value="`+strconv.FormatInt(cities[0].ID, 10)+`" selected>`) {
+		t.Fatal("saved city should stay selected for the saved country")
+	}
+	if _, body := h.get("/settings/places?country=ZZ"); strings.Contains(body, "Moscow") || strings.Contains(body, "New York") {
+		t.Fatal("unknown country should yield empty pickers")
+	}
+}

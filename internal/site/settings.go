@@ -59,17 +59,14 @@ func (h *Handler) settings(w http.ResponseWriter, r *http.Request) {
 		h.Fail(w, r, err)
 		return
 	}
-	var cities []catalog.City
-	var shopList []*shops.Shop
-	if prof != nil && prof.CountryCode != "" {
-		if cities, err = h.App.Catalog.Cities(ctx, prof.CountryCode); err != nil {
-			h.Fail(w, r, err)
-			return
-		}
-		if shopList, err = h.App.Shops.List(ctx, prof.CountryCode, true); err != nil {
-			h.Fail(w, r, err)
-			return
-		}
+	country := ""
+	if prof != nil {
+		country = prof.CountryCode
+	}
+	places, err := h.placeData(r, prof, country)
+	if err != nil {
+		h.Fail(w, r, err)
+		return
 	}
 	list, err := h.App.Ings.List(ctx)
 	if err != nil {
@@ -84,11 +81,52 @@ func (h *Handler) settings(w http.ResponseWriter, r *http.Request) {
 		}
 		return list[i].LocalName(lang) < list[j].LocalName(lang)
 	})
-	p.Data = map[string]any{
-		"Countries": countries, "Cities": cities, "Shops": shopList, "Groups": groupIngredients(list, true),
-		"CountryAware": h.CountryAware,
+	data := map[string]any{"Countries": countries, "Groups": groupIngredients(list, true), "CountryAware": h.CountryAware}
+	for k, v := range places {
+		data[k] = v
 	}
+	p.Data = data
 	h.R.Page(w, http.StatusOK, "pages/settings", p)
+}
+
+// placeData lists the cities and shops of country; the saved city and shop
+// stay selected only while the country is the saved one.
+func (h *Handler) placeData(r *http.Request, prof *users.Profile, country string) (map[string]any, error) {
+	ctx := r.Context()
+	data := map[string]any{"Cities": []catalog.City(nil), "Shops": []*shops.Shop(nil), "CityID": int64(0), "ShopID": int64(0)}
+	if country == "" {
+		return data, nil
+	}
+	cities, err := h.App.Catalog.Cities(ctx, country)
+	if err != nil {
+		return nil, err
+	}
+	shopList, err := h.App.Shops.List(ctx, country, true)
+	if err != nil {
+		return nil, err
+	}
+	data["Cities"], data["Shops"] = cities, shopList
+	if prof != nil && prof.CountryCode == country {
+		data["CityID"], data["ShopID"] = prof.CityID, prof.ShopID
+	}
+	return data, nil
+}
+
+// places renders the city and shop pickers for the country chosen in the
+// form, so switching country updates them before saving (HTMX swap).
+func (h *Handler) places(w http.ResponseWriter, r *http.Request) {
+	country := r.URL.Query().Get("country")
+	if _, err := h.App.Catalog.Country(r.Context(), country); err != nil {
+		country = ""
+	}
+	data, err := h.placeData(r, web.Profile(r.Context()), country)
+	if err != nil {
+		h.Fail(w, r, err)
+		return
+	}
+	p := web.NewPage(r, "")
+	p.Data = data
+	h.R.Partial(w, http.StatusOK, "pages/settings", "place_fields", p)
 }
 
 func (h *Handler) saveSettings(w http.ResponseWriter, r *http.Request) {
