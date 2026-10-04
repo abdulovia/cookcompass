@@ -15,24 +15,26 @@
     <div class="grid four">
       <div>
         <label for="country">{{.T "settings.country"}}</label>
-        <select id="country" name="country">
+        <select id="country" name="country" hx-get="/settings/places" hx-trigger="change" hx-target="#place-fields" hx-swap="outerHTML">
           {{range .Data.Countries}}<option value="{{.Code}}" {{if eq .Code $u.CountryCode}}selected{{end}}>{{$.L "country" .Code}}</option>{{end}}
         </select>
       </div>
+      {{block "place_fields" .}}<div id="place-fields" class="contents">
       <div>
         <label for="city">{{.T "settings.city"}}</label>
         <select id="city" name="city">
           <option value="">{{.T "settings.city_any"}}</option>
-          {{range .Data.Cities}}<option value="{{.ID}}" {{if eq .ID $u.CityID}}selected{{end}}>{{.Name}}</option>{{end}}
+          {{range .Data.Cities}}<option value="{{.ID}}" {{if eq .ID $.Data.CityID}}selected{{end}}>{{.Name}}</option>{{end}}
         </select>
       </div>
       <div>
         <label for="shop">{{.T "settings.shop"}}</label>
         <select id="shop" name="shop">
           <option value="">{{.T "settings.shop_any"}}</option>
-          {{range .Data.Shops}}<option value="{{.ID}}" {{if eq .ID $u.ShopID}}selected{{end}}>{{.Name}}</option>{{end}}
+          {{range .Data.Shops}}<option value="{{.ID}}" {{if eq .ID $.Data.ShopID}}selected{{end}}>{{.Name}}</option>{{end}}
         </select>
       </div>
+      </div>{{end}}
       <div>
         <label for="lang">{{.T "settings.language"}}</label>
         <select id="lang" name="lang">
