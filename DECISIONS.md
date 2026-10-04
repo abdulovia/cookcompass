@@ -133,3 +133,7 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - `site.yaml` is validated on start (colour format, /static/ paths, known features, http(s) links) so a typo fails loudly instead of breaking pages.
 - The bundled product catalog is an availability baseline without prices; showing an invented price is worse than showing none.
 - TheMealDB is walked by first letter (26 cached requests at the per-site rate limit); canonical URL `themealdb.com/meal/<id>` is the dedup key. Sources that declare `LongRunning()` run as in-memory background jobs from the admin (one per source); the queue stays the durable result.
+
+## Setup
+- Secrets are generated locally by `cookcompass init` (crypto/rand, 24 chars) instead of shipping defaults; compose refuses to start without them. Example values (`change-me`, `cookcompass`, …) count as missing.
+- One checklist (`app.Checks`) feeds both `doctor` and the admin dashboard; labels and fixes are UI text, so the CLI prints the English strings.

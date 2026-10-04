@@ -13,9 +13,13 @@ RUN      ?= ./$(BIN)
 COVER_MIN ?= 70
 SOURCE   ?= jsonld
 COUNTRY  ?= all
+# .env (from `make init`) sets PORT and the secrets docker compose needs.
+-include .env
 PORT     ?= 8080
+IMAGE    ?= ghcr.io/abdulovia/cookcompass:latest
 
-.PHONY: help build run test test-short cover lint fmt fmt-check vet migrate seed \
+
+.PHONY: init doctor up-release help build run test test-short cover lint fmt fmt-check vet migrate seed \
         scrape-recipes scan recipe-create recipe-delete approve-all purge-pending \
         import-products export-products up down logs backup hooks ci docker-build clean
 
@@ -91,11 +95,38 @@ import-products: build ## import products CSV (FILE=path.csv COUNTRY=US)
 export-products: build ## export products CSV to stdout (COUNTRY=US)
 	@$(RUN) products export --country $(COUNTRY)
 
-up: ## build and start the stack, wait until healthy
-	VERSION=$(VERSION) docker compose up -d --build
-	@for i in $$(seq 1 60); do \
-	  if curl -fsS http://localhost:$(PORT)/healthz >/dev/null 2>&1; then echo "up: http://localhost:$(PORT)"; exit 0; fi; sleep 1; \
+init: ## create .env with fresh secrets and the content/ folder (safe to re-run)
+	@go run ./cmd/cookcompass init 2>/dev/null || \
+	  docker run --rm --user "$$(id -u):$$(id -g)" -v "$(CURDIR)":/work -w /work $(IMAGE) init
+
+# Targets that start containers create .env on first use (an explicit check,
+# not a .env rule: that would make every `make` invocation run init).
+ensure_env = @test -f .env || $(MAKE) -s init
+
+define wait_healthy
+	@for i in $$(seq 1 90); do \
+	  if curl -fsS http://localhost:$(PORT)/healthz >/dev/null 2>&1; then \
+	    echo "up: http://localhost:$(PORT)  ·  admin: http://localhost:$(PORT)/admin  ·  checks: make doctor"; exit 0; fi; sleep 1; \
 	done; echo "app did not become healthy"; docker compose logs --tail=50 app; exit 1
+endef
+
+up: ## build from source and start the stack, wait until healthy
+	$(ensure_env)
+	VERSION=$(VERSION) docker compose up -d --build
+	$(wait_healthy)
+
+up-release: ## start the prebuilt image from ghcr.io (no Go, no build)
+	$(ensure_env)
+	docker compose pull app minio
+	docker compose up -d --no-build
+	$(wait_healthy)
+
+doctor: ## check the installation and list what is left to do
+	@if [ -n "$$(docker compose ps -q app 2>/dev/null)" ]; then \
+	  docker compose exec -T app /app/cookcompass doctor; \
+	else \
+	  $(MAKE) -s build && $(RUN) doctor; \
+	fi
 
 down: ## stop the stack
 	docker compose down
