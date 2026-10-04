@@ -5,9 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 ### Changed
+- Compose no longer falls back to public example passwords: `COOK_ADMIN_PASSWORD` and `MINIO_ROOT_PASSWORD` must come from `.env` (`make init`).
 - Names of cuisines, countries and product categories moved from the UI locale files into the data (`names` maps in `seed/cuisines.json`, `seed/countries.json` and the new `seed/categories.json`); a new country or cuisine no longer needs edits in five locale files.
 
 ### Added
+- `make init` (`cookcompass init`): creates `.env` from `.env.example` with fresh random admin and MinIO passwords (idempotent; fixes example values in an existing `.env`) and the `content/` folder; `make up` runs it on first use.
+- Setup checklist: `make doctor` (`cookcompass doctor`) and a "Getting started" card on `/admin` show what the installation has and what is left (database, admin password, data folders, recipes, your own recipes, catalog, default country, content folder, storage, translation) with a one-line fix each.
 - TheMealDB recipe source (`themealdb`): ~300 recipes with photos and YouTube videos into the review queue — admin queue → *Scrape now: themealdb* (runs as a background job with status on the queue page) or `make scrape-recipes SOURCE=themealdb`. Uses the public test key `1` (personal/educational use) unless `COOK_MEALDB_KEY` is set; imported recipes carry no nutrition data.
 - `site.yaml` (bundled defaults in `seed/site.yaml`, overrides in `content/site.yaml`): site name and tagline per language, logo, brand colour, extra stylesheet, footer links and feature switches — a disabled area (shopping list, learning, goals, favorites, geolocation) loses its routes, menu entry and buttons.
 - Content directory (`content/`, `COOK_CONTENT_DIR`) layered over the bundled data: extra recipes, countries, cuisines, shops and products merged entry by entry, UI text overrides key by key, extra static files — applied on restart, no rebuild. Examples in `content/examples/`.
