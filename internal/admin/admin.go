@@ -111,7 +111,9 @@ func (h *Handler) dashboard(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	p := h.page(r, "admin.dashboard")
-	p.Data = map[string]any{"Recipes": counts, "Products": products, "PendingRecipes": counts["pending"], "PendingProducts": len(pending)}
+	checks := h.App.Checks(ctx)
+	p.Data = map[string]any{"Recipes": counts, "Products": products, "PendingRecipes": counts["pending"], "PendingProducts": len(pending),
+		"Checks": checks, "ChecksOK": app.ChecksPassed(checks)}
 	h.R.Page(w, http.StatusOK, "admin/dashboard", p)
 }
 
