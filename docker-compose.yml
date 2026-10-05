@@ -9,12 +9,12 @@ services:
       - "127.0.0.1:${PORT:-8080}:8080"
     environment:
       COOK_ADMIN_USER: ${COOK_ADMIN_USER:-admin}
-      COOK_ADMIN_PASSWORD: ${COOK_ADMIN_PASSWORD:-cookcompass}
+      COOK_ADMIN_PASSWORD: ${COOK_ADMIN_PASSWORD:?run "make init" to create .env}
       COOK_DEFAULT_COUNTRY: ${COOK_DEFAULT_COUNTRY:-US}
       COOK_LOG_FORMAT: ${COOK_LOG_FORMAT:-json}
       COOK_S3_ENDPOINT: minio:9000
       COOK_S3_ACCESS_KEY: ${MINIO_ROOT_USER:-cookcompass}
-      COOK_S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-cookcompass-secret}
+      COOK_S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?run "make init" to create .env}
       COOK_S3_BUCKET: ${COOK_S3_BUCKET:-cookcompass}
       # Empty = drafting off; with --profile translate use http://libretranslate:5000
       COOK_TRANSLATE_URL: ${COOK_TRANSLATE_URL:-}
@@ -42,7 +42,7 @@ services:
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-cookcompass}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-cookcompass-secret}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?run "make init" to create .env}
     volumes:
       - cookmedia:/data
     restart: unless-stopped
