@@ -50,6 +50,8 @@ type command struct {
 
 func commands() []command {
 	return []command{
+		{"init", "prepare a checkout: .env with fresh secrets and the content/ folder (--dir .)", runInit},
+		{"doctor", "check the installation and print what is left to do", runDoctor},
 		{"serve", "run the HTTP server (migrates and seeds first)", runServe},
 		{"migrate", "apply database migrations", runMigrate},
 		{"seed", "load the bundled dataset (idempotent)", runSeed},
