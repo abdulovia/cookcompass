@@ -69,6 +69,21 @@ type Site struct {
 	Stylesheet  string          `yaml:"stylesheet"`
 	FooterLinks []Link          `yaml:"footer_links"`
 	Features    map[string]bool `yaml:"features"`
+	// DocsURL is where the admin checklist links its guides (install.md,
+	// recipes.md, content.md are appended).
+	DocsURL string `yaml:"docs_url"`
+}
+
+// DefaultDocsURL points at the project's guides on GitHub.
+const DefaultDocsURL = "https://github.com/abdulovia/cookcompass/blob/main/docs/"
+
+// Docs returns the guide URL for a docs file name, e.g. "recipes.md".
+func (s *Site) Docs(file string) string {
+	base := DefaultDocsURL
+	if s != nil && s.DocsURL != "" {
+		base = s.DocsURL
+	}
+	return strings.TrimRight(base, "/") + "/" + file
 }
 
 // DefaultSite is used when no site.yaml exists anywhere.
@@ -105,6 +120,9 @@ func (s *Site) Validate() error {
 		if _, ok := known[f]; !ok {
 			return fmt.Errorf("site.yaml: unknown feature %q", f)
 		}
+	}
+	if s.DocsURL != "" && !strings.HasPrefix(s.DocsURL, "https://") && !strings.HasPrefix(s.DocsURL, "http://") {
+		return fmt.Errorf("site.yaml: docs_url %q must be http(s)://", s.DocsURL)
 	}
 	for _, l := range s.FooterLinks {
 		if !strings.HasPrefix(l.URL, "https://") && !strings.HasPrefix(l.URL, "http://") && !strings.HasPrefix(l.URL, "/") {
