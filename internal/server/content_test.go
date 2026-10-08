@@ -134,3 +134,20 @@ func TestOptionsHelper(t *testing.T) {
 		t.Fatal("goal options should carry their descriptions")
 	}
 }
+
+// TestAdminChecklist: the dashboard shows the same setup checks as
+// `cookcompass doctor`, with fixes for what is missing.
+func TestAdminChecklist(t *testing.T) {
+	h := newHarness(t)
+	_, body := h.get("/admin")
+	for _, want := range []string{`id="checklist"`, "Getting started", "Recipes published", "Everything required is in place.",
+		"Your own recipes", "docs/recipes.md", "Image storage"} {
+		if !strings.Contains(body, want) {
+			t.Errorf("dashboard lacks %q", want)
+		}
+	}
+	// An optional item that is open shows its fix.
+	if !strings.Contains(body, "TheMealDB in the review queue") {
+		t.Error("open optional item should show its hint")
+	}
+}
