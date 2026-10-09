@@ -7,6 +7,7 @@ logo: "🧭"                   # emoji / short text, or /static/logo.svg (put th
 # tagline: Learn to cook with what your shops sell
 # accent: "#1f6f50"          # brand colour, #rgb or #rrggbb (unset = bundled theme)
 # stylesheet: /static/custom.css   # extra CSS loaded after the bundled one
+# docs_url: https://github.com/abdulovia/cookcompass/blob/main/docs/   # guides linked from the admin checklist
 # footer_links:
 #   - {label: {en: About, ru: О проекте}, url: https://example.org/about}
 
