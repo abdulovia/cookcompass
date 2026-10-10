@@ -193,3 +193,10 @@ td.actions form { display: inline; margin: 0; }
 
 .job-list { list-style: none; padding: 0; margin: .5rem 0 1rem; display: grid; gap: .35rem; }
 .contents { display: contents; }
+.checklist { list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: .45rem; }
+.checklist li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .4rem; align-items: start; }
+.checklist .mark { font-weight: 700; }
+.checklist li.ok .mark { color: var(--brand); }
+.checklist li.bad .mark { color: #b3261e; }
+.checklist li.todo .mark { color: var(--muted); }
+.checklist .help { display: block; }
