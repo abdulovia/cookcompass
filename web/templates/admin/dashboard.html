@@ -1,6 +1,20 @@
 {{define "content"}}
 <h1>{{.T "admin.dashboard"}}</h1>
 {{if or .Data.PendingRecipes .Data.PendingProducts}}<p class="flash">{{.T "admin.pending_summary" "Recipes" .Data.PendingRecipes "Products" .Data.PendingProducts}} <a href="/admin/queue">{{.T "admin.queue"}} →</a></p>{{end}}
+<section class="card settings-section" aria-labelledby="checklist">
+  <h2 id="checklist">{{.T "check.title"}}</h2>
+  <p class="muted">{{.T "check.intro"}}</p>
+  {{if .Data.ChecksOK}}<p class="badge ok">✓ {{.T "check.all_good"}}</p>{{end}}
+  <ul class="checklist">
+    {{range .Data.Checks}}<li class="{{if .OK}}ok{{else if .Optional}}todo{{else}}bad{{end}}">
+      <span class="mark" aria-hidden="true">{{if .OK}}✓{{else if .Optional}}○{{else}}✗{{end}}</span>
+      <span><strong>{{$.T (print "check." .ID)}}</strong>{{if .Optional}} <span class="muted">({{$.T "check.optional"}})</span>{{end}}
+        {{with .Detail}}<code>{{.}}</code>{{end}}
+        {{if not .OK}}<span class="help">{{$.T (print "check." .ID "_fix")}}</span>{{end}}</span>
+    </li>{{end}}
+  </ul>
+  <p class="muted">{{.T "check.guide"}}: <a href="{{.Site.Docs "install.md"}}">install.md</a> · <a href="{{.Site.Docs "recipes.md"}}">recipes.md</a> · <a href="{{.Site.Docs "content.md"}}">content.md</a></p>
+</section>
 <div class="grid two">
   <section class="card">
     <h2>{{.T "admin.counts_recipes"}}</h2>
