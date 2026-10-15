@@ -137,3 +137,4 @@ One line per decision that the requirements left open. Newest at the bottom of e
 ## Setup
 - Secrets are generated locally by `cookcompass init` (crypto/rand, 24 chars) instead of shipping defaults; compose refuses to start without them. Example values (`change-me`, `cookcompass`, …) count as missing.
 - One checklist (`app.Checks`) feeds both `doctor` and the admin dashboard; labels and fixes are UI text, so the CLI prints the English strings.
+- Releases: tag `v*` → CI tests, then buildx pushes `:X.Y.Z`, `:X.Y` and `:latest` to ghcr.io with the workflow's `GITHUB_TOKEN`; the Dockerfile cross-compiles from `$BUILDPLATFORM` so arm64 needs no emulation for Go.
