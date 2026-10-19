@@ -22,6 +22,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - German, Spanish and French UI translations are now complete (previously partial with English fallback); Settings no longer labels them "(partial)".
 
 ### Fixed
+- A broken recipe file (bad JSON, unknown ingredient slug, failed validation) aborted startup; it is now skipped with a warning and listed on the admin checklist / `make doctor`, and everything else loads.
 - Settings: switching the country left the city and shop lists of the saved country until you saved; they now refresh immediately (HTMX fragment `/settings/places`), and nothing stays preselected for an unsaved country.
 - Removed shipped mock data: the bundled catalog's invented prices are gone (migration 00004 clears them on existing installs; prices now come only from scans, imports or the admin form and show as "—" otherwise); the offline sample recipe pages moved to test data, so "Scrape now" on a fresh install no longer queues demo recipes; admin placeholders point at `shop.example`.
 - Serving scaler kept no space between the scaled quantity and its unit ("500г" instead of "500 г").
