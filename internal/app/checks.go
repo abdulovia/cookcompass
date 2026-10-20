@@ -77,6 +77,12 @@ func (a *App) Checks(ctx context.Context) []Check {
 	_, cerr := a.Catalog.Country(ctx, a.Cfg.Defaults.Country)
 	add(Check{ID: "default_country", OK: cerr == nil, Detail: a.Cfg.Defaults.Country})
 
+	// Recipe files skipped on the last start (typos in content/recipes/).
+	if a.lastSeed != nil {
+		errs := a.lastSeed.RecipeErrors
+		add(Check{ID: "recipe_files", OK: len(errs) == 0, Detail: strings.Join(errs, " · ")})
+	}
+
 	// Content directory (optional: an empty install uses bundled data).
 	if st, err := os.Stat(a.Cfg.Content.Dir); err == nil && st.IsDir() {
 		add(Check{ID: "content_dir", OK: true, Optional: true, Detail: a.Cfg.Content.Dir})
