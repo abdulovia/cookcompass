@@ -33,11 +33,15 @@ type Report struct {
 	ProductsAdded   int
 	RecipesAdded    int
 	RecipesExisting int
+	// RecipeErrors lists recipe files that were skipped (broken JSON,
+	// unknown ingredient slug, failed validation) as "file: reason". One
+	// bad file in content/recipes/ must not keep the app from starting.
+	RecipeErrors []string
 }
 
 func (r Report) String() string {
-	return fmt.Sprintf("ingredients=%d cuisines=%d countries=%d shops=%d products_added=%d recipes_added=%d recipes_existing=%d",
-		r.Ingredients, r.Cuisines, r.Countries, r.Shops, r.ProductsAdded, r.RecipesAdded, r.RecipesExisting)
+	return fmt.Sprintf("ingredients=%d cuisines=%d countries=%d shops=%d products_added=%d recipes_added=%d recipes_existing=%d recipes_skipped=%d",
+		r.Ingredients, r.Cuisines, r.Countries, r.Shops, r.ProductsAdded, r.RecipesAdded, r.RecipesExisting, len(r.RecipeErrors))
 }
 
 // Seeder loads seed files from an fs.FS.
@@ -248,10 +252,20 @@ func (s *Seeder) recipes(ctx context.Context, rep *Report) error {
 		return err
 	}
 	sort.Strings(files)
+	skip := func(f string, err error) {
+		rep.RecipeErrors = append(rep.RecipeErrors, f+": "+err.Error())
+		if s.Log != nil {
+			s.Log.Warn("recipe file skipped", "file", f, "err", err)
+		}
+	}
 	for _, f := range files {
+		if err := ctx.Err(); err != nil {
+			return err
+		}
 		var in recipes.Input
 		if err := s.readJSON(f, &in); err != nil {
-			return err
+			skip(f, err)
+			continue
 		}
 		if in.Slug == "" {
 			in.Slug = strings.TrimSuffix(path.Base(f), ".json")
@@ -262,11 +276,13 @@ func (s *Seeder) recipes(ctx context.Context, rep *Report) error {
 		}
 		r, err := s.Recipes.FromInput(ctx, in)
 		if err != nil {
-			return fmt.Errorf("%s: %w", f, err)
+			skip(f, err)
+			continue
 		}
 		r.Source = recipes.SourceSeed
 		if err := s.Recipes.Create(ctx, r, recipes.Change{Source: recipes.SourceSeed, Note: "seed"}); err != nil {
-			return fmt.Errorf("%s: %w", f, err)
+			skip(f, err)
+			continue
 		}
 		rep.RecipesAdded++
 	}
