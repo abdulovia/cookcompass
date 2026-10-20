@@ -149,10 +149,6 @@ func TestSeedErrors(t *testing.T) {
 		"unknown country product": func(m fstest.MapFS) {
 			m["products/zz.csv"] = &fstest.MapFile{Data: []byte("sku,name\nA,Apple\n")}
 		},
-		"unknown ingredient": func(m fstest.MapFS) { m["recipes/egg.json"] = &fstest.MapFile{Data: recipe("nope")} },
-		"invalid recipe": func(m fstest.MapFS) {
-			m["recipes/egg.json"] = &fstest.MapFile{Data: []byte(`{"cuisine":"x","difficulty":"easy"}`)}
-		},
 	}
 	for name, mutate := range tests {
 		t.Run(name, func(t *testing.T) {
@@ -168,5 +164,20 @@ func TestSeedErrors(t *testing.T) {
 	rep, err := newSeeder(t, m).Run(ctx)
 	if err != nil || rep.RecipesAdded != 1 {
 		t.Fatalf("minimal dataset: %v %v", rep, err)
+	}
+
+	// Broken recipe files are skipped and reported, never fatal: one typo in
+	// content/recipes/ must not keep the app from starting.
+	m = good()
+	m["recipes/egg.json"] = &fstest.MapFile{Data: recipe("egg")}
+	m["recipes/typo.json"] = &fstest.MapFile{Data: recipe("nope")}
+	m["recipes/invalid.json"] = &fstest.MapFile{Data: []byte(`{"cuisine":"x","difficulty":"easy"}`)}
+	m["recipes/broken.json"] = &fstest.MapFile{Data: []byte(`{`)}
+	rep, err = newSeeder(t, m).Run(ctx)
+	if err != nil || rep.RecipesAdded != 1 || len(rep.RecipeErrors) != 3 {
+		t.Fatalf("skipped files: added=%d errors=%q err=%v", rep.RecipesAdded, rep.RecipeErrors, err)
+	}
+	if !strings.Contains(strings.Join(rep.RecipeErrors, "\n"), "recipes/typo.json") {
+		t.Fatalf("errors should name the file: %q", rep.RecipeErrors)
 	}
 }
