@@ -46,6 +46,8 @@ type App struct {
 	DefaultUserID int64
 
 	jobs Jobs
+	// lastSeed is the report of the most recent Seed run (for the checks).
+	lastSeed *seed.Report
 }
 
 // Open opens the database, applies migrations and builds services.
@@ -104,6 +106,7 @@ func (a *App) Seed(ctx context.Context) (seed.Report, error) {
 	if err != nil {
 		return rep, err
 	}
+	a.lastSeed = &rep
 	a.DefaultUserID, err = a.Users.EnsureDefault(ctx, a.Cfg.Defaults.Country)
 	return rep, err
 }
