@@ -529,5 +529,7 @@
   "check.storage": "Bildspeicher",
   "check.storage_fix": "MinIO starten (macht `make up`) und COOK_S3_ENDPOINT setzen, um Rezeptbilder zu spiegeln.",
   "check.translator": "Maschinelle Übersetzung",
-  "check.translator_fix": "`docker compose --profile translate up -d` und COOK_TRANSLATE_URL setzen."
+  "check.translator_fix": "`docker compose --profile translate up -d` und COOK_TRANSLATE_URL setzen.",
+  "check.recipe_files": "Rezeptdateien",
+  "check.recipe_files_fix": "Diese Dateien korrigieren (oder löschen) und neu starten; der Rest wurde geladen."
 }

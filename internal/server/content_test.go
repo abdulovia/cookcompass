@@ -1,6 +1,7 @@
 package server
 
 import (
+	"context"
 	"os"
 	"path/filepath"
 	"strings"
@@ -149,5 +150,25 @@ func TestAdminChecklist(t *testing.T) {
 	// An optional item that is open shows its fix.
 	if !strings.Contains(body, "TheMealDB in the review queue") {
 		t.Error("open optional item should show its hint")
+	}
+}
+
+// TestBrokenContentRecipe: a typo in a content recipe is skipped and shown
+// on the admin checklist; the app still starts and serves everything else.
+func TestBrokenContentRecipe(t *testing.T) {
+	dir := contentDir(t, map[string]string{
+		"recipes/typo.json": `{"cuisine":"italian","meal_times":["dinner"],"difficulty":"easy","servings":1,
+			"ingredients":[{"text":"1 thing","ingredient":"no-such-ingredient"}],"i18n":{"en":{"name":"Typo","steps":["Cook."]}}}`,
+	})
+	h := newHarness(t, func(c *config.Config) { c.Content.Dir = dir })
+	if _, err := h.app.Seed(context.Background()); err != nil {
+		t.Fatalf("seed must not fail on a broken content recipe: %v", err)
+	}
+	_, body := h.get("/admin")
+	if !strings.Contains(body, "Recipe files") || !strings.Contains(body, "recipes/typo.json") {
+		t.Fatal("checklist should name the skipped file")
+	}
+	if resp, _ := h.get("/recipes/pad-thai"); resp.StatusCode != 200 {
+		t.Fatal("bundled recipes must still be served")
 	}
 }
