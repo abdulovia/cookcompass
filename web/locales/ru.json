@@ -581,5 +581,7 @@
   "check.storage": "Хранилище картинок",
   "check.storage_fix": "Запустите MinIO (это делает `make up`) и задайте COOK_S3_ENDPOINT, чтобы сохранять картинки рецептов.",
   "check.translator": "Машинный перевод",
-  "check.translator_fix": "`docker compose --profile translate up -d` и задайте COOK_TRANSLATE_URL."
+  "check.translator_fix": "`docker compose --profile translate up -d` и задайте COOK_TRANSLATE_URL.",
+  "check.recipe_files": "Файлы рецептов",
+  "check.recipe_files_fix": "Исправьте (или удалите) эти файлы и перезапустите; остальное загрузилось."
 }
