@@ -9,6 +9,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Names of cuisines, countries and product categories moved from the UI locale files into the data (`names` maps in `seed/cuisines.json`, `seed/countries.json` and the new `seed/categories.json`); a new country or cuisine no longer needs edits in five locale files.
 
 ### Added
+- Guides: `docs/install.md` (install, upgrade, backups, troubleshooting), `docs/recipes.md` (every way to add recipes, where to get more, licensing notes), `docs/content.md` (customizing via `content/`), `docs/architecture.md`; README rewritten around `make init` + `make up-release`.
 - Prebuilt multi-arch image (linux/amd64, linux/arm64) published to `ghcr.io/abdulovia/cookcompass` by `.github/workflows/release.yml` on version tags; `make up-release` runs it without Go or a local build (`COOK_VERSION` picks the tag). `make up` still builds from source.
 - `make init` (`cookcompass init`): creates `.env` from `.env.example` with fresh random admin and MinIO passwords (idempotent; fixes example values in an existing `.env`) and the `content/` folder; `make up` runs it on first use.
 - Setup checklist: `make doctor` (`cookcompass doctor`) and a "Getting started" card on `/admin` show what the installation has and what is left (database, admin password, data folders, recipes, your own recipes, catalog, default country, content folder, storage, translation) with a one-line fix each.
