@@ -539,5 +539,7 @@
   "check.storage": "Stockage d'images",
   "check.storage_fix": "Démarrez MinIO (`make up` le fait) et définissez COOK_S3_ENDPOINT pour conserver les images des recettes.",
   "check.translator": "Traduction automatique",
-  "check.translator_fix": "`docker compose --profile translate up -d` puis définissez COOK_TRANSLATE_URL."
+  "check.translator_fix": "`docker compose --profile translate up -d` puis définissez COOK_TRANSLATE_URL.",
+  "check.recipe_files": "Fichiers de recettes",
+  "check.recipe_files_fix": "Corrigez (ou supprimez) ces fichiers puis redémarrez ; le reste a bien été chargé."
 }
