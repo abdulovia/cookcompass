@@ -14,6 +14,10 @@ Nothing here needs cloud infrastructure; every job is a `cookcompass` subcommand
 | Container image | `make docker-build` | `docker` |
 | All of the above | `make ci` | — |
 
+**Releases.** Pushing a `v*` tag runs `.github/workflows/release.yml`: the tests, then a multi-arch
+(linux/amd64, linux/arm64) image pushed to `ghcr.io/abdulovia/cookcompass` as `:X.Y.Z`, `:X.Y` and `:latest`.
+`make up-release` runs that image. Make the package public once in the GitHub package settings.
+
 The pre-commit hook (`make hooks`) runs `gofmt`, `go vet` and `make test-short` on every commit.
 Tests never touch the network: scrapers are exercised against recorded fixtures served by `httptest`.
 
