@@ -15,7 +15,7 @@ targets file / --url ──► RecipeSource.Fetch ──► []RawRecipe ──�
 | Stage | Code | What it does |
 |---|---|---|
 | Fetch | `internal/fetch` | Clear User-Agent, robots.txt (longest-match, `*` / `$`, Crawl-delay), ≥ 1 request/second per host, on-disk cache (`scrape.cache_dir`, TTL `scrape.cache_ttl`), 5 MB limit. `file:` URLs read local HTML. |
-| Source | `internal/recipes/source.go` (interface), `internal/ingest/ingest.go` (`JSONLDSource`), `internal/ingest/dataset.go` (`DatasetSource`) | `JSONLDSource` extracts schema.org `Recipe` objects from `<script type="application/ld+json">`, including `@graph`, arrays, `HowToSection`/`HowToStep`, ISO 8601 durations, `NutritionInformation`, `VideoObject`. `DatasetSource` reads whole dumps (see below). |
+| Source | `internal/recipes/source.go` (interface), `internal/ingest/ingest.go` (`JSONLDSource`), `internal/ingest/dataset.go` (`DatasetSource`) | `JSONLDSource` extracts schema.org `Recipe` objects from `<script type="application/ld+json">`, including `@graph`, arrays, `HowToSection`/`HowToStep`, ISO 8601 durations, `NutritionInformation`, `VideoObject`. `DatasetSource` reads whole dumps (see below). `MealDBSource` (`internal/ingest/mealdb.go`) walks TheMealDB's search-by-letter API (see [recipes.md](recipes.md)). |
 | Normalize | `Importer.Normalize` | Parses every ingredient line into quantity/unit/name (unparseable → `needs_review`), maps cuisine names and aliases, guesses meal times from category/keywords and difficulty from time/steps/ingredients, keeps only YouTube video URLs and http(s) image URLs (never binaries). |
 | Dedup | `Importer.Import` | Key = canonical URL (normalized: https, no `www.`, no tracking params, no trailing slash); otherwise normalized name + hash of sorted ingredient names. |
 | Store | `recipes.Store` | New → `status=pending`, `source=scraped:<domain>`. Existing scraped/seed recipe → updated in place (status kept). Existing `source=user` → **not applied**; a revision with `applied=0` records what the scrape found. Identical content → nothing written. |
@@ -25,6 +25,7 @@ targets file / --url ──► RecipeSource.Fetch ──► []RawRecipe ──�
 
 ```sh
 make scrape-recipes SOURCE=jsonld           # all targets in seed/sources/jsonld_targets.txt
+make scrape-recipes SOURCE=themealdb        # ~300 recipes from TheMealDB (background job when started from the admin)
 ./bin/cookcompass scrape --url https://example.com/some-recipe --limit 1
 make approve-all                            # or review in /admin/queue
 make purge-pending                          # drop everything still waiting
