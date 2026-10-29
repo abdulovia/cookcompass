@@ -172,3 +172,18 @@ func TestBrokenContentRecipe(t *testing.T) {
 		t.Fatal("bundled recipes must still be served")
 	}
 }
+
+// TestContentNewLanguage: a locale file only in content/ adds a language.
+func TestContentNewLanguage(t *testing.T) {
+	dir := contentDir(t, map[string]string{
+		"locales/it.json": `{"meta.language_name": "Italiano", "nav.recipes": "Ricette"}`,
+	})
+	h := newHarness(t, func(c *config.Config) { c.Content.Dir = dir })
+	_, body := h.get("/settings")
+	if !strings.Contains(body, `value="it"`) || !strings.Contains(body, "Italiano") {
+		t.Fatal("content language missing from the switcher")
+	}
+	if _, body := h.get("/recipes", "Cookie", "lang=it"); !strings.Contains(body, ">Ricette<") || !strings.Contains(body, "Settings") {
+		t.Fatal("partial language should translate its keys and fall back to English")
+	}
+}
