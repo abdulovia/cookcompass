@@ -107,6 +107,7 @@ func (a *App) Seed(ctx context.Context) (seed.Report, error) {
 		return rep, err
 	}
 	a.lastSeed = &rep
+	a.RefreshCuisineLabels(ctx)
 	a.DefaultUserID, err = a.Users.EnsureDefault(ctx, a.Cfg.Defaults.Country)
 	return rep, err
 }
