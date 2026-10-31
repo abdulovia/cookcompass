@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"sort"
 
+	"github.com/abdulovia/cookcompass/internal/content"
 	"github.com/abdulovia/cookcompass/internal/fetch"
 	"github.com/abdulovia/cookcompass/internal/ingest"
 	"github.com/abdulovia/cookcompass/internal/recipes"
@@ -119,6 +120,23 @@ func (a *App) ScrapeRecipes(ctx context.Context, source string, opts recipes.Fet
 	if err != nil {
 		return ingest.Result{}, err
 	}
+	if c, ok := src.(ingest.CuratedCuisines); ok && c.CuratedCuisines() {
+		im.CreateCuisines = true
+	}
 	res := im.Import(ctx, raws)
+	a.RefreshCuisineLabels(ctx)
 	return res, fetchErr
+}
+
+// RefreshCuisineLabels gives cuisines that exist only in the database (made
+// by imports) their stored name as display label.
+func (a *App) RefreshCuisineLabels(ctx context.Context) {
+	cs, err := a.Recipes.Cuisines(ctx)
+	if err != nil {
+		a.Log.Warn("cuisine labels", "err", err)
+		return
+	}
+	for _, c := range cs {
+		a.Labels.Fallback(content.Cuisine, c.Slug, c.Name)
+	}
 }
