@@ -23,7 +23,7 @@ and live in `.env`. Its **Getting started** card (same as `make doctor`) lists w
 1. **Settings**: your country, city and shop, language and units; tick allergies and what's in your pantry.
 2. **Add a couple of your own recipes.** Pick any of these, all explained in [docs/recipes.md](docs/recipes.md):
    *Admin → Recipes → New*; drop a JSON file into `content/recipes/`; or *Admin → Queue → Scrape now: themealdb*,
-   which imports ~300 recipes with photos and videos into the review queue.
+   which imports ~800 recipes with photos and videos into the review queue.
 3. Optional: rename the site, change its colour, switch features off, add a country or your shop, or rewrite any text.
    All of it happens in `content/`, without a rebuild ([docs/content.md](docs/content.md)).
 
