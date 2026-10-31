@@ -25,7 +25,7 @@ targets file / --url ──► RecipeSource.Fetch ──► []RawRecipe ──�
 
 ```sh
 make scrape-recipes SOURCE=jsonld           # all targets in seed/sources/jsonld_targets.txt
-make scrape-recipes SOURCE=themealdb        # ~300 recipes from TheMealDB (background job when started from the admin)
+make scrape-recipes SOURCE=themealdb        # ~800 recipes from TheMealDB (background job when started from the admin)
 ./bin/cookcompass scrape --url https://example.com/some-recipe --limit 1
 make approve-all                            # or review in /admin/queue
 make purge-pending                          # drop everything still waiting
