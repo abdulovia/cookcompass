@@ -9,7 +9,7 @@ from one recipe to hundreds. Everything that comes from outside goes through the
 | Admin form | one recipe typed by hand | *Admin → Recipes → New* |
 | JSON file | recipes you keep in git or share | `content/recipes/<slug>.json`, loaded on restart |
 | CLI | scripting | `make recipe-create FILE=my.json` |
-| TheMealDB | ~300 recipes with photos and videos, one click | *Admin → Queue → Scrape now: themealdb* |
+| TheMealDB | ~800 recipes with photos and videos, one click | *Admin → Queue → Scrape now: themealdb* |
 | Recipe pages | specific pages with schema.org markup | `seed/sources/jsonld_targets.txt`, *Scrape now: jsonld* |
 | Dataset files | bulk dumps (JSON / JSONL) | `data/recipe-inbox/`, *Admin → Queue → Import recipes* |
 
@@ -43,8 +43,10 @@ to `content/ingredients.json` (same format as `seed/ingredients.json`, with name
 ## 3. TheMealDB (built in)
 
 *Admin → Queue → Scrape now: themealdb*, or `make scrape-recipes SOURCE=themealdb`. It runs in the background
-(~30 s, one request per second) and queues around 300 recipes with photos and YouTube videos. Then review them in the queue:
+(~30 s, one request per second) and queues around 800 recipes with photos and YouTube videos. Then review them in the queue:
 fix the cuisine or difficulty if the guess is off, add nutrition if you want them in the meal plan, and approve.
+Areas CookCompass doesn't know yet (Moroccan, Brazilian, …) become new cuisines; they appear in the filters once one of
+their recipes is approved. Give them names in other languages in `content/cuisines.json` if you like.
 Running it again only adds what is new.
 
 TheMealDB's public test key `1` is meant for development and personal or educational use. For anything public,
@@ -64,7 +66,7 @@ Only import what you are allowed to use. Typical options:
 | Source | What | Terms in short |
 |---|---|---|
 | Your own recipes | the best ones | yours |
-| [TheMealDB](https://www.themealdb.com/api.php) | ~300 curated recipes, photos, videos | free test key for personal/educational use; supporters for production |
+| [TheMealDB](https://www.themealdb.com/api.php) | ~800 curated recipes, photos, videos | free test key for personal/educational use; supporters for production |
 | [Wikibooks Cookbook](https://en.wikibooks.org/wiki/Cookbook:Recipes) | thousands of community recipes | CC BY-SA: credit the source and share alike |
 | [OpenRecipes](https://github.com/fictivekin/openrecipes) dumps | large JSON dumps of recipe metadata | links to the original sites; recipe text belongs to them, so use it for private indexing only |
 | Recipe sites with JSON-LD | individual pages | check each site's terms and robots.txt first; many forbid copying |
