@@ -4,6 +4,7 @@ import (
 	"errors"
 	"io/fs"
 	"strings"
+	"sync"
 	"unicode"
 	"unicode/utf8"
 )
@@ -33,6 +34,7 @@ func (n named) key() string {
 
 // Labels resolves display names of cuisines, countries and categories.
 type Labels struct {
+	mu     sync.RWMutex
 	byKind map[string]map[string]map[string]string // kind → key → locale → name
 }
 
@@ -76,6 +78,8 @@ func (l *Labels) Label(kind, key, locale string) (string, bool) {
 		key = strings.ToUpper(key)
 	}
 	if l != nil {
+		l.mu.RLock()
+		defer l.mu.RUnlock()
 		if names, found := l.byKind[kind][key]; found {
 			if v := names[locale]; v != "" {
 				return v, true
@@ -86,6 +90,28 @@ func (l *Labels) Label(kind, key, locale string) (string, bool) {
 		}
 	}
 	return Humanize(key), false
+}
+
+// Fallback registers an English name for a key the data files don't know
+// (e.g. a cuisine created by an import). Known keys are left untouched.
+func (l *Labels) Fallback(kind, key, name string) {
+	if l == nil || key == "" || strings.TrimSpace(name) == "" {
+		return
+	}
+	if kind == Country {
+		key = strings.ToUpper(key)
+	}
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	if l.byKind == nil {
+		l.byKind = map[string]map[string]map[string]string{}
+	}
+	if l.byKind[kind] == nil {
+		l.byKind[kind] = map[string]map[string]string{}
+	}
+	if _, known := l.byKind[kind][key]; !known {
+		l.byKind[kind][key] = map[string]string{"en": strings.TrimSpace(name)}
+	}
 }
 
 // Humanize turns a slug into a sentence-case label.
