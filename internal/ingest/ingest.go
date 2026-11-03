@@ -125,7 +125,15 @@ type Importer struct {
 	Recipes  *recipes.Store
 	Cuisines map[string]string // lowercased name/alias → cuisine slug
 	Log      *slog.Logger
+	// CreateCuisines adds unknown cuisine names as new cuisines instead of
+	// leaving the recipe without one. Only for sources with a curated,
+	// clean cuisine list (TheMealDB areas), never for free-text scrapes.
+	CreateCuisines bool
 }
+
+// CuratedCuisines is implemented by sources whose cuisine names are a clean
+// controlled list, safe to create cuisines from.
+type CuratedCuisines interface{ CuratedCuisines() bool }
 
 // NewImporter builds an Importer with the cuisine table from the database.
 func NewImporter(ctx context.Context, store *recipes.Store, log *slog.Logger) (*Importer, error) {
@@ -153,9 +161,40 @@ var cuisineAliases = map[string]string{
 	"cantonese": "chinese", "vietnamese": "thai", "mediterranean": "greek", "punjabi": "indian", "korean bbq": "korean",
 }
 
+// createCuisines adds every first cuisine name of raws that maps to no
+// known cuisine, so Normalize can assign it.
+func (im *Importer) createCuisines(ctx context.Context, raws []recipes.RawRecipe, res *Result) {
+	for _, raw := range raws {
+		if len(raw.Cuisines) == 0 {
+			continue
+		}
+		known := false
+		for _, c := range raw.Cuisines {
+			if _, ok := im.Cuisines[strings.ToLower(strings.TrimSpace(c))]; ok {
+				known = true
+				break
+			}
+		}
+		name := strings.TrimSpace(raw.Cuisines[0])
+		slug := recipes.Slugify(name)
+		if known || slug == "" || strings.EqualFold(name, "unknown") {
+			continue
+		}
+		if _, err := im.Recipes.UpsertCuisine(ctx, slug, name); err != nil {
+			res.Errors = append(res.Errors, fmt.Errorf("cuisine %q: %w", name, err))
+			continue
+		}
+		im.Cuisines[strings.ToLower(name)] = slug
+		im.Cuisines[strings.ReplaceAll(slug, "-", " ")] = slug
+	}
+}
+
 // Import normalizes and stores raws, deduplicating against existing rows.
 func (im *Importer) Import(ctx context.Context, raws []recipes.RawRecipe) Result {
 	res := Result{Fetched: len(raws)}
+	if im.CreateCuisines {
+		im.createCuisines(ctx, raws, &res)
+	}
 	for _, raw := range raws {
 		r, err := im.Normalize(raw)
 		if err != nil {
