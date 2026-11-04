@@ -37,6 +37,10 @@ func (s *MealDBSource) Name() string { return "themealdb" }
 // background: a full pass takes ~30 s at the politeness delay.
 func (s *MealDBSource) LongRunning() bool { return true }
 
+// CuratedCuisines: TheMealDB areas are a fixed, clean list, so unknown ones
+// become new cuisines on import.
+func (s *MealDBSource) CuratedCuisines() bool { return true }
+
 const mealDBDefaultBase = "https://www.themealdb.com/api/json/v1"
 
 // Fetch implements recipes.RecipeSource. opts.URLs, when set, are fetched
@@ -123,8 +127,7 @@ func ParseMealDB(body []byte) ([]recipes.RawRecipe, error) {
 			if ing == "" {
 				continue
 			}
-			line := strings.Join(strings.Fields(get(fmt.Sprintf("strMeasure%d", i))+" "+strings.ToLower(ing)), " ")
-			raw.Ingredients = append(raw.Ingredients, line)
+			raw.Ingredients = append(raw.Ingredients, mealDBLine(get(fmt.Sprintf("strMeasure%d", i)), ing))
 		}
 		if raw.Name != "" {
 			out = append(out, raw)
@@ -147,8 +150,11 @@ func mealDBCategory(c string) string {
 }
 
 var (
-	reStepLabel = regexp.MustCompile(`(?i)^\s*(step\s*\d+[:.)]?|\d+[.)])\s*`)
-	reSentence  = regexp.MustCompile(`[^.!?]+[.!?]+(\s+|$)`)
+	reDualMeasure = regexp.MustCompile(`^(\d+(?:[.,]\d+)?\s*[a-zA-Z]+)\s*/\s*\S.*$`) // 125g/4½oz → 125g
+	reRangeGlued  = regexp.MustCompile(`^(\d+)\s*-\s*(\d+)\s*([a-zA-Z]+)$`)          // 1-2tbsp → 1-2 tbsp
+	rePartOf      = regexp.MustCompile(`(?i)^(?:grated\s+)?(zest|juice)(?:\s*(?:and|/)\s*(?:zest|juice))?\s+of\s+(\d+(?:/\d+)?|one|two|half|a)$`)
+	reStepLabel   = regexp.MustCompile(`(?i)^\s*(step\s*\d+[:.)]?|\d+[.)])\s*`)
+	reSentence    = regexp.MustCompile(`[^.!?]+[.!?]+(\s+|$)`)
 )
 
 // splitMealDBSteps breaks TheMealDB's free text into steps: one per line,
@@ -173,4 +179,54 @@ func splitMealDBSteps(text string) []string {
 		}
 	}
 	return steps
+}
+
+// mealDBLine turns TheMealDB's separate measure and ingredient into one line
+// the ingredient parser reads without a review flag: "Pinch" + "Salt" →
+// "1 pinch salt", "To serve" + "Parsley" → "parsley, for serving",
+// "Juice of 1" + "Lemon" → "1 lemon, juice", "125g/4½oz" → "125g".
+func mealDBLine(measure, ingredient string) string {
+	m := strings.Join(strings.Fields(measure), " ")
+	ing := strings.ToLower(strings.Join(strings.Fields(ingredient), " "))
+	lm := strings.ToLower(m)
+	if mm := reDualMeasure.FindStringSubmatch(m); mm != nil {
+		m, lm = mm[1], strings.ToLower(mm[1])
+	}
+	if mm := reRangeGlued.FindStringSubmatch(m); mm != nil {
+		m = mm[1] + "-" + mm[2] + " " + mm[3]
+		lm = strings.ToLower(m)
+	}
+	if mm := rePartOf.FindStringSubmatch(lm); mm != nil {
+		n := map[string]string{"one": "1", "two": "2", "half": "1/2", "a": "1"}[mm[2]]
+		if n == "" {
+			n = mm[2]
+		}
+		return n + " " + ing + ", " + strings.ToLower(strings.TrimPrefix(lm[:strings.Index(lm, " of ")], "grated "))
+	}
+	switch {
+	case lm == "":
+		return ing + ", as needed"
+	case lm == "to serve" || lm == "for serving" || lm == "topping":
+		return ing + ", for serving"
+	case strings.HasPrefix(lm, "garnish") || lm == "for garnish":
+		return ing + ", for garnish"
+	case lm == "for frying" || lm == "as required" || lm == "to glaze" || strings.HasPrefix(lm, "drizzle") ||
+		lm == "splash" || lm == "knob" || lm == "dusting" || strings.HasPrefix(lm, "sprinkl") || strings.HasPrefix(lm, "spinkl"):
+		return ing + ", as needed"
+	}
+	// A bare unit word ("Pinch", "Handful", "Sprigs of fresh") means one.
+	switch first := strings.Fields(lm)[0]; first {
+	case "pinch", "dash", "handful", "bunch", "sprig", "sprigs", "can", "large":
+		return "1 " + lm + " " + ing
+	}
+	// A bare preparation word ("Chopped", "Peeled and Sliced") is a note.
+	if !strings.ContainsAny(lm, "0123456789½¼¾⅓⅔⅛") {
+		return ing + ", " + lm + ", as needed"
+	}
+	line := m + " " + ing
+	// "2" + "Cloves" (the spice) reads as a unit without a name.
+	if recipes.ParseIngredient(line).Name == "" {
+		line = m + " whole " + ing
+	}
+	return line
 }
