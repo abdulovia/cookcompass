@@ -159,4 +159,20 @@ func TestAdminMealDBBackgroundImport(t *testing.T) {
 	if !strings.Contains(body, "Test Tomato Pasta") || !strings.Contains(body, "themealdb: finished") {
 		t.Fatalf("queue after the job: %s", snippet(body, "job-list"))
 	}
+	// The new cuisine has no visible recipe yet: filters stay uncluttered.
+	if _, home := h.get("/recipes"); strings.Contains(home, `value="unknownland"`) {
+		t.Fatal("empty cuisines must not be offered as filters")
+	}
+	// Once approved, it shows with its stored name.
+	rec, err := h.app.Recipes.FindDuplicate(context.Background(), "https://www.themealdb.com/meal/90002", "")
+	if err != nil || rec == nil {
+		t.Fatal("imported recipe missing")
+	}
+	if err := h.app.Recipes.SetStatus(context.Background(), rec.ID, recipes.StatusApproved, recipes.Change{Source: "test"}); err != nil {
+		t.Fatal(err)
+	}
+	h.setCountry("US", true)
+	if _, page := h.get("/recipes"); !strings.Contains(page, `<option value="unknownland" >Unknownland</option>`) {
+		t.Fatalf("approved cuisine should be a filter with its name: %s", snippet(page, "unknownland"))
+	}
 }
