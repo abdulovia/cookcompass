@@ -43,10 +43,10 @@ func TestParseMealDB(t *testing.T) {
 	if len(pasta.Steps) != 3 || strings.HasPrefix(pasta.Steps[0], "STEP") || !strings.HasPrefix(pasta.Steps[0], "Boil") {
 		t.Fatalf("steps: %q", pasta.Steps)
 	}
-	// One long paragraph is cut into short steps; a blank measure leaves the
-	// bare ingredient name.
+	// One long paragraph is cut into short steps; a blank measure means
+	// "as needed".
 	pancakes := raws[1]
-	if len(pancakes.Steps) < 3 || pancakes.Ingredients[3] != "honey" {
+	if len(pancakes.Steps) < 3 || pancakes.Ingredients[3] != "honey, as needed" {
 		t.Fatalf("pancakes: %d steps, %q", len(pancakes.Steps), pancakes.Ingredients)
 	}
 	if empty, err := ParseMealDB(readMealDB(t, "search_q.json")); err != nil || len(empty) != 0 {
@@ -103,10 +103,59 @@ func TestMealDBSourceImport(t *testing.T) {
 	if again := e.im.Import(context.Background(), raws); again.Created != 0 {
 		t.Fatalf("re-import must dedupe: %s", again)
 	}
+	// Free-text sources leave unknown cuisines empty…
+	pancakes, _ := e.store.FindDuplicate(context.Background(), "https://www.themealdb.com/meal/90002", "")
+	if pancakes == nil || pancakes.Cuisine != "" {
+		t.Fatalf("without CreateCuisines the cuisine stays empty: %+v", pancakes)
+	}
+	// …curated ones (TheMealDB areas) create them.
+	e2 := newEnv(t)
+	e2.im.CreateCuisines = true
+	if res := e2.im.Import(context.Background(), raws); res.Created != 2 || len(res.Errors) != 0 {
+		t.Fatalf("import with cuisines: %s %v", res, res.Errors)
+	}
+	pancakes, _ = e2.store.FindDuplicate(context.Background(), "https://www.themealdb.com/meal/90002", "")
+	if pancakes == nil || pancakes.Cuisine != "unknownland" {
+		t.Fatalf("curated cuisine not created: %+v", pancakes)
+	}
+	pasta, _ := e2.store.FindDuplicate(context.Background(), "https://www.themealdb.com/meal/90001", "")
+	if pasta == nil || pasta.Cuisine != "italian" {
+		t.Fatal("known cuisines must still map to the existing slug")
+	}
 
 	// Unreachable API: an error, nothing imported.
 	down := &MealDBSource{Fetcher: fc, BaseURL: "http://127.0.0.1:1/api", Letters: "a"}
 	if got, err := down.Fetch(context.Background(), recipes.FetchOpts{}); err == nil || len(got) != 0 {
 		t.Fatalf("down: %d %v", len(got), err)
+	}
+}
+
+func TestMealDBLine(t *testing.T) {
+	cases := []struct{ measure, ing, want string }{
+		{"200g", "Spaghetti", "200g spaghetti"},
+		{"3  tablespoons", "Olive Oil", "3 tablespoons olive oil"},
+		{"Pinch", "Salt", "1 pinch salt"},
+		{"Sprigs of fresh", "Thyme", "1 sprigs of fresh thyme"},
+		{"To serve", "Parsley", "parsley, for serving"},
+		{"Garnish", "Coriander", "coriander, for garnish"},
+		{"For frying", "Vegetable Oil", "vegetable oil, as needed"},
+		{"", "Salt", "salt, as needed"},
+		{"Chopped", "Onion", "onion, chopped, as needed"},
+		{"Juice of 1", "Lemon", "1 lemon, juice"},
+		{"Grated Zest of 2", "Orange", "2 orange, zest"},
+		{"Juice of 1/2", "Lime", "1/2 lime, juice"},
+		{"125g/4½oz", "Butter", "125g butter"},
+		{"1-2tbsp", "Honey", "1-2 tbsp honey"},
+		{"2", "Cloves", "2 whole cloves"},
+	}
+	for _, c := range cases {
+		got := mealDBLine(c.measure, c.ing)
+		if got != c.want {
+			t.Errorf("%q + %q = %q, want %q", c.measure, c.ing, got, c.want)
+			continue
+		}
+		if recipes.ParseIngredient(got).NeedsReview {
+			t.Errorf("%q still needs review", got)
+		}
 	}
 }
