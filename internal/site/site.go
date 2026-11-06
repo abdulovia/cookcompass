@@ -173,7 +173,7 @@ func (h *Handler) home(w http.ResponseWriter, r *http.Request) {
 	if len(easy) > 3 {
 		easy = easy[:3]
 	}
-	cuisines, err := h.App.Recipes.Cuisines(r.Context())
+	cuisines, err := h.cuisinesIn(r.Context(), items, "")
 	if err != nil {
 		h.Fail(w, r, err)
 		return
@@ -216,7 +216,12 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 		}
 		items = filtered
 	}
-	cuisines, err := h.App.Recipes.Cuisines(r.Context())
+	visible, err := h.App.Pool.Visible(r.Context(), v)
+	if err != nil {
+		h.Fail(w, r, err)
+		return
+	}
+	cuisines, err := h.cuisinesIn(r.Context(), visible, q.Cuisine)
 	if err != nil {
 		h.Fail(w, r, err)
 		return
@@ -233,6 +238,27 @@ func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	h.R.Page(w, http.StatusOK, "pages/browse", p)
+}
+
+// cuisinesIn lists the cuisines that have at least one of items (plus keep,
+// the currently selected filter), so imports that create many cuisines
+// don't flood the filters with empty choices.
+func (h *Handler) cuisinesIn(ctx context.Context, items []pool.Item, keep string) ([]recipes.Cuisine, error) {
+	all, err := h.App.Recipes.Cuisines(ctx)
+	if err != nil {
+		return nil, err
+	}
+	used := map[string]bool{keep: keep != ""}
+	for _, it := range items {
+		used[it.Base.Cuisine] = true
+	}
+	out := make([]recipes.Cuisine, 0, len(all))
+	for _, c := range all {
+		if used[c.Slug] {
+			out = append(out, c)
+		}
+	}
+	return out, nil
 }
 
 // IngredientView is one rendered ingredient line on the detail page.
