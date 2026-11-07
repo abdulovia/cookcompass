@@ -5,6 +5,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-07
+### Added
+- 23 more bilingual recipes: 28 total across 14 cuisines and all meal times (12 easy, 10 medium, 6 hard).
+- Browse page with cuisine, meal, difficulty, text, "only what I can cook" and "hide disliked" filters (HTMX, works without JS).
+- Recipe page with video, nutrition card (basic and advanced), ingredient list and step checklist.
+- Settings: country and city, language, metric/imperial units, allergies, dislikes and pantry.
+- Availability engine with substitutions, recipe pool and read-only JSON API.
+- Optional multi-user mode with login and registration.
+
 ## [0.2.0] - 2026-11-07
 ### Added
 - SQLite schema with goose migrations: recipes, ingredients, translations, append-only revisions, countries, cities, products, users.

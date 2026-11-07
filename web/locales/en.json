@@ -11,7 +11,6 @@
   "nav.skip": "Skip to content",
   "nav.language": "Language",
   "footer.local": "Runs entirely on your computer. No tracking.",
-
   "common.save": "Save",
   "common.cancel": "Cancel",
   "common.delete": "Delete",
@@ -28,7 +27,6 @@
   "common.actions": "Actions",
   "common.minutes": "{{.N}} min",
   "common.optional": "optional",
-
   "difficulty.easy": "Easy",
   "difficulty.medium": "Medium",
   "difficulty.hard": "Hard",
@@ -40,7 +38,6 @@
   "status.approved": "Approved",
   "status.rejected": "Rejected",
   "status.deleted": "Deleted",
-
   "nutrition.calories": "Calories",
   "nutrition.protein": "Protein",
   "nutrition.fat": "Fat",
@@ -52,7 +49,6 @@
   "nutrition.unit.calories": "kcal",
   "nutrition.unit.sodium": "mg",
   "nutrition.unit.g": "g",
-
   "flash.saved": "Saved.",
   "flash.created": "Created.",
   "flash.deleted": "Moved to trash. You can restore it any time.",
@@ -70,7 +66,6 @@
   "flash.location_failed": "We couldn't detect your location. Please pick it below.",
   "flash.purged": "Pending items removed.",
   "flash.approved_all": "All pending items approved.",
-
   "validation.required": "This field is required.",
   "validation.too_long": "This is too long.",
   "validation.invalid_choice": "Please pick one of the options.",
@@ -81,7 +76,6 @@
   "validation.duplicate": "An item with this code already exists.",
   "validation.bad_form": "The form could not be read. Please try again.",
   "validation.summary": "Please fix the highlighted fields.",
-
   "admin.title": "Admin",
   "admin.dashboard": "Admin dashboard",
   "admin.recipes": "Recipes",
@@ -142,5 +136,207 @@
   "admin.rev_col_rev": "Rev",
   "admin.rev_col_when": "When",
   "admin.rev_col_source": "Source",
-  "admin.rev_col_note": "Note"
+  "admin.rev_col_note": "Note",
+  "home.hero_title": "Learn to cook, one easy win at a time.",
+  "home.hero_count": {
+    "one": "{{.Count}} recipe is ready for you.",
+    "other": "{{.Count}} recipes are ready for you."
+  },
+  "home.cta_browse": "Browse recipes",
+  "home.cta_goal": "Set my goal",
+  "home.start_here": "Start here",
+  "home.start_here_hint": "Quick, easy dishes that build the basics.",
+  "home.by_cuisine": "Explore by cuisine",
+  "browse.title": "Recipes",
+  "browse.search_placeholder": "e.g. pancakes, curry…",
+  "browse.cuisine": "Cuisine",
+  "browse.meal": "Meal",
+  "browse.difficulty": "Difficulty",
+  "browse.only_cookable": "Only what I can cook now",
+  "browse.hide_disliked": "Hide ingredients I dislike",
+  "browse.count": {
+    "one": "{{.Count}} recipe",
+    "other": "{{.Count}} recipes"
+  },
+  "browse.country_note": "showing what you can buy where you live",
+  "browse.empty": "No recipes match. Try removing a filter.",
+  "browse.pantry_hint": "Tell us what you have at home to use this filter.",
+  "recipe.back": "All recipes",
+  "recipe.prep": "Prep",
+  "recipe.cook": "Cook",
+  "recipe.servings": "Serves",
+  "recipe.ingredients": "Ingredients",
+  "recipe.steps": "Steps",
+  "recipe.start_over": "Start over",
+  "recipe.per_serving": "Per serving",
+  "recipe.advanced": "More nutrition details",
+  "recipe.watch_video": "Watch a video of this dish",
+  "recipe.video_title": "Video: {{.Name}}",
+  "availability.badge_unavailable": "Not sold nearby",
+  "availability.badge_swap": "Needs a swap",
+  "availability.badge_cookable": "Cookable now",
+  "availability.at_home": "At home",
+  "availability.not_sold": "Not sold nearby",
+  "availability.swap": "Swap",
+  "availability.skip_ok": "Can skip",
+  "availability.sub_note": "No {{.Missing}} nearby? Use {{.Sub}} ({{.Ratio}}).",
+  "availability.recipe_unavailable": {
+    "one": "{{.Count}} ingredient isn't sold where you live, and there is no local substitute.",
+    "other": "{{.Count}} ingredients aren't sold where you live, and there are no local substitutes."
+  },
+  "settings.title": "Settings",
+  "settings.where_title": "Where you shop",
+  "settings.where_hint": "We only suggest recipes you can buy ingredients for in your country.",
+  "settings.country": "Country",
+  "settings.city": "City",
+  "settings.city_any": "— any —",
+  "settings.language": "Language",
+  "settings.language_auto": "Automatic (browser)",
+  "settings.language_partial": "partial",
+  "settings.units": "Units",
+  "settings.units_metric": "Metric (g, ml)",
+  "settings.units_imperial": "Imperial (oz, cups)",
+  "settings.show_unavailable": "Show recipes I can't buy ingredients for",
+  "settings.show_unavailable_hint": "Off by default so you only see what you can actually cook.",
+  "settings.prefs_title": "Allergies & dislikes",
+  "settings.prefs_hint": "Recipes with your allergens are never shown. Disliked ingredients are hidden unless you turn that filter off.",
+  "settings.allergies": "Allergies",
+  "settings.allergies_hint": "always hidden",
+  "settings.dislikes": "Dislikes",
+  "settings.dislikes_hint": "hidden by default",
+  "settings.pantry_title": "My pantry",
+  "settings.pantry_hint": "Tick what you have at home. Salt, pepper, oil and water are assumed.",
+  "settings.pantry_count": {
+    "one": "{{.Count}} item at home — edit",
+    "other": "{{.Count}} items at home — edit"
+  },
+  "auth.title": "Sign in",
+  "auth.login": "Log in",
+  "auth.logout": "Log out",
+  "auth.register": "Create account",
+  "auth.username": "Username",
+  "auth.password": "Password",
+  "auth.password_hint": "At least 8 characters.",
+  "auth.bad_login": "Wrong username or password.",
+  "auth.bad_register": "Please choose a username (3+ characters) and a password (8+ characters).",
+  "auth.username_taken": "That username is taken.",
+  "flash.login_required": "Please log in first.",
+  "error.not_found_title": "Page not found",
+  "error.not_found_body": "We couldn't find that page or recipe. It may have been removed.",
+  "error.server_title": "Something went wrong",
+  "error.server_body": "Sorry — that didn't work. Please try again; if it keeps happening, check the server logs.",
+  "cuisine.american": "American",
+  "cuisine.british": "British",
+  "cuisine.chinese": "Chinese",
+  "cuisine.french": "French",
+  "cuisine.greek": "Greek",
+  "cuisine.indian": "Indian",
+  "cuisine.italian": "Italian",
+  "cuisine.japanese": "Japanese",
+  "cuisine.korean": "Korean",
+  "cuisine.mexican": "Mexican",
+  "cuisine.middle-eastern": "Middle Eastern",
+  "cuisine.russian": "Russian",
+  "cuisine.spanish": "Spanish",
+  "cuisine.thai": "Thai",
+  "cuisine.": "Other",
+  "country.US": "United States",
+  "country.GB": "United Kingdom",
+  "country.DE": "Germany",
+  "country.RU": "Russia",
+  "category.pantry": "Pantry",
+  "category.spices": "Spices",
+  "category.oils": "Oils",
+  "category.dairy": "Dairy & eggs",
+  "category.meat": "Meat",
+  "category.seafood": "Fish & seafood",
+  "category.protein": "Plant protein",
+  "category.baking": "Baking",
+  "category.grains": "Grains & pasta",
+  "category.bakery": "Bread",
+  "category.snacks": "Snacks",
+  "category.frozen": "Frozen",
+  "category.vegetables": "Vegetables",
+  "category.herbs": "Fresh herbs",
+  "category.fruit": "Fruit",
+  "category.legumes": "Beans & legumes",
+  "category.nuts": "Nuts & seeds",
+  "category.condiments": "Sauces & condiments",
+  "category.drinks": "Drinks",
+  "category.other": "Other",
+  "unit.g": "g",
+  "unit.kg": "kg",
+  "unit.mg": "mg",
+  "unit.ml": "ml",
+  "unit.l": "l",
+  "unit.tsp": "tsp",
+  "unit.tbsp": "tbsp",
+  "unit.oz": "oz",
+  "unit.fl_oz": "fl oz",
+  "unit.lb": "lb",
+  "unit.cup": {
+    "one": "cup",
+    "other": "cups"
+  },
+  "unit.pinch": {
+    "one": "pinch",
+    "other": "pinches"
+  },
+  "unit.dash": {
+    "one": "dash",
+    "other": "dashes"
+  },
+  "unit.clove": {
+    "one": "clove",
+    "other": "cloves"
+  },
+  "unit.can": {
+    "one": "can",
+    "other": "cans"
+  },
+  "unit.jar": {
+    "one": "jar",
+    "other": "jars"
+  },
+  "unit.pack": {
+    "one": "pack",
+    "other": "packs"
+  },
+  "unit.slice": {
+    "one": "slice",
+    "other": "slices"
+  },
+  "unit.bunch": {
+    "one": "bunch",
+    "other": "bunches"
+  },
+  "unit.handful": {
+    "one": "handful",
+    "other": "handfuls"
+  },
+  "unit.sprig": {
+    "one": "sprig",
+    "other": "sprigs"
+  },
+  "unit.stick": {
+    "one": "stick",
+    "other": "sticks"
+  },
+  "unit.piece": {
+    "one": "piece",
+    "other": "pieces"
+  },
+  "unit.head": {
+    "one": "head",
+    "other": "heads"
+  },
+  "unit.stalk": {
+    "one": "stalk",
+    "other": "stalks"
+  },
+  "unit.sheet": {
+    "one": "sheet",
+    "other": "sheets"
+  },
+  "unit.to_taste": "to taste"
 }

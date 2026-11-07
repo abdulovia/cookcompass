@@ -541,3 +541,24 @@ func nullID(id int64) any {
 	}
 	return id
 }
+
+// IngredientSet returns the ids of ingredients with at least one approved,
+// non-deleted product in country.
+func (s *Store) IngredientSet(ctx context.Context, country string) (map[int64]bool, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT DISTINCT ingredient_id FROM products
+		WHERE country_code = ? AND ingredient_id IS NOT NULL AND status = 'approved' AND deleted_at IS NULL`,
+		strings.ToUpper(country))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := map[int64]bool{}
+	for rows.Next() {
+		var id int64
+		if err := rows.Scan(&id); err != nil {
+			return nil, err
+		}
+		out[id] = true
+	}
+	return out, rows.Err()
+}

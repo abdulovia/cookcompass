@@ -13,3 +13,20 @@
 {{define "error_summary"}}{{if .HasErrors}}<div class="error-summary" role="alert">{{.T "validation.summary"}}</div>{{end}}{{end}}
 
 {{define "difficulty_badge"}}<span class="badge diff-{{.}}">{{.}}</span>{{end}}
+
+{{define "recipe_card"}}{{$p := .P}}{{with .I}}
+<a class="card recipe-card" href="/recipes/{{.Base.Slug}}">
+  <div class="card-badges">
+    <span class="badge diff-{{.Base.Difficulty}}">{{$p.T (printf "difficulty.%s" .Base.Difficulty)}}</span>
+    {{if not .Market.Available}}<span class="badge bad">{{$p.T "availability.badge_unavailable"}}</span>
+    {{else if .Market.Substitutions}}<span class="badge warn">{{$p.T "availability.badge_swap"}}</span>{{end}}
+    {{if .Home.Available}}<span class="badge ok">{{$p.T "availability.badge_cookable"}}</span>{{end}}
+  </div>
+  <h3>{{.Recipe.Name}}</h3>
+  <p class="desc">{{.Recipe.Description}}</p>
+  <div class="meta">
+    <span>⏱ {{$p.T "common.minutes" "N" .Base.TotalMinutes}}</span>
+    <span>🔥 {{num .Base.Nutrition.Calories}} {{$p.T "nutrition.unit.calories"}}</span>
+    <span>{{$p.T (printf "cuisine.%s" .Base.Cuisine)}}</span>
+  </div>
+</a>{{end}}{{end}}

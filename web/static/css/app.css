@@ -154,3 +154,6 @@ td.actions form { display: inline; margin: 0; }
 .htmx-request.htmx-indicator, .htmx-request .htmx-indicator { opacity: 1; }
 .htmx-indicator { opacity: 0; transition: opacity .2s; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+[x-cloak] { display: none !important; }
+.lead { font-size: 1.1rem; color: var(--muted); max-width: 70ch; }
+.settings-section { margin-top: 1.5rem; }

@@ -6,6 +6,7 @@
   <title>{{if .Title}}{{.Title}} · {{end}}{{.T "app.name"}}</title>
   <link rel="stylesheet" href="/static/css/app.css">
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <script src="/static/js/app.js" defer></script>
   <script src="/static/vendor/htmx.min.js" defer></script>
   <script src="/static/vendor/alpine.min.js" defer></script>
 </head>
@@ -27,6 +28,7 @@
           <li><a href="/learn" {{if .Active "/learn"}}aria-current="page"{{end}}>{{.T "nav.learn"}}</a></li>
           <li><a href="/goals" {{if .Active "/goals"}}aria-current="page"{{end}}>{{.T "nav.goals"}}</a></li>
           <li><a href="/settings" {{if .Active "/settings"}}aria-current="page"{{end}}>{{.T "nav.settings"}}</a></li>
+          {{if .MultiUser}}{{if and .User .User.ID}}<li><form method="post" action="/logout"><button class="link">{{.T "auth.logout"}}</button></form></li>{{else}}<li><a href="/login">{{.T "auth.login"}}</a></li>{{end}}{{end}}
           {{end}}
         </ul>
       </nav>

@@ -291,3 +291,5 @@ func TestHTMXRedirect(t *testing.T) {
 }
 
 func itoa(n int64) string { return strconv.FormatInt(n, 10) }
+
+func recipesChange() recipes.Change { return recipes.Change{Source: recipes.SourceUser, Note: "test"} }

@@ -42,6 +42,7 @@ func TestLoadAndTranslate(t *testing.T) {
 		{ru, "items", []any{"Count", 5}, "5 штук"},  // many
 		{b.Localizer("en"), "items", []any{"Count", 2}, "2 items"},
 		{b.Localizer("de"), "hello", []any{"Name", "Max"}, "Hello, Max!"},
+		{ru, "only.en", []any{"Count", 2}, "English only"}, // Count on a non-plural message
 	}
 	for _, tc := range tests {
 		if got := tc.l.T(tc.id, tc.args...); got != tc.want {
