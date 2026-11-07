@@ -1,0 +1,26 @@
+{{define "content"}}
+{{$r := .Data.Recipe}}
+<div class="title-row">
+  <h1>{{.T "admin.revisions"}}: {{$r.Name}}</h1>
+  <a class="btn secondary" href="/admin/recipes/{{$r.ID}}/edit">{{.T "common.edit"}}</a>
+</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th scope="col">{{.T "admin.rev_col_rev"}}</th><th scope="col">{{.T "admin.rev_col_when"}}</th><th scope="col">{{.T "admin.rev_col_source"}}</th><th scope="col">{{.T "admin.rev_col_note"}}</th><th scope="col">{{.T "admin.rev_compare"}}</th></tr></thead>
+  <tbody>
+  {{range .Data.Revisions}}
+  <tr {{if or (eq .Rev $.Data.A.Rev) (eq .Rev $.Data.B.Rev)}}class="selected"{{end}}>
+    <td>#{{.Rev}}</td>
+    <td><time datetime="{{.CreatedAt.Format "2006-01-02T15:04:05Z"}}">{{.CreatedAt.Format "2006-01-02 15:04"}}</time></td>
+    <td><code>{{.Source}}</code></td>
+    <td>{{.Note}}{{if not .Applied}} <span class="badge warn">{{$.T "admin.rev_withheld"}}</span>{{end}}</td>
+    <td><a href="?a={{.Rev}}&amp;b={{$.Data.B.Rev}}">{{$.T "admin.rev_old"}}</a> · <a href="?a={{$.Data.A.Rev}}&amp;b={{.Rev}}">{{$.T "admin.rev_new"}}</a></td>
+  </tr>
+  {{end}}
+  </tbody>
+</table>
+</div>
+<h2>#{{.Data.A.Rev}} → #{{.Data.B.Rev}}</h2>
+<pre class="diff" aria-label="diff">{{range .Data.Diff}}<span class="{{.Class}}">{{.Prefix}} {{.Text}}</span>
+{{else}}{{.T "admin.rev_no_changes"}}{{end}}</pre>
+{{end}}

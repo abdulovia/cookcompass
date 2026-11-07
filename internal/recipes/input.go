@@ -90,7 +90,7 @@ func (s *Store) FromInput(ctx context.Context, in Input) (*Recipe, error) {
 	if len(in.I18n) > 0 {
 		r.Translations = map[string]Translation{}
 		for loc, t := range in.I18n {
-			r.Translations[loc] = Translation{Name: t.Name, Description: t.Description, Steps: t.Steps, Ingredients: t.Ingredients}
+			r.Translations[loc] = Translation(t)
 		}
 	}
 	return r, nil

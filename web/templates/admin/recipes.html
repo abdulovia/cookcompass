@@ -1,0 +1,57 @@
+{{define "content"}}
+<div class="title-row">
+  <h1>{{.T "admin.recipes"}}</h1>
+  <a class="btn" href="/admin/recipes/new">{{.T "admin.new_recipe"}}</a>
+</div>
+<form class="filters" method="get" action="/admin/recipes">
+  <label>{{.T "common.search"}} <input type="search" name="q" value="{{.Query.Get "q"}}"></label>
+  <label>{{.T "admin.filter_status"}}
+    <select name="status">
+      <option value="all">{{.T "common.all"}}</option>
+      {{range $s := (list "approved" "pending" "rejected")}}<option value="{{$s}}" {{if eq ($.Query.Get "status") $s}}selected{{end}}>{{$.T (printf "status.%s" $s)}}</option>{{end}}
+    </select>
+  </label>
+  <label>{{.T "admin.filter_deleted"}}
+    <select name="deleted">
+      <option value="">{{.T "admin.deleted_exclude"}}</option>
+      <option value="include" {{if eq (.Query.Get "deleted") "include"}}selected{{end}}>{{.T "admin.deleted_include"}}</option>
+      <option value="only" {{if eq (.Query.Get "deleted") "only"}}selected{{end}}>{{.T "admin.deleted_only"}}</option>
+    </select>
+  </label>
+  <label class="check"><input type="checkbox" name="review" value="1" {{if eq (.Query.Get "review") "1"}}checked{{end}}> {{.T "admin.needs_review"}}</label>
+  <button type="submit">{{.T "common.filter"}}</button>
+</form>
+{{if .Data.Recipes}}
+<div class="table-wrap">
+<table>
+  <thead><tr>
+    <th scope="col">{{.T "admin.col_name"}}</th><th scope="col">{{.T "admin.col_cuisine"}}</th>
+    <th scope="col">{{.T "admin.col_difficulty"}}</th><th scope="col">{{.T "admin.col_status"}}</th>
+    <th scope="col">{{.T "admin.col_source"}}</th><th scope="col">{{.T "admin.col_updated"}}</th>
+    <th scope="col">{{.T "common.actions"}}</th>
+  </tr></thead>
+  <tbody>
+  {{range .Data.Recipes}}
+    <tr {{if .Deleted}}class="muted"{{end}}>
+      <td><a href="/admin/recipes/{{.ID}}/edit">{{.Name}}</a>{{if .NeedsReview}} <span class="badge warn">{{$.T "admin.needs_review"}}</span>{{end}}</td>
+      <td>{{.Cuisine}}</td>
+      <td>{{$.T (printf "difficulty.%s" .Difficulty)}}</td>
+      <td>{{if .Deleted}}<span class="badge">{{$.T "status.deleted"}}</span>{{else}}<span class="badge st-{{.Status}}">{{$.T (printf "status.%s" .Status)}}</span>{{end}}</td>
+      <td><code>{{.Source}}</code></td>
+      <td><time datetime="{{.UpdatedAt.Format "2006-01-02T15:04:05Z"}}">{{.UpdatedAt.Format "2006-01-02"}}</time></td>
+      <td class="actions">
+        <a href="/admin/recipes/{{.ID}}/edit">{{$.T "common.edit"}}</a>
+        <a href="/admin/recipes/{{.ID}}/revisions">{{$.T "admin.history"}}</a>
+        {{if .Deleted}}
+        <form method="post" action="/admin/recipes/{{.ID}}/restore"><button class="link">{{$.T "common.restore"}}</button></form>
+        {{else}}
+        <form method="post" action="/admin/recipes/{{.ID}}/delete" onsubmit="return confirm('{{$.T "admin.confirm_delete"}}')"><button class="link danger">{{$.T "common.delete"}}</button></form>
+        {{end}}
+      </td>
+    </tr>
+  {{end}}
+  </tbody>
+</table>
+</div>
+{{else}}<p class="empty">{{.T "admin.empty"}}</p>{{end}}
+{{end}}

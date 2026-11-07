@@ -1,0 +1,37 @@
+{
+  "cuisine": "british",
+  "meal_times": ["breakfast", "snack"],
+  "difficulty": "easy",
+  "prep_minutes": 2,
+  "cook_minutes": 5,
+  "servings": 1,
+  "video_url": "https://www.youtube.com/results?search_query=perfect+buttered+toast",
+  "nutrition": {"calories": 260, "protein": 7, "fat": 11, "carbs": 33, "fiber": 2, "sugar": 3, "sodium": 380, "saturated_fat": 6},
+  "ingredients": [
+    {"text": "2 slices bread", "ingredient": "bread"},
+    {"text": "1 tbsp butter, softened", "ingredient": "butter"},
+    {"text": "1 tsp honey (optional)", "ingredient": "honey", "essential": false}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Buttered Toast with Honey",
+      "description": "The simplest hot breakfast — a first lesson in watching heat.",
+      "steps": [
+        "Take the butter out of the fridge 10 minutes early so it spreads without tearing the bread.",
+        "Toast the bread in a toaster or a dry pan over medium heat until golden on both sides, about 2 minutes per side.",
+        "Spread the butter right away while the toast is hot so it melts in.",
+        "Drizzle with honey and eat while warm."
+      ]
+    },
+    "ru": {
+      "name": "Тост с маслом и мёдом",
+      "steps": [
+        "Достаньте масло из холодильника за 10 минут, чтобы оно легко намазывалось.",
+        "Поджарьте хлеб в тостере или на сухой сковороде на среднем огне до золотистого цвета, около 2 минут с каждой стороны.",
+        "Сразу намажьте масло, пока тост горячий, чтобы оно растаяло.",
+        "Полейте мёдом и ешьте тёплым."
+      ],
+      "ingredients": ["2 ломтика хлеба", "1 ст. л. мягкого сливочного масла", "1 ч. л. мёда (по желанию)"]
+    }
+  }
+}
