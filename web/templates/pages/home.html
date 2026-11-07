@@ -7,7 +7,20 @@
     <a class="btn" href="/goals">{{.T "home.cta_goal"}}</a>
   </p>
 </section>
-{{block "home_plan" .}}{{end}}
+{{with .Data.Plan}}
+<section class="card settings-section" aria-labelledby="today">
+  <div class="title-row"><h2 id="today">{{$.T "home.today_title"}}</h2><a href="/goals#plan">{{$.T "home.today_more"}}</a></div>
+  <p class="muted">{{$.T "home.today_summary" "Kcal" (num .Plan.Total.Calories) "Target" (num .Targets.Calories) "Protein" (num .Plan.Total.Protein)}}</p>
+  {{if .Items}}{{template "plan_list" (dict "P" $ "Plan" .)}}{{else}}<p class="empty">{{$.T "plan.empty"}}</p>{{end}}
+</section>
+{{else}}
+<section class="card settings-section">
+  <h2>{{.T "home.goal_cta_title"}}</h2>
+  <p>{{.T "home.goal_cta_body"}}</p>
+  <p><a class="btn" href="/goals">{{.T "home.cta_goal"}}</a></p>
+</section>
+{{end}}
+{{block "home_progress" .}}{{end}}
 <section aria-labelledby="start-here">
   <h2 id="start-here">{{.T "home.start_here"}}</h2>
   <p class="muted">{{.T "home.start_here_hint"}}</p>

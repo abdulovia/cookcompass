@@ -157,3 +157,4 @@ td.actions form { display: inline; margin: 0; }
 [x-cloak] { display: none !important; }
 .lead { font-size: 1.1rem; color: var(--muted); max-width: 70ch; }
 .settings-section { margin-top: 1.5rem; }
+.plan { list-style: none; padding: 0; margin: 0; }

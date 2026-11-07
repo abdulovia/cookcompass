@@ -1,0 +1,81 @@
+{{define "content"}}
+{{$f := .Data.Form}}
+<h1>{{.T "goals.title"}}</h1>
+<p class="lead">{{.T "goals.intro"}}</p>
+<div class="grid two">
+<form method="post" action="/goals" class="card stack" novalidate>
+  <h2>{{.T "goals.about_you"}}</h2>
+  {{template "error_summary" .}}
+  {{if .Data.Imperial}}
+  <input type="hidden" name="system" value="imperial">
+  <div class="grid three">
+    <div><label for="hft">{{.T "goals.height_ft"}}</label><input id="hft" name="height_ft" inputmode="numeric" value="{{$f.HeightFt}}" {{if .Err "height"}}aria-invalid="true"{{end}}></div>
+    <div><label for="hin">{{.T "goals.height_in"}}</label><input id="hin" name="height_in" inputmode="numeric" value="{{$f.HeightIn}}"></div>
+    <div><label for="wlb">{{.T "goals.weight_lb"}}</label><input id="wlb" name="weight_lb" inputmode="decimal" value="{{$f.WeightLb}}" {{if .Err "weight"}}aria-invalid="true"{{end}}></div>
+  </div>
+  {{else}}
+  <input type="hidden" name="system" value="metric">
+  <div class="grid three">
+    <div><label for="hcm">{{.T "goals.height_cm"}}</label><input id="hcm" name="height_cm" inputmode="decimal" value="{{$f.HeightCm}}" {{if .Err "height"}}aria-invalid="true"{{end}}></div>
+    <div><label for="wkg">{{.T "goals.weight_kg"}}</label><input id="wkg" name="weight_kg" inputmode="decimal" value="{{$f.WeightKg}}" {{if .Err "weight"}}aria-invalid="true"{{end}}></div>
+    <div><label for="age">{{.T "goals.age"}}</label><input id="age" name="age" inputmode="numeric" value="{{$f.Age}}" {{if .Err "age"}}aria-invalid="true"{{end}}></div>
+  </div>
+  {{end}}
+  {{if .Data.Imperial}}<div><label for="age">{{.T "goals.age"}}</label><input id="age" name="age" inputmode="numeric" value="{{$f.Age}}" {{if .Err "age"}}aria-invalid="true"{{end}}></div>{{end}}
+  {{template "field_error" (.Err "height")}}{{template "field_error" (.Err "weight")}}{{template "field_error" (.Err "age")}}
+  <fieldset class="inline">
+    <legend>{{.T "goals.sex"}}</legend>
+    {{range (list "female" "male")}}<label class="check"><input type="radio" name="sex" value="{{.}}" {{if eq . $f.Sex}}checked{{end}}> {{$.T (printf "sex.%s" .)}}</label>{{end}}
+    {{template "field_error" (.Err "sex")}}
+  </fieldset>
+  <label for="activity">{{.T "goals.activity"}}</label>
+  <select id="activity" name="activity">
+    <option value="">—</option>
+    {{range .Data.Activities}}<option value="{{.}}" {{if eq . $f.Activity}}selected{{end}}>{{$.T (printf "activity.%s" .)}}</option>{{end}}
+  </select>
+  {{template "field_error" (.Err "activity")}}
+  <fieldset>
+    <legend>{{.T "goals.goal"}}</legend>
+    {{range .Data.Goals}}<label class="check" style="display:flex;margin:.35rem 0"><input type="radio" name="goal" value="{{.}}" {{if eq . $f.Goal}}checked{{end}}>
+      <span><strong>{{$.T (printf "goal.%s" .)}}</strong> — <span class="muted">{{$.T (printf "goal.%s_desc" .)}}</span></span></label>{{end}}
+    {{template "field_error" (.Err "goal")}}
+  </fieldset>
+  <button type="submit">{{.T "goals.save"}}</button>
+  <p class="help">{{.T "goals.disclaimer"}}</p>
+</form>
+
+<div class="stack" id="plan">
+{{with .Data.Plan}}
+  <section class="card">
+    <h2>{{$.T "goals.targets_title"}}</h2>
+    <p class="muted">{{$.T "goals.targets_explain" "BMR" (num .Targets.BMR) "TDEE" (num .Targets.TDEE)}}</p>
+    <dl class="stats">
+      <div><dt>{{$.T "nutrition.calories"}}</dt><dd>{{num .Targets.Calories}}</dd></div>
+      <div><dt>{{$.T "nutrition.protein"}}</dt><dd>{{num .Targets.Protein}} {{$.T "nutrition.unit.g"}}</dd></div>
+      <div><dt>{{$.T "nutrition.fat"}}</dt><dd>{{num .Targets.Fat}} {{$.T "nutrition.unit.g"}}</dd></div>
+      <div><dt>{{$.T "nutrition.carbs"}}</dt><dd>{{num .Targets.Carbs}} {{$.T "nutrition.unit.g"}}</dd></div>
+      <div><dt>{{$.T "nutrition.fiber"}}</dt><dd>{{num .Targets.Fiber}} {{$.T "nutrition.unit.g"}}</dd></div>
+    </dl>
+  </section>
+  <section class="card">
+    <div class="title-row">
+      <h2>{{$.T "plan.title"}}</h2>
+      <a class="btn secondary small" href="/goals?shuffle={{add .Shuffle 1}}#plan">↻ {{$.T "plan.shuffle"}}</a>
+    </div>
+    {{if .Items}}
+      {{if .Plan.Within}}<p class="badge ok">{{$.T "plan.within"}}</p>{{else}}<p class="badge warn">{{$.T "plan.closest"}}</p>{{end}}
+      {{template "plan_list" (dict "P" $ "Plan" .)}}
+      <div class="macros" style="margin-top:1rem">
+        {{template "macro_bar" (dict "Label" ($.T "nutrition.calories") "Got" .Plan.Total.Calories "Want" .Targets.Calories "Unit" ($.T "nutrition.unit.calories"))}}
+        {{template "macro_bar" (dict "Label" ($.T "nutrition.protein") "Got" .Plan.Total.Protein "Want" .Targets.Protein "Unit" ($.T "nutrition.unit.g"))}}
+        {{template "macro_bar" (dict "Label" ($.T "nutrition.fat") "Got" .Plan.Total.Fat "Want" .Targets.Fat "Unit" ($.T "nutrition.unit.g"))}}
+        {{template "macro_bar" (dict "Label" ($.T "nutrition.carbs") "Got" .Plan.Total.Carbs "Want" .Targets.Carbs "Unit" ($.T "nutrition.unit.g"))}}
+      </div>
+    {{else}}<p class="empty">{{$.T "plan.empty"}}</p>{{end}}
+  </section>
+{{else}}
+  <section class="card"><h2>{{.T "plan.title"}}</h2><p class="muted">{{.T "goals.fill_form"}}</p></section>
+{{end}}
+</div>
+</div>
+{{end}}

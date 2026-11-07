@@ -61,13 +61,15 @@ type Nutrition struct {
 
 // Scale multiplies every value by f.
 func (n Nutrition) Scale(f float64) Nutrition {
-	return Nutrition{n.Calories * f, n.Protein * f, n.Fat * f, n.Carbs * f, n.Fiber * f, n.Sugar * f, n.Sodium * f, n.SaturatedFat * f}
+	return Nutrition{Calories: n.Calories * f, Protein: n.Protein * f, Fat: n.Fat * f, Carbs: n.Carbs * f,
+		Fiber: n.Fiber * f, Sugar: n.Sugar * f, Sodium: n.Sodium * f, SaturatedFat: n.SaturatedFat * f}
 }
 
 // Add sums two nutrition values.
 func (n Nutrition) Add(o Nutrition) Nutrition {
-	return Nutrition{n.Calories + o.Calories, n.Protein + o.Protein, n.Fat + o.Fat, n.Carbs + o.Carbs,
-		n.Fiber + o.Fiber, n.Sugar + o.Sugar, n.Sodium + o.Sodium, n.SaturatedFat + o.SaturatedFat}
+	return Nutrition{Calories: n.Calories + o.Calories, Protein: n.Protein + o.Protein, Fat: n.Fat + o.Fat,
+		Carbs: n.Carbs + o.Carbs, Fiber: n.Fiber + o.Fiber, Sugar: n.Sugar + o.Sugar, Sodium: n.Sodium + o.Sodium,
+		SaturatedFat: n.SaturatedFat + o.SaturatedFat}
 }
 
 // Ingredient is one line of a recipe's ingredient list.
