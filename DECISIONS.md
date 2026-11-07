@@ -67,3 +67,14 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Daily plan: breakfast + lunch + dinner + 0–2 snacks from the visible pool, exhaustive over combinations, portions scaled in quarter servings (0.5–2.5) with a small penalty for odd portions; ranked by number of macros outside ±10%, then weighted squared error.
 - The plan rotates daily via a seed of date + user id; "Another idea" bumps the seed. No plan history is stored.
 - Body data is stored metric; imperial users enter ft/in and lb, converted on save.
+
+## Ingestion
+- One working source: schema.org `Recipe` JSON-LD. No public JSON-LD recipe site with clearly permissive terms was found, so the default targets are three bundled sample pages (`file:` URLs) and operators add sites they may index.
+- `file:` targets (globs, relative to the targets file) make the pipeline work offline and double as "import a saved page".
+- robots.txt: specific user-agent group beats `*`; longest match wins, Allow wins ties; 4xx = allow all, 5xx = disallow all; Crawl-delay honoured up to 30 s on top of the 1 s minimum.
+- HTTP responses (including robots.txt) are cached on disk by URL hash for `cache_ttl` (7 days).
+- A scrape that changes nothing writes no revision (avoids pruning real history away); every applied or withheld change does.
+- Re-scrapes keep the review decision (approved stays approved, rejected stays rejected) and keep non-English translations.
+- Scraped difficulty, meal times and cuisine are heuristic guesses shown in the queue for the reviewer to correct; unknown cuisines stay empty.
+- Only YouTube video URLs and http(s) image URLs are kept; nothing binary is downloaded.
+- An offline `scrape` run logs a warning and exits 0 so scripts and cron jobs don't fail when the network is down.

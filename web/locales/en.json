@@ -386,5 +386,21 @@
   "plan.servings": {
     "one": "{{.N}} serving",
     "other": "{{.N}} servings"
-  }
+  },
+  "admin.scrape_now": "Scrape now ({{.Source}})",
+  "admin.approve_all": "Approve all",
+  "admin.purge": "Purge pending",
+  "admin.confirm_approve_all": "Approve every pending item?",
+  "admin.confirm_purge": "Delete every pending item? Approved and rejected items are kept.",
+  "admin.queue_hint": "Scraped and imported items wait here until you approve them. Open a recipe to fix its details before approving.",
+  "admin.queue_recipes": {
+    "one": "{{.Count}} recipe waiting",
+    "other": "{{.Count}} recipes waiting"
+  },
+  "admin.queue_empty": "Nothing to review.",
+  "admin.queue_counts": "{{.Ingredients}} ingredients · {{.Steps}} steps",
+  "admin.col_guess": "Our guess",
+  "admin.approve": "Approve",
+  "admin.reject": "Reject",
+  "flash.scrape_failed": "Nothing could be fetched (offline, or every page was blocked). Existing recipes are unchanged."
 }

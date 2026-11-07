@@ -14,6 +14,7 @@ import (
 
 	"github.com/abdulovia/cookcompass/internal/app"
 	"github.com/abdulovia/cookcompass/internal/config"
+	"github.com/abdulovia/cookcompass/internal/recipes"
 	"github.com/abdulovia/cookcompass/internal/web"
 )
 
@@ -37,6 +38,12 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Post("/recipes/{id}/delete", h.recipeDelete)
 	r.Post("/recipes/{id}/restore", h.recipeRestore)
 	r.Get("/recipes/{id}/revisions", h.recipeRevisions)
+	r.Get("/queue", h.queue)
+	r.Post("/queue/recipes/{id}/approve", h.setRecipeStatus(recipes.StatusApproved, "approved"))
+	r.Post("/queue/recipes/{id}/reject", h.setRecipeStatus(recipes.StatusRejected, "rejected"))
+	r.Post("/queue/approve-all", h.approveAll)
+	r.Post("/queue/purge", h.purgePending)
+	r.Post("/queue/scrape", h.scrapeNow)
 }
 
 // Guard protects the admin surface. With a password configured, HTTP basic

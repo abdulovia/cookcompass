@@ -1,0 +1,113 @@
+{
+  "array_recipe.html": [
+    {
+      "source": "jsonld",
+      "url": "https://fixture.test/array_recipe.html",
+      "canonical_url": "https://kitchen.example.com/tomato-pasta?utm_source=feed",
+      "name": "Weeknight Tomato Pasta",
+      "ingredients": [
+        "400 g spaghetti",
+        "1 can crushed tomatoes (400 g)",
+        "3 cloves garlic, sliced",
+        "a few sprigs thyme",
+        "½ tsp chili flakes (optional)",
+        "Salt to taste"
+      ],
+      "steps": [
+        "Boil the pasta in salted water.",
+        "Meanwhile, simmer garlic and tomatoes for 15 minutes.",
+        "Toss together and serve."
+      ],
+      "cuisines": [
+        "Italian"
+      ],
+      "categories": [
+        "Main course"
+      ],
+      "total_minutes": 70,
+      "yield": "4",
+      "video_url": "https://videos.example.com/pasta.mp4",
+      "image_url": "https://kitchen.example.com/a.jpg"
+    }
+  ],
+  "broken_and_valid.html": [
+    {
+      "source": "jsonld",
+      "url": "https://fixture.test/broken_and_valid.html",
+      "canonical_url": "https://fixture.test/broken_and_valid.html",
+      "name": "Three-Ingredient Banana Pancakes",
+      "ingredients": [
+        "2 bananas",
+        "2 eggs",
+        "1 tbsp butter"
+      ],
+      "steps": [
+        "Mash the bananas.",
+        "Whisk in the eggs.",
+        "Fry small pancakes in butter."
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "yield": "Makes 8 pancakes",
+      "nutrition": {
+        "calories": 200,
+        "protein": 8,
+        "fat": 0,
+        "carbs": 0,
+        "fiber": 0,
+        "sugar": 0,
+        "sodium": 90,
+        "saturated_fat": 0
+      }
+    }
+  ],
+  "graph_recipe.html": [
+    {
+      "source": "jsonld",
+      "url": "https://fixture.test/graph_recipe.html",
+      "canonical_url": "https://recipes.example.org/zaatar-eggs/",
+      "name": "Za'atar Fried Eggs",
+      "description": "Crispy eggs with herbs.",
+      "ingredients": [
+        "4 eggs",
+        "2 tbsp olive oil",
+        "1 tsp za'atar",
+        "pinch of salt",
+        "2 slices bread, toasted"
+      ],
+      "steps": [
+        "Heat the oil in a pan over medium-high heat.",
+        "Crack in the eggs and fry until the edges are crisp, about 3 minutes.",
+        "Sprinkle with za'atar and salt and serve on toast."
+      ],
+      "cuisines": [
+        "Lebanese"
+      ],
+      "categories": [
+        "Breakfast"
+      ],
+      "keywords": [
+        "eggs",
+        "quick",
+        "brunch"
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 6,
+      "yield": "2",
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "image_url": "https://recipes.example.org/img/eggs.jpg",
+      "nutrition": {
+        "calories": 320,
+        "protein": 14,
+        "fat": 24,
+        "carbs": 13,
+        "fiber": 1,
+        "sugar": 1,
+        "sodium": 500,
+        "saturated_fat": 5
+      },
+      "language": "en"
+    }
+  ],
+  "no_recipe.html": null
+}

@@ -54,6 +54,7 @@ func commands() []command {
 		{"migrate", "apply database migrations", runMigrate},
 		{"seed", "load the bundled dataset (idempotent)", runSeed},
 		{"recipe", "recipe create|delete|restore|list", runRecipe},
+		{"scrape", "scrape recipes into the review queue (--source jsonld [--url U] [--limit N])", runScrape},
 		{"approve-all", "approve every pending recipe and product", runApproveAll},
 		{"purge-pending", "delete every pending recipe and product", runPurgePending},
 		{"backup", "write a consistent database snapshot (--out path)", runBackup},
