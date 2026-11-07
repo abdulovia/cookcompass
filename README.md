@@ -51,3 +51,7 @@ LibreTranslate that drafts recipe translations for review).
 - [docs/architecture.md](docs/architecture.md): how the pieces fit together
 - [docs/ingestion.md](docs/ingestion.md) · [docs/pipelines.md](docs/pipelines.md) · [scripts/add-locale.md](scripts/add-locale.md)
 - [DECISIONS.md](DECISIONS.md) (every open choice, one line each) · [CHANGELOG.md](CHANGELOG.md)
+
+## License
+
+[MIT](LICENSE). The bundled recipes and data are part of the project; recipes you import keep the terms of their source (see [docs/recipes.md](docs/recipes.md)).

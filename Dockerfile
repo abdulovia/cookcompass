@@ -16,7 +16,8 @@ RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache
 
 FROM gcr.io/distroless/static-debian12:nonroot
 LABEL org.opencontainers.image.source=https://github.com/abdulovia/cookcompass \
-      org.opencontainers.image.description="CookCompass: learn to cook with what your shops sell"
+      org.opencontainers.image.description="CookCompass: learn to cook with what your shops sell" \
+      org.opencontainers.image.licenses=MIT
 WORKDIR /app
 COPY --from=build /out/cookcompass /app/cookcompass
 COPY --from=build --chown=nonroot:nonroot /out/data /data
