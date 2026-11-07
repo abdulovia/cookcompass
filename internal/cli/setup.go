@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/abdulovia/cookcompass/internal/app"
+	"github.com/abdulovia/cookcompass/internal/config"
 	"github.com/abdulovia/cookcompass/internal/i18n"
 )
 
@@ -164,6 +165,8 @@ func firstNonEmpty(ss ...string) string {
 // runDoctor prints the setup checklist and fails when a required item is
 // missing. It opens (and migrates) the database like every command.
 func runDoctor(e *env, _ []string) error {
+	// The report is the output; only errors from opening the app go to the log.
+	e.log = NewLogger(e.Stderr, config.Log{Level: "error", Format: e.cfg.Log.Format})
 	a, err := e.open()
 	if err != nil {
 		return err
