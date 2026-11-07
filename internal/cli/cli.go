@@ -55,6 +55,8 @@ func commands() []command {
 		{"seed", "load the bundled dataset (idempotent)", runSeed},
 		{"recipe", "recipe create|delete|restore|list", runRecipe},
 		{"scrape", "scrape recipes into the review queue (--source jsonld [--url U] [--limit N])", runScrape},
+		{"scan", "refresh product catalogs into the review queue (--country all|US|…)", runScan},
+		{"products", "products import --file F --country CC | export --country CC [--out F]", runProducts},
 		{"approve-all", "approve every pending recipe and product", runApproveAll},
 		{"purge-pending", "delete every pending recipe and product", runPurgePending},
 		{"backup", "write a consistent database snapshot (--out path)", runBackup},

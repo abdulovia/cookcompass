@@ -562,3 +562,45 @@ func (s *Store) IngredientSet(ctx context.Context, country string) (map[int64]bo
 	}
 	return out, rows.Err()
 }
+
+// ImportResult summarizes a bulk import.
+type ImportResult struct {
+	Created int
+	Updated int
+	Errors  []error
+}
+
+// Import applies a bulk edit (CSV/JSON from the admin): rows are matched by
+// dedup key and become authoritative user data (source "user", approved).
+func (s *Store) Import(ctx context.Context, list []Product) ImportResult {
+	var res ImportResult
+	for i := range list {
+		p := list[i]
+		p.Source, p.Status = "user", StatusApproved
+		if err := s.prepare(ctx, &p); err != nil {
+			res.Errors = append(res.Errors, fmt.Errorf("row %d (%s): %w", i+1, p.Name, err))
+			continue
+		}
+		existing, err := s.FindProduct(ctx, p.CountryCode, p.DedupKey)
+		switch {
+		case errors.Is(err, ErrNotFound):
+			err = s.CreateProduct(ctx, &p)
+			if err == nil {
+				res.Created++
+			}
+		case err == nil:
+			p.ID = existing.ID
+			if existing.Deleted() {
+				_ = s.RestoreProduct(ctx, existing.ID)
+			}
+			err = s.UpdateProduct(ctx, &p)
+			if err == nil {
+				res.Updated++
+			}
+		}
+		if err != nil {
+			res.Errors = append(res.Errors, fmt.Errorf("row %d (%s): %w", i+1, p.Name, err))
+		}
+	}
+	return res
+}

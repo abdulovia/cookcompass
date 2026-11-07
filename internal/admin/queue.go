@@ -28,7 +28,7 @@ func (h *Handler) queue(w http.ResponseWriter, r *http.Request) {
 }
 
 // queueExtra lets other review queues (products) add their rows.
-func (h *Handler) queueExtra(ctx context.Context) map[string]any { return h.productQueue(ctx) }
+func (h *Handler) queueExtra(ctx context.Context) map[string]any { return h.productQueueData(ctx) }
 
 // reviewed answers an approve/reject: HTMX gets an empty body (the row is
 // swapped out), plain forms are redirected back to the queue.
@@ -95,6 +95,3 @@ func (h *Handler) scrapeNow(w http.ResponseWriter, r *http.Request) {
 	}
 	web.Redirect(w, r, "/admin/queue", "scanned")
 }
-
-// productQueue is filled in by the catalog review queue.
-func (h *Handler) productQueue(context.Context) map[string]any { return nil }

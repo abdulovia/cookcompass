@@ -78,3 +78,15 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Scraped difficulty, meal times and cuisine are heuristic guesses shown in the queue for the reviewer to correct; unknown cuisines stay empty.
 - Only YouTube video URLs and http(s) image URLs are kept; nothing binary is downloaded.
 - An offline `scrape` run logs a warning and exits 0 so scripts and cron jobs don't fail when the network is down.
+
+## Catalog & availability
+- A country "has" an ingredient when at least one approved, non-deleted product links to it; pending and rejected products never count.
+- Recipe availability defaults to 100% of essential, non-staple ingredients (direct or via a declared substitute); optional lines never block. Threshold: `availability.threshold`.
+- Unlinked essential ingredients count as missing (the recipe page says so), which keeps unreviewed scraped recipes from surfacing as cookable.
+- Unavailable recipes stay reachable by URL and explain what's missing; the browse list hides them unless "show unavailable" is on (off by default).
+- Catalog sources run in order and their results merge: shop pages with schema.org `Product` JSON-LD (`seed/sources/catalog_targets.txt`, `<CC> <URL>`), then CSV/JSON files in `catalog_inbox_dir/<CC>/`. If both yield nothing, missing seed products are restored (never overwriting existing rows) and a warning is logged.
+- Scanned products land as pending; CSV/JSON imports from the admin are treated as user edits (approved, `source=user`) and are never overwritten by scans.
+- Product dedup key: SKU (or GTIN) when present, else the normalized product name, per country.
+- Ingredient matching is word-order insensitive ("паста карри зелёная" = "зелёная паста карри") so product names from different shops link correctly.
+- Reverse geocoding is offline: nearest bundled city by haversine distance, accepted within 1500 km; otherwise the current country is kept and the user picks manually.
+- The seed was missing a farmer's cheese → ricotta substitute; added so syrniki is cookable where only ricotta is sold.

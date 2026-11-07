@@ -241,13 +241,20 @@ func (s *Store) invalidate() {
 // Matcher maps free-text ingredient names to canonical ids.
 type Matcher struct {
 	aliases map[string]int64
+	bags    map[string]int64 // sorted significant words → id (word order varies across languages and shops)
 	maxLen  int
+}
+
+func bagKey(tokens []string) string {
+	c := append([]string(nil), tokens...)
+	sort.Strings(c)
+	return strings.Join(c, " ")
 }
 
 // NewMatcher builds a matcher from normalized alias → id. Keys are passed
 // through Key so callers may supply raw names.
 func NewMatcher(aliases map[string]int64) *Matcher {
-	m := &Matcher{aliases: make(map[string]int64, len(aliases))}
+	m := &Matcher{aliases: make(map[string]int64, len(aliases)), bags: make(map[string]int64, len(aliases))}
 	keys := make([]string, 0, len(aliases))
 	for k := range aliases {
 		keys = append(keys, k)
@@ -256,6 +263,11 @@ func NewMatcher(aliases map[string]int64) *Matcher {
 	for _, k := range keys {
 		nk := Key(k)
 		m.aliases[nk] = aliases[k]
+		if toks := Tokens(k); len(toks) > 1 {
+			if _, taken := m.bags[bagKey(toks)]; !taken {
+				m.bags[bagKey(toks)] = aliases[k]
+			}
+		}
 		if n := len(strings.Fields(nk)); n > m.maxLen {
 			m.maxLen = n
 		}
@@ -264,8 +276,9 @@ func NewMatcher(aliases map[string]int64) *Matcher {
 }
 
 // Match returns the ingredient id for name. It first tries the whole key,
-// then the longest contiguous run of significant words, preferring runs
-// further right (the head noun in English noun phrases).
+// then the same words in any order, then the longest contiguous run of
+// significant words (also order-insensitive), preferring runs further right
+// (the head noun in English noun phrases).
 func (m *Matcher) Match(name string) (int64, bool) {
 	if m == nil {
 		return 0, false
@@ -276,8 +289,14 @@ func (m *Matcher) Match(name string) (int64, bool) {
 	toks := Tokens(name)
 	for size := min(len(toks), m.maxLen); size >= 1; size-- {
 		for start := len(toks) - size; start >= 0; start-- {
-			if id, ok := m.aliases[strings.Join(toks[start:start+size], " ")]; ok {
+			win := toks[start : start+size]
+			if id, ok := m.aliases[strings.Join(win, " ")]; ok {
 				return id, true
+			}
+			if size > 1 {
+				if id, ok := m.bags[bagKey(win)]; ok {
+					return id, true
+				}
 			}
 		}
 	}

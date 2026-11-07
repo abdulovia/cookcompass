@@ -1,2 +1,7 @@
 # Product listing pages scanned by `make scan`. Format: <COUNTRY> <URL>
-# Pages must expose schema.org Product JSON-LD; robots.txt is always enforced.
+# Pages must expose schema.org Product JSON-LD (with an Offer for prices).
+# robots.txt is always enforced and requests are rate limited per site.
+# Only list shops whose terms allow indexing for personal use.
+#
+# Example:
+# RU https://shop.example.ru/catalog/asian-sauces

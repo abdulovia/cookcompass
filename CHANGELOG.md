@@ -5,6 +5,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-07
+### Added
+- Country-aware recipe list: hides recipes whose essential ingredients aren't sold locally (substitutes allowed), with a "show unavailable" setting.
+- Availability badges and substitution notes on the recipe page and in the JSON API.
+- Admin product management: list, filters, create/edit, trash/restore, CSV export, CSV/JSON import.
+- `internal/catalogscan`: pluggable `CatalogSource` (shop JSON-LD, file inbox, seed fallback) feeding the review queue; product review in `/admin/queue`.
+- Settings: "use my location" (offline reverse geocoding) and "re-scan shops".
+- CLI: `scan`, `products import|export`; JSON catalog schema and example.
+
+### Fixed
+- Ingredient matching now ignores word order; farmer's cheese can be replaced by ricotta.
+
 ## [0.4.0] - 2026-11-07
 ### Added
 - Recipe ingestion: `RecipeSource` interface, schema.org JSON-LD source, polite fetcher (robots.txt, per-host rate limit, disk cache, clear User-Agent).

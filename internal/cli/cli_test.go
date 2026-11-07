@@ -257,3 +257,54 @@ func TestScrapeCommand(t *testing.T) {
 		t.Fatal("bad db accepted")
 	}
 }
+
+func TestCatalogCommands(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "catalog.db")
+	t.Setenv("COOK_CATALOG_TARGETS", filepath.Join(t.TempDir(), "none.txt"))
+	inbox := t.TempDir()
+	t.Setenv("COOK_CATALOG_INBOX", inbox)
+	if code, _, errs := run(t, dbPath, "", "seed"); code != 0 {
+		t.Fatal(errs)
+	}
+	// Offline scan falls back to seed and succeeds.
+	code, out, _ := run(t, dbPath, "", "scan", "--country", "US")
+	if code != 0 || !strings.Contains(out, "fallback=true") {
+		t.Fatalf("scan: %d %s", code, out)
+	}
+	// Inbox file → pending products.
+	if err := os.MkdirAll(filepath.Join(inbox, "RU"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	example, _ := os.ReadFile("../../docs/examples/catalog.json")
+	_ = os.WriteFile(filepath.Join(inbox, "RU", "shop.json"), example, 0o600)
+	if code, out, _ := run(t, dbPath, "", "scan", "--country", "RU"); code != 0 || !strings.Contains(out, "sources=file") || !strings.Contains(out, "created=3") {
+		t.Fatalf("inbox scan: %s", out)
+	}
+	if code, out, _ := run(t, dbPath, "", "scan"); code != 0 || strings.Count(out, "sources=") != 4 {
+		t.Fatalf("scan all: %s", out)
+	}
+	if code, _, _ := run(t, dbPath, "", "scan", "--country", "ZZ"); code != 1 {
+		t.Fatal("unknown country accepted")
+	}
+	// Export → import round trip.
+	csvPath := filepath.Join(t.TempDir(), "us.csv")
+	if code, _, errs := run(t, dbPath, "", "products", "export", "--country", "US", "--out", csvPath); code != 0 {
+		t.Fatal(errs)
+	}
+	if code, out, _ := run(t, dbPath, "", "products", "import", "--country", "US", "--file", csvPath); code != 0 || !strings.Contains(out, "updated 157") {
+		t.Fatalf("import: %s", out)
+	}
+	if code, out, _ := run(t, dbPath, "", "products", "export", "--country", "US"); code != 0 || !strings.HasPrefix(out, "sku,name") {
+		t.Fatal("export stdout")
+	}
+	bad := filepath.Join(t.TempDir(), "bad.csv")
+	_ = os.WriteFile(bad, []byte("name,ingredient\nThing,nope\n"), 0o600)
+	for _, args := range [][]string{{"products"}, {"products", "import", "--country", "US"}, {"products", "export"},
+		{"products", "nope", "--country", "US"}, {"products", "import", "--country", "US", "--file", bad},
+		{"products", "import", "--country", "US", "--file", "missing.csv"}, {"products", "export", "--country", "ZZ"},
+		{"products", "export", "--country", "US", "--out", "/dev/null/x"}, {"scan", "--bogus"}, {"products", "import", "--bogus"}} {
+		if code, _, _ := run(t, dbPath, "", args...); code == 0 {
+			t.Errorf("%v: expected failure", args)
+		}
+	}
+}

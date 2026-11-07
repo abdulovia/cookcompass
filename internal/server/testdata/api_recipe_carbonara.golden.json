@@ -30,41 +30,47 @@
       "name": "spaghetti",
       "quantity": 400,
       "unit": "g",
-      "essential": true
+      "essential": true,
+      "status": "have"
     },
     {
       "text": "150 g pancetta, cut into small strips",
       "name": "pancetta",
       "quantity": 150,
       "unit": "g",
-      "essential": true
+      "essential": true,
+      "status": "have"
     },
     {
       "text": "3 eggs",
       "name": "eggs",
       "quantity": 3,
-      "essential": true
+      "essential": true,
+      "status": "have"
     },
     {
       "text": "60 g parmesan, finely grated",
       "name": "parmesan",
       "quantity": 60,
       "unit": "g",
-      "essential": true
+      "essential": true,
+      "status": "have"
     },
     {
       "text": "1 tsp black pepper, freshly ground",
       "name": "black pepper",
       "quantity": 1,
       "unit": "tsp",
-      "essential": true
+      "essential": true,
+      "status": "staple"
     },
     {
       "text": "1 tbsp salt, for the pasta water",
       "name": "salt",
       "quantity": 1,
       "unit": "tbsp",
-      "essential": true
+      "essential": true,
+      "status": "staple"
     }
   ],
   "steps": [

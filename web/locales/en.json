@@ -402,5 +402,35 @@
   "admin.col_guess": "Our guess",
   "admin.approve": "Approve",
   "admin.reject": "Reject",
-  "flash.scrape_failed": "Nothing could be fetched (offline, or every page was blocked). Existing recipes are unchanged."
+  "flash.scrape_failed": "Nothing could be fetched (offline, or every page was blocked). Existing recipes are unchanged.",
+  "admin.product_new": "New product",
+  "admin.product_edit": "Edit product",
+  "admin.new_product": "Add product",
+  "admin.export_csv": "Export CSV",
+  "admin.import_title": "Import a catalog (CSV or JSON)",
+  "admin.import_help": "CSV columns: sku, name, category, ingredient, price, unit (only name is required). JSON follows docs/schemas/catalog.schema.json. Rows with a known SKU (or the same name) update the existing product; imported rows count as your own edits.",
+  "admin.import_file": "Catalog file",
+  "admin.import_button": "Import",
+  "admin.products_count": {
+    "one": "{{.Count}} product",
+    "other": "{{.Count}} products"
+  },
+  "admin.col_ingredient": "Ingredient",
+  "admin.col_price": "Price",
+  "admin.unmapped": "Not linked to an ingredient",
+  "admin.ingredient_auto": "— match from name —",
+  "admin.field_category": "Category",
+  "admin.field_unit": "Pack size",
+  "admin.product_user_wins": "Edits made here are kept when catalogs are scanned again.",
+  "admin.queue_products": {
+    "one": "{{.Count}} product waiting",
+    "other": "{{.Count}} products waiting"
+  },
+  "admin.scan_now": "Scan catalogs",
+  "flash.import_failed": "Import failed. Check the file format (CSV or JSON) and the server log for the rows that were rejected.",
+  "settings.locate": "Use my location",
+  "settings.locating": "Locating…",
+  "settings.locate_nojs": "Location detection needs JavaScript; pick your country below.",
+  "settings.rescan": "Re-scan shops in my country",
+  "settings.rescan_hint": "Checks shop catalogs for new products. New items appear after review."
 }

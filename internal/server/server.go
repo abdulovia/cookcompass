@@ -66,7 +66,7 @@ func (s *Server) Handler() http.Handler {
 	r.Get("/healthz", s.healthz)
 	r.Post("/lang", s.setLanguage)
 
-	pub := &site.Handler{App: s.app, R: s.render, Log: s.log, Bundle: s.i18n}
+	pub := &site.Handler{App: s.app, R: s.render, Log: s.log, Bundle: s.i18n, CountryAware: true}
 	pub.Routes(r)
 	r.NotFound(pub.NotFound)
 
