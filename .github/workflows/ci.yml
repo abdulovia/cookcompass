@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-go@v5
         with: { go-version-file: go.mod }
       - uses: golangci/golangci-lint-action@v6
-        with: { version: latest }
+        with: { version: v1.64.8 }
 
   docker:
     runs-on: ubuntu-latest

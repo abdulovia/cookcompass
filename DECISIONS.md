@@ -103,3 +103,8 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Path: 5 easy → 5 medium → 5 hard; a level unlocks when the previous one is complete, but recipes learned early still count toward their level.
 - "Try next" suggests up to 3 unlearned recipes of the current level from the visible pool, recipes already cooked first, then quickest.
 - History and progress include soft-deleted recipes, which is why recipes are only ever soft-deleted.
+
+## Release hardening
+- Panics render the localized 500 page (logged with stack); chi's plain recoverer stays outermost as a last resort.
+- Request bodies are capped at 6 MB (catalog uploads at 5 MB).
+- CI pins golangci-lint to the same version as `make lint`.

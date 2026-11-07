@@ -513,5 +513,6 @@
   "recipe.learned": "Освоено",
   "recipe.unlearn": "отменить",
   "recipe.learned_hint": "Освоено — значит, сможете приготовить снова, не подглядывая в шаги.",
-  "recipe.login_to_track": "войдите, чтобы отслеживать, что вы готовите."
+  "recipe.login_to_track": "войдите, чтобы отслеживать, что вы готовите.",
+  "admin.pending_summary": "Ждут проверки: рецептов — {{.Recipes}}, товаров — {{.Products}}."
 }
