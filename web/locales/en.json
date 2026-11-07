@@ -432,5 +432,7 @@
   "settings.locating": "Locating…",
   "settings.locate_nojs": "Location detection needs JavaScript; pick your country below.",
   "settings.rescan": "Re-scan shops in my country",
-  "settings.rescan_hint": "Checks shop catalogs for new products. New items appear after review."
+  "settings.rescan_hint": "Checks shop catalogs for new products. New items appear after review.",
+  "nav.main": "Main navigation",
+  "admin.diff": "Changes between revisions"
 }

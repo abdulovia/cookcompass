@@ -5,6 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-07
+### Added
+- Complete Russian UI (including admin) with correct plural forms; partial German, Spanish and French.
+- Language switcher, per-user language setting and `Accept-Language` detection.
+- Locale consistency tests and `scripts/add-locale.md`.
+
 ## [0.5.0] - 2026-11-07
 ### Added
 - Country-aware recipe list: hides recipes whose essential ingredients aren't sold locally (substitutes allowed), with a "show unavailable" setting.
