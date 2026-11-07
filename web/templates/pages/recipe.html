@@ -69,7 +69,28 @@
         </dl>
       </details>
     </section>
-    {{block "recipe_actions" .}}{{end}}
+    {{block "recipe_actions" .}}
+    <section class="card" id="recipe-actions" aria-labelledby="actions">
+      <h2 id="actions">{{.T "recipe.your_progress"}}</h2>
+      {{if .Flash}}<p class="flash" role="status">{{.T .Flash}}</p>{{end}}
+      {{if .Data.CanTrack}}
+      <p class="muted">{{if .Data.Cooked}}{{.T "recipe.cooked_count" "Count" .Data.Cooked}}{{else}}{{.T "recipe.never_cooked"}}{{end}}</p>
+      <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-post="/recipes/{{.Data.Item.Base.Slug}}/cooked" hx-target="#recipe-actions" hx-swap="outerHTML">
+        <button type="submit">🍳 {{.T "recipe.cooked_this"}}</button>
+      </form>
+      <form method="post" action="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-post="/recipes/{{.Data.Item.Base.Slug}}/learned" hx-target="#recipe-actions" hx-swap="outerHTML" style="margin-top:.6rem">
+        {{if .Data.Learned}}
+        <input type="hidden" name="learned" value="0">
+        <p><span class="badge ok">✓ {{.T "recipe.learned"}}</span> <button type="submit" class="link">{{.T "recipe.unlearn"}}</button></p>
+        {{else}}
+        <input type="hidden" name="learned" value="1">
+        <button type="submit" class="secondary">🎓 {{.T "recipe.mark_learned"}}</button>
+        <p class="help">{{.T "recipe.learned_hint"}}</p>
+        {{end}}
+      </form>
+      {{else}}<p class="muted"><a href="/login">{{.T "auth.login"}}</a> — {{.T "recipe.login_to_track"}}</p>{{end}}
+    </section>
+    {{end}}
   </aside>
 </div>
 {{end}}

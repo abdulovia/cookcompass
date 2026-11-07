@@ -5,6 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-07
+### Added
+- Learning path page (5 easy → 5 medium → 5 hard) with progress dots, "try next" suggestions and cooking history.
+- "I cooked this" counter and "mark as learned" toggle on recipe pages (HTMX, works without JS).
+- Learning progress card on the home page.
+
 ## [0.6.0] - 2026-11-07
 ### Added
 - Complete Russian UI (including admin) with correct plural forms; partial German, Spanish and French.

@@ -37,6 +37,9 @@ func (h *Handler) Routes(r chi.Router) {
 	r.Get("/", h.home)
 	r.Get("/recipes", h.browse)
 	r.Get("/recipes/{slug}", h.detail)
+	r.Post("/recipes/{slug}/cooked", h.cooked)
+	r.Post("/recipes/{slug}/learned", h.learnedToggle)
+	r.Get("/learn", h.learn)
 	r.Get("/goals", h.goals)
 	r.Post("/goals", h.saveGoals)
 	r.Get("/settings", h.settings)
@@ -156,9 +159,6 @@ func (h *Handler) home(w http.ResponseWriter, r *http.Request) {
 	h.R.Page(w, http.StatusOK, "pages/home", p)
 }
 
-// homeExtra is extended by later features (learning progress).
-func (h *Handler) homeExtra(_ *http.Request) map[string]any { return nil }
-
 func (h *Handler) browse(w http.ResponseWriter, r *http.Request) {
 	v := h.viewer(r)
 	q := browseQuery(r)
@@ -195,8 +195,13 @@ type IngredientView struct {
 }
 
 func (h *Handler) detail(w http.ResponseWriter, r *http.Request) {
+	h.renderDetail(w, r, chi.URLParam(r, "slug"), "", "")
+}
+
+// renderDetail renders the recipe page, or one block of it for HTMX swaps.
+func (h *Handler) renderDetail(w http.ResponseWriter, r *http.Request, slug, block, flash string) {
 	v := h.viewer(r)
-	it, err := h.App.Pool.One(r.Context(), v, chi.URLParam(r, "slug"))
+	it, err := h.App.Pool.One(r.Context(), v, slug)
 	if errors.Is(err, recipes.ErrNotFound) {
 		h.NotFound(w, r)
 		return
@@ -212,6 +217,9 @@ func (h *Handler) detail(w http.ResponseWriter, r *http.Request) {
 	}
 	p := web.NewPage(r, "")
 	p.Title = it.Recipe.Name
+	if flash != "" {
+		p.Flash = "flash." + flash
+	}
 	lines := h.ingredientViews(p, it, byID, h.units(r))
 	embed, _ := recipes.EmbedURL(it.Base.VideoURL)
 	data := map[string]any{"Item": it, "Lines": lines, "Embed": embed, "CountryAware": v.Country != ""}
@@ -219,11 +227,12 @@ func (h *Handler) detail(w http.ResponseWriter, r *http.Request) {
 		data[k] = val
 	}
 	p.Data = data
+	if block != "" {
+		h.R.Partial(w, http.StatusOK, "pages/recipe", block, p)
+		return
+	}
 	h.R.Page(w, http.StatusOK, "pages/recipe", p)
 }
-
-// detailExtra is extended by later features (cooked/learned state).
-func (h *Handler) detailExtra(_ *http.Request, _ *pool.Item) map[string]any { return nil }
 
 func (h *Handler) ingredientViews(p *web.Page, it *pool.Item, byID map[int64]ingredients.Ingredient, units string) []IngredientView {
 	subs := map[int]availability.Substitution{}

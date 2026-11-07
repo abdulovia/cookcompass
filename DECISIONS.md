@@ -97,3 +97,9 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Recipe text, descriptions, steps and hand-written ingredient lines are per-locale rows in `recipe_i18n`; recipes without a translation show English text with localized units and ingredient names.
 - Russian plurals use go-i18n CLDR forms (one/few/many/other); unit labels are plural-aware.
 - Locale files must use only English message ids with identical placeholders — checked by `go test ./internal/i18n`.
+
+## Learning
+- "I cooked this" appends to `cooked_log` (any number of times); "learned" is a separate, reversible flag — cooking once doesn't mean you've learned it.
+- Path: 5 easy → 5 medium → 5 hard; a level unlocks when the previous one is complete, but recipes learned early still count toward their level.
+- "Try next" suggests up to 3 unlearned recipes of the current level from the visible pool, recipes already cooked first, then quickest.
+- History and progress include soft-deleted recipes, which is why recipes are only ever soft-deleted.

@@ -283,3 +283,85 @@ func (s *Store) DeleteSession(ctx context.Context, token string) error {
 	_, err := s.db.ExecContext(ctx, `DELETE FROM sessions WHERE token = ?`, token)
 	return err
 }
+
+// LogCooked records that the user cooked a recipe.
+func (s *Store) LogCooked(ctx context.Context, userID, recipeID int64) error {
+	_, err := s.db.ExecContext(ctx, `INSERT INTO cooked_log (user_id, recipe_id, cooked_at) VALUES (?,?,?)`, userID, recipeID, db.Now())
+	return err
+}
+
+// CookedCounts returns how many times the user cooked each recipe.
+func (s *Store) CookedCounts(ctx context.Context, userID int64) (map[int64]int, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id, COUNT(*) FROM cooked_log WHERE user_id = ? GROUP BY recipe_id`, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := map[int64]int{}
+	for rows.Next() {
+		var id int64
+		var n int
+		if err := rows.Scan(&id, &n); err != nil {
+			return nil, err
+		}
+		out[id] = n
+	}
+	return out, rows.Err()
+}
+
+// CookEvent is one entry of the cooking history.
+type CookEvent struct {
+	RecipeID int64
+	At       time.Time
+}
+
+// RecentCooked returns the latest cooking events, newest first.
+func (s *Store) RecentCooked(ctx context.Context, userID int64, limit int) ([]CookEvent, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id, cooked_at FROM cooked_log WHERE user_id = ? ORDER BY cooked_at DESC, id DESC LIMIT ?`,
+		userID, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []CookEvent
+	for rows.Next() {
+		var e CookEvent
+		var at string
+		if err := rows.Scan(&e.RecipeID, &at); err != nil {
+			return nil, err
+		}
+		e.At = db.ParseTime(at)
+		out = append(out, e)
+	}
+	return out, rows.Err()
+}
+
+// SetLearned marks or unmarks a recipe as learned.
+func (s *Store) SetLearned(ctx context.Context, userID, recipeID int64, learned bool) error {
+	var err error
+	if learned {
+		_, err = s.db.ExecContext(ctx, `INSERT OR IGNORE INTO learned (user_id, recipe_id, learned_at) VALUES (?,?,?)`, userID, recipeID, db.Now())
+	} else {
+		_, err = s.db.ExecContext(ctx, `DELETE FROM learned WHERE user_id = ? AND recipe_id = ?`, userID, recipeID)
+	}
+	return err
+}
+
+// Learned returns the user's learned recipes and when they were learned.
+func (s *Store) Learned(ctx context.Context, userID int64) (map[int64]time.Time, error) {
+	rows, err := s.db.QueryContext(ctx, `SELECT recipe_id, learned_at FROM learned WHERE user_id = ?`, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := map[int64]time.Time{}
+	for rows.Next() {
+		var id int64
+		var at string
+		if err := rows.Scan(&id, &at); err != nil {
+			return nil, err
+		}
+		out[id] = db.ParseTime(at)
+	}
+	return out, rows.Err()
+}
