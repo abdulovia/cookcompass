@@ -3,7 +3,7 @@ module github.com/abdulovia/cookcompass
 go 1.24.3
 
 require (
-	github.com/go-chi/chi/v5 v5.2.1
+	github.com/go-chi/chi/v5 v5.4.0
 	github.com/nicksnyder/go-i18n/v2 v2.5.1
 	github.com/pressly/goose/v3 v3.24.3
 	golang.org/x/crypto v0.38.0
