@@ -1,0 +1,252 @@
+[
+  {
+    "line": "2 1/2 cups all-purpose flour, sifted",
+    "parsed": {
+      "quantity": 2.5,
+      "unit": "cup",
+      "name": "all-purpose flour",
+      "note": "sifted",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "½ tsp salt",
+    "parsed": {
+      "quantity": 0.5,
+      "unit": "tsp",
+      "name": "salt",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1½ cups whole milk",
+    "parsed": {
+      "quantity": 1.5,
+      "unit": "cup",
+      "name": "whole milk",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "200g butter, softened",
+    "parsed": {
+      "quantity": 200,
+      "unit": "g",
+      "name": "butter",
+      "note": "softened",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1-2 cloves garlic, minced",
+    "parsed": {
+      "quantity": 1,
+      "unit": "clove",
+      "name": "garlic",
+      "note": "minced",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1 to 2 tbsp olive oil",
+    "parsed": {
+      "quantity": 1,
+      "unit": "tbsp",
+      "name": "olive oil",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "3 large eggs",
+    "parsed": {
+      "quantity": 3,
+      "unit": "",
+      "name": "large eggs",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1 (14 oz) can diced tomatoes, drained",
+    "parsed": {
+      "quantity": 1,
+      "unit": "can",
+      "name": "diced tomatoes",
+      "note": "14 oz; drained",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "Salt and pepper to taste",
+    "parsed": {
+      "quantity": null,
+      "unit": "to taste",
+      "name": "Salt and pepper",
+      "note": "to taste",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "a pinch of saffron",
+    "parsed": {
+      "quantity": 1,
+      "unit": "pinch",
+      "name": "saffron",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "2.5 kg potatoes",
+    "parsed": {
+      "quantity": 2.5,
+      "unit": "kg",
+      "name": "potatoes",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "0,5 l молока",
+    "parsed": {
+      "quantity": 0.5,
+      "unit": "l",
+      "name": "молока",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "2 ст. л. сметаны",
+    "parsed": {
+      "quantity": 2,
+      "unit": "tbsp",
+      "name": "сметаны",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "3 зубчика чеснока",
+    "parsed": {
+      "quantity": 3,
+      "unit": "clove",
+      "name": "чеснока",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "соль по вкусу",
+    "parsed": {
+      "quantity": null,
+      "unit": "to taste",
+      "name": "соль",
+      "note": "по вкусу",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1 fl oz lime juice",
+    "parsed": {
+      "quantity": 1,
+      "unit": "fl oz",
+      "name": "lime juice",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "- 4 boneless skinless chicken breasts",
+    "parsed": {
+      "quantity": 4,
+      "unit": "",
+      "name": "boneless skinless chicken breasts",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "▢ 1 lb ground beef (80/20)",
+    "parsed": {
+      "quantity": 1,
+      "unit": "lb",
+      "name": "ground beef",
+      "note": "80/20",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "fresh basil leaves, for garnish",
+    "parsed": {
+      "quantity": null,
+      "unit": "",
+      "name": "fresh basil leaves",
+      "note": "for garnish",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "handful of spinach",
+    "parsed": {
+      "quantity": null,
+      "unit": "handful",
+      "name": "spinach",
+      "note": "",
+      "needs_review": true
+    }
+  },
+  {
+    "line": "1/3 cup sugar",
+    "parsed": {
+      "quantity": 0.3333333333333333,
+      "unit": "cup",
+      "name": "sugar",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "1 c rice",
+    "parsed": {
+      "quantity": 1,
+      "unit": "cup",
+      "name": "rice",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "2 T honey",
+    "parsed": {
+      "quantity": 2,
+      "unit": "tbsp",
+      "name": "honey",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "12 sheets nori",
+    "parsed": {
+      "quantity": 12,
+      "unit": "sheet",
+      "name": "nori",
+      "note": "",
+      "needs_review": false
+    }
+  },
+  {
+    "line": "3",
+    "parsed": {
+      "quantity": 3,
+      "unit": "",
+      "name": "",
+      "note": "",
+      "needs_review": true
+    }
+  }
+]
