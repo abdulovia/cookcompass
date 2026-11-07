@@ -5,6 +5,10 @@ It ships ready to use: 46 bilingual (EN/RU) beginner-friendly recipes from 14 cu
 for 4 countries, a UI in English, Russian, German, Spanish and French, a daily meal plan for your nutrition goal,
 a learning path from easy to hard, and a shopping list with "buy" links into your own shop. No cloud, no tracking.
 
+| Recipe: scaler, buy links, nutrition | Learning path: easy → medium → hard | Settings: country, city, shop |
+|---|---|---|
+| [![Recipe page](docs/screenshots/recipe.png)](docs/screenshots/recipe.png) | [![Learning path](docs/screenshots/learn.png)](docs/screenshots/learn.png) | [![Settings](docs/screenshots/settings.png)](docs/screenshots/settings.png) |
+
 ## Install (2 minutes)
 
 You need Docker with Compose v2 and `make`. Go 1.24 is only needed to build from source.
@@ -51,7 +55,4 @@ LibreTranslate that drafts recipe translations for review).
 - [docs/architecture.md](docs/architecture.md): how the pieces fit together
 - [docs/ingestion.md](docs/ingestion.md) · [docs/pipelines.md](docs/pipelines.md) · [scripts/add-locale.md](scripts/add-locale.md)
 - [DECISIONS.md](DECISIONS.md) (every open choice, one line each) · [CHANGELOG.md](CHANGELOG.md)
-
-## License
-
-[MIT](LICENSE). The bundled recipes and data are part of the project; recipes you import keep the terms of their source (see [docs/recipes.md](docs/recipes.md)).
+- License: [MIT](LICENSE); imported recipes keep their source's terms ([docs/recipes.md](docs/recipes.md))
