@@ -1,0 +1,144 @@
+{
+  "slug": "seafood-paella",
+  "cuisine": "spanish",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 20,
+  "cook_minutes": 45,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=spanish+paella+recipe",
+  "nutrition": {
+    "calories": 540,
+    "protein": 36,
+    "fat": 15,
+    "carbs": 62,
+    "fiber": 3,
+    "sugar": 4,
+    "sodium": 950,
+    "saturated_fat": 4
+  },
+  "ingredients": [
+    {
+      "text": "400 g short-grain rice",
+      "ingredient": "short-grain-rice"
+    },
+    {
+      "text": "500 g chicken thighs, cut into chunks",
+      "ingredient": "chicken-thigh"
+    },
+    {
+      "text": "300 g shrimp",
+      "ingredient": "shrimp",
+      "essential": false
+    },
+    {
+      "text": "300 g mussels, cleaned",
+      "ingredient": "mussels",
+      "essential": false
+    },
+    {
+      "text": "100 g chorizo, sliced",
+      "ingredient": "chorizo",
+      "essential": false
+    },
+    {
+      "text": "1 onion, finely chopped",
+      "ingredient": "onion"
+    },
+    {
+      "text": "1 red bell pepper, sliced",
+      "ingredient": "bell-pepper"
+    },
+    {
+      "text": "3 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "2 tomatoes, grated",
+      "ingredient": "tomato"
+    },
+    {
+      "text": "1 tsp smoked paprika",
+      "ingredient": "smoked-paprika"
+    },
+    {
+      "text": "1 pinch saffron",
+      "ingredient": "saffron"
+    },
+    {
+      "text": "1.2 l chicken stock",
+      "ingredient": "chicken-stock"
+    },
+    {
+      "text": "1/2 cup frozen peas",
+      "ingredient": "peas",
+      "essential": false
+    },
+    {
+      "text": "1 lemon, cut into wedges",
+      "ingredient": "lemon",
+      "essential": false
+    },
+    {
+      "text": "3 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1 tsp salt",
+      "ingredient": "salt"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Seafood & Chicken Paella",
+      "description": "Spain's famous rice pan with a crispy bottom (socarrat). Teaches timing several ingredients and cooking rice without stirring.",
+      "steps": [
+        "Warm the stock in a pot and crumble in the saffron. Keep it hot on a back burner.",
+        "Season the chicken with salt. Heat the olive oil in a paella pan or your widest frying pan over medium-high heat. Brown the chicken 6–8 minutes, then push it to the edges.",
+        "Add the chorizo, onion and pepper to the centre and cook 5 minutes until soft. Add the garlic and paprika and stir 30 seconds.",
+        "Grate the tomatoes on a box grater, discarding the skins, and add the pulp. Cook 3 minutes until it darkens slightly.",
+        "Sprinkle the rice evenly over the pan and stir once to coat it in the oil. This is the last time you stir!",
+        "Pour in the hot stock, shake the pan to spread the rice evenly and bring to a strong simmer. Cook 10 minutes without stirring.",
+        "Lower the heat. Press the shrimp and mussels (hinge side down) into the rice and scatter over the peas. Cook 8–10 minutes more until the liquid is absorbed and the mussels open. Throw away any mussels that stay closed.",
+        "For the crispy bottom, turn the heat up for the last 1–2 minutes; you'll hear a gentle crackle and smell toasting rice. Stop before it smells burnt.",
+        "Cover the pan with a clean towel and rest 5 minutes. Serve from the pan with lemon wedges."
+      ]
+    },
+    "ru": {
+      "name": "Паэлья с морепродуктами и курицей",
+      "description": "Знаменитый испанский рис со хрустящей корочкой на дне (сокаррат). Учит выстраивать тайминг и готовить рис без помешивания.",
+      "steps": [
+        "Нагрейте бульон в кастрюле и раскрошите в него шафран. Держите горячим на дальней конфорке.",
+        "Посолите курицу. Разогрейте оливковое масло в сковороде для паэльи или самой широкой сковороде на огне выше среднего. Обжарьте курицу 6–8 минут и сдвиньте к краям.",
+        "В центр выложите чоризо, лук и перец и готовьте 5 минут до мягкости. Добавьте чеснок и паприку и помешайте 30 секунд.",
+        "Натрите помидоры на тёрке, выбросив кожицу, и добавьте мякоть. Готовьте 3 минуты, пока она слегка не потемнеет.",
+        "Равномерно распределите рис по сковороде и перемешайте один раз, чтобы он покрылся маслом. Больше не мешайте!",
+        "Влейте горячий бульон, встряхните сковороду, чтобы рис лёг ровно, и доведите до активного кипения. Готовьте 10 минут без помешивания.",
+        "Убавьте огонь. Вдавите в рис креветки и мидии (шарниром вниз) и посыпьте горошком. Готовьте ещё 8–10 минут, пока жидкость не впитается, а мидии не раскроются. Нераскрывшиеся мидии выбросьте.",
+        "Для корочки прибавьте огонь на последние 1–2 минуты: послышится лёгкое потрескивание и запах поджаренного риса. Остановитесь, пока не запахло горелым.",
+        "Накройте сковороду чистым полотенцем и дайте постоять 5 минут. Подавайте прямо в сковороде с дольками лимона."
+      ],
+      "ingredients": [
+        "400 г круглозёрного риса",
+        "500 г куриных бёдер кусочками",
+        "300 г креветок",
+        "300 г очищенных мидий",
+        "100 г чоризо ломтиками",
+        "1 луковица",
+        "1 красный болгарский перец",
+        "3 зубчика чеснока",
+        "2 тёртых помидора",
+        "1 ч. л. копчёной паприки",
+        "щепотка шафрана",
+        "1,2 л куриного бульона",
+        "½ стакана горошка",
+        "1 лимон дольками",
+        "3 ст. л. оливкового масла",
+        "1 ч. л. соли"
+      ]
+    }
+  }
+}

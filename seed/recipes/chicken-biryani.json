@@ -1,0 +1,147 @@
+{
+  "slug": "chicken-biryani",
+  "cuisine": "indian",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 40,
+  "cook_minutes": 60,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=chicken+biryani+recipe+step+by+step",
+  "nutrition": {
+    "calories": 610,
+    "protein": 38,
+    "fat": 20,
+    "carbs": 68,
+    "fiber": 3,
+    "sugar": 6,
+    "sodium": 780,
+    "saturated_fat": 7
+  },
+  "ingredients": [
+    {
+      "text": "400 g basmati rice",
+      "ingredient": "basmati-rice"
+    },
+    {
+      "text": "800 g chicken thighs, cut into pieces",
+      "ingredient": "chicken-thigh"
+    },
+    {
+      "text": "200 g yogurt",
+      "ingredient": "yogurt"
+    },
+    {
+      "text": "3 onions, thinly sliced",
+      "ingredient": "onion"
+    },
+    {
+      "text": "4 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 tbsp ginger, grated",
+      "ingredient": "ginger"
+    },
+    {
+      "text": "2 tsp garam masala",
+      "ingredient": "garam-masala"
+    },
+    {
+      "text": "1 tsp turmeric",
+      "ingredient": "turmeric"
+    },
+    {
+      "text": "1 tsp chili powder",
+      "ingredient": "chili-powder",
+      "essential": false
+    },
+    {
+      "text": "4 cardamom pods",
+      "ingredient": "cardamom",
+      "essential": false
+    },
+    {
+      "text": "1 pinch saffron, soaked in 2 tbsp warm milk",
+      "ingredient": "saffron",
+      "essential": false
+    },
+    {
+      "text": "1 handful mint leaves",
+      "ingredient": "mint",
+      "essential": false
+    },
+    {
+      "text": "1 handful cilantro",
+      "ingredient": "cilantro",
+      "essential": false
+    },
+    {
+      "text": "3 tbsp butter",
+      "ingredient": "butter"
+    },
+    {
+      "text": "3 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1/2 lemon, juiced",
+      "ingredient": "lemon",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Chicken Biryani",
+      "description": "Layered spiced chicken and fragrant rice, steamed together. A weekend project that teaches marinating, par-boiling rice and steaming.",
+      "steps": [
+        "Mix the yogurt, garlic, ginger, garam masala, turmeric, chili powder, lemon juice and 1 tsp salt in a bowl. Add the chicken, stir to coat and marinate for at least 30 minutes (or overnight in the fridge).",
+        "Rinse the rice in a sieve under cold water until the water runs almost clear, then soak it in a bowl of water for 20 minutes. This keeps the grains long and separate.",
+        "Heat the oil in a large heavy pot over medium heat. Fry the onions for 15–20 minutes, stirring often, until deep golden brown. Lift out half for the topping.",
+        "Add the chicken and its marinade to the pot. Cook 15 minutes over medium heat, stirring sometimes, until the chicken is almost cooked and the sauce is thick.",
+        "Meanwhile boil a large pot of water with 1 tsp salt and the cardamom. Drain the rice and boil it for exactly 5 minutes — it should be about 70% cooked, still firm in the centre. Drain.",
+        "Spread the rice over the chicken in an even layer. Drizzle with the saffron milk and melted butter, and scatter the fried onions, mint and cilantro on top.",
+        "Cover the pot tightly — put a clean towel under the lid if it isn't snug — and cook on the lowest heat for 25 minutes. The steam finishes the rice.",
+        "Turn off the heat and leave it covered for 10 minutes. Gently mix from the bottom with a big spoon as you serve, so everyone gets rice and chicken."
+      ]
+    },
+    "ru": {
+      "name": "Бирьяни с курицей",
+      "description": "Слои пряной курицы и ароматного риса, доведённые на пару. Проект на выходные: маринование, предварительная варка риса и томление.",
+      "steps": [
+        "Смешайте в миске йогурт, чеснок, имбирь, гарам масалу, куркуму, молотый чили, лимонный сок и 1 ч. л. соли. Добавьте курицу, перемешайте и маринуйте минимум 30 минут (или ночь в холодильнике).",
+        "Промойте рис в сите холодной водой, пока вода не станет почти прозрачной, затем замочите в миске с водой на 20 минут. Так зёрна останутся длинными и рассыпчатыми.",
+        "Разогрейте масло в большой толстостенной кастрюле на среднем огне. Жарьте лук 15–20 минут, часто помешивая, до тёмно-золотистого цвета. Половину выньте для посыпки.",
+        "Добавьте курицу с маринадом. Готовьте 15 минут на среднем огне, иногда помешивая, пока курица почти не приготовится, а соус не загустеет.",
+        "Тем временем вскипятите большую кастрюлю воды с 1 ч. л. соли и кардамоном. Слейте воду с риса и варите его ровно 5 минут — он должен быть готов примерно на 70% и твёрдым в центре. Откиньте.",
+        "Выложите рис ровным слоем на курицу. Полейте шафрановым молоком и растопленным маслом, посыпьте жареным луком, мятой и кинзой.",
+        "Плотно накройте кастрюлю — если крышка неплотная, положите под неё чистое полотенце — и готовьте на самом слабом огне 25 минут. Пар доведёт рис.",
+        "Выключите огонь и оставьте под крышкой на 10 минут. При подаче аккуратно перемешивайте большой ложкой со дна, чтобы каждому досталось и риса, и курицы."
+      ],
+      "ingredients": [
+        "400 г риса басмати",
+        "800 г куриных бёдер кусочками",
+        "200 г йогурта",
+        "3 луковицы, тонко нарезанные",
+        "4 зубчика чеснока",
+        "1 ст. л. тёртого имбиря",
+        "2 ч. л. гарам масалы",
+        "1 ч. л. куркумы",
+        "1 ч. л. молотого чили",
+        "4 коробочки кардамона",
+        "щепотка шафрана в 2 ст. л. тёплого молока",
+        "горсть мяты",
+        "горсть кинзы",
+        "3 ст. л. сливочного масла",
+        "3 ст. л. растительного масла",
+        "2 ч. л. соли",
+        "сок ½ лимона"
+      ]
+    }
+  }
+}

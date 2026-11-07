@@ -1,0 +1,102 @@
+{
+  "slug": "chicken-quesadillas",
+  "cuisine": "mexican",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 15,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=chicken+quesadilla+recipe",
+  "nutrition": {
+    "calories": 610,
+    "protein": 42,
+    "fat": 30,
+    "carbs": 42,
+    "fiber": 3,
+    "sugar": 4,
+    "sodium": 890,
+    "saturated_fat": 14
+  },
+  "ingredients": [
+    {
+      "text": "4 flour tortillas",
+      "ingredient": "flour-tortillas"
+    },
+    {
+      "text": "250 g chicken breast",
+      "ingredient": "chicken-breast"
+    },
+    {
+      "text": "150 g cheddar, grated",
+      "ingredient": "cheddar"
+    },
+    {
+      "text": "1 bell pepper, thinly sliced",
+      "ingredient": "bell-pepper",
+      "essential": false
+    },
+    {
+      "text": "1/2 onion, thinly sliced",
+      "ingredient": "onion",
+      "essential": false
+    },
+    {
+      "text": "1 tsp cumin",
+      "ingredient": "cumin",
+      "essential": false
+    },
+    {
+      "text": "1 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "sour cream, for serving",
+      "ingredient": "sour-cream",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Chicken Quesadillas",
+      "description": "Crispy tortillas filled with spiced chicken and melted cheese. A fast weeknight lunch that teaches pan-searing chicken.",
+      "steps": [
+        "Slice the chicken breast into thin strips. Season with the cumin and salt.",
+        "Heat half the oil in a frying pan over medium-high heat. Cook the chicken for 5–6 minutes, stirring, until no pink remains inside. Move to a plate.",
+        "In the same pan cook the pepper and onion for 4 minutes until soft.",
+        "Lay a tortilla flat. Cover half of it with cheese, chicken and vegetables, then a little more cheese (the cheese glues it together). Fold the empty half over.",
+        "Wipe the pan, brush with the remaining oil and set over medium heat. Cook the quesadillas 2–3 minutes per side, pressing gently with a spatula, until golden and the cheese has melted.",
+        "Rest 1 minute, cut into wedges and serve with sour cream."
+      ]
+    },
+    "ru": {
+      "name": "Кесадилья с курицей",
+      "description": "Хрустящие тортильи с пряной курицей и расплавленным сыром. Быстрый обед, который учит обжаривать курицу.",
+      "steps": [
+        "Нарежьте куриное филе тонкими полосками. Приправьте зирой и солью.",
+        "Разогрейте половину масла на сковороде на огне выше среднего. Жарьте курицу 5–6 минут, помешивая, пока внутри не исчезнет розовый цвет. Переложите на тарелку.",
+        "На той же сковороде обжарьте перец и лук 4 минуты до мягкости.",
+        "Положите тортилью. На одну половину выложите сыр, курицу и овощи, затем ещё немного сыра (он склеит начинку). Накройте второй половиной.",
+        "Протрите сковороду, смажьте оставшимся маслом и поставьте на средний огонь. Жарьте кесадильи по 2–3 минуты с каждой стороны, слегка прижимая лопаткой, до золотистого цвета и расплавленного сыра.",
+        "Дайте постоять минуту, нарежьте треугольниками и подавайте со сметаной."
+      ],
+      "ingredients": [
+        "4 пшеничные тортильи",
+        "250 г куриного филе",
+        "150 г тёртого чеддера",
+        "1 болгарский перец соломкой",
+        "½ луковицы",
+        "1 ч. л. зиры",
+        "1 ст. л. растительного масла",
+        "½ ч. л. соли",
+        "сметана для подачи"
+      ]
+    }
+  }
+}

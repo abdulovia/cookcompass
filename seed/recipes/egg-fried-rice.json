@@ -1,0 +1,108 @@
+{
+  "slug": "egg-fried-rice",
+  "cuisine": "chinese",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 10,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=egg+fried+rice+recipe",
+  "nutrition": {
+    "calories": 480,
+    "protein": 15,
+    "fat": 18,
+    "carbs": 62,
+    "fiber": 3,
+    "sugar": 3,
+    "sodium": 890,
+    "saturated_fat": 3
+  },
+  "ingredients": [
+    {
+      "text": "3 cups cold cooked rice",
+      "ingredient": "long-grain-rice"
+    },
+    {
+      "text": "2 eggs",
+      "ingredient": "egg"
+    },
+    {
+      "text": "1/2 cup frozen peas",
+      "ingredient": "peas",
+      "essential": false
+    },
+    {
+      "text": "1 carrot, finely diced",
+      "ingredient": "carrot",
+      "essential": false
+    },
+    {
+      "text": "3 scallions, sliced",
+      "ingredient": "scallion"
+    },
+    {
+      "text": "2 tbsp soy sauce",
+      "ingredient": "soy-sauce"
+    },
+    {
+      "text": "1 tsp sesame oil",
+      "ingredient": "sesame-oil",
+      "essential": false
+    },
+    {
+      "text": "2 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "2 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "1 pinch salt",
+      "ingredient": "salt"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Egg Fried Rice",
+      "description": "The best use for yesterday's rice. Teaches high-heat stir-frying in under 10 minutes.",
+      "steps": [
+        "Use rice cooked at least a few hours ago and chilled: fresh rice is too wet and turns mushy. Break up any clumps with your fingers.",
+        "Beat the eggs with the salt. Have every other ingredient chopped and next to the stove.",
+        "Heat a wok or large frying pan over high heat until very hot. Add 1 tablespoon of oil, pour in the eggs and scramble for 30 seconds until just set. Move them to a plate.",
+        "Add the remaining oil, then the carrot and peas, and stir-fry for 2 minutes. Add the garlic and white parts of the scallions for 30 seconds.",
+        "Add the rice. Spread it out and let it sit for 30 seconds to toast, then toss. Repeat for 3–4 minutes until every grain is hot.",
+        "Pour the soy sauce around the edge of the pan (it sizzles and caramelises), return the eggs and toss everything together.",
+        "Turn off the heat, drizzle with sesame oil, add the green parts of the scallions and serve."
+      ]
+    },
+    "ru": {
+      "name": "Жареный рис с яйцом",
+      "description": "Лучшее применение вчерашнему рису. Учит жарке на сильном огне меньше чем за 10 минут.",
+      "steps": [
+        "Возьмите рис, сваренный хотя бы несколько часов назад и охлаждённый: свежий рис слишком влажный и превращается в кашу. Разомните комочки пальцами.",
+        "Взбейте яйца с солью. Все остальные продукты нарежьте и поставьте у плиты.",
+        "Сильно раскалите вок или большую сковороду. Налейте 1 ст. л. масла, влейте яйца и мешайте 30 секунд, пока они едва схватятся. Переложите на тарелку.",
+        "Добавьте оставшееся масло, затем морковь и горошек и жарьте 2 минуты. Добавьте чеснок и белые части зелёного лука на 30 секунд.",
+        "Добавьте рис. Распределите его и оставьте на 30 секунд, чтобы он подрумянился, затем перемешайте. Повторяйте 3–4 минуты, пока каждое зерно не прогреется.",
+        "Влейте соевый соус по краю сковороды (он зашипит и карамелизуется), верните яйца и всё перемешайте.",
+        "Выключите огонь, сбрызните кунжутным маслом, добавьте зелёные части лука и подавайте."
+      ],
+      "ingredients": [
+        "3 стакана холодного варёного риса",
+        "2 яйца",
+        "½ стакана замороженного горошка",
+        "1 морковь мелким кубиком",
+        "3 стебля зелёного лука",
+        "2 ст. л. соевого соуса",
+        "1 ч. л. кунжутного масла",
+        "2 зубчика чеснока",
+        "2 ст. л. растительного масла",
+        "щепотка соли"
+      ]
+    }
+  }
+}

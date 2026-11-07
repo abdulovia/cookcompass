@@ -1,0 +1,122 @@
+{
+  "slug": "pork-gyoza",
+  "cuisine": "japanese",
+  "meal_times": [
+    "dinner",
+    "snack"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 45,
+  "cook_minutes": 15,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=how+to+make+gyoza+dumplings",
+  "nutrition": {
+    "calories": 380,
+    "protein": 19,
+    "fat": 17,
+    "carbs": 36,
+    "fiber": 2.5,
+    "sugar": 2,
+    "sodium": 860,
+    "saturated_fat": 5
+  },
+  "ingredients": [
+    {
+      "text": "30 gyoza wrappers",
+      "ingredient": "dumpling-wrappers"
+    },
+    {
+      "text": "300 g ground pork",
+      "ingredient": "ground-pork"
+    },
+    {
+      "text": "200 g cabbage, very finely chopped",
+      "ingredient": "cabbage"
+    },
+    {
+      "text": "2 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 tbsp ginger, grated",
+      "ingredient": "ginger"
+    },
+    {
+      "text": "2 scallions, finely chopped",
+      "ingredient": "scallion",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp soy sauce",
+      "ingredient": "soy-sauce"
+    },
+    {
+      "text": "1 tsp sesame oil",
+      "ingredient": "sesame-oil",
+      "essential": false
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "2 tbsp rice vinegar, for dipping",
+      "ingredient": "rice-vinegar",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "100 ml water",
+      "ingredient": "water"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Pork Gyoza",
+      "description": "Japanese pan-fried dumplings with crispy bottoms and juicy filling. Teaches pleating — slow at first, then oddly relaxing.",
+      "steps": [
+        "Mix the chopped cabbage with the salt and leave 10 minutes. Squeeze it hard in your fists or a clean towel to remove the water — otherwise the filling gets soggy.",
+        "In a bowl combine the pork, cabbage, garlic, ginger, scallions, 1 tablespoon of soy sauce and the sesame oil. Mix with your hand for 1 minute until sticky.",
+        "Set up: wrappers under a damp towel so they don't dry out, a small bowl of water, and a floured plate for finished dumplings.",
+        "Hold a wrapper in your palm and put 1 heaped teaspoon of filling in the centre. Wet half the edge with your fingertip.",
+        "Fold the wrapper in half without sealing. Starting at one end, make 5–6 small pleats on the front edge only, pressing each pleat against the flat back edge. Press firmly to seal. Don't worry if the first ones look rough.",
+        "Heat 1 tablespoon of oil in a large non-stick pan with a lid over medium heat. Place the gyoza flat side down in a single layer, touching slightly. Fry 2–3 minutes until the bottoms are golden.",
+        "Pour in about 50 ml of water per batch — it will spit, so stand back — and cover immediately. Steam 5–6 minutes until the water is gone and the wrappers look translucent.",
+        "Uncover and cook 1 more minute to re-crisp the bottoms. Repeat with the rest.",
+        "Mix the remaining soy sauce with the rice vinegar for dipping and serve the gyoza crispy side up."
+      ]
+    },
+    "ru": {
+      "name": "Гёдза со свининой",
+      "description": "Японские жареные пельмешки с хрустящим донышком и сочной начинкой. Учит защипам — сначала медленно, потом даже успокаивает.",
+      "steps": [
+        "Смешайте мелко нарезанную капусту с солью и оставьте на 10 минут. Крепко отожмите её руками или в чистом полотенце — иначе начинка будет водянистой.",
+        "В миске соедините свинину, капусту, чеснок, имбирь, зелёный лук, 1 ст. л. соевого соуса и кунжутное масло. Вымешивайте рукой минуту, пока масса не станет липкой.",
+        "Подготовьте место: листы теста под влажным полотенцем, чтобы не подсохли, мисочка воды и тарелка, присыпанная мукой, для готовых гёдза.",
+        "Положите лист теста на ладонь и выложите в центр чайную ложку начинки с горкой. Смочите пальцем половину края.",
+        "Сложите лист пополам, не защипывая. Начиная с одного конца, сделайте 5–6 маленьких складок только на переднем крае, прижимая каждую к ровному заднему краю. Плотно защипните. Не переживайте, если первые выглядят неровно.",
+        "Разогрейте 1 ст. л. масла в большой антипригарной сковороде с крышкой на среднем огне. Выложите гёдза плоской стороной вниз в один слой, чуть касаясь друг друга. Жарьте 2–3 минуты до золотистого низа.",
+        "Влейте примерно 50 мл воды на партию — будет брызгать, отойдите — и сразу накройте крышкой. Готовьте на пару 5–6 минут, пока вода не уйдёт, а тесто не станет полупрозрачным.",
+        "Снимите крышку и жарьте ещё минуту, чтобы донышки снова захрустели. Повторите с остальными.",
+        "Смешайте оставшийся соевый соус с рисовым уксусом для макания и подавайте гёдза хрустящей стороной вверх."
+      ],
+      "ingredients": [
+        "30 листов теста для гёдза",
+        "300 г свиного фарша",
+        "200 г очень мелко нарезанной капусты",
+        "2 зубчика чеснока",
+        "1 ст. л. тёртого имбиря",
+        "2 стебля зелёного лука",
+        "2 ст. л. соевого соуса",
+        "1 ч. л. кунжутного масла",
+        "½ ч. л. соли",
+        "2 ст. л. рисового уксуса для соуса",
+        "2 ст. л. растительного масла",
+        "100 мл воды"
+      ]
+    }
+  }
+}

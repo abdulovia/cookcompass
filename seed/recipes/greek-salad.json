@@ -1,0 +1,106 @@
+{
+  "slug": "greek-salad",
+  "cuisine": "greek",
+  "meal_times": [
+    "lunch",
+    "snack"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 15,
+  "cook_minutes": 0,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=greek+salad+horiatiki",
+  "nutrition": {
+    "calories": 240,
+    "protein": 7,
+    "fat": 20,
+    "carbs": 9,
+    "fiber": 2.5,
+    "sugar": 6,
+    "sodium": 690,
+    "saturated_fat": 7
+  },
+  "ingredients": [
+    {
+      "text": "4 tomatoes, cut into wedges",
+      "ingredient": "tomato"
+    },
+    {
+      "text": "1 cucumber, sliced",
+      "ingredient": "cucumber"
+    },
+    {
+      "text": "1/2 red onion, thinly sliced",
+      "ingredient": "red-onion"
+    },
+    {
+      "text": "1 green bell pepper, sliced",
+      "ingredient": "bell-pepper",
+      "essential": false
+    },
+    {
+      "text": "1/2 cup olives",
+      "ingredient": "olives",
+      "essential": false
+    },
+    {
+      "text": "200 g feta",
+      "ingredient": "feta"
+    },
+    {
+      "text": "4 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1 tbsp red wine vinegar",
+      "ingredient": "red-wine-vinegar",
+      "essential": false
+    },
+    {
+      "text": "1 tsp oregano",
+      "ingredient": "oregano"
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Greek Salad",
+      "description": "A chunky village salad with a whole slab of feta. Teaches cutting vegetables evenly and making a simple dressing.",
+      "steps": [
+        "Cut the tomatoes into wedges and the cucumber into thick half-moons. Big chunks are traditional — this isn't a fiddly salad.",
+        "Slice the onion as thinly as you can. If its taste is too sharp for you, soak the slices in cold water for 5 minutes and drain.",
+        "Put the tomatoes, cucumber, onion, pepper and olives in a wide bowl. Sprinkle with the salt and toss gently.",
+        "Whisk the olive oil and vinegar in a cup with a fork.",
+        "Lay the feta on top in one piece, pour over the dressing and sprinkle the oregano over everything.",
+        "Serve immediately; break up the feta at the table. Mop up the juices with bread."
+      ]
+    },
+    "ru": {
+      "name": "Греческий салат",
+      "description": "Крупно нарезанный деревенский салат с целым куском феты. Учит ровной нарезке и простой заправке.",
+      "steps": [
+        "Нарежьте помидоры дольками, а огурец — толстыми полукольцами. Крупная нарезка — это традиция.",
+        "Нарежьте лук как можно тоньше. Если он слишком резкий, замочите кольца в холодной воде на 5 минут и слейте воду.",
+        "Сложите помидоры, огурец, лук, перец и оливки в широкую миску. Посолите и аккуратно перемешайте.",
+        "Взбейте в чашке вилкой оливковое масло с уксусом.",
+        "Положите сверху фету целым куском, полейте заправкой и посыпьте всё орегано.",
+        "Подавайте сразу, фету разламывайте за столом. Сок макайте хлебом."
+      ],
+      "ingredients": [
+        "4 помидора дольками",
+        "1 огурец",
+        "½ красной луковицы",
+        "1 зелёный болгарский перец",
+        "½ стакана оливок",
+        "200 г феты",
+        "4 ст. л. оливкового масла",
+        "1 ст. л. красного винного уксуса",
+        "1 ч. л. орегано",
+        "½ ч. л. соли"
+      ]
+    }
+  }
+}

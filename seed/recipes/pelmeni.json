@@ -1,0 +1,122 @@
+{
+  "slug": "pelmeni",
+  "cuisine": "russian",
+  "meal_times": [
+    "dinner"
+  ],
+  "difficulty": "hard",
+  "prep_minutes": 60,
+  "cook_minutes": 10,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=homemade+pelmeni+recipe",
+  "nutrition": {
+    "calories": 520,
+    "protein": 27,
+    "fat": 22,
+    "carbs": 52,
+    "fiber": 2,
+    "sugar": 1,
+    "sodium": 640,
+    "saturated_fat": 8
+  },
+  "ingredients": [
+    {
+      "text": "500 g flour",
+      "ingredient": "all-purpose-flour"
+    },
+    {
+      "text": "1 egg",
+      "ingredient": "egg"
+    },
+    {
+      "text": "200 ml water",
+      "ingredient": "water"
+    },
+    {
+      "text": "1 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "300 g ground beef",
+      "ingredient": "ground-beef"
+    },
+    {
+      "text": "300 g ground pork",
+      "ingredient": "ground-pork"
+    },
+    {
+      "text": "1 onion, grated",
+      "ingredient": "onion"
+    },
+    {
+      "text": "1/2 tsp black pepper",
+      "ingredient": "black-pepper"
+    },
+    {
+      "text": "2 bay leaves",
+      "ingredient": "bay-leaf",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp butter",
+      "ingredient": "butter",
+      "essential": false
+    },
+    {
+      "text": "sour cream, for serving",
+      "ingredient": "sour-cream",
+      "essential": false
+    },
+    {
+      "text": "dill, for garnish",
+      "ingredient": "dill",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Pelmeni (Russian Dumplings)",
+      "description": "Small meat dumplings, a Siberian classic. Teaches making and rolling a simple dough. Freeze extras for quick dinners.",
+      "steps": [
+        "Make the dough: mix the flour and half the salt in a bowl. Add the egg and water and stir, then knead on a floured surface for 8–10 minutes until smooth and elastic. Wrap and rest 30 minutes — resting makes it easier to roll.",
+        "Make the filling: mix the beef, pork, grated onion, pepper, remaining salt and 2 tablespoons of cold water until sticky.",
+        "Cut the dough into 4 pieces; keep the ones you aren't using covered. Roll one piece on a floured surface as thin as you can — about 1–2 mm, nearly see-through.",
+        "Cut circles with a glass about 6 cm across. Put ½ teaspoon of filling on each.",
+        "Fold each circle into a half-moon and pinch the edges firmly. Then bring the two corners together and press them to make the classic 'ear' shape.",
+        "Put finished pelmeni on a floured tray in one layer. To freeze, put the tray in the freezer for 1 hour, then move them to a bag.",
+        "Bring a large pot of salted water to a boil with the bay leaves. Drop in the pelmeni and stir once so they don't stick.",
+        "When they float to the top, cook 3–4 minutes more (5–6 if frozen). Lift out with a slotted spoon.",
+        "Toss with butter and serve with sour cream and dill."
+      ]
+    },
+    "ru": {
+      "name": "Пельмени",
+      "description": "Маленькие пельмени с мясом — сибирская классика. Учит замешивать и раскатывать простое тесто. Излишки заморозьте для быстрых ужинов.",
+      "steps": [
+        "Тесто: смешайте муку с половиной соли. Добавьте яйцо и воду, перемешайте, затем вымешивайте на присыпанной мукой поверхности 8–10 минут до гладкости и эластичности. Заверните и дайте отдохнуть 30 минут — так его легче раскатать.",
+        "Начинка: смешайте говядину, свинину, тёртый лук, перец, оставшуюся соль и 2 ст. л. холодной воды до липкости.",
+        "Разделите тесто на 4 части; неиспользуемые держите накрытыми. Раскатайте одну часть на присыпанной мукой поверхности как можно тоньше — 1–2 мм, почти прозрачно.",
+        "Вырежьте стаканом кружки диаметром около 6 см. На каждый положите ½ ч. л. начинки.",
+        "Сложите кружок полумесяцем и плотно защипните края. Затем соедините два уголка и прижмите — получится классическое «ушко».",
+        "Выкладывайте готовые пельмени на посыпанный мукой поднос в один слой. Для заморозки поставьте поднос в морозилку на час, потом пересыпьте в пакет.",
+        "Доведите большую кастрюлю подсоленной воды до кипения с лавровым листом. Опустите пельмени и один раз перемешайте, чтобы не слиплись.",
+        "Когда всплывут, варите ещё 3–4 минуты (5–6, если замороженные). Выньте шумовкой.",
+        "Перемешайте со сливочным маслом и подавайте со сметаной и укропом."
+      ],
+      "ingredients": [
+        "500 г муки",
+        "1 яйцо",
+        "200 мл воды",
+        "1 ч. л. соли",
+        "300 г говяжьего фарша",
+        "300 г свиного фарша",
+        "1 луковица, тёртая",
+        "½ ч. л. чёрного перца",
+        "2 лавровых листа",
+        "2 ст. л. сливочного масла",
+        "сметана для подачи",
+        "укроп для подачи"
+      ]
+    }
+  }
+}

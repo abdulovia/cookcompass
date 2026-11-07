@@ -1,0 +1,85 @@
+{
+  "slug": "porridge-with-berries",
+  "cuisine": "british",
+  "meal_times": [
+    "breakfast"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 2,
+  "cook_minutes": 8,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=creamy+porridge+oats+recipe",
+  "nutrition": {
+    "calories": 330,
+    "protein": 11,
+    "fat": 8,
+    "carbs": 54,
+    "fiber": 6,
+    "sugar": 17,
+    "sodium": 120,
+    "saturated_fat": 3
+  },
+  "ingredients": [
+    {
+      "text": "1 cup rolled oats",
+      "ingredient": "rolled-oats"
+    },
+    {
+      "text": "2 cups milk",
+      "ingredient": "milk"
+    },
+    {
+      "text": "1 pinch salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1 tbsp honey",
+      "ingredient": "honey",
+      "essential": false
+    },
+    {
+      "text": "1 cup berries",
+      "ingredient": "berries",
+      "essential": false
+    },
+    {
+      "text": "1/4 tsp cinnamon",
+      "ingredient": "cinnamon",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Creamy Porridge with Berries",
+      "description": "A warm, filling breakfast in 10 minutes. Teaches you to simmer gently and stir so nothing sticks.",
+      "steps": [
+        "Put the oats, milk and salt into a small saucepan. Measure with the same cup for oats and milk so the ratio is right (1 part oats to 2 parts milk).",
+        "Set the pan over medium heat and stir with a spoon until it starts to bubble at the edges, about 3 minutes.",
+        "Turn the heat down to low. Simmer for 4–5 minutes, stirring often and scraping the bottom, until the oats are soft and creamy.",
+        "If it gets too thick, stir in a splash of milk or water. Porridge thickens more as it stands.",
+        "Take the pan off the heat and stir in the cinnamon.",
+        "Spoon into bowls, top with berries and drizzle with honey."
+      ]
+    },
+    "ru": {
+      "name": "Овсяная каша с ягодами",
+      "description": "Тёплый сытный завтрак за 10 минут. Учит томить на слабом огне и помешивать, чтобы ничего не пригорело.",
+      "steps": [
+        "Положите хлопья, молоко и соль в небольшую кастрюлю. Отмеряйте хлопья и молоко одной чашкой, чтобы соблюсти пропорцию (1 часть хлопьев на 2 части молока).",
+        "Поставьте на средний огонь и помешивайте, пока по краям не появятся пузырьки, около 3 минут.",
+        "Убавьте огонь до слабого. Варите 4–5 минут, часто помешивая и проводя ложкой по дну, пока хлопья не станут мягкими и кремовыми.",
+        "Если каша слишком густая, добавьте немного молока или воды. Постояв, она загустеет ещё.",
+        "Снимите кастрюлю с огня и вмешайте корицу.",
+        "Разложите по тарелкам, добавьте ягоды и полейте мёдом."
+      ],
+      "ingredients": [
+        "1 стакан овсяных хлопьев",
+        "2 стакана молока",
+        "щепотка соли",
+        "1 ст. л. мёда",
+        "1 стакан ягод",
+        "¼ ч. л. корицы"
+      ]
+    }
+  }
+}

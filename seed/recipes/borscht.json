@@ -1,0 +1,142 @@
+{
+  "slug": "borscht",
+  "cuisine": "russian",
+  "meal_times": [
+    "lunch",
+    "dinner"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 25,
+  "cook_minutes": 75,
+  "servings": 8,
+  "video_url": "https://www.youtube.com/results?search_query=ukrainian+russian+borscht+recipe",
+  "nutrition": {
+    "calories": 260,
+    "protein": 15,
+    "fat": 10,
+    "carbs": 26,
+    "fiber": 5,
+    "sugar": 10,
+    "sodium": 720,
+    "saturated_fat": 3
+  },
+  "ingredients": [
+    {
+      "text": "500 g stewing beef",
+      "ingredient": "beef-chuck",
+      "essential": false
+    },
+    {
+      "text": "3 beetroots",
+      "ingredient": "beetroot"
+    },
+    {
+      "text": "3 potatoes",
+      "ingredient": "potato"
+    },
+    {
+      "text": "300 g cabbage, shredded",
+      "ingredient": "cabbage"
+    },
+    {
+      "text": "1 carrot, grated",
+      "ingredient": "carrot"
+    },
+    {
+      "text": "1 onion, chopped",
+      "ingredient": "onion"
+    },
+    {
+      "text": "2 tbsp tomato paste",
+      "ingredient": "tomato-paste"
+    },
+    {
+      "text": "2 cloves garlic, minced",
+      "ingredient": "garlic",
+      "essential": false
+    },
+    {
+      "text": "1 tbsp vinegar",
+      "ingredient": "white-vinegar"
+    },
+    {
+      "text": "1 tsp sugar",
+      "ingredient": "sugar"
+    },
+    {
+      "text": "2 bay leaves",
+      "ingredient": "bay-leaf",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp vegetable oil",
+      "ingredient": "vegetable-oil"
+    },
+    {
+      "text": "2.5 l water",
+      "ingredient": "water"
+    },
+    {
+      "text": "2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "dill, for garnish",
+      "ingredient": "dill",
+      "essential": false
+    },
+    {
+      "text": "sour cream, for serving",
+      "ingredient": "sour-cream",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Borscht",
+      "description": "Deep-red beetroot soup with cabbage and potatoes. Teaches building a broth and keeping beetroot's colour bright.",
+      "steps": [
+        "Put the beef in a large pot with the water and bay leaves. Bring to a boil, skim off the grey foam with a spoon, then simmer gently for 1 hour until the beef is tender. (For a vegetarian version skip the beef and use vegetable stock — it's optional.)",
+        "Meanwhile peel the beetroots and cut them into thin matchsticks, or grate them coarsely. Wear an apron — beetroot stains!",
+        "Heat the oil in a frying pan over medium heat. Cook the onion and carrot for 5 minutes. Add the beetroot, tomato paste, vinegar and sugar and cook 10 minutes, stirring. The vinegar keeps the colour vivid red.",
+        "Lift the beef out of the broth, cut it into bite-size pieces and return it to the pot.",
+        "Peel and cube the potatoes, add them to the broth and simmer 10 minutes.",
+        "Add the cabbage and simmer 5 minutes, then stir in the beetroot mixture and simmer 5 minutes more.",
+        "Add the garlic and salt, taste and adjust. Turn off the heat and let the soup rest 15 minutes — borscht is even better the next day.",
+        "Serve with a spoon of sour cream and chopped dill."
+      ]
+    },
+    "ru": {
+      "name": "Борщ",
+      "description": "Тёмно-красный свекольный суп с капустой и картофелем. Учит варить бульон и сохранять яркий цвет свёклы.",
+      "steps": [
+        "Положите говядину в большую кастрюлю с водой и лавровым листом. Доведите до кипения, снимите ложкой серую пену и варите на слабом огне час, пока мясо не станет мягким. (Для постного варианта пропустите мясо и используйте овощной бульон — по желанию.)",
+        "Тем временем очистите свёклу и нарежьте тонкой соломкой или натрите на крупной тёрке. Наденьте фартук — свёкла пачкает!",
+        "Разогрейте масло на сковороде на среднем огне. Обжарьте лук и морковь 5 минут. Добавьте свёклу, томатную пасту, уксус и сахар и тушите 10 минут, помешивая. Уксус сохраняет ярко-красный цвет.",
+        "Выньте мясо из бульона, нарежьте кусочками и верните в кастрюлю.",
+        "Очистите и нарежьте кубиками картофель, добавьте в бульон и варите 10 минут.",
+        "Добавьте капусту и варите 5 минут, затем вмешайте свекольную зажарку и варите ещё 5 минут.",
+        "Добавьте чеснок и соль, попробуйте и доведите по вкусу. Выключите огонь и дайте настояться 15 минут — на следующий день борщ ещё вкуснее.",
+        "Подавайте с ложкой сметаны и рубленым укропом."
+      ],
+      "ingredients": [
+        "500 г говядины (по желанию)",
+        "3 свёклы",
+        "3 картофелины",
+        "300 г шинкованной капусты",
+        "1 морковь, тёртая",
+        "1 луковица",
+        "2 ст. л. томатной пасты",
+        "2 зубчика чеснока",
+        "1 ст. л. уксуса",
+        "1 ч. л. сахара",
+        "2 лавровых листа",
+        "2 ст. л. растительного масла",
+        "2,5 л воды",
+        "2 ч. л. соли",
+        "укроп для подачи",
+        "сметана для подачи"
+      ]
+    }
+  }
+}

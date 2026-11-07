@@ -1,0 +1,101 @@
+{
+  "slug": "classic-hummus",
+  "cuisine": "middle-eastern",
+  "meal_times": [
+    "snack"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 0,
+  "servings": 6,
+  "video_url": "https://www.youtube.com/results?search_query=smooth+hummus+recipe",
+  "nutrition": {
+    "calories": 210,
+    "protein": 7,
+    "fat": 14,
+    "carbs": 16,
+    "fiber": 5,
+    "sugar": 0.5,
+    "sodium": 310,
+    "saturated_fat": 2
+  },
+  "ingredients": [
+    {
+      "text": "1 can chickpeas (400 g), drained",
+      "ingredient": "chickpeas"
+    },
+    {
+      "text": "1/4 cup tahini",
+      "ingredient": "tahini"
+    },
+    {
+      "text": "1 lemon, juiced",
+      "ingredient": "lemon"
+    },
+    {
+      "text": "1 clove garlic",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1/2 tsp cumin",
+      "ingredient": "cumin",
+      "essential": false
+    },
+    {
+      "text": "3 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1/2 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1 pinch paprika",
+      "ingredient": "paprika",
+      "essential": false
+    },
+    {
+      "text": "4 tbsp water",
+      "ingredient": "water"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Classic Hummus",
+      "description": "Silky chickpea and tahini dip. No cooking — just a blender and a few tricks for extra smoothness.",
+      "steps": [
+        "Drain the chickpeas and rinse them. For the smoothest hummus, pinch off the thin skins — it takes 5 minutes and makes a real difference (optional).",
+        "Put the tahini and lemon juice in a food processor or blender and blend for 1 minute until thick and pale. Whipping these first gives a creamier result.",
+        "Add the garlic, cumin, salt and 1 tablespoon of olive oil and blend 30 seconds.",
+        "Add half the chickpeas and blend 1 minute, scrape down the sides, then add the rest and blend 2 minutes more.",
+        "With the motor running, add the cold water a tablespoon at a time until the hummus is smooth and fluffy.",
+        "Taste: add more salt or lemon if needed.",
+        "Spread in a shallow bowl, make a swirl with the back of a spoon, drizzle with the remaining olive oil and dust with paprika."
+      ]
+    },
+    "ru": {
+      "name": "Классический хумус",
+      "description": "Шелковистая паста из нута и тахини. Без готовки — только блендер и пара хитростей для гладкости.",
+      "steps": [
+        "Слейте и промойте нут. Для самого гладкого хумуса снимите с горошин тонкую кожицу — это 5 минут и заметная разница (по желанию).",
+        "Положите тахини и лимонный сок в кухонный комбайн или блендер и взбивайте минуту до густоты и светлого цвета. Если взбить их первыми, получится кремовее.",
+        "Добавьте чеснок, зиру, соль и 1 ст. л. оливкового масла и взбивайте 30 секунд.",
+        "Добавьте половину нута и взбивайте минуту, соскребите со стенок, затем добавьте остальное и взбивайте ещё 2 минуты.",
+        "Не выключая мотор, добавляйте холодную воду по столовой ложке, пока хумус не станет гладким и воздушным.",
+        "Попробуйте: при необходимости добавьте соли или лимона.",
+        "Выложите в плоскую миску, сделайте ложкой завиток, полейте оставшимся маслом и посыпьте паприкой."
+      ],
+      "ingredients": [
+        "1 банка нута (400 г), без жидкости",
+        "¼ стакана тахини",
+        "сок 1 лимона",
+        "1 зубчик чеснока",
+        "½ ч. л. зиры",
+        "3 ст. л. оливкового масла",
+        "½ ч. л. соли",
+        "щепотка паприки",
+        "4 ст. л. воды"
+      ]
+    }
+  }
+}

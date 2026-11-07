@@ -1,0 +1,122 @@
+{
+  "slug": "shakshuka",
+  "cuisine": "middle-eastern",
+  "meal_times": [
+    "breakfast",
+    "lunch"
+  ],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 25,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=shakshuka+recipe",
+  "nutrition": {
+    "calories": 260,
+    "protein": 14,
+    "fat": 16,
+    "carbs": 15,
+    "fiber": 4,
+    "sugar": 9,
+    "sodium": 640,
+    "saturated_fat": 4.5
+  },
+  "ingredients": [
+    {
+      "text": "6 eggs",
+      "ingredient": "egg"
+    },
+    {
+      "text": "2 cans canned tomatoes (400 g each)",
+      "ingredient": "canned-tomatoes"
+    },
+    {
+      "text": "1 onion, chopped",
+      "ingredient": "onion"
+    },
+    {
+      "text": "1 red bell pepper, chopped",
+      "ingredient": "bell-pepper"
+    },
+    {
+      "text": "3 cloves garlic, minced",
+      "ingredient": "garlic"
+    },
+    {
+      "text": "1 tsp cumin",
+      "ingredient": "cumin"
+    },
+    {
+      "text": "1 tsp paprika",
+      "ingredient": "paprika"
+    },
+    {
+      "text": "1/4 tsp chili flakes",
+      "ingredient": "chili-flakes",
+      "essential": false
+    },
+    {
+      "text": "2 tbsp olive oil",
+      "ingredient": "olive-oil"
+    },
+    {
+      "text": "1 tsp salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "50 g feta, crumbled",
+      "ingredient": "feta",
+      "essential": false
+    },
+    {
+      "text": "parsley, for garnish",
+      "ingredient": "parsley",
+      "essential": false
+    },
+    {
+      "text": "bread, for serving",
+      "ingredient": "bread",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "Shakshuka",
+      "description": "Eggs gently poached in a spiced tomato and pepper sauce. One pan, very forgiving, great for brunch.",
+      "steps": [
+        "Heat the olive oil in a large frying pan (with a lid) over medium heat. Cook the onion and pepper for 6–8 minutes until soft.",
+        "Add the garlic, cumin, paprika and chili flakes and stir for 1 minute until fragrant.",
+        "Pour in the tomatoes and salt. Crush any whole tomatoes with your spoon. Simmer 10 minutes, stirring now and then, until the sauce thickens.",
+        "Make 6 small wells in the sauce with the back of a spoon. Crack an egg into a cup and gently tip it into each well — using a cup avoids broken yolks.",
+        "Cover the pan and cook on low heat for 5–8 minutes, until the whites are set but the yolks are still soft. Check often after 5 minutes.",
+        "Sprinkle with feta and parsley and serve straight from the pan with bread for dipping."
+      ]
+    },
+    "ru": {
+      "name": "Шакшука",
+      "description": "Яйца, бережно приготовленные в пряном соусе из помидоров и перца. Одна сковорода, очень прощающий рецепт, отлично для позднего завтрака.",
+      "steps": [
+        "Разогрейте оливковое масло в большой сковороде с крышкой на среднем огне. Готовьте лук и перец 6–8 минут до мягкости.",
+        "Добавьте чеснок, зиру, паприку и хлопья чили и помешивайте минуту до аромата.",
+        "Влейте томаты и посолите. Раздавите целые помидоры ложкой. Тушите 10 минут, иногда помешивая, пока соус не загустеет.",
+        "Сделайте тыльной стороной ложки 6 углублений в соусе. Разбейте яйцо в чашку и аккуратно вылейте в каждое углубление — так желтки не порвутся.",
+        "Накройте крышкой и готовьте на слабом огне 5–8 минут, пока белки не схватятся, а желтки останутся мягкими. После 5 минут проверяйте чаще.",
+        "Посыпьте фетой и петрушкой и подавайте прямо в сковороде с хлебом."
+      ],
+      "ingredients": [
+        "6 яиц",
+        "2 банки томатов в собственном соку (по 400 г)",
+        "1 луковица",
+        "1 красный болгарский перец",
+        "3 зубчика чеснока",
+        "1 ч. л. зиры",
+        "1 ч. л. паприки",
+        "¼ ч. л. хлопьев чили",
+        "2 ст. л. оливкового масла",
+        "1 ч. л. соли",
+        "50 г феты",
+        "петрушка для подачи",
+        "хлеб для подачи"
+      ]
+    }
+  }
+}

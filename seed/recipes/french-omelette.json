@@ -1,0 +1,81 @@
+{
+  "slug": "french-omelette",
+  "cuisine": "french",
+  "meal_times": [
+    "breakfast",
+    "lunch"
+  ],
+  "difficulty": "medium",
+  "prep_minutes": 3,
+  "cook_minutes": 3,
+  "servings": 1,
+  "video_url": "https://www.youtube.com/results?search_query=french+omelette+technique",
+  "nutrition": {
+    "calories": 290,
+    "protein": 19,
+    "fat": 23,
+    "carbs": 1,
+    "fiber": 0,
+    "sugar": 1,
+    "sodium": 420,
+    "saturated_fat": 11
+  },
+  "ingredients": [
+    {
+      "text": "3 eggs",
+      "ingredient": "egg"
+    },
+    {
+      "text": "1 tbsp butter",
+      "ingredient": "butter"
+    },
+    {
+      "text": "1 pinch salt",
+      "ingredient": "salt"
+    },
+    {
+      "text": "1 pinch black pepper",
+      "ingredient": "black-pepper"
+    },
+    {
+      "text": "1 tbsp chives, finely chopped",
+      "ingredient": "chives",
+      "essential": false
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "French Omelette",
+      "description": "A soft, pale, rolled omelette. Small recipe, big skill: controlling heat and working quickly.",
+      "steps": [
+        "Crack the eggs into a bowl, add the salt and beat with a fork for a full 30 seconds until no streaks of white remain.",
+        "Heat a 20 cm (8 inch) non-stick pan over medium heat and add the butter. Wait until it foams but has not browned.",
+        "Pour in the eggs. Immediately stir with a silicone spatula in small circles while gently shaking the pan, for about 20 seconds, until you see soft, small curds.",
+        "Stop stirring when the eggs are almost set but still slightly wet on top. Smooth the surface into an even layer.",
+        "Tilt the pan away from you and use the spatula to fold the near third of the omelette toward the centre.",
+        "Slide the omelette to the edge of the pan and roll it onto a warm plate, seam side down.",
+        "Sprinkle with chives and pepper and eat right away. If it's brown, use slightly lower heat next time — practice makes perfect."
+      ]
+    },
+    "ru": {
+      "name": "Французский омлет",
+      "description": "Нежный светлый свёрнутый омлет. Маленький рецепт, большой навык: контроль огня и быстрые движения.",
+      "steps": [
+        "Разбейте яйца в миску, посолите и взбивайте вилкой целых 30 секунд, пока не исчезнут прожилки белка.",
+        "Разогрейте антипригарную сковороду диаметром 20 см на среднем огне и положите масло. Дождитесь, пока оно вспенится, но не потемнеет.",
+        "Влейте яйца. Сразу же мешайте силиконовой лопаткой маленькими кругами, слегка встряхивая сковороду, около 20 секунд, пока не появятся мягкие мелкие хлопья.",
+        "Перестаньте мешать, когда яйца почти схватились, но сверху ещё влажные. Разровняйте поверхность.",
+        "Наклоните сковороду от себя и лопаткой загните ближнюю треть омлета к центру.",
+        "Сдвиньте омлет к краю сковороды и переверните на тёплую тарелку швом вниз.",
+        "Посыпьте шнитт-луком и перцем и сразу ешьте. Если омлет подрумянился — в следующий раз чуть убавьте огонь."
+      ],
+      "ingredients": [
+        "3 яйца",
+        "1 ст. л. сливочного масла",
+        "щепотка соли",
+        "щепотка чёрного перца",
+        "1 ст. л. мелко нарезанного шнитт-лука"
+      ]
+    }
+  }
+}
