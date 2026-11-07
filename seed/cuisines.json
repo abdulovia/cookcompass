@@ -1,0 +1,16 @@
+[
+  {"slug": "american", "name": "American"},
+  {"slug": "british", "name": "British"},
+  {"slug": "chinese", "name": "Chinese"},
+  {"slug": "french", "name": "French"},
+  {"slug": "greek", "name": "Greek"},
+  {"slug": "indian", "name": "Indian"},
+  {"slug": "italian", "name": "Italian"},
+  {"slug": "japanese", "name": "Japanese"},
+  {"slug": "korean", "name": "Korean"},
+  {"slug": "mexican", "name": "Mexican"},
+  {"slug": "middle-eastern", "name": "Middle Eastern"},
+  {"slug": "russian", "name": "Russian"},
+  {"slug": "spanish", "name": "Spanish"},
+  {"slug": "thai", "name": "Thai"}
+]

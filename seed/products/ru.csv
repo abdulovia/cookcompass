@@ -1,0 +1,152 @@
+sku,name,category,ingredient,price,unit
+RU-SALT-1,"Соль, 1 kg",spices,salt,49,1 kg
+RU-BLACKPEPPE-1,"Чёрный перец, 50 g",spices,black-pepper,179,50 g
+RU-VEGETABLEO-1,"Растительное масло, 1 l",oils,vegetable-oil,209,1 l
+RU-VEGETABLEO-2,"Растительное масло, 2 l",oils,vegetable-oil,369,2 l
+RU-OLIVEOIL-1,"Оливковое масло, 500 ml",oils,olive-oil,469,500 ml
+RU-OLIVEOIL-2,"Оливковое масло, 1 l",oils,olive-oil,839,1 l
+RU-SESAMEOIL-1,"Кунжутное масло, 250 ml",oils,sesame-oil,259,250 ml
+RU-BUTTER-1,"Сливочное масло, 250 g",dairy,butter,229,250 g
+RU-BUTTER-2,"Сливочное масло, 500 g",dairy,butter,429,500 g
+RU-MILK-1,"Молоко, 1 l",dairy,milk,69,1 l
+RU-MILK-2,"Молоко, 2 l",dairy,milk,129,2 l
+RU-HEAVYCREAM-1,"Сливки, 200 ml",dairy,heavy-cream,159,200 ml
+RU-HEAVYCREAM-2,"Сливки, 500 ml",dairy,heavy-cream,339,500 ml
+RU-SOURCREAM-1,"Сметана, 300 g",dairy,sour-cream,119,300 g
+RU-YOGURT-1,"Йогурт, 500 g",dairy,yogurt,129,500 g
+RU-YOGURT-2,"Йогурт, 1 kg",dairy,yogurt,229,1 kg
+RU-TVOROG-1,"Творог, 500 g",dairy,tvorog,159,500 g
+RU-CHEDDAR-1,"Сыр чеддер, 200 g",dairy,cheddar,229,200 g
+RU-CHEDDAR-2,"Сыр чеддер, 400 g",dairy,cheddar,419,400 g
+RU-MOZZARELLA-1,"Моцарелла, 125 g",dairy,mozzarella,159,125 g
+RU-PARMESAN-1,"Пармезан, 100 g",dairy,parmesan,309,100 g
+RU-PARMESAN-2,"Пармезан, 200 g",dairy,parmesan,559,200 g
+RU-FETA-1,"Фета, 200 g",dairy,feta,179,200 g
+RU-EGG-1,"Яйцо, 10 pcs",dairy,egg,169,10 pcs
+RU-EGG-2,"Яйцо, 6 pcs",dairy,egg,109,6 pcs
+RU-CHICKENBRE-1,"Куриное филе, 1 kg",meat,chicken-breast,469,1 kg
+RU-CHICKENBRE-2,"Куриное филе, 500 g",meat,chicken-breast,259,500 g
+RU-CHICKENTHI-1,"Куриные бёдра, 1 kg",meat,chicken-thigh,359,1 kg
+RU-GROUNDBEEF-1,"Говяжий фарш, 500 g",meat,ground-beef,309,500 g
+RU-GROUNDBEEF-2,"Говяжий фарш, 1 kg",meat,ground-beef,589,1 kg
+RU-GROUNDPORK-1,"Свиной фарш, 500 g",meat,ground-pork,259,500 g
+RU-LAMBMINCE-1,"Бараний фарш, 500 g",meat,lamb-mince,439,500 g
+RU-BEEFCHUCK-1,"Говядина для тушения, 1 kg",meat,beef-chuck,569,1 kg
+RU-BACON-1,"Бекон, 200 g",meat,bacon,289,200 g
+RU-SHRIMP-1,"Креветки, 500 g",seafood,shrimp,619,500 g
+RU-MUSSELS-1,"Мидии, 1 kg",seafood,mussels,359,1 kg
+RU-SALMON-1,"Лосось, 400 g",seafood,salmon,679,400 g
+RU-TOFU-1,"Тофу, 400 g",protein,tofu,129,400 g
+RU-ALLPURPOSE-1,"Пшеничная мука, 1 kg",baking,all-purpose-flour,159,1 kg
+RU-ALLPURPOSE-2,"Пшеничная мука, 2 kg",baking,all-purpose-flour,279,2 kg
+RU-CORNSTARCH-1,"Кукурузный крахмал, 400 g",baking,cornstarch,99,400 g
+RU-BAKINGPOWD-1,"Разрыхлитель, 100 g",baking,baking-powder,79,100 g
+RU-SUGAR-1,"Сахар, 1 kg",baking,sugar,99,1 kg
+RU-BROWNSUGAR-1,"Коричневый сахар, 500 g",baking,brown-sugar,129,500 g
+RU-HONEY-1,"Мёд, 350 g",pantry,honey,309,350 g
+RU-VANILLAEXT-1,"Ванильный экстракт, 50 ml",baking,vanilla-extract,259,50 ml
+RU-ROLLEDOATS-1,"Овсяные хлопья, 500 g",grains,rolled-oats,129,500 g
+RU-ROLLEDOATS-2,"Овсяные хлопья, 1 kg",grains,rolled-oats,229,1 kg
+RU-LONGGRAINR-1,"Рис, 1 kg",grains,long-grain-rice,119,1 kg
+RU-BASMATIRIC-1,"Рис басмати, 1 kg",grains,basmati-rice,209,1 kg
+RU-JASMINERIC-1,"Рис жасмин, 1 kg",grains,jasmine-rice,199,1 kg
+RU-SHORTGRAIN-1,"Круглозёрный рис, 1 kg",grains,short-grain-rice,179,1 kg
+RU-SPAGHETTI-1,"Спагетти, 500 g",grains,spaghetti,89,500 g
+RU-RICENOODLE-1,"Рисовая лапша, 400 g",grains,rice-noodles,159,400 g
+RU-BAGUETTE-1,"Багет, 1 pc",bakery,baguette,129,1 pc
+RU-BREAD-1,"Хлеб, 500 g",bakery,bread,169,500 g
+RU-BURGERBUNS-1,"Булочки для бургеров, 4 pcs",bakery,burger-buns,179,4 pcs
+RU-FLOURTORTI-1,"Пшеничные тортильи, 8 pcs",bakery,flour-tortillas,159,8 pcs
+RU-ONION-1,"Лук, 1 kg",vegetables,onion,79,1 kg
+RU-REDONION-1,"Красный лук, 500 g",vegetables,red-onion,99,500 g
+RU-GARLIC-1,"Чеснок, 3 pcs",vegetables,garlic,39,3 pcs
+RU-GINGER-1,"Имбирь, 150 g",vegetables,ginger,69,150 g
+RU-TOMATO-1,"Помидоры, 1 kg",vegetables,tomato,179,1 kg
+RU-TOMATO-2,"Помидоры черри, 250 g",vegetables,tomato,149,250 g
+RU-CANNEDTOMA-1,"Томаты в собственном соку, 400 g",pantry,canned-tomatoes,69,400 g
+RU-TOMATOPAST-1,"Томатная паста, 140 g",pantry,tomato-paste,59,140 g
+RU-POTATO-1,"Картофель, 2 kg",vegetables,potato,159,2 kg
+RU-CARROT-1,"Морковь, 1 kg",vegetables,carrot,69,1 kg
+RU-BELLPEPPER-1,"Болгарский перец, 1 pc",vegetables,bell-pepper,79,1 pc
+RU-BELLPEPPER-2,"Болгарский перец, 3 pcs",vegetables,bell-pepper,199,3 pcs
+RU-EGGPLANT-1,"Баклажан, 1 pc",vegetables,eggplant,89,1 pc
+RU-ZUCCHINI-1,"Кабачок, 1 pc",vegetables,zucchini,69,1 pc
+RU-CUCUMBER-1,"Огурец, 1 pc",vegetables,cucumber,49,1 pc
+RU-SPINACH-1,"Шпинат, 250 g",vegetables,spinach,159,250 g
+RU-BEETROOT-1,"Свёкла, 1 kg",vegetables,beetroot,89,1 kg
+RU-CABBAGE-1,"Капуста, 1 pc",vegetables,cabbage,79,1 pc
+RU-SCALLION-1,"Зелёный лук, 1 bunch",vegetables,scallion,49,1 bunch
+RU-CHIVES-1,"Шнитт-лук, 1 bunch",herbs,chives,79,1 bunch
+RU-CILANTRO-1,"Кинза, 1 bunch",herbs,cilantro,49,1 bunch
+RU-PARSLEY-1,"Петрушка, 1 bunch",herbs,parsley,49,1 bunch
+RU-BASIL-1,"Базилик, 1 bunch",herbs,basil,129,1 bunch
+RU-DILL-1,"Укроп, 1 bunch",herbs,dill,49,1 bunch
+RU-MINT-1,"Мята, 1 bunch",herbs,mint,79,1 bunch
+RU-LETTUCE-1,"Салат латук, 1 pc",vegetables,lettuce,99,1 pc
+RU-MUSHROOMS-1,"Шампиньоны, 400 g",vegetables,mushrooms,159,400 g
+RU-BEANSPROUT-1,"Ростки фасоли, 200 g",vegetables,bean-sprouts,99,200 g
+RU-AVOCADO-1,"Авокадо, 1 pc",fruit,avocado,69,1 pc
+RU-AVOCADO-2,"Авокадо, 4 pcs",fruit,avocado,229,4 pcs
+RU-LIME-1,"Лайм, 1 pc",fruit,lime,29,1 pc
+RU-LEMON-1,"Лимон, 1 pc",fruit,lemon,39,1 pc
+RU-CHILIPEPPE-1,"Острый перец чили, 100 g",vegetables,chili-pepper,49,100 g
+RU-PEAS-1,"Зелёный горошек, 450 g",frozen,peas,99,450 g
+RU-BERRIES-1,"Ягоды, 300 g",fruit,berries,259,300 g
+RU-BANANA-1,"Бананы, 1 kg",fruit,banana,79,1 kg
+RU-APPLE-1,"Яблоки, 1 kg",fruit,apple,159,1 kg
+RU-OLIVES-1,"Оливки, 200 g",pantry,olives,179,200 g
+RU-CHICKPEAS-1,"Нут, 400 g",legumes,chickpeas,69,400 g
+RU-PEANUTS-1,"Арахис, 200 g",nuts,peanuts,159,200 g
+RU-PEANUTBUTT-1,"Арахисовая паста, 340 g",pantry,peanut-butter,209,340 g
+RU-SESAMESEED-1,"Кунжут, 100 g",pantry,sesame-seeds,129,100 g
+RU-SOYSAUCE-1,"Соевый соус, 250 ml",condiments,soy-sauce,159,250 ml
+RU-SOYSAUCE-2,"Соевый соус, 500 ml",condiments,soy-sauce,259,500 ml
+RU-RICEVINEGA-1,"Рисовый уксус, 250 ml",condiments,rice-vinegar,159,250 ml
+RU-WHITEVINEG-1,"Столовый уксус, 500 ml",condiments,white-vinegar,79,500 ml
+RU-REDWINEVIN-1,"Красный винный уксус, 500 ml",condiments,red-wine-vinegar,159,500 ml
+RU-REDWINE-1,"Красное вино, 750 ml",drinks,red-wine,519,750 ml
+RU-BEEFSTOCK-1,"Говяжий бульон, 1 l",pantry,beef-stock,159,1 l
+RU-CHICKENSTO-1,"Куриный бульон, 1 l",pantry,chicken-stock,159,1 l
+RU-VEGETABLES-1,"Овощной бульон, 1 l",pantry,vegetable-stock,149,1 l
+RU-MISOPASTE-1,"Паста мисо, 300 g",condiments,miso-paste,289,300 g
+RU-WAKAME-1,"Водоросли вакамэ, 50 g",pantry,wakame,209,50 g
+RU-COCONUTMIL-1,"Кокосовое молоко, 400 ml",pantry,coconut-milk,99,400 ml
+RU-KETCHUP-1,"Кетчуп, 500 g",condiments,ketchup,129,500 g
+RU-MUSTARD-1,"Горчица, 200 g",condiments,mustard,99,200 g
+RU-MAYONNAISE-1,"Майонез, 400 g",condiments,mayonnaise,169,400 g
+RU-CUMIN-1,"Зира, 50 g",spices,cumin,159,50 g
+RU-GROUNDCORI-1,"Молотый кориандр, 50 g",spices,ground-coriander,129,50 g
+RU-TURMERIC-1,"Куркума, 50 g",spices,turmeric,129,50 g
+RU-GARAMMASAL-1,"Гарам масала, 50 g",spices,garam-masala,179,50 g
+RU-CURRYPOWDE-1,"Карри, 50 g",spices,curry-powder,159,50 g
+RU-CHILIPOWDE-1,"Молотый перец чили, 50 g",spices,chili-powder,129,50 g
+RU-PAPRIKA-1,"Паприка, 50 g",spices,paprika,129,50 g
+RU-SMOKEDPAPR-1,"Копчёная паприка, 50 g",spices,smoked-paprika,179,50 g
+RU-CHILIFLAKE-1,"Хлопья чили, 50 g",spices,chili-flakes,129,50 g
+RU-DRIEDCHILI-1,"Сушёный перец чили, 30 g",spices,dried-chilies,159,30 g
+RU-SAFFRON-1,"Шафран, 0.5 g",spices,saffron,419,0.5 g
+RU-OREGANO-1,"Орегано, 20 g",spices,oregano,99,20 g
+RU-THYME-1,"Тимьян, 20 g",spices,thyme,99,20 g
+RU-BAYLEAF-1,"Лавровый лист, 10 g",spices,bay-leaf,79,10 g
+RU-CINNAMON-1,"Корица, 50 g",spices,cinnamon,129,50 g
+RU-NUTMEG-1,"Мускатный орех, 30 g",spices,nutmeg,159,30 g
+RU-CARDAMOM-1,"Кардамон, 30 g",spices,cardamom,229,30 g
+RU-COFFEE-1,"Кофе, 250 g",drinks,coffee,419,250 g
+RU-BLACKTEA-1,"Чёрный чай, 25 pcs",drinks,black-tea,179,25 pcs
+RU-ORANGEJUIC-1,"Апельсиновый сок, 1 l",drinks,orange-juice,179,1 l
+RU-BUCKWHEAT-1,"Гречка, 900 g",grains,buckwheat,179,900 g
+RU-KEFIR-1,"Кефир, 1 l",dairy,kefir,129,1 l
+RU-KEFIR-2,"Кефир, 500 ml",dairy,kefir,79,500 ml
+RU-CONDENSEDM-1,"Сгущённое молоко, 380 g",pantry,condensed-milk,119,380 g
+RU-PICKLES-1,"Солёные огурцы, 680 g",pantry,pickles,159,680 g
+RU-SUNFLOWERS-1,"Семечки подсолнечника, 200 g",nuts,sunflower-seeds,99,200 g
+RU-KVAS-1,"Квас хлебный, 1.5 l",drinks,,109,1.5 l
+RU-SUSHKI-1,"Сушки ванильные, 200 g",snacks,,69,200 g
+RU-RYAZHENKA-1,"Ряженка 4%, 500 ml",dairy,,79,500 ml
+RU-PELMENI-1,"Пельмени замороженные, 800 g",frozen,,349,800 g
+RU-SMETANA-2,"Сметана 20%, 180 g",dairy,sour-cream,89,180 g
+RU-TVOROG-2,"Творог 9%, 200 g",dairy,tvorog,129,200 g
+RU-MILK-3,"Молоко 3,2%, 930 ml",dairy,milk,99,930 ml
+RU-BREAD-2,"Хлеб бородинский, 400 g",bakery,bread,69,400 g
+RU-BUCKWHEAT-2,"Гречка ядрица, 400 g",grains,buckwheat,99,400 g
+RU-DILL-2,"Укроп, 50 g",herbs,dill,59,50 g

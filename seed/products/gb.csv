@@ -1,0 +1,157 @@
+sku,name,category,ingredient,price,unit
+GB-SALT-1,"Salt, 1 kg",spices,salt,0.84,1 kg
+GB-BLACKPEPPE-1,"Black pepper, 50 g",spices,black-pepper,2.99,50 g
+GB-VEGETABLEO-1,"Vegetable oil, 1 l",oils,vegetable-oil,3.49,1 l
+GB-VEGETABLEO-2,"Vegetable oil, 2 l",oils,vegetable-oil,6.49,2 l
+GB-OLIVEOIL-1,"Olive oil, 500 ml",oils,olive-oil,7.99,500 ml
+GB-OLIVEOIL-2,"Olive oil, 1 l",oils,olive-oil,13.99,1 l
+GB-SESAMEOIL-1,"Sesame oil, 250 ml",oils,sesame-oil,4.49,250 ml
+GB-BUTTER-1,"Butter, 250 g",dairy,butter,3.99,250 g
+GB-BUTTER-2,"Butter, 500 g",dairy,butter,7.49,500 g
+GB-MILK-1,"Milk, 1 l",dairy,milk,1.49,1 l
+GB-MILK-2,"Milk, 2 l",dairy,milk,2.49,2 l
+GB-HEAVYCREAM-1,"Double cream, 200 ml",dairy,heavy-cream,2.99,200 ml
+GB-HEAVYCREAM-2,"Double cream, 500 ml",dairy,heavy-cream,5.99,500 ml
+GB-SOURCREAM-1,"Sour cream, 300 g",dairy,sour-cream,1.99,300 g
+GB-YOGURT-1,"Yogurt, 500 g",dairy,yogurt,2.49,500 g
+GB-YOGURT-2,"Yogurt, 1 kg",dairy,yogurt,3.99,1 kg
+GB-RICOTTA-1,"Ricotta, 250 g",dairy,ricotta,3.49,250 g
+GB-CHEDDAR-1,"Cheddar, 200 g",dairy,cheddar,3.99,200 g
+GB-CHEDDAR-2,"Cheddar, 400 g",dairy,cheddar,6.99,400 g
+GB-MOZZARELLA-1,"Mozzarella, 125 g",dairy,mozzarella,2.99,125 g
+GB-PARMESAN-1,"Parmesan, 100 g",dairy,parmesan,5.49,100 g
+GB-PARMESAN-2,"Parmesan, 200 g",dairy,parmesan,9.49,200 g
+GB-PECORINO-1,"Pecorino, 100 g",dairy,pecorino,5.99,100 g
+GB-FETA-1,"Feta, 200 g",dairy,feta,2.99,200 g
+GB-EGG-1,"Egg, 10 pcs",dairy,egg,2.99,10 pcs
+GB-EGG-2,"Egg, 6 pcs",dairy,egg,1.99,6 pcs
+GB-CHICKENBRE-1,"Chicken breast, 1 kg",meat,chicken-breast,7.99,1 kg
+GB-CHICKENBRE-2,"Chicken breast, 500 g",meat,chicken-breast,4.49,500 g
+GB-CHICKENTHI-1,"Chicken thigh, 1 kg",meat,chicken-thigh,5.99,1 kg
+GB-GROUNDBEEF-1,"Beef mince, 500 g",meat,ground-beef,5.49,500 g
+GB-GROUNDBEEF-2,"Beef mince, 1 kg",meat,ground-beef,9.99,1 kg
+GB-GROUNDPORK-1,"Pork mince, 500 g",meat,ground-pork,4.49,500 g
+GB-LAMBMINCE-1,"Lamb mince, 500 g",meat,lamb-mince,7.49,500 g
+GB-BEEFCHUCK-1,"Stewing beef, 1 kg",meat,beef-chuck,9.49,1 kg
+GB-BACON-1,"Bacon, 200 g",meat,bacon,4.99,200 g
+GB-PANCETTA-1,"Pancetta, 150 g",meat,pancetta,5.49,150 g
+GB-CHORIZO-1,"Chorizo, 200 g",meat,chorizo,4.49,200 g
+GB-SHRIMP-1,"Prawns, 500 g",seafood,shrimp,10.49,500 g
+GB-MUSSELS-1,"Mussels, 1 kg",seafood,mussels,5.99,1 kg
+GB-SALMON-1,"Salmon, 400 g",seafood,salmon,11.49,400 g
+GB-TOFU-1,"Tofu, 400 g",protein,tofu,2.49,400 g
+GB-ALLPURPOSE-1,"Flour, 1 kg",baking,all-purpose-flour,2.99,1 kg
+GB-ALLPURPOSE-2,"Flour, 2 kg",baking,all-purpose-flour,4.99,2 kg
+GB-CORNSTARCH-1,"Cornflour, 400 g",baking,cornstarch,1.99,400 g
+GB-BAKINGPOWD-1,"Baking powder, 100 g",baking,baking-powder,1.49,100 g
+GB-SUGAR-1,"Sugar, 1 kg",baking,sugar,1.99,1 kg
+GB-BROWNSUGAR-1,"Brown sugar, 500 g",baking,brown-sugar,2.49,500 g
+GB-HONEY-1,"Honey, 350 g",pantry,honey,5.49,350 g
+GB-MAPLESYRUP-1,"Maple syrup, 250 ml",pantry,maple-syrup,6.99,250 ml
+GB-VANILLAEXT-1,"Vanilla extract, 50 ml",baking,vanilla-extract,4.49,50 ml
+GB-ROLLEDOATS-1,"Rolled oats, 500 g",grains,rolled-oats,2.49,500 g
+GB-ROLLEDOATS-2,"Rolled oats, 1 kg",grains,rolled-oats,3.99,1 kg
+GB-LONGGRAINR-1,"Rice, 1 kg",grains,long-grain-rice,1.99,1 kg
+GB-BASMATIRIC-1,"Basmati rice, 1 kg",grains,basmati-rice,3.49,1 kg
+GB-JASMINERIC-1,"Jasmine rice, 1 kg",grains,jasmine-rice,3.49,1 kg
+GB-SHORTGRAIN-1,"Short-grain rice, 1 kg",grains,short-grain-rice,2.99,1 kg
+GB-SPAGHETTI-1,"Spaghetti, 500 g",grains,spaghetti,1.49,500 g
+GB-RICENOODLE-1,"Rice noodles, 400 g",grains,rice-noodles,2.99,400 g
+GB-BAGUETTE-1,"Baguette, 1 pc",bakery,baguette,2.49,1 pc
+GB-BREAD-1,"Bread, 500 g",bakery,bread,2.99,500 g
+GB-BURGERBUNS-1,"Burger buns, 4 pcs",bakery,burger-buns,2.99,4 pcs
+GB-FLOURTORTI-1,"Flour tortillas, 8 pcs",bakery,flour-tortillas,2.99,8 pcs
+GB-TORTILLACH-1,"Tortilla chips, 200 g",snacks,tortilla-chips,2.99,200 g
+GB-DUMPLINGWR-1,"Gyoza wrappers, 30 pcs",frozen,dumpling-wrappers,3.49,30 pcs
+GB-ONION-1,"Onion, 1 kg",vegetables,onion,1.49,1 kg
+GB-REDONION-1,"Red onion, 500 g",vegetables,red-onion,1.99,500 g
+GB-GARLIC-1,"Garlic, 3 pcs",vegetables,garlic,0.67,3 pcs
+GB-GINGER-1,"Ginger, 150 g",vegetables,ginger,1.49,150 g
+GB-TOMATO-1,"Tomato, 1 kg",vegetables,tomato,2.99,1 kg
+GB-TOMATO-2,"Cherry tomatoes, 250 g",vegetables,tomato,2.49,250 g
+GB-CANNEDTOMA-1,"Chopped tomatoes, 400 g",pantry,canned-tomatoes,1.49,400 g
+GB-TOMATOPAST-1,"Tomato paste, 140 g",pantry,tomato-paste,1.49,140 g
+GB-POTATO-1,"Potato, 2 kg",vegetables,potato,2.99,2 kg
+GB-CARROT-1,"Carrot, 1 kg",vegetables,carrot,1.49,1 kg
+GB-BELLPEPPER-1,"Pepper, 1 pc",vegetables,bell-pepper,1.49,1 pc
+GB-BELLPEPPER-2,"Pepper, 3 pcs",vegetables,bell-pepper,3.49,3 pcs
+GB-EGGPLANT-1,"Aubergine, 1 pc",vegetables,eggplant,1.99,1 pc
+GB-ZUCCHINI-1,"Courgette, 1 pc",vegetables,zucchini,1.49,1 pc
+GB-CUCUMBER-1,"Cucumber, 1 pc",vegetables,cucumber,0.84,1 pc
+GB-SPINACH-1,"Spinach, 250 g",vegetables,spinach,2.99,250 g
+GB-BEETROOT-1,"Beetroot, 1 kg",vegetables,beetroot,1.99,1 kg
+GB-CABBAGE-1,"Cabbage, 1 pc",vegetables,cabbage,1.49,1 pc
+GB-SCALLION-1,"Spring onions, 1 bunch",vegetables,scallion,0.84,1 bunch
+GB-CHIVES-1,"Chives, 1 bunch",herbs,chives,1.49,1 bunch
+GB-CILANTRO-1,"Fresh coriander, 1 bunch",herbs,cilantro,0.84,1 bunch
+GB-PARSLEY-1,"Parsley, 1 bunch",herbs,parsley,0.84,1 bunch
+GB-BASIL-1,"Basil, 1 bunch",herbs,basil,2.49,1 bunch
+GB-DILL-1,"Dill, 1 bunch",herbs,dill,0.84,1 bunch
+GB-MINT-1,"Mint, 1 bunch",herbs,mint,1.49,1 bunch
+GB-LETTUCE-1,"Lettuce, 1 pc",vegetables,lettuce,1.99,1 pc
+GB-MUSHROOMS-1,"Mushrooms, 400 g",vegetables,mushrooms,2.99,400 g
+GB-BEANSPROUT-1,"Bean sprouts, 200 g",vegetables,bean-sprouts,1.99,200 g
+GB-AVOCADO-1,"Avocado, 1 pc",fruit,avocado,1.49,1 pc
+GB-AVOCADO-2,"Avocado, 4 pcs",fruit,avocado,3.99,4 pcs
+GB-LIME-1,"Lime, 1 pc",fruit,lime,0.42,1 pc
+GB-LEMON-1,"Lemon, 1 pc",fruit,lemon,0.59,1 pc
+GB-CHILIPEPPE-1,"Chili pepper, 100 g",vegetables,chili-pepper,0.84,100 g
+GB-JALAPENO-1,"Jalapeño, 200 g",vegetables,jalapeno,1.99,200 g
+GB-PEAS-1,"Peas, 450 g",frozen,peas,1.99,450 g
+GB-BERRIES-1,"Berries, 300 g",fruit,berries,4.49,300 g
+GB-BANANA-1,"Banana, 1 kg",fruit,banana,1.49,1 kg
+GB-APPLE-1,"Apple, 1 kg",fruit,apple,2.99,1 kg
+GB-OLIVES-1,"Olives, 200 g",pantry,olives,2.99,200 g
+GB-CHICKPEAS-1,"Chickpeas, 400 g",legumes,chickpeas,1.49,400 g
+GB-PEANUTS-1,"Peanuts, 200 g",nuts,peanuts,2.99,200 g
+GB-PEANUTBUTT-1,"Peanut butter, 340 g",pantry,peanut-butter,3.49,340 g
+GB-TAHINI-1,"Tahini, 300 g",pantry,tahini,5.49,300 g
+GB-SESAMESEED-1,"Sesame seeds, 100 g",pantry,sesame-seeds,2.49,100 g
+GB-SOYSAUCE-1,"Soy sauce, 250 ml",condiments,soy-sauce,2.99,250 ml
+GB-SOYSAUCE-2,"Soy sauce, 500 ml",condiments,soy-sauce,4.49,500 ml
+GB-FISHSAUCE-1,"Fish sauce, 200 ml",condiments,fish-sauce,2.99,200 ml
+GB-RICEVINEGA-1,"Rice vinegar, 250 ml",condiments,rice-vinegar,2.99,250 ml
+GB-WHITEVINEG-1,"Vinegar, 500 ml",condiments,white-vinegar,1.49,500 ml
+GB-REDWINEVIN-1,"Red wine vinegar, 500 ml",condiments,red-wine-vinegar,2.99,500 ml
+GB-REDWINE-1,"Red wine, 750 ml",drinks,red-wine,8.49,750 ml
+GB-BEEFSTOCK-1,"Beef stock, 1 l",pantry,beef-stock,2.99,1 l
+GB-CHICKENSTO-1,"Chicken stock, 1 l",pantry,chicken-stock,2.99,1 l
+GB-VEGETABLES-1,"Vegetable stock, 1 l",pantry,vegetable-stock,2.49,1 l
+GB-MISOPASTE-1,"Miso paste, 300 g",condiments,miso-paste,4.99,300 g
+GB-DASHI-1,"Dashi, 50 g",condiments,dashi,4.49,50 g
+GB-WAKAME-1,"Wakame, 50 g",pantry,wakame,3.49,50 g
+GB-GOCHUJANG-1,"Gochujang, 500 g",condiments,gochujang,5.99,500 g
+GB-SRIRACHA-1,"Sriracha, 435 ml",condiments,sriracha,3.49,435 ml
+GB-GREENCURRY-1,"Green curry paste, 110 g",condiments,green-curry-paste,2.99,110 g
+GB-COCONUTMIL-1,"Coconut milk, 400 ml",pantry,coconut-milk,1.99,400 ml
+GB-TAMARINDPA-1,"Tamarind paste, 200 g",condiments,tamarind-paste,3.49,200 g
+GB-KETCHUP-1,"Ketchup, 500 g",condiments,ketchup,2.49,500 g
+GB-MUSTARD-1,"Mustard, 200 g",condiments,mustard,1.99,200 g
+GB-WORCESTERS-1,"Worcestershire sauce, 150 ml",condiments,worcestershire,2.99,150 ml
+GB-MAYONNAISE-1,"Mayonnaise, 400 g",condiments,mayonnaise,2.99,400 g
+GB-CUMIN-1,"Cumin, 50 g",spices,cumin,2.99,50 g
+GB-GROUNDCORI-1,"Ground coriander, 50 g",spices,ground-coriander,2.49,50 g
+GB-TURMERIC-1,"Turmeric, 50 g",spices,turmeric,2.49,50 g
+GB-GARAMMASAL-1,"Garam masala, 50 g",spices,garam-masala,2.99,50 g
+GB-CURRYPOWDE-1,"Curry powder, 50 g",spices,curry-powder,2.99,50 g
+GB-CHILIPOWDE-1,"Chili powder, 50 g",spices,chili-powder,2.49,50 g
+GB-PAPRIKA-1,"Paprika, 50 g",spices,paprika,2.49,50 g
+GB-SMOKEDPAPR-1,"Smoked paprika, 50 g",spices,smoked-paprika,2.99,50 g
+GB-CHILIFLAKE-1,"Chili flakes, 50 g",spices,chili-flakes,2.49,50 g
+GB-DRIEDCHILI-1,"Dried chilies, 30 g",spices,dried-chilies,2.99,30 g
+GB-SAFFRON-1,"Saffron, 0.5 g",spices,saffron,6.99,0.5 g
+GB-OREGANO-1,"Oregano, 20 g",spices,oregano,1.99,20 g
+GB-THYME-1,"Thyme, 20 g",spices,thyme,1.99,20 g
+GB-BAYLEAF-1,"Bay leaf, 10 g",spices,bay-leaf,1.49,10 g
+GB-CINNAMON-1,"Cinnamon, 50 g",spices,cinnamon,2.49,50 g
+GB-NUTMEG-1,"Nutmeg, 30 g",spices,nutmeg,2.99,30 g
+GB-CARDAMOM-1,"Cardamom, 30 g",spices,cardamom,3.99,30 g
+GB-COFFEE-1,"Coffee, 250 g",drinks,coffee,6.99,250 g
+GB-BLACKTEA-1,"Black tea, 25 pcs",drinks,black-tea,2.99,25 pcs
+GB-ORANGEJUIC-1,"Orange juice, 1 l",drinks,orange-juice,2.99,1 l
+GB-BUCKWHEAT-1,"Buckwheat, 900 g",grains,buckwheat,2.99,900 g
+GB-KEFIR-1,"Kefir, 1 l",dairy,kefir,2.49,1 l
+GB-KEFIR-2,"Kefir, 500 ml",dairy,kefir,1.49,500 ml
+GB-CONDENSEDM-1,"Condensed milk, 380 g",pantry,condensed-milk,1.99,380 g
+GB-PICKLES-1,"Pickles, 680 g",pantry,pickles,2.99,680 g
+GB-SUNFLOWERS-1,"Sunflower seeds, 200 g",nuts,sunflower-seeds,1.99,200 g

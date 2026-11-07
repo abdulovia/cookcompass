@@ -30,3 +30,10 @@ One line per decision that the requirements left open. Newest at the bottom of e
 - Quantity ranges ("1-2", "1 to 2") resolve to the lower bound; the original text is kept in `raw`.
 - "to taste" / "as needed" / "по вкусу" lines are valid without a quantity; anything else without one is flagged `needs_review`.
 - A comma starts the note unless it sits between digits ("0,5 l"); a capital `T` means tablespoon, lowercase `t` teaspoon.
+
+## Seed data
+- Countries: US, GB, DE, RU (4 of the 3–5 requested), each with 5–6 cities for offline reverse geocoding.
+- Product catalogs are CSV per country (`seed/products/<cc>.csv`, ~150 SKUs each); prices are typical-shelf approximations in local currency, sizes metric everywhere.
+- Each country deliberately lacks a few items (RU: fish sauce, gochujang, dumpling wrappers…; DE: gochujang, gyoza wrappers…) so availability and substitutions are visible out of the box.
+- Seed video links point at YouTube search results for the dish; admins can paste a specific video URL, which is then embedded via youtube-nocookie.com.
+- The seeder is idempotent and runs on every server start: it upserts ingredients, cuisines and countries, but never overwrites existing recipes or products.

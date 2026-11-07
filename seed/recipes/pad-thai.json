@@ -1,0 +1,61 @@
+{
+  "slug": "pad-thai",
+  "cuisine": "thai",
+  "meal_times": ["lunch", "dinner"],
+  "difficulty": "medium",
+  "prep_minutes": 20,
+  "cook_minutes": 10,
+  "servings": 2,
+  "video_url": "https://www.youtube.com/results?search_query=pad+thai+recipe+for+beginners",
+  "nutrition": {"calories": 640, "protein": 30, "fat": 22, "carbs": 80, "fiber": 4, "sugar": 18, "sodium": 1480, "saturated_fat": 4},
+  "ingredients": [
+    {"text": "200 g rice noodles", "ingredient": "rice-noodles"},
+    {"text": "200 g shrimp, peeled", "ingredient": "shrimp"},
+    {"text": "2 eggs", "ingredient": "egg"},
+    {"text": "2 tbsp fish sauce", "ingredient": "fish-sauce"},
+    {"text": "2 tbsp tamarind paste", "ingredient": "tamarind-paste"},
+    {"text": "1 1/2 tbsp brown sugar", "ingredient": "brown-sugar"},
+    {"text": "2 cloves garlic, minced", "ingredient": "garlic"},
+    {"text": "3 scallions, cut into 3 cm pieces", "ingredient": "scallion"},
+    {"text": "1 cup bean sprouts", "ingredient": "bean-sprouts", "essential": false},
+    {"text": "1/4 cup peanuts, roughly chopped", "ingredient": "peanuts", "essential": false},
+    {"text": "1 lime, cut into wedges", "ingredient": "lime", "essential": false},
+    {"text": "1/2 tsp chili flakes", "ingredient": "chili-flakes", "essential": false},
+    {"text": "2 tbsp vegetable oil", "ingredient": "vegetable-oil"}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Pad Thai",
+      "description": "Thailand's best-known stir-fried noodles: sweet, sour and salty in one pan. Teaches you to prepare everything before the wok gets hot.",
+      "steps": [
+        "Put the rice noodles in a large bowl and cover with hot (not boiling) tap water. Soak for 20–30 minutes until they bend easily but are still a little firm in the centre. Drain.",
+        "While they soak, make the sauce: stir the fish sauce, tamarind paste and brown sugar in a small bowl until the sugar dissolves. Taste it — it should be sweet, sour and salty at once.",
+        "Prepare everything else and put it next to the stove: minced garlic, cut scallions, shrimp, eggs cracked into a cup, bean sprouts, peanuts and lime wedges. Stir-frying is fast; there is no time to chop once you start.",
+        "Heat a wok or large frying pan over high heat until it just begins to smoke. Add 1 tablespoon of oil and swirl it around.",
+        "Add the shrimp in one layer and cook for about 1 minute per side until pink. Move them to a plate.",
+        "Add the remaining oil and the garlic. Stir for 15 seconds, then add the drained noodles and the sauce. Toss constantly with tongs for 2 minutes until the noodles soak up the sauce. If they stick, add 2 tablespoons of water.",
+        "Push the noodles to one side. Pour the eggs into the empty space, let them set for 20 seconds, then scramble them and mix through the noodles.",
+        "Return the shrimp and add the scallions and half of the bean sprouts. Toss for 1 more minute.",
+        "Taste a noodle: if it is still hard, add a splash of water and toss for another minute.",
+        "Serve topped with the remaining bean sprouts, peanuts, chili flakes and lime wedges to squeeze over."
+      ]
+    },
+    "ru": {
+      "name": "Пад тай",
+      "description": "Самая известная тайская жареная лапша: сладкая, кислая и солёная одновременно. Учит заранее готовить все продукты, пока вок не раскалился.",
+      "steps": [
+        "Положите рисовую лапшу в большую миску и залейте горячей (не кипящей) водой из-под крана. Замочите на 20–30 минут, пока она не будет легко гнуться, оставаясь чуть упругой в центре. Слейте воду.",
+        "Пока лапша замачивается, приготовьте соус: размешайте в маленькой миске рыбный соус, пасту тамаринда и коричневый сахар, пока сахар не растворится. Попробуйте — соус должен быть одновременно сладким, кислым и солёным.",
+        "Подготовьте всё остальное и поставьте рядом с плитой: чеснок, нарезанный зелёный лук, креветки, разбитые в чашку яйца, ростки, арахис и дольки лайма. Жарка идёт быстро — резать будет некогда.",
+        "Раскалите вок или большую сковороду на сильном огне, пока не появится лёгкий дымок. Добавьте 1 столовую ложку масла и распределите по дну.",
+        "Выложите креветки в один слой и жарьте около минуты с каждой стороны, пока они не порозовеют. Переложите на тарелку.",
+        "Добавьте оставшееся масло и чеснок. Помешивайте 15 секунд, затем добавьте лапшу и соус. Постоянно перемешивайте щипцами 2 минуты, пока лапша не впитает соус. Если прилипает, добавьте 2 столовые ложки воды.",
+        "Сдвиньте лапшу в сторону. Влейте яйца на освободившееся место, дайте им схватиться 20 секунд, затем перемешайте их в болтунью и соедините с лапшой.",
+        "Верните креветки, добавьте зелёный лук и половину ростков. Перемешивайте ещё минуту.",
+        "Попробуйте лапшу: если она ещё жёсткая, добавьте немного воды и жарьте ещё минуту.",
+        "Подавайте, посыпав оставшимися ростками, арахисом, хлопьями чили и с дольками лайма."
+      ],
+      "ingredients": ["200 г рисовой лапши", "200 г очищенных креветок", "2 яйца", "2 ст. л. рыбного соуса", "2 ст. л. пасты тамаринда", "1,5 ст. л. коричневого сахара", "2 зубчика чеснока, измельчённых", "3 стебля зелёного лука, кусочками по 3 см", "1 стакан ростков фасоли", "¼ стакана рубленого арахиса", "1 лайм, дольками", "½ ч. л. хлопьев чили", "2 ст. л. растительного масла"]
+    }
+  }
+}

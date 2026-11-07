@@ -1,0 +1,58 @@
+{
+  "slug": "fluffy-pancakes",
+  "cuisine": "american",
+  "meal_times": ["breakfast"],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 20,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=fluffy+american+pancakes+recipe",
+  "nutrition": {"calories": 310, "protein": 9, "fat": 11, "carbs": 44, "fiber": 1.5, "sugar": 9, "sodium": 520, "saturated_fat": 6},
+  "ingredients": [
+    {"text": "1 1/2 cups all-purpose flour", "ingredient": "all-purpose-flour"},
+    {"text": "2 tbsp sugar", "ingredient": "sugar"},
+    {"text": "2 tsp baking powder", "ingredient": "baking-powder"},
+    {"text": "1/2 tsp salt", "ingredient": "salt"},
+    {"text": "1 1/4 cups milk", "ingredient": "milk"},
+    {"text": "1 egg", "ingredient": "egg"},
+    {"text": "3 tbsp butter, melted, plus more for the pan", "ingredient": "butter"},
+    {"text": "1 tsp vanilla extract", "ingredient": "vanilla-extract", "essential": false},
+    {"text": "maple syrup, for serving", "ingredient": "maple-syrup", "essential": false},
+    {"text": "1 cup berries, for serving", "ingredient": "berries", "essential": false}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Fluffy Pancakes",
+      "description": "Thick, soft American pancakes from pantry basics. The perfect first recipe: you learn to mix a batter and control pan heat.",
+      "steps": [
+        "Melt the butter in a small pot over low heat or in the microwave in 15-second bursts, then let it cool for a few minutes so it doesn't cook the egg.",
+        "In a large bowl, whisk together the flour, sugar, baking powder and salt. Whisking now spreads the baking powder evenly so every pancake rises.",
+        "In a second bowl or a jug, whisk the milk, egg, melted butter and vanilla until the egg is fully broken up.",
+        "Pour the wet mixture into the dry one. Stir gently with a spoon or spatula just until you no longer see dry flour. Small lumps are fine — over-mixing makes pancakes tough.",
+        "Let the batter rest for 5 minutes. You will see small bubbles: that is the baking powder working.",
+        "Heat a non-stick frying pan over medium heat for 2 minutes. Test it by flicking in a drop of water: it should sizzle, not disappear instantly. Brush the pan with a little butter.",
+        "Pour about 1/4 cup (60 ml) of batter per pancake. Cook until bubbles appear on the surface and the edges look dry, about 2 minutes.",
+        "Slide a thin spatula under the pancake and flip it in one confident motion. Cook the other side for 1–2 minutes until golden.",
+        "Keep finished pancakes warm on a plate covered with a clean towel while you cook the rest. If they brown too fast, turn the heat down a little.",
+        "Serve warm with maple syrup and berries."
+      ]
+    },
+    "ru": {
+      "name": "Пышные панкейки",
+      "description": "Толстые мягкие американские блинчики из самых простых продуктов. Идеальный первый рецепт: вы научитесь замешивать тесто и управлять жаром сковороды.",
+      "steps": [
+        "Растопите сливочное масло в маленькой кастрюльке на слабом огне или в микроволновке короткими подходами по 15 секунд, затем дайте ему остыть пару минут, чтобы оно не заварило яйцо.",
+        "В большой миске перемешайте венчиком муку, сахар, разрыхлитель и соль. Так разрыхлитель распределится равномерно, и каждый панкейк поднимется.",
+        "Во второй миске или кувшине взбейте молоко, яйцо, растопленное масло и ваниль, пока яйцо полностью не разойдётся.",
+        "Влейте жидкую смесь в сухую. Аккуратно перемешайте ложкой или лопаткой, только пока не исчезнет сухая мука. Небольшие комочки — это нормально: если перемешать слишком долго, панкейки станут жёсткими.",
+        "Оставьте тесто на 5 минут. Появятся маленькие пузырьки — это работает разрыхлитель.",
+        "Разогрейте антипригарную сковороду на среднем огне 2 минуты. Проверьте каплей воды: она должна зашипеть, а не мгновенно испариться. Смажьте сковороду небольшим количеством масла.",
+        "Наливайте примерно 1/4 стакана (60 мл) теста на один панкейк. Жарьте, пока на поверхности не появятся пузырьки, а края не станут матовыми, около 2 минут.",
+        "Подведите под панкейк тонкую лопатку и переверните одним уверенным движением. Жарьте вторую сторону 1–2 минуты до золотистого цвета.",
+        "Держите готовые панкейки на тарелке под чистым полотенцем, пока жарите остальные. Если они темнеют слишком быстро, немного убавьте огонь.",
+        "Подавайте тёплыми с кленовым сиропом и ягодами."
+      ],
+      "ingredients": ["1,5 стакана пшеничной муки", "2 ст. л. сахара", "2 ч. л. разрыхлителя", "½ ч. л. соли", "1¼ стакана молока", "1 яйцо", "3 ст. л. растопленного сливочного масла + для сковороды", "1 ч. л. ванильного экстракта", "кленовый сироп для подачи", "1 стакан ягод для подачи"]
+    }
+  }
+}

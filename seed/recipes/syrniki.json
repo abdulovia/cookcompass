@@ -1,0 +1,57 @@
+{
+  "slug": "syrniki",
+  "cuisine": "russian",
+  "meal_times": ["breakfast", "snack"],
+  "difficulty": "easy",
+  "prep_minutes": 15,
+  "cook_minutes": 15,
+  "servings": 3,
+  "video_url": "https://www.youtube.com/results?search_query=syrniki+recipe",
+  "nutrition": {"calories": 380, "protein": 26, "fat": 16, "carbs": 33, "fiber": 0.8, "sugar": 14, "sodium": 210, "saturated_fat": 8},
+  "ingredients": [
+    {"text": "500 g farmer's cheese (tvorog)", "ingredient": "tvorog"},
+    {"text": "1 egg", "ingredient": "egg"},
+    {"text": "4 tbsp flour, plus more for dusting", "ingredient": "all-purpose-flour"},
+    {"text": "2 tbsp sugar", "ingredient": "sugar"},
+    {"text": "1 pinch salt", "ingredient": "salt"},
+    {"text": "1 tsp vanilla extract", "ingredient": "vanilla-extract", "essential": false},
+    {"text": "3 tbsp vegetable oil, for frying", "ingredient": "vegetable-oil"},
+    {"text": "sour cream, for serving", "ingredient": "sour-cream", "essential": false},
+    {"text": "berries, for serving", "ingredient": "berries", "essential": false}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Syrniki (Farmer's Cheese Pancakes)",
+      "description": "Golden Russian breakfast patties made from farmer's cheese. Crispy outside, creamy inside, and naturally high in protein.",
+      "steps": [
+        "If the farmer's cheese is wet or grainy, press it through a sieve with the back of a spoon or mash it well with a fork. Smooth cheese makes smooth syrniki.",
+        "Put the cheese in a bowl and add the egg, sugar, salt and vanilla. Mix with a fork until evenly combined.",
+        "Add the 4 tablespoons of flour and mix again. The dough should be soft and slightly sticky but hold its shape when you scoop it. If it spreads, add one more spoon of flour.",
+        "Sprinkle a plate or board with flour. With wet hands, scoop a heaped tablespoon of dough, roll it into a ball, place it on the flour and press it gently into a patty about 1.5 cm (½ inch) thick.",
+        "Turn each patty in the flour so both sides are lightly coated. Use the side of a knife to straighten the edges — this keeps them neat and round.",
+        "Heat the oil in a frying pan over medium heat for about 2 minutes. The oil is ready when a pinch of flour sizzles gently.",
+        "Fry the syrniki in batches without crowding the pan, 3–4 minutes per side, until deep golden. Turn them carefully with a spatula.",
+        "If they are browning faster than they cook inside, lower the heat and cover the pan with a lid for the last minute.",
+        "Move them to a plate lined with paper towel to soak up extra oil.",
+        "Serve warm with sour cream and berries or jam."
+      ]
+    },
+    "ru": {
+      "name": "Сырники",
+      "description": "Румяные творожные лепёшки к завтраку. Хрустящие снаружи, нежные внутри и богатые белком.",
+      "steps": [
+        "Если творог влажный или зернистый, протрите его через сито тыльной стороной ложки или хорошо разомните вилкой. Чем глаже творог, тем нежнее сырники.",
+        "Переложите творог в миску, добавьте яйцо, сахар, соль и ваниль. Перемешайте вилкой до однородности.",
+        "Добавьте 4 столовые ложки муки и снова перемешайте. Тесто должно быть мягким и слегка липким, но держать форму. Если оно расплывается, добавьте ещё ложку муки.",
+        "Присыпьте тарелку или доску мукой. Влажными руками наберите столовую ложку теста с горкой, скатайте шарик, положите на муку и слегка расплющите в лепёшку толщиной около 1,5 см.",
+        "Обваляйте каждую лепёшку в муке с обеих сторон. Подровняйте края боковой стороной ножа — так сырники будут аккуратными и круглыми.",
+        "Разогрейте масло на сковороде на среднем огне около 2 минут. Масло готово, если щепотка муки в нём тихо шипит.",
+        "Жарьте сырники партиями, не теснясь, по 3–4 минуты с каждой стороны до тёмно-золотистого цвета. Переворачивайте аккуратно лопаткой.",
+        "Если они темнеют быстрее, чем пропекаются, убавьте огонь и накройте сковороду крышкой на последнюю минуту.",
+        "Переложите на тарелку с бумажным полотенцем, чтобы ушло лишнее масло.",
+        "Подавайте тёплыми со сметаной и ягодами или вареньем."
+      ],
+      "ingredients": ["500 г творога", "1 яйцо", "4 ст. л. муки + для обваливания", "2 ст. л. сахара", "щепотка соли", "1 ч. л. ванильного экстракта", "3 ст. л. растительного масла для жарки", "сметана для подачи", "ягоды для подачи"]
+    }
+  }
+}

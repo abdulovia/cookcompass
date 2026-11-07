@@ -1,0 +1,62 @@
+{
+  "slug": "chana-masala",
+  "cuisine": "indian",
+  "meal_times": ["lunch", "dinner"],
+  "difficulty": "easy",
+  "prep_minutes": 10,
+  "cook_minutes": 30,
+  "servings": 4,
+  "video_url": "https://www.youtube.com/results?search_query=easy+chana+masala+recipe",
+  "nutrition": {"calories": 290, "protein": 11, "fat": 10, "carbs": 40, "fiber": 11, "sugar": 8, "sodium": 640, "saturated_fat": 1},
+  "ingredients": [
+    {"text": "2 cans chickpeas (400 g each), drained and rinsed", "ingredient": "chickpeas"},
+    {"text": "1 onion, finely chopped", "ingredient": "onion"},
+    {"text": "3 cloves garlic, minced", "ingredient": "garlic"},
+    {"text": "1 tbsp ginger, grated", "ingredient": "ginger"},
+    {"text": "1 can canned tomatoes (400 g)", "ingredient": "canned-tomatoes"},
+    {"text": "1 tsp cumin", "ingredient": "cumin"},
+    {"text": "1 tsp ground coriander", "ingredient": "ground-coriander"},
+    {"text": "1 tsp garam masala", "ingredient": "garam-masala"},
+    {"text": "1/2 tsp turmeric", "ingredient": "turmeric"},
+    {"text": "1/2 tsp chili powder", "ingredient": "chili-powder", "essential": false},
+    {"text": "2 tbsp vegetable oil", "ingredient": "vegetable-oil"},
+    {"text": "1 tsp salt", "ingredient": "salt"},
+    {"text": "1/2 lemon, juiced", "ingredient": "lemon", "essential": false},
+    {"text": "cilantro, for garnish", "ingredient": "cilantro", "essential": false}
+  ],
+  "i18n": {
+    "en": {
+      "name": "Chana Masala",
+      "description": "A warming chickpea curry built from pantry spices. Great for learning how to bloom spices in oil — the foundation of Indian cooking.",
+      "steps": [
+        "Peel and finely chop the onion. Peel and mince the garlic, and grate the ginger on the small holes of a grater (no need to peel it if you scrub it).",
+        "Open the chickpea cans, pour them into a sieve and rinse under cold water until the foam is gone.",
+        "Heat the oil in a wide pan or pot over medium heat. Add the onion with a pinch of salt and cook, stirring every minute, for 8–10 minutes until soft and golden brown. Patience here gives the curry its deep flavour.",
+        "Add the garlic and ginger and stir for 1 minute until fragrant. If anything starts to stick or burn, add a spoon of water.",
+        "Turn the heat to low and add the cumin, coriander, turmeric and chili powder. Stir for 30 seconds — the spices 'bloom' in the oil and smell much stronger. Don't let them burn.",
+        "Pour in the canned tomatoes. Raise the heat to medium and cook for 5 minutes, stirring and mashing big pieces with your spoon, until the sauce thickens.",
+        "Add the chickpeas, the salt and about 250 ml (1 cup) of water. Bring to a gentle bubble.",
+        "Simmer uncovered for 15 minutes, stirring occasionally. Crush a few chickpeas against the side of the pan to thicken the sauce.",
+        "Stir in the garam masala and lemon juice. Taste and add more salt if needed.",
+        "Serve with rice or flatbread, topped with chopped cilantro."
+      ]
+    },
+    "ru": {
+      "name": "Чана масала",
+      "description": "Согревающее карри из нута на основе пряностей из кладовой. Отлично подходит, чтобы научиться раскрывать специи в масле — основа индийской кухни.",
+      "steps": [
+        "Очистите и мелко нарежьте лук. Очистите и измельчите чеснок, натрите имбирь на мелкой тёрке (если хорошо его помыть, чистить не обязательно).",
+        "Откройте банки с нутом, откиньте его на сито и промойте холодной водой, пока не исчезнет пена.",
+        "Разогрейте масло в широкой сковороде или кастрюле на среднем огне. Добавьте лук с щепоткой соли и готовьте 8–10 минут, помешивая каждую минуту, до мягкости и золотисто-коричневого цвета. Терпение здесь даёт карри глубокий вкус.",
+        "Добавьте чеснок и имбирь и помешивайте 1 минуту до появления аромата. Если что-то начинает прилипать или подгорать, добавьте ложку воды.",
+        "Убавьте огонь до слабого, добавьте зиру, кориандр, куркуму и молотый чили. Помешивайте 30 секунд — специи «раскрываются» в масле и пахнут намного сильнее. Не дайте им подгореть.",
+        "Влейте консервированные томаты. Прибавьте огонь до среднего и готовьте 5 минут, помешивая и разминая крупные кусочки ложкой, пока соус не загустеет.",
+        "Добавьте нут, соль и около 250 мл (1 стакан) воды. Доведите до лёгкого кипения.",
+        "Тушите без крышки 15 минут, иногда помешивая. Раздавите несколько горошин нута о стенку сковороды, чтобы соус стал гуще.",
+        "Вмешайте гарам масалу и лимонный сок. Попробуйте и при необходимости досолите.",
+        "Подавайте с рисом или лепёшками, посыпав рубленой кинзой."
+      ],
+      "ingredients": ["2 банки нута (по 400 г), промытого", "1 луковица, мелко нарезанная", "3 зубчика чеснока, измельчённых", "1 ст. л. тёртого имбиря", "1 банка томатов в собственном соку (400 г)", "1 ч. л. зиры", "1 ч. л. молотого кориандра", "1 ч. л. гарам масалы", "½ ч. л. куркумы", "½ ч. л. молотого чили", "2 ст. л. растительного масла", "1 ч. л. соли", "сок ½ лимона", "кинза для подачи"]
+    }
+  }
+}
