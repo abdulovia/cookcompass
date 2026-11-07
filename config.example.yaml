@@ -1,0 +1,32 @@
+# Copy to config.yaml (git-ignored). Every key can be overridden with a COOK_* env var.
+server:
+  addr: ":8080"            # COOK_ADDR
+  read_timeout: 15s
+  write_timeout: 30s
+db:
+  path: data/cookcompass.db  # COOK_DB
+log:
+  level: info              # debug|info|warn|error  COOK_LOG_LEVEL
+  format: json             # json|text              COOK_LOG_FORMAT
+admin:
+  user: admin              # COOK_ADMIN_USER
+  password: ""             # COOK_ADMIN_PASSWORD; empty = loopback clients only
+auth:
+  multi_user: false        # COOK_MULTI_USER; enables /login and /register
+  secure_cookies: false    # COOK_SECURE_COOKIES; set true behind TLS
+recipes:
+  keep_revisions: 20       # COOK_KEEP_REVISIONS
+scrape:
+  user_agent: "CookCompassBot/1.0 (+https://github.com/abdulovia/cookcompass; local recipe indexer)"
+  cache_dir: data/cache/http
+  cache_ttl: 168h
+  min_interval: 1s         # per-domain politeness delay (>= 1s enforced)
+  timeout: 15s
+  targets_file: seed/sources/jsonld_targets.txt
+  catalog_targets_file: seed/sources/catalog_targets.txt
+  catalog_inbox_dir: data/catalog-inbox
+availability:
+  threshold: 1.0           # fraction of essential ingredients required
+defaults:
+  country: US              # COOK_DEFAULT_COUNTRY
+  locale: en               # COOK_DEFAULT_LOCALE
